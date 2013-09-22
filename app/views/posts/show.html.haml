@@ -23,4 +23,7 @@
 	= f.text_area :text
 	= f.submit
 
-	= link_to "Home", posts_path
+	= link_to "Edit", edit_post_path(@post)
+	:plain 
+		|
+	= link_to "Home", posts_path 

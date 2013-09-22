@@ -21,6 +21,9 @@ gem 'uglifier', '>= 1.3.0'
 #haml
 gem 'haml'
 
+#markdown
+gem 'redcarpet'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
