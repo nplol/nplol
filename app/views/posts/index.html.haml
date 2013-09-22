@@ -1,0 +1,7 @@
+%h1 NPLOL
+.posts
+	- @posts.each do |post|
+		.post
+			= link_to post.title, post
+
+= link_to "New post", new_post_path
