@@ -4,6 +4,8 @@ class PostsController < ApplicationController
 
   def index
   	@posts = Post.all
+    logger.info "empty post list"
+    logger.info @posts.inspect
   end
 
   def new

@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
-# Use sqlite3 as the database for Active Record
+# Use postgres as the database for Active Record
 gem 'pg'
 
 # Use SCSS for stylesheets
@@ -26,6 +26,14 @@ gem 'redcarpet'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
+
+# use rspec for testing
+gem 'rspec-rails', :group => [:development, :test]
+
+group :test do
+	gem 'factory_girl_rails'
+	gem 'capybara'
+end
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 #gem 'jbuilder', '~> 1.2'
