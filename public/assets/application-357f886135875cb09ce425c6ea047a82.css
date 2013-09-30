@@ -1,0 +1,51 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+
+ */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+@font-face {
+  font-family: test;
+  font-weight: normal;
+  font-style: normal;
+  src: url(/assets/my_underwood/MyUnderwood.eot);
+  src: url(/assets/my_underwood/MyUnderwood.eot?#iefix) format("embedded-opentype"), url(/assets/my_underwood/MyUnderwood.woff) format("woff"), url(/assets/my_underwood/MyUnderwood.ttf) format("truetype"), url(/assets/my_underwood/MyUnderwood.svg#test) format("svg"); }
+
+ul, li {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+
+body {
+  font-family: 'DroidSerif';
+  font-size: 14px;
+  background: #eeeeee;
+  color: #333333;
+  width: 65%;
+  margin: 0 auto; }
+
+#blog {
+  background: #fff;
+  padding: 20px;
+  margin-bottom: 40px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.075) ; }
+
+header h1 {
+  font-size: 59.30121px;
+  font-family: 'MyUnderwood';
+  text-align: center;
+  padding: 0 0 10px 0; }
+
+article h1 {
+  font-size: 22.652px; }
