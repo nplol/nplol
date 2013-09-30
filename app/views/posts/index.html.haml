@@ -1,7 +1,15 @@
-%h1 nplol
-.posts
-	- @posts.each do |post|
-		.post
-			= link_to post.title, post
+%header
+	%h1 nplol
+
+%section.posts
+	%ul
+		- @posts.each do |post|
+			%li
+				%article.post
+					%h1
+						= post.title
+					%p
+						= truncate(post.content)
+						= link_to "Read more", post
 
 = link_to "New post", new_post_path

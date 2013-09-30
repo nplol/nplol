@@ -1,8 +1,8 @@
 FactoryGirl.define do
   
   factory :post do
-    title "MyString"
-    content "MyText"
+    title "Hunting dat whale"
+    content "Ahab's mission was null and void."
   end
 
   factory :invalid_post, parent: :post do

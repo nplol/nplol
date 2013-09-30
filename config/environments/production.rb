@@ -33,6 +33,9 @@ Nplol::Application.configure do
   # Generate digests for assets URLs.
   config.assets.digest = true
 
+  config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
+  config.assets.precompile += %w( .svg .eot .woff .ttf )
+
   # Version of your assets, change this if you want to expire all your assets.
   config.assets.version = '1.0'
 

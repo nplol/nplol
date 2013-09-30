@@ -8,6 +8,8 @@ gem 'pg'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
+gem 'bourbon'
+gem 'neat'
 
 # Coffee-script gosh darn it
 gem 'coffee-rails'
@@ -18,11 +20,9 @@ gem 'uglifier', '>= 1.3.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
-#haml
+# view engine
 gem 'haml'
 
-#markdown
-gem 'redcarpet'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
@@ -33,6 +33,7 @@ gem 'rspec-rails', :group => [:development, :test]
 group :test do
 	gem 'factory_girl_rails'
 	gem 'capybara'
+	gem 'database_cleaner'
 end
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
