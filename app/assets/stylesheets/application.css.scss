@@ -9,31 +9,46 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require posts
  */
 
 @import "bourbon";
 @import "neat";
 
-// @include font-face(DroidSerif, 'droid_serif/DroidSerif', normal, $asset-pipeline: true);
-@include font-face(test, 'my_underwood/MyUnderwood', normal, $asset-pipeline: true);
+@include font-face(droidserif, 'droid_serif/droidserif', normal, $asset-pipeline: true);
+@include font-face(droidserif-bold, 'droid_serif/droidserif-bold', normal, $asset-pipeline: true);
+@include font-face(typewriter, 'typewriter/typewriter', normal, $asset-pipeline: true);
 
-ul, li {
-	list-style: none;
-	margin: 0;
+.posts ul {
+	list-style:none;
+	margin:0;
 	padding:0;
 }
+
+$red: #e95c33;
+$blue: #41b7d8;
 
 @mixin box-shadow($top, $left, $blur, $color, $inset:"") {
     box-shadow:$top $left $blur $color #{$inset};
   }
 
  body {
- 	font-family: 'DroidSerif';
+ 	font-family: 'droidserif';
 	font-size: golden-ratio(14px,0);
 	background: #eeeeee;
 	color: #333333;
 	width: 65%;
 	margin: 0 auto;
+ }
+
+ strong, b, h1, h2, h3, h4, h5 {
+ 	font-family: 'droidserif-bold';
+ 	font-weight: normal;
+ }
+
+ a {
+ 	color: $blue;
+ 	text-decoration: none;
  }
 
  #blog {
@@ -45,7 +60,8 @@ ul, li {
 
  header h1 {
  	font-size: golden-ratio(14px, 3);
- 	font-family: 'MyUnderwood';
+ 	font-family: 'typewriter';
+ 	font-weight: normal;
 	text-align: center;
 	padding: 0 0 10px 0;
 }
