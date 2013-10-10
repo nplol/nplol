@@ -177,6 +177,7 @@ describe PostsController do
 
         response.response_code.should be(404)
       end
+      #
 
     end
 
@@ -198,13 +199,6 @@ describe PostsController do
         delete :destroy, id: resource
         response.should redirect_to posts_path
       end
-
-    context "when resource is not found" do
-      
-      before :each do 
-        Post.stub(:find_by_id).and_return(nil)
-      end  
-    end
 
     end
 
