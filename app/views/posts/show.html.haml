@@ -1,6 +1,7 @@
 .post
 	%h1= @post.title
-	%p= @post.content
+	%p
+		= markdown(@post.content)
 
 	- @post.comments.each do |comment|
 		- unless comment.invalid?
@@ -27,3 +28,6 @@
 	:plain 
 		|
 	= link_to "Home", posts_path 
+	:plain
+		|
+	= link_to "DIE", @post, :method => :delete 
