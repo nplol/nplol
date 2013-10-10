@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
 
-  http_basic_authenticate_with name: "2pac", password: "2pac"
+  http_basic_authenticate_with name: "sevve", password: "lovaas"
 
   def create
     @post = Post.find(params[:post_id])

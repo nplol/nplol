@@ -1,0 +1,78 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+
+
+ */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+@font-face {
+  font-family: droidserif;
+  font-weight: normal;
+  font-style: normal;
+  src: url(/assets/droid_serif/droidserif.eot);
+  src: url(/assets/droid_serif/droidserif.eot?#iefix) format("embedded-opentype"), url(/assets/droid_serif/droidserif.woff) format("woff"), url(/fonts/droid_serif/droidserif.ttf) format("truetype"), url(/assets/droid_serif/droidserif.svg#droidserif) format("svg"); }
+
+@font-face {
+  font-family: droidserif-bold;
+  font-weight: normal;
+  font-style: normal;
+  src: url(/assets/droid_serif/droidserif-bold.eot);
+  src: url(/assets/droid_serif/droidserif-bold.eot?#iefix) format("embedded-opentype"), url(/assets/droid_serif/droidserif-bold.woff) format("woff"), url(/assets/droid_serif/droidserif-bold.ttf) format("truetype"), url(/fonts/droid_serif/droidserif-bold.svg#droidserif-bold) format("svg"); }
+
+@font-face {
+  font-family: typewriter;
+  font-weight: normal;
+  font-style: normal;
+  src: url(/assets/typewriter/typewriter.eot);
+  src: url(/assets/typewriter/typewriter.eot?#iefix) format("embedded-opentype"), url(/assets/typewriter/typewriter.woff) format("woff"), url(/assets/typewriter/typewriter.ttf) format("truetype"), url(/assets/typewriter/typewriter.svg#typewriter) format("svg"); }
+
+.posts ul {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+
+body {
+  font-family: 'droidserif';
+  font-size: 14px;
+  background: #eeeeee;
+  color: #333333;
+  width: 65%;
+  margin: 0 auto; }
+
+strong, b, h1, h2, h3, h4, h5 {
+  font-family: 'droidserif-bold';
+  font-weight: normal; }
+
+a {
+  color: #41b7d8;
+  text-decoration: none; }
+
+#blog {
+  background: #fff;
+  padding: 20px;
+  margin-bottom: 40px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.075) ; }
+
+header h1 {
+  font-size: 59.30121px;
+  font-family: 'typewriter';
+  font-weight: normal;
+  text-align: center;
+  padding: 0 0 10px 0; }
+
+article h1 {
+  font-size: 22.652px; }
+textarea {
+  height: 600px;
+  width: 500px; }
