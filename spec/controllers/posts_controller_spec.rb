@@ -8,14 +8,12 @@ describe PostsController do
     it "gets the index path" do
       get :index
       
-      # assertions
       response.status.should be(200)
     end
 
     it "assigns the @posts instance variable" do
       get :index
 
-      # assertions
       assigns(:posts).should_not be_nil
     end
   end
@@ -25,7 +23,6 @@ describe PostsController do
       http_login
       get :new
 
-      # assertions
       response.status.should be(200)
     end
 
@@ -33,7 +30,6 @@ describe PostsController do
       http_login
       get :new
 
-      # assertions
       assigns(:post).should_not be_nil
     end
   end
@@ -50,7 +46,6 @@ describe PostsController do
       it "redirects to post show page upon save" do  
         post :create, post: attributes_for(:post)
 
-        # assertions
         response.should redirect_to Post.last    
       end
 
@@ -62,10 +57,9 @@ describe PostsController do
         expect{ post :create, post: attributes_for(:invalid_post) }.to_not change(Post, :count).by(1) 
       end
       
-      it "renders the new view upon save" do
+      it "renders the new view upon false save" do
         post :create, post: attributes_for(:invalid_post)
 
-        # assertions
         response.should render_template :new
         assigns(:post).should_not be_nil
       end
@@ -73,7 +67,6 @@ describe PostsController do
       it "generates error messages" do
         post :create, post: attributes_for(:invalid_post)
 
-        # assertions
         assigns(:post).should have(1).errors_on(:title)
         assigns(:post).should have(1).errors_on(:content)
       end
@@ -93,14 +86,12 @@ describe PostsController do
       it "responds with 200" do
         get :edit, id: resource
 
-        # assertions
         response.status.should be(200)
       end
 
       it "renders the form for a specific post" do
         get :edit, id: resource
               
-        # assertions
         assigns(:post).should_not be_nil
         assigns(:post).should eq(resource)
       end
@@ -112,7 +103,6 @@ describe PostsController do
           # reload fetches updated attributes for the given object from the database      
           resource.reload
                 
-          # assertions
           resource.title.should eq('NewTitle')
           resource.content.should eq('NewContent')
         end
@@ -120,7 +110,6 @@ describe PostsController do
         it "redirects to the show view for the given post" do
           put :update, id: resource, post: attributes_for(:post, title: 'NewTitle', content: 'NewContent')
                 
-          # assertions
           response.should redirect_to resource
           assigns(:post).should_not be_nil
           assigns(:post).should eq(resource)
@@ -134,7 +123,6 @@ describe PostsController do
           put :update, id: resource, post: attributes_for(:invalid_post)
           resource.reload
         
-          # assertions
           resource.title.should eq("Hunting dat whale")
           resource.content.should eq("Ahab's mission was null and void.")
         end 
@@ -142,7 +130,6 @@ describe PostsController do
         it "renders the edit view" do
           put :update, id: resource, post: attributes_for(:invalid_post)
 
-          # assertions
           response.should render_template :edit
           assigns(:post).should_not be_nil
           assigns(:post).should eq(resource)
@@ -151,7 +138,6 @@ describe PostsController do
         it "generates error messages" do
           put :update, id: resource, post: attributes_for(:invalid_post)
 
-          # assertions
           assigns(:post).should have(1).errors_on(:title)
           assigns(:post).should have(1).errors_on(:content)        
         end
@@ -168,9 +154,57 @@ describe PostsController do
       it "responds with 404" do
         get :edit, id: 'invalid'
 
-        # assertions
         response.response_code.should be(404)
       end
+
+    end
+
+  end
+
+  describe '#destroy' do
+
+    before :each do
+      http_login
+    end
+
+    context "when resource is not found" do
+      before :each do
+        Post.stub(:find_by_id).and_return(nil)
+      end
+
+      it "responds with 404" do
+        delete :destroy, id: 'invalid'
+
+        response.response_code.should be(404)
+      end
+
+    end
+
+    let(:resource) { create :post }
+
+    context "when resource is found" do
+      
+      it "gets the destroy post path" do
+        delete :destroy, id: resource
+        response.response_code.should be(302)
+      end
+
+      it "deletes the post" do
+        resource.title.should eq("Hunting dat whale")
+        expect{ delete :destroy, id: resource }.to change(Post, :count).by(-1) 
+      end
+
+      it "redirects to posts path" do
+        delete :destroy, id: resource
+        response.should redirect_to posts_path
+      end
+
+    context "when resource is not found" do
+      
+      before :each do 
+        Post.stub(:find_by_id).and_return(nil)
+      end  
+    end
 
     end
 
