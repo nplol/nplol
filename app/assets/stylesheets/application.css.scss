@@ -15,57 +15,69 @@
 @import "bourbon";
 @import "neat";
 
-@include font-face(droidserif, 'droid_serif/droidserif', normal, $asset-pipeline: true);
-@include font-face(droidserif-bold, 'droid_serif/droidserif-bold', normal, $asset-pipeline: true);
+@include font-face(bitter, 'bitter/bitter', normal, $asset-pipeline: true);
 @include font-face(typewriter, 'typewriter/typewriter', normal, $asset-pipeline: true);
 
-.posts ul {
-	list-style:none;
-	margin:0;
-	padding:0;
+@mixin box-shadow($top, $left, $blur, $color, $inset:"") {
+    box-shadow:$top $left $blur $color #{$inset};
 }
 
 $red: #e95c33;
 $blue: #41b7d8;
 
-@mixin box-shadow($top, $left, $blur, $color, $inset:"") {
-    box-shadow:$top $left $blur $color #{$inset};
-  }
-
- body {
- 	font-family: 'droidserif';
-	font-size: golden-ratio(14px,0);
+body {
+	font-family: 'bitter';
+	font-size: 18px;
+	line-height: 26px;
 	background: #eeeeee;
-	color: #333333;
-	width: 65%;
+	color: #2c3e50;
 	margin: 0 auto;
- }
+}
 
- strong, b, h1, h2, h3, h4, h5 {
- 	font-family: 'droidserif-bold';
- 	font-weight: normal;
- }
+h1,h2,h3,h4,h5,h6,p {
+   font-family: inherit;
+   font-size: inherit;
+   margin: 2% 0;
+}
+
+h1 {
+   font-size: 2.5em;
+   line-height: 1em;
+}
+
+h2 {
+   font-size: 2.5em;
+   line-height: 1em;
+}
+
+h3 {
+	font-size: 1.5em;
+	line-height: 1em;
+}
+
+ .posts ul {
+	list-style:none;
+	margin:0;
+	padding:0;
+}
 
  a {
  	color: $blue;
  	text-decoration: none;
  }
 
- #blog {
+#main {	
  	background: #fff;
-	padding: 20px;
-	margin-bottom: 40px;
+	padding: 5%;
+	margin-bottom: 15%;
+	margin-right: 33%;
 	@include box-shadow(0, 2px, 6px, rgba(0, 0, 0, 0.075));
  }
 
- header h1 {
- 	font-size: golden-ratio(14px, 3);
+header h1 {
  	font-family: 'typewriter';
+ 	margin: 3% 0;
+ 	font-size: 3.7em;
  	font-weight: normal;
 	text-align: center;
-	padding: 0 0 10px 0;
-}
-
-article h1 {
-	font-size: golden-ratio(14px, 1);
 }

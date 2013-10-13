@@ -6,10 +6,9 @@
 		- @posts.each do |post|
 			%li
 				%article.post
-					%h1
+					%h3
 						= post.title
 					%p
-						= truncate(post.content)
-						= link_to "Read more", post
+						= markdown(truncate(post.content, length: 300, omission: '[..]') {link_to "Read more", post})
 
 = link_to "New post", new_post_path

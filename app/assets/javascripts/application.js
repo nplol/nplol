@@ -12,3 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require flowtype
+
+$(document).ready(function() {
+	$('body').flowtype({
+   minimum   : 500,
+   maximum   : 1200,
+   minFont   : 12,
+   maxFont   : 24
+});
+});

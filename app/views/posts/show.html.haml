@@ -13,11 +13,12 @@
 	- unless @comment.nil?
 		- if @comment.errors.any?
 			#error_explanation
-				%h2
+				%h3
 					= pluralize(@comment.errors.count, "error") + " prohibited this comment from being saved"
 				%ul
 					- @comment.errors.full_messages.each do |msg|
 						%li= msg
+						
 	= f.label :name
 	= f.text_field :name
 	= f.label :text

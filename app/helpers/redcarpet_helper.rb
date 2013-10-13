@@ -1,8 +1,10 @@
 module RedcarpetHelper
+
   def markdown(text)
     markdown = Redcarpet::Markdown.new(HTMLBlockCode, fenced_code_blocks: true) 
     markdown.render(text).html_safe
   end
+  
 end
 
 class HTMLBlockCode < Redcarpet::Render::HTML
