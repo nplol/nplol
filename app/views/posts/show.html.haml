@@ -1,34 +1,42 @@
-.post
-	%h1= @post.title
-	%p
-		= markdown(@post.content)
+%article.post
+  %h1= @post.title
+  %p
+    = markdown(@post.content)
 
-	- @post.comments.each do |comment|
-		- unless comment.invalid?
-			.comment
-				%h3= comment.name
-				%p= comment.text
+  - @post.comments.each do |comment|
+    - unless comment.invalid?
+      .comment
+        %h3= comment.name
+        %p= comment.text
 
-= form_for([@post, @post.comments.build])  do |f|
-	- unless @comment.nil?
-		- if @comment.errors.any?
-			#error_explanation
-				%h3
-					= pluralize(@comment.errors.count, "error") + " prohibited this comment from being saved"
-				%ul
-					- @comment.errors.full_messages.each do |msg|
-						%li= msg
-						
-	= f.label :name
-	= f.text_field :name
-	= f.label :text
-	= f.text_area :text
-	= f.submit
+%section
+  %aside test
+  %article supertest dette blir langt
 
-	= link_to "Edit", edit_post_path(@post)
-	:plain 
-		|
-	= link_to "Home", posts_path 
-	:plain
-		|
-	= link_to "Delete", post_path(@post), method: :delete
+%section.comments
+  = form_for([@post, @post.comments.build])  do |f|
+    - unless @comment.nil?
+      - if @comment.errors.any?
+        #error_explanation
+          %h3
+            = pluralize(@comment.errors.count, "error") + " prohibited this comment from being saved"
+          %ul
+            - @comment.errors.full_messages.each do |msg|
+              %li= msg
+
+    .input-container
+      = f.label :name
+      = f.text_field :name
+    .input-container
+      = f.label :text
+      = f.text_area :text
+
+    = f.submit
+
+    = link_to "Edit", edit_post_path(@post)
+    :plain
+    |
+    = link_to "Home", posts_path
+    :plain
+    |
+    = link_to "Delete", post_path(@post), method: :delete
