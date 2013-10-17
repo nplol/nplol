@@ -9,10 +9,6 @@
         %h3= comment.name
         %p= comment.text
 
-%section
-  %aside test
-  %article supertest dette blir langt
-
 %section.comments
   = form_for([@post, @post.comments.build])  do |f|
     - unless @comment.nil?
@@ -32,11 +28,9 @@
       = f.text_area :text
 
     = f.submit
-
-    = link_to "Edit", edit_post_path(@post)
-    :plain
-    |
-    = link_to "Home", posts_path
-    :plain
-    |
-    = link_to "Delete", post_path(@post), method: :delete
+%section.links
+  = link_to "Edit", edit_post_path(@post)
+  |
+  = link_to "Home", posts_path
+  |
+  = link_to "Delete", post_path(@post), method: :delete
