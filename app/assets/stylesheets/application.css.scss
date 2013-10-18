@@ -10,6 +10,8 @@
  *
  *= require_self
  *= require posts
+ *= require comments
+ *= require side-icons
  */
 
 @import "bourbon";
@@ -18,12 +20,16 @@
 @include font-face(bitter, 'bitter/bitter', normal, $asset-pipeline: true);
 @include font-face(typewriter, 'typewriter/typewriter', normal, $asset-pipeline: true);
 
+// application-wide mixins
 @mixin box-shadow($top, $left, $blur, $color, $inset:"") {
     box-shadow:$top $left $blur $color #{$inset};
 }
 
+// application-wide variables
 $red: #e95c33;
 $blue: #41b7d8;
+
+// application-wide styles 
 
 body {
 	font-family: 'bitter';
@@ -55,16 +61,16 @@ h3 {
 	line-height: 1em;
 }
 
- .posts ul {
+ul {
 	list-style:none;
 	margin:0;
 	padding:0;
 }
 
- a {
- 	color: $blue;
- 	text-decoration: none;
- }
+a {
+	color: $blue;
+	text-decoration: none;
+}
 
 #main {	
  	background: #fff;
@@ -73,17 +79,3 @@ h3 {
 	margin-right: 33%;
 	@include box-shadow(0, 2px, 6px, rgba(0, 0, 0, 0.075));
  }
-
-header h1 {
- 	font-family: 'typewriter';
- 	margin: 3% 0;
- 	font-size: 3.7em;
- 	font-weight: normal;
-	text-align: center;
-}
-
-.input-container {
-  @include outer-container;
-  label { @include span-columns(3); }
-  input { @include span-columns(9); }
-}

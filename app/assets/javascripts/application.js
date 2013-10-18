@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require flowtype
+//= require side-icons
 
 $(document).ready(function() {
 	$('body').flowtype({

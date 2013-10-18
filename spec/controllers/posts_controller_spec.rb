@@ -1,5 +1,8 @@
 require 'spec_helper'
 
+# todo: remove controller specs, and move unit tests to
+#       models instead.
+
 include AuthHelper
 
 describe PostsController do
