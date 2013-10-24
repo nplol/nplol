@@ -13,8 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require flowtype
-//= require sticky-items
-//= require comments
 
 $(document).ready(function() {
 	$('body').flowtype({
