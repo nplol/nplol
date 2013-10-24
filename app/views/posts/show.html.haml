@@ -1,15 +1,22 @@
-%article.post
+%article#post
   %h1= @post.title
   %p
     = markdown(@post.content)
 
+%section#bookmarks
+
+%section#comments
   - @post.comments.each do |comment|
     - unless comment.invalid?
-      .comment
-        %h3= comment.name
-        %p= comment.text
+      .comment-container
+        .comment
+          %p= comment.text
+        .comment-face
+          -# skal byttes ut med avatar (paperclip-style)
+          %div.image
 
-%section.comments
+%section#new-comment
+  Skriv noe smart
   = form_for([@post, @post.comments.build])  do |f|
     - unless @comment.nil?
       - if @comment.errors.any?
@@ -20,17 +27,21 @@
             - @comment.errors.full_messages.each do |msg|
               %li= msg
 
-    .input-container
+    %section.form-input
       = f.label :name
       = f.text_field :name
-    .input-container
+    %section.form-input
       = f.label :text
       = f.text_area :text
 
     = f.submit
+
 %section.links
   = link_to "Edit", edit_post_path(@post)
   |
   = link_to "Home", posts_path
   |
   = link_to "Delete", post_path(@post), method: :delete
+
+= javascript_include_tag 'bookmarks'
+= javascript_include_tag 'face'
