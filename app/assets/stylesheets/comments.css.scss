@@ -15,16 +15,7 @@ $red: #e95c33;
 	padding: 1%;
 }
 
-.comment-face {
-	position: absolute;
-	margin-left: 65%;
-	width: 55px;
-	height: 55px;
-	background: $red;
-	margin-top: 1%;
-	opacity: 0.4;
-}
-
-.comment-face.active{
-	opacity: 1;
+.author {
+  opacity: .6;
+  float: right;
 }

@@ -10,7 +10,12 @@
     - unless comment.invalid?
       .comment-container
         .comment
-          %p= comment.text
+          %p
+            = comment.text
+            %span.author
+              (
+              =comment.name
+              )
 
 %section#new-comment
   Skriv noe smart

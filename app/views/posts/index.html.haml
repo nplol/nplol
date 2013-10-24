@@ -6,7 +6,7 @@
 		- @posts.each do |post|
 			%li.post-container
 				%article.post
-					%h3
+					%h1
 						= post.title
 					%p
 						= markdown(truncate(post.content, length: 300, omission: ' [...] ') {link_to "Read more", post})
