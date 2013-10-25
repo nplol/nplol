@@ -81,3 +81,9 @@ textarea {
  .notice {
  	border: 1px dashed $red;
  }
+
+@media (max-width: 767px) {
+  #main {
+  margin: 0;
+}
+}

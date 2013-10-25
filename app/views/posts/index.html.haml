@@ -9,7 +9,7 @@
 					%h1
 						= post.title
 					%p
-						= markdown(truncate(post.content, length: 300, omission: ' [...] ') {link_to "Read more", post})
+						= truncate_html(markdown(post.content), length: 300, omission: " [...] #{ link_to 'Read more', post }")
 					.speech-bubble		
 				.author
 

@@ -21,6 +21,7 @@ gem 'sass-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem 'unicorn'
+gem 'truncate_html'
 
 # redcarpet for markdown
 gem 'redcarpet'
