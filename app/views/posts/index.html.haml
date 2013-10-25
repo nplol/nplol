@@ -1,16 +1,18 @@
 %header
-	%h1 nplol
+  %h1 nplol
 
 %section.posts
-	%ul
-		- @posts.each do |post|
-			%li.post-container
-				%article.post
-					%h1
-						= post.title
-					%p
-						= truncate_html(markdown(post.content), length: 300, omission: " [...] #{ link_to 'Read more', post }")
-					.speech-bubble		
-				.author
+  %ul
+  - @posts.each do |post|
+    %li.post-container
+      %article.post
+        %h1
+          = post.title
+        %p
+          - if post.teaser
+            =markdown(post.teaser)
+            =link_to 'Read more', post
+          - else
+            =truncate_html(markdown(post.content), length: 300, omission: " [...] #{ link_to 'Read more', post }")
 
 = link_to "New post", new_post_path

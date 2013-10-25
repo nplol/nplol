@@ -19,10 +19,10 @@ header h1 {
 .form-input {
   @include outer-container;
   label { @include span-columns(3); }
-  input, textarea { @include span-columns(9); }
+  input, textarea { @include span-columns(9); margin: 1% 0;}
 }
 
-#post-form textarea{
+#post_content{
 	height:300px;
 }
 
