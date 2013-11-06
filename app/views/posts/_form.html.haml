@@ -12,13 +12,13 @@
 
     %section.form-input
       = f.label :title
-      = f.text_field :title
+      = f.text_field :title, class: 'input-text'
     %section.form-input
       = f.label :teaser
-      = f.text_area :teaser
+      = f.text_area :teaser, class: 'input-text'
     %section.form-input
       = f.label :content
-      = f.text_area :content
+      = f.text_area :content, class: 'input-text'
 
     = f.submit
 

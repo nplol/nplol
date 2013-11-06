@@ -35,12 +35,6 @@ class PostsController < ApplicationController
     end
   end
 
-  def destroy
-    @post = Post.find(params[:id])
-    @post.destroy
-    redirect_to posts_path
-  end
-
   def show
   	@post = Post.find(params[:id])
   end
@@ -54,7 +48,7 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title, :content, :teaser)
+    params.require(:post).permit(:title, :content)
   end
 
 end

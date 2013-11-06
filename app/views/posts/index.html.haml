@@ -1,18 +1,9 @@
-%header
-  %h1 nplol
-
 %section.posts
   %ul
   - @posts.each do |post|
     %li.post-container
       %article.post
-        %h1
+        %h1.title
           = post.title
         %p
-          - if post.teaser
-            =markdown(post.teaser)
-            =link_to 'Read more', post
-          - else
-            =truncate_html(markdown(post.content), length: 300, omission: " [...] #{ link_to 'Read more', post }")
-
-= link_to "New post", new_post_path
+          =truncate_html(markdown(post.content), length: 1000, omission: " [...] #{ link_to 'Read more', post }")

@@ -1,0 +1,167 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+
+
+
+ */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+@font-face {
+  font-family: bitter;
+  font-weight: normal;
+  font-style: normal;
+  src: url(/assets/bitter/bitter.eot);
+  src: url(/assets/bitter/bitter.eot?#iefix) format("embedded-opentype"), url(/assets/bitter/bitter.woff) format("woff"), url(/assets/bitter/bitter.ttf) format("truetype"), url(/assets/bitter/bitter.svg#bitter) format("svg"); }
+
+@font-face {
+  font-family: bitter-bold;
+  font-weight: normal;
+  font-style: normal;
+  src: url(/assets/bitter/bitter-bold.eot);
+  src: url(/assets/bitter/bitter-bold.eot?#iefix) format("embedded-opentype"), url(/assets/bitter/bitter-bold.woff) format("woff"), url(/assets/bitter/bitter-bold.ttf) format("truetype"), url(/assets/bitter/bitter-bold.svg#bitter-bold) format("svg"); }
+
+@font-face {
+  font-family: typewriter;
+  font-weight: normal;
+  font-style: normal;
+  src: url(/assets/typewriter/typewriter.eot);
+  src: url(/assets/typewriter/typewriter.eot?#iefix) format("embedded-opentype"), url(/assets/typewriter/typewriter.woff) format("woff"), url(/assets/typewriter/typewriter.ttf) format("truetype"), url(/assets/typewriter/typewriter.svg#typewriter) format("svg"); }
+
+strong {
+  font-family: 'bitter-bold'; }
+
+body {
+  font-family: 'bitter';
+  font-size: 18px;
+  line-height: 26px;
+  background: #fff;
+  color: #2c3e50; }
+
+header {
+  font-family: 'typewriter';
+  font-size: 1.75em;
+  padding: 2%;
+  position: fixed;
+  top: 0;
+  left: 0; }
+  header a {
+    color: #2c3e50; }
+
+#main {
+  width: 50%;
+  margin: 0 auto; }
+
+h1, h2, h3, h4, h5, h6, p {
+  font-family: inherit;
+  font-size: inherit;
+  margin: 3% 0; }
+
+.title {
+  font-size: 3em;
+  margin: 8%; }
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+
+a {
+  color: #41b7d8;
+  text-decoration: none; }
+
+input[type=text] {
+  font-family: 'bitter';
+  font-size: 16px;
+  padding: 1%; }
+
+textarea {
+  height: 150px;
+  resize: vertical;
+  font-family: 'bitter';
+  font-size: 16px;
+  padding: 1%; }
+
+.notice {
+  background-color: #ddd;
+  padding: 3%;
+  opacity: .6; }
+
+@media (max-width: 767px) {
+  #main {
+    margin: 0;
+    width: 100%; } }
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+.form-input {
+  *zoom: 1;
+  max-width: 68em;
+  margin-left: auto;
+  margin-right: auto; }
+  .form-input:before, .form-input:after {
+    content: " ";
+    display: table; }
+  .form-input:after {
+    clear: both; }
+  .form-input label {
+    display: block;
+    float: left;
+    margin-right: 2.35765%;
+    width: 23.23176%; }
+    .form-input label:last-child {
+      margin-right: 0; }
+  .form-input input, .form-input textarea {
+    display: block;
+    float: left;
+    margin-right: 2.35765%;
+    width: 74.41059%;
+    margin: 1% 0; }
+    .form-input input:last-child, .form-input textarea:last-child {
+      margin-right: 0; }
+
+#post_content {
+  height: 300px; }
+
+.post-container {
+  display: block;
+  margin-bottom: 5%;
+  padding: postPadding; }
+
+.post {
+  padding: postPadding;
+  margin-bottom: 3%; }
+
+#post {
+  border-bottom: 1px dashed #ddd; }
+
+h1 {
+  font-size: 1.5em;
+  text-align: center; }
+
+img {
+  max-width: 100%; }
+#comments {
+  margin-top: 3%; }
+
+.comment {
+  display: block;
+  margin-bottom: 2%;
+  background: rgba(222, 222, 222, 0.4);
+  padding: 1%; }
+
+.author {
+  opacity: .6;
+  float: right; }

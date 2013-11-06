@@ -17,6 +17,7 @@
 @import "neat";
 
 @include font-face(bitter, 'bitter/bitter', normal, $asset-pipeline: true);
+@include font-face(bitter-bold, 'bitter/bitter-bold', normal, $asset-pipeline: true);
 @include font-face(typewriter, 'typewriter/typewriter', normal, $asset-pipeline: true);
 
 // application-wide mixins
@@ -30,29 +31,45 @@ $blue: #41b7d8;
 
 // application-wide styles 
 
+strong {
+  font-family: 'bitter-bold';
+}
+
 body {
 	font-family: 'bitter';
 	font-size: 18px;
 	line-height: 26px;
-	background: #eeeeee;
+	background: #fff;
 	color: #2c3e50;
-	margin: 0 auto;
+}
+
+header {
+  font-family: 'typewriter';
+  font-size: 1.75em;
+  padding: 2%;
+  position: fixed;
+  top:0;
+  left:0;
+  a {
+    color: #2c3e50;
+  }
+}
+
+
+#main {
+  width: 50%;
+  margin: 0 auto;
 }
 
 h1,h2,h3,h4,h5,h6,p {
    font-family: inherit;
    font-size: inherit;
-   margin: 2% 0;
+   margin: 3% 0;
 }
 
-h1 {
-   font-size: 2.5em;
-   line-height: 1em;
-}
-
-h2 {
-   font-size: 1.5em;
-   line-height: 1em;
+.title {
+  font-size: 3em;
+  margin: 8%;
 }
 
 ul {
@@ -66,24 +83,29 @@ a {
 	text-decoration: none;
 }
 
-textarea {
-	height: 150px;
+input[type=text] {
+  font-family: 'bitter';
+  font-size: 16px;
+  padding: 1%;
 }
 
-#main {	
- 	background: #fff;
-	padding: 3%;
-	margin-bottom: 15%;
-	margin-right: 33%;
-	@include box-shadow(0, 2px, 6px, rgba(0, 0, 0, 0.075));
- }
+textarea {
+  height: 150px;
+  resize: vertical;
+  font-family: 'bitter';
+  font-size: 16px;
+  padding: 1%;
+}
 
  .notice {
- 	border: 1px dashed $red;
+   background-color: #ddd;
+   padding: 3%;
+   opacity: .6;
  }
 
 @media (max-width: 767px) {
   #main {
   margin: 0;
+  width: 100%;
 }
 }
