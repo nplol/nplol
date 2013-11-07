@@ -22,6 +22,7 @@ gem 'simple_form'
 gem 'uglifier'
 gem 'unicorn'
 gem 'truncate_html'
+gem 'acts-as-taggable-on'
 
 # redcarpet for markdown
 gem 'redcarpet'

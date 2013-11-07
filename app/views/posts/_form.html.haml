@@ -14,9 +14,10 @@
       = f.label :title
       = f.text_field :title
     %section.form-input
+      = f.label :tag_list
+      = f.text_field :tag_list
+    %section.form-input
       = f.label :content
       = f.text_area :content
 
     = f.submit
-
-= link_to "Back", posts_path	

@@ -6,5 +6,7 @@ class Post < ActiveRecord::Base
 	validates :content, presence: true
 
 	has_many :comments, dependent: :destroy
-	has_many :tags, dependent: :destroy
+
+  acts_as_taggable
+
 end

@@ -20,5 +20,8 @@ $(document).ready(function() {
    maximum   : 1200,
    minFont   : 12,
    maxFont   : 24
-});
+  });
+  $('.notice').on('click', function() {
+    $(this).fadeOut('fast')
+  })
 });

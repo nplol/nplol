@@ -55,6 +55,10 @@ header {
   }
 }
 
+input[type=submit] {
+  @include button($red);
+}
+
 
 #main {
   width: 50%;
@@ -70,6 +74,9 @@ h1,h2,h3,h4,h5,h6,p {
 .title {
   font-size: 3em;
   margin: 8%;
+  a {
+    color: #2c3e50;
+  }
 }
 
 ul {
@@ -97,11 +104,15 @@ textarea {
   padding: 1%;
 }
 
- .notice {
-   background-color: #ddd;
-   padding: 3%;
-   opacity: .6;
- }
+.notice {
+  padding: 1%;
+}
+.error {
+  background-color: rgba($red, 0.3);
+}
+.message {
+  background-color: rgba($blue, 0.3);
+}
 
 @media (max-width: 767px) {
   #main {

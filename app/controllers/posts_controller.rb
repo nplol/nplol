@@ -1,9 +1,14 @@
 class PostsController < ApplicationController
 
-  http_basic_authenticate_with name: "2pac", password: "2pac", except: [:index, :show]
+  http_basic_authenticate_with name: "2pac", password: "2pac", except: [:index, :show, :dev]
 
   def index
-  	@posts = Post.all
+  	@posts = Post.tagged_with('nplol').order('created_at DESC')
+  end
+
+  def dev
+    @posts = Post.tagged_with('dev').order('created_at DESC')
+    render 'index'
   end
 
   def new
@@ -48,7 +53,7 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title, :content)
+    params.require(:post).permit(:title, :content, :tag_list)
   end
 
 end

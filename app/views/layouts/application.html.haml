@@ -8,7 +8,7 @@
   %body
     %section#main
       - if flash[:notice]
-        .notice= flash[:notice]
+        %section.notice.message= flash[:notice]
       = yield
     %header
       = link_to 'nplol', root_path

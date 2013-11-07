@@ -4,6 +4,7 @@
     %li.post-container
       %article.post
         %h1.title
-          = post.title
+          = link_to post.title, post
         %p
           =truncate_html(markdown(post.content), length: 1000, omission: " [...] #{ link_to 'Read more', post }")
+          .post-meta= link_to "#{post.comments.count} comments", post
