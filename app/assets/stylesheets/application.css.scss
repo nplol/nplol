@@ -43,7 +43,7 @@ body {
 	color: #2c3e50;
 }
 
-header {
+#logo {
   font-family: 'typewriter';
   font-size: 1.75em;
   padding: 2%;
@@ -115,9 +115,22 @@ textarea {
   background-color: rgba($blue, 0.3);
 }
 
-@media (max-width: 767px) {
+@media (max-width: 767px){
   #main {
   margin: 0;
   width: 100%;
 }
+  #logo {
+    display: none;
+  }
+}
+
+@media screen and (device-width: 384px) and (device-height: 592px) and (-webkit-device-pixel-ratio: 2) {
+  #main {
+    margin: 0;
+    width: 100%;
+  }
+  #logo {
+    display: none;
+  }
 }
