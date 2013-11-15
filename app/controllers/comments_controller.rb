@@ -5,7 +5,11 @@ class CommentsController < ApplicationController
     @comment = @post.comments.build(comment_params)
     
     if @comment.save
-    	redirect_to post_path(@post)
+    	if @post.tag_list.include? 'dev'
+        redirect_to dev_post_path(@post)
+      else
+        redirect_to @post
+      end
       flash[:notice] = "Comment created"
     else
     	render :template => 'posts/show'

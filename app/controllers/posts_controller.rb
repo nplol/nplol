@@ -6,11 +6,6 @@ class PostsController < ApplicationController
   	@posts = Post.tagged_with('nplol').order('created_at DESC')
   end
 
-  def dev
-    @posts = Post.tagged_with('dev').order('created_at DESC')
-    render 'index'
-  end
-
   def new
   	@post = Post.new
   end
@@ -42,6 +37,7 @@ class PostsController < ApplicationController
 
   def show
   	@post = Post.find(params[:id])
+    redirect_to dev_post_path(@post) if @post.tag_list.include? 'dev'
   end
 
   def destroy

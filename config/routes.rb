@@ -4,9 +4,12 @@ Nplol::Application.routes.draw do
   	resources :comments
   end
 
-  get 'dev', to: 'posts#dev'
+  namespace 'dev' do
+    resources :posts
+      resources :comments
+  end
 
-
+  get 'dev', to: 'dev/posts#index'
 
   root 'posts#index'
 
