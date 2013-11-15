@@ -10,20 +10,19 @@ end
 class HTMLBlockCode < Redcarpet::Render::HTML
   include ActionView::Helpers::AssetTagHelper
 
-  def image(link, alt_text, title)
-    size = nil
-    klass = nil
+  def image(link, title, alt_text)
 
-    puts "LINK"
-    puts link.inspect
+    link_resources = link.split(/[ \|]/)
 
-    # bilder har format: ![alt text] (class src)
-    klass = link.match(/([^\s]+)/)[0]
-    puts "KLASS"
-    puts klass.inspect  
-    link = link.match(/[^ ]* (.*)/)[1]
+    url = link_resources.pop
 
-    image_tag(link, size: size, title: title, alt: alt_text, class: klass)
+    classes = ''
+
+    link_resources.each do |klass|
+      classes << ' '+klass
+    end
+
+    image_tag(url, title: title, alt: alt_text, class: classes.strip!)
 
   end
 end

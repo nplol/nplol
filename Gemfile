@@ -7,27 +7,16 @@ gem 'bourbon'
 gem 'neat'
 gem 'jquery-rails'
 gem 'coffee-rails'
-gem 'delayed_job_active_record', '>= 4.0.0'
-gem 'email_validator'
 gem 'flutie'
-gem 'high_voltage'
 gem 'jquery-rails'
-gem 'neat'
 gem 'pg'
-gem 'rack-timeout'
 gem 'rails', '>= 4.0.0'
-gem 'recipient_interceptor'
 gem 'sass-rails'
-gem 'simple_form'
 gem 'uglifier'
 gem 'unicorn'
 gem 'truncate_html'
 gem 'acts-as-taggable-on'
-
-# redcarpet for markdown
 gem 'redcarpet'
-
-# haml view engine
 gem 'haml'
 
 # use rspec for testing
@@ -40,11 +29,10 @@ group :development do
 end
 
 group :test do
+  gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'capybara-webkit', '>= 1.0.0'
   gem 'database_cleaner'
-  gem 'launchy'
-  gem 'shoulda-matchers'
   gem 'simplecov', require: false
   gem 'timecop'
   gem 'webmock'

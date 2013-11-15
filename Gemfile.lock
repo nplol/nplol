@@ -63,15 +63,8 @@ GEM
       safe_yaml (~> 0.9.0)
     database_cleaner (1.2.0)
     debug_inspector (0.0.2)
-    delayed_job (4.0.0)
-      activesupport (>= 3.0, < 4.1)
-    delayed_job_active_record (4.0.0)
-      activerecord (>= 3.0, < 4.1)
-      delayed_job (>= 3.0, < 4.1)
     diff-lcs (1.2.4)
     dotenv (0.9.0)
-    email_validator (1.4.0)
-      activemodel
     erubis (2.7.0)
     execjs (2.0.2)
     factory_girl (4.2.0)
@@ -85,7 +78,6 @@ GEM
       thor (>= 0.13.6)
     haml (4.0.3)
       tilt
-    high_voltage (2.0.0)
     hike (1.2.3)
     i18n (0.6.5)
     jquery-rails (3.0.4)
@@ -93,8 +85,6 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.0)
     kgio (2.8.1)
-    launchy (2.3.0)
-      addressable (~> 2.3)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -113,7 +103,6 @@ GEM
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
-    rack-timeout (0.0.4)
     rails (4.0.0)
       actionmailer (= 4.0.0)
       actionpack (= 4.0.0)
@@ -134,8 +123,6 @@ GEM
       thor (>= 0.18.1, < 2.0)
     raindrops (0.12.0)
     rake (10.1.0)
-    recipient_interceptor (0.1.2)
-      mail
     redcarpet (3.0.0)
     rspec-core (2.14.5)
     rspec-expectations (2.14.3)
@@ -154,11 +141,6 @@ GEM
       railties (>= 4.0.0.beta, < 5.0)
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0)
-    shoulda-matchers (2.4.0)
-      activesupport (>= 3.0.0)
-    simple_form (3.0.0)
-      actionpack (>= 4.0.0, < 4.1)
-      activemodel (>= 4.0.0, < 4.1)
     simplecov (0.7.1)
       multi_json (~> 1.0)
       simplecov-html (~> 0.7.1)
@@ -207,27 +189,19 @@ DEPENDENCIES
   capybara-webkit (>= 1.0.0)
   coffee-rails
   database_cleaner
-  delayed_job_active_record (>= 4.0.0)
-  email_validator
   factory_girl_rails
   flutie
   foreman
   haml
-  high_voltage
   jquery-rails
-  launchy
   neat
   newrelic_rpm (>= 3.6.7)
   pg
-  rack-timeout
   rails (>= 4.0.0)
   rails_12factor
-  recipient_interceptor
   redcarpet
   rspec-rails
   sass-rails
-  shoulda-matchers
-  simple_form
   simplecov
   timecop
   truncate_html
