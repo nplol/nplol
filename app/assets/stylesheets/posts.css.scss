@@ -7,7 +7,9 @@
 
 $blue: #41b7d8;
 $red: #e95c33;
-$postPadding: 0 3% 3% 0;
+$black: #2c3e50;
+$gray: rgba(0,0,0,0.3);
+$postPadding: 0 3% 0 3%;
 
 .form-input {
   @include outer-container;
@@ -20,19 +22,29 @@ $postPadding: 0 3% 3% 0;
 }
 
  .post-container {
-	display: block;
-	margin-bottom: 5%;
-	padding: postPadding;
+  display: block;
+  border-bottom: 1px dashed #ddd;
+  padding-bottom: 4%;
 }
 
 .post {
-	padding: postPadding;
-	margin-bottom: 3%;
 }
 
 .post-meta {
   font-size: 0.75em;
+  display: block;
+  @include outer-container;
+  section {
+    @include span-columns(4);
+  }
+  a {
+    color: $black;
+  }
+  i {
+    color: $red;
+  }
 }
+
 
 #post {
 	border-bottom: 1px dashed #ddd;

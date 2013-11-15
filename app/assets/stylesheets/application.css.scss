@@ -28,6 +28,7 @@
 // application-wide variables
 $red: #e95c33;
 $blue: #41b7d8;
+$black: #2c3e50;
 
 // application-wide styles 
 
@@ -40,7 +41,7 @@ body {
 	font-size: 18px;
 	line-height: 26px;
 	background: #fff;
-	color: #2c3e50;
+	color: $black;
 }
 
 #logo {
@@ -51,7 +52,7 @@ body {
   top:0;
   left:0;
   a {
-    color: #2c3e50;
+    color: $black;
   }
 }
 
@@ -74,7 +75,7 @@ h1,h2,h3,h4,h5,h6,p {
 .title {
   font-size: 3em;
   line-height: 1em;
-  margin: 8%;
+  margin-top: 8%;
   a {
     color: #2c3e50;
   }
@@ -114,6 +115,22 @@ textarea {
 .message {
   background-color: rgba($blue, 0.3);
 }
+
+.omission {
+  color: $red;
+}
+
+.read-more {
+  background: $red;
+  padding: 1% 2%;
+  border-radius: 0.75em;
+  color: #fff;
+  display: inline-block;
+}
+
+/*
+* Media queries
+*/
 
 @media (max-width: 767px){
   #main {
