@@ -17,3 +17,7 @@
   opacity: .6;
   float: right;
 }
+
+input.input-error, textarea.input-error {
+  border: 1px red solid;
+}

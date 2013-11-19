@@ -1,5 +1,16 @@
 %article#post
   %h1.title= @post.title
+  %secion.post-meta
+    %section.published
+      %i.fa.fa-clock-o.fa-lg
+      =@post.created_at.strftime("%B #{@post.created_at.day.ordinalize}, %Y")
+    %section.tags
+      %i.fa.fa-tags.fa-lg
+      =@post.tag_list
+    %section.comments
+      =link_to @post do
+        %i.fa.fa-comment-o.fa-lg
+        = "#{@post.comments.count} comments"
   %p
     = markdown(@post.content)
 
@@ -20,13 +31,11 @@
 %section#new-comment
   %p
     Write something clever.
-  = form_for([@post, @post.comments.build])  do |f|
-    - unless @comment.nil?
-      - if @comment.errors.any?
-        %section.notice.error
-          %ul
-            - @comment.errors.full_messages.each do |msg|
-              %li= msg
+  = form_for([@post, @comment = @comment || @post.comments.build])  do |f|
+    - if @comment.errors.any?
+      %section.notice.error
+        %ul
+          = render 'partials/error', { errors: @comment.errors }
 
     %section.form-input
       = f.label :name
