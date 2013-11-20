@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   http_basic_authenticate_with name: "2pac", password: "2pac", except: [:index, :show, :dev]
 
   def index
-  	@posts = Post.tagged_with('nplol').order('created_at DESC')
+  	@posts = Post.tagged_with('dev', exclude: true).order('created_at DESC')
   end
 
   def new

@@ -33,6 +33,7 @@ $postPadding: 0 3% 0 3%;
 .post-meta {
   font-size: 0.75em;
   display: block;
+  text-align: center;
   @include outer-container;
   section {
     @include span-columns(4);
