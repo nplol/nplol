@@ -19,6 +19,10 @@ gem 'acts-as-taggable-on'
 gem 'redcarpet'
 gem 'haml'
 
+# paperclip and aws for remote file upload
+gem 'paperclip'
+gem 'aws-sdk'
+
 # use rspec for testing
 gem 'rspec-rails', :group => [:development, :test]
 

@@ -19,5 +19,8 @@
     %section.form-input
       = f.label :content
       = f.text_area :content
+    %section.form-input.assets
+      = render 'assets/asset', collection: @post.assets
+      = link_to 'Add more files', new_asset_path, remote: true
 
     = f.submit
