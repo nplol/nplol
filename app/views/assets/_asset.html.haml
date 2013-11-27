@@ -1,6 +1,4 @@
--# The prefix decides which writer method to be called on the
--# post object.
-
+-# TODO: Upload images through AJAX.
 - if asset.new_record?
   - prefix = 'post[asset_attributes][]'
   %section.form-input
@@ -8,4 +6,4 @@
       =f.label :image
       =f.file_field :image
 - else
-  =image_tag asset.image.url(:thumb), class: 'asset', title: 'Hover to copy asset URL', 'data-copied-hint'=> 'Copied!' ,'data-clipboard-text' => asset.image.url(:thumb)
+  =image_tag asset.image.url(:thumb), class: 'asset' ,'data-clipboard-text' => asset.image.url(:thumb)
