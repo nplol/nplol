@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require flowtype
+//= require jquery.tipsy
+//= require zeroclipboard
 
 $(document).ready(function() {
 	$('body').flowtype({
@@ -21,7 +23,9 @@ $(document).ready(function() {
    minFont   : 12,
    maxFont   : 24
   });
+
   $('.notice').on('click', function() {
     $(this).fadeOut('fast')
   })
+
 });

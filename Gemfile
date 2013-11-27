@@ -2,12 +2,10 @@ source 'https://rubygems.org'
 
 ruby '2.0.0'
 
-#gem 'airbrake'
 gem 'bourbon'
 gem 'neat'
 gem 'jquery-rails'
 gem 'coffee-rails'
-#gem 'flutie'
 gem 'pg'
 gem 'rails', '>= 4.0.0'
 gem 'sass-rails'
@@ -24,6 +22,9 @@ gem 'acts-as-taggable-on'
 # paperclip and aws for remote file upload
 gem 'paperclip'
 gem 'aws-sdk'
+
+# Zeroclipboard for copying to client clipboard
+gem 'zeroclipboard-rails'
 
 # use rspec for testing
 gem 'rspec-rails', :group => [:development, :test]

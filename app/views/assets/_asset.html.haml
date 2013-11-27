@@ -8,4 +8,4 @@
       =f.label :image
       =f.file_field :image
 - else
-  =image_tag asset.image.url(:thumb), class: 'asset'
+  =image_tag asset.image.url(:thumb), class: 'asset', title: 'Hover to copy asset URL', 'data-copied-hint'=> 'Copied!' ,'data-clipboard-text' => asset.image.url(:thumb)
