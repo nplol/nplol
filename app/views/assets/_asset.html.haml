@@ -1,3 +1,11 @@
-%section.asset
-  =form_for :asset do |f|
-    =f.file_field :image
+-# The prefix decides which writer method to be called on the
+-# post object.
+
+- if asset.new_record?
+  - prefix = 'post[asset_attributes][]'
+  %section.form-input
+    =fields_for prefix, asset do |f|
+      =f.label :image
+      =f.file_field :image
+- else
+  =image_tag asset.image.url(:thumb), class: 'asset'

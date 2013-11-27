@@ -1,5 +1,5 @@
 %section#post-form
-  = form_for @post do |f|
+  = form_for @post, :html => {:multipart => true} do |f|
     - if @post.errors.any?
       #error_explanation
 
@@ -19,8 +19,18 @@
     %section.form-input
       = f.label :content
       = f.text_area :content
-    %section.form-input.assets
-      = render 'assets/asset', collection: @post.assets
-      = link_to 'Add more files', new_asset_path, remote: true
+    %secion.assets
+      %section.label
+        =t('assets')
+      %section.images
+        - @post.assets.each do |asset|
+          = render asset
+
+    = link_to 'Add more images', new_post_asset_path(@post), remote: true, id: 'add-asset'
 
     = f.submit
+
+.tooltip
+  THIS IS TOOLTIP
+
+= javascript_include_tag 'posts'

@@ -2,9 +2,8 @@ Nplol::Application.routes.draw do
 
   resources :posts do
   	resources :comments
+    resources :assets, only: :new
   end
-
-  resources :assets, only: :new
 
   namespace 'dev' do
     resources :posts

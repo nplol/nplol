@@ -17,6 +17,19 @@ $postPadding: 0 3% 0 3%;
   input, textarea { @include span-columns(9); margin: 1% 0;}
 }
 
+.assets {
+  @include outer-container;
+  .label { @include span-columns(3); }
+  .images{
+    @include span-columns(9);
+    img {
+      display: inline-block;
+      margin: 2%;
+    }
+  }
+
+}
+
 #post_content{
 	height:300px;
 }
@@ -27,7 +40,8 @@ $postPadding: 0 3% 0 3%;
   padding-bottom: 4%;
 }
 
-.post {
+#add-asset {
+  display: block;
 }
 
 .post-meta {
@@ -46,7 +60,6 @@ $postPadding: 0 3% 0 3%;
   }
 }
 
-
 #post {
 	border-bottom: 1px dashed #ddd;
 }
@@ -61,3 +74,11 @@ img {
   max-width: 100%;
   margin: 0 auto;
 }
+
+.tooltip {
+  background: #333;
+  color: #fff;
+  margin: 3%;
+  display: none;
+}
+

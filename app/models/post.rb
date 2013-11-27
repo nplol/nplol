@@ -12,4 +12,10 @@ class Post < ActiveRecord::Base
 
   acts_as_taggable
 
+  def asset_attributes=(asset_attributes)
+    asset_attributes.each do |attributes|
+      assets.build(attributes)
+    end
+  end
+
 end

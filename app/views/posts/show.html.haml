@@ -14,8 +14,6 @@
   %p
     = markdown(@post.content)
 
-#author
-
 %section#comments
   - @post.comments.order('created_at ASC').each do |comment|
     - unless comment.invalid?

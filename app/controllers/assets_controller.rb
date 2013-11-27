@@ -1,7 +1,7 @@
 class AssetsController < ApplicationController
 
   def new
-    @asset = Asset.new
+    @asset = Post.find(params[:post_id]).assets.build
     respond_to do |format|
       format.js
     end

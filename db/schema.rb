@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20131120210457) do
   enable_extension "plpgsql"
 
   create_table "assets", force: true do |t|
+    t.integer  "post_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image_file_name"
