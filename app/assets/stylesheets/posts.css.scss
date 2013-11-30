@@ -44,6 +44,10 @@ $postPadding: 0 3% 0 3%;
   display: block;
 }
 
+.asset {
+  display: inline-block;
+}
+
 .post-meta {
   font-size: 0.75em;
   display: block;
@@ -75,3 +79,7 @@ img {
   margin: 0 auto;
 }
 
+#cross {
+  display: none;
+  position: fixed;
+}

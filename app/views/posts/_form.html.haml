@@ -26,8 +26,11 @@
         - @post.assets.each do |asset|
           = render asset
 
-    = link_to 'Add more images', new_post_asset_path(@post), remote: true, id: 'add-asset'
+    = link_to 'Add more images', new_post_asset_path(@post), id: 'add-asset-link'
 
     = f.submit
+
+#cross
+  x
 
 = javascript_include_tag 'posts'

@@ -9,6 +9,7 @@ gem 'coffee-rails'
 gem 'pg'
 gem 'rails', '>= 4.0.0'
 gem 'sass-rails'
+gem 'font-awesome-rails'
 gem 'uglifier'
 gem 'settingslogic'
 
@@ -38,11 +39,10 @@ end
 group :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
-  gem 'capybara-webkit', '>= 1.0.0'
   gem 'database_cleaner'
   gem 'simplecov', require: false
   gem 'timecop'
-  #gem 'webmock'
+  gem 'poltergeist'
 end
 
 #group :staging, :production do

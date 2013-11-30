@@ -1,0 +1,5 @@
+- prefix = 'post[asset_attributes][]'
+%section.form-input
+  =fields_for prefix, @asset do |f|
+    =f.label :image
+    =f.file_field :image
