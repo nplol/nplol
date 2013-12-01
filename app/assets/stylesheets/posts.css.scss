@@ -81,5 +81,6 @@ img {
 
 #cross {
   display: none;
-  position: fixed;
+  position: absolute;
+  z-index: 999;
 }

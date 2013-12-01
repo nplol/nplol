@@ -46,8 +46,13 @@ $(document).ready ->
 
   updateCross = ($element) ->
     $cross = $('#cross')
-    $cross.offset( { top: $element.offset().top, left: $element.offset().left } )
+    $cross.attr('data-asset-id', $element.attr('data-asset-id'))
+    $cross.offset( { top: $element.offset().top, left: $element.offset().left-50 } )
+#    $cross.offset( { top: 50, left: 50 } )
     $cross.show()
 
   hideCross = ->
-    $('#cross').hide()
+#    $('#cross').hide()
+
+  $('#cross').on 'click', ->
+    $(".asset[data-asset-id=#{$(@).attr('data-asset-id')}]").remove()
