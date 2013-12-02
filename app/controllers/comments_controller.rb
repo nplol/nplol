@@ -1,18 +1,20 @@
 class CommentsController < ApplicationController
+
+  before_filter :setup_negative_captcha, only: :create
   
   def create
     @post = Post.find(params[:post_id])
-    @comment = @post.comments.build(comment_params)
+    @comment = @post.comments.build(@captcha.values)
     
-    if @comment.save
-    	if @post.tag_list.include? 'dev'
+    if @captcha.valid? && @comment.save
+      flash[:notice] = 'Comment created'
+      if @post.tag_list.include? 'dev'
         redirect_to dev_post_path(@post)
       else
         redirect_to @post
       end
-      flash[:notice] = "Comment created"
     else
-    	render :template => 'posts/show'
+      render 'posts/show'
     end
   end
  
@@ -20,4 +22,5 @@ class CommentsController < ApplicationController
     def comment_params
       params.require(:comment).permit(:name, :text)
     end
+
 end

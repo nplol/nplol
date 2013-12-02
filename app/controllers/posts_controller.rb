@@ -2,6 +2,8 @@ class PostsController < ApplicationController
 
   http_basic_authenticate_with name: "2pac", password: "2pac", except: [:index, :show, :dev]
 
+  before_filter :setup_negative_captcha, only: :show
+
   def index
   	@posts = Post.tagged_with('dev', exclude: true).order('created_at DESC')
   end

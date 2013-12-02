@@ -34,6 +34,12 @@ $postPadding: 0 3% 0 3%;
 	height:300px;
 }
 
+.post, #post {
+  p {
+    word-break: break-all;
+  }
+}
+
  .post-container {
   display: block;
   border-bottom: 1px dashed #ddd;

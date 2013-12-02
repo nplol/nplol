@@ -27,6 +27,9 @@ gem 'aws-sdk'
 # Zeroclipboard for copying to client clipboard
 gem 'zeroclipboard-rails'
 
+# negative captcha to avoid spam-bots
+gem 'negative_captcha'
+
 # use rspec for testing
 gem 'rspec-rails', :group => [:development, :test]
 

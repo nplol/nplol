@@ -55,4 +55,4 @@ $(document).ready ->
 #    $('#cross').hide()
 
   $('#cross').on 'click', ->
-    $(".asset[data-asset-id=#{$(@).attr('data-asset-id')}]").remove()
+    $(".asset[data-asset-id=#{$(@).attr('data-axsset-id')}]").remove()
