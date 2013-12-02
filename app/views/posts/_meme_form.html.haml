@@ -1,0 +1,24 @@
+= form_for @post, :html => {:multipart => true} do |f|
+  - if @post.errors.any?
+    #error_explanation
+    %h2
+    = pluralize(@post.errors.count, "error") + " prohibited this post from being saved"
+
+    %ul
+      - @post.errors.full_messages.each do |msg|
+        %li= msg
+
+  %section.form-input
+    = f.label :title
+    = f.text_field :title
+  %section.form-input
+    = f.label :tag_list
+    = f.text_field :tag_list
+  %section.form-input
+    = f.label :image
+    = f.file_field :image
+
+  = link_to 'Add more images', new_post_asset_path(@post), id: 'add-asset-link'
+
+  = f.submit
+

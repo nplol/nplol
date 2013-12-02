@@ -1,34 +1,35 @@
-%section#post-form
-  = form_for @post, :html => {:multipart => true} do |f|
-    - if @post.errors.any?
-      #error_explanation
+= form_for @post, :html => {:multipart => true} do |f|
+  - if @post.errors.any?
+    #error_explanation
 
-      %h2
-      = pluralize(@post.errors.count, "error") + " prohibited this post from being saved"
+    %h2
+    = pluralize(@post.errors.count, "error") + " prohibited this post from being saved"
 
-      %ul
-        - @post.errors.full_messages.each do |msg|
-          %li= msg
+    %ul
+      - @post.errors.full_messages.each do |msg|
+        %li= msg
 
-    %section.form-input
-      = f.label :title
-      = f.text_field :title
-    %section.form-input
-      = f.label :tag_list
-      = f.text_field :tag_list
-    %section.form-input
-      = f.label :content
-      = f.text_area :content
-    %secion.assets
-      %section.label
-        =t('assets')
-      %section.images
-        - @post.assets.each do |asset|
-          = render asset
+  %section.form-input
+    = f.label :title
+    = f.text_field :title
+  %section.form-input
+    = f.label :tag_list
+    = f.text_field :tag_list
+  %section.form-input
+    = f.label :content
+    = f.text_area :content
+  %secion.form-input
+    = render 'assets/form', asset: @post.assets.build
+  %secion.assets
+    %section.label
+      =t('assets')
+    %section.images
+      - @post.assets.each do |asset|
+        = render asset
+  - @post.new_record? ? link_url = '' : link_url = new_post_asset_path(@post)
+  = link_to 'Add more images', link_url, id: 'add-asset-link'
 
-    = link_to 'Add more images', new_post_asset_path(@post), id: 'add-asset-link'
-
-    = f.submit
+  = f.submit
 
 #cross
   x

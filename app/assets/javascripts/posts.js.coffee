@@ -30,6 +30,8 @@ $(document).ready ->
   $('#add-asset-link').on 'click', (e) ->
     e.preventDefault()
 
+    debugger
+
     $.ajax(@.href)
     .done( (html) ->
         addAsset(html)
