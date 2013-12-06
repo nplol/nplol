@@ -1,3 +1,2 @@
 - unless asset.new_record? or !asset.valid?
-  =div_for(asset, data: {'clipboard-text' => asset.image.url(:thumb), 'asset-id' => asset.id }) do
-    =image_tag asset.image.url(:thumb)
+    =image_tag(asset.image.url(:thumb), data: {'asset-id' => asset.id}, class: 'asset')

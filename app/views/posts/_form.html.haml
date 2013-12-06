@@ -24,24 +24,29 @@
     %section.images
       - @post.assets.each do |asset|
         = render asset
+  %section.asset-tools
+    %section.label
+      &nbsp;
+    %section.tools-container
+      %input.asset-url
+      .remove-asset
+        %i.fa.fa-times.fa-lg
 
   = content_tag('button', 'Add images?', id: 'show-asset-form')
 
   = f.submit
 
-#cross
-  %i.fa.fa-times.fa-lg
+%section#assets-form-background
 
+  #assets-form
 
-%section#assets-form.dim
+    #close-assets-form
+      %i.fa.fa-times.fa-lg
 
-  #close-assets-form
-    %i.fa.fa-times.fa-lg
+    .new-assets
+      =render 'assets/form', asset: Asset.new
 
-  .new-assets
-    =render 'assets/form', asset: Asset.new
-
-  = content_tag('button', 'Add more images?', {class: 'add-asset', 'data-url' => new_asset_path })
+    = content_tag('button', 'Add more images?', {class: 'add-asset', 'data-url' => new_asset_path })
 
 
 

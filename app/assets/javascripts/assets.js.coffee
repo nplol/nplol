@@ -16,7 +16,7 @@ $ ->
 
   $('#close-assets-form').on 'click', (event) ->
     event.preventDefault()
-    $('#assets-form').fadeOut('fast')
+    $('#assets-form-background').fadeOut('fast')
 
   failedToAddAssetForm = ->
     console.log 'Failed to load asset template :-('

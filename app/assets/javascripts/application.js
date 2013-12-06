@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require flowtype
 //= require jquery.tipsy
-//= require zeroclipboard
 
 $(document).ready(function() {
 	$('body').flowtype({

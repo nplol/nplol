@@ -17,9 +17,10 @@ $postPadding: 0 3% 0 3%;
   input, textarea { @include span-columns(9); margin: 1% 0;}
 }
 
+.label { @include span-columns(3); }
+
 .assets {
   @include outer-container;
-  .label { @include span-columns(3); }
   .images{
     @include span-columns(9);
     img {
@@ -27,8 +28,30 @@ $postPadding: 0 3% 0 3%;
       margin: 2%;
     }
   }
-
 }
+
+.asset {
+  opacity: 0.6;
+}
+
+.asset.active, .asset:hover {
+  opacity: 1;
+}
+
+.asset-tools {
+  @include outer-container;
+  .tools-container {
+    @include span-columns(9);
+    .asset-url {
+      @include span-columns(6 of 9);
+    }
+    .remove-asset {
+      @include span-columns(3 of 9);
+    }
+  }
+}
+
+
 
 #post_content{
 	height:300px;
@@ -88,16 +111,7 @@ img {
 #cross {
   display: none;
   position: absolute;
-  z-index: 999;
-}
-
-.dim
-{
-  height:100%;
-  width:100%;
-  position:fixed;
-  left:0;
+  z-index: 1;
   top:0;
-  z-index:1 !important;
-  background: rgba(0,0,0,0.6);
+  left:0;
 }
