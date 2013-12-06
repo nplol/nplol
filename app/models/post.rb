@@ -18,4 +18,16 @@ class Post < ActiveRecord::Base
     end
   end
 
+  def publish!
+    self.published = true
+  end
+
+  def unpublish!
+    self.published = false
+  end
+
+  def self.published
+    Post.tagged_with('dev', exclude: true).order('created_at DESC').where('published', true)
+  end
+
 end

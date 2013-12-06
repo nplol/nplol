@@ -18,20 +18,32 @@
   %section.form-input
     = f.label :content
     = f.text_area :content
-  %secion.form-input
-    = render 'assets/form', asset: @post.assets.build
   %secion.assets
     %section.label
       =t('assets')
     %section.images
       - @post.assets.each do |asset|
         = render asset
-  - @post.new_record? ? link_url = '' : link_url = new_post_asset_path(@post)
-  = link_to 'Add more images', link_url, id: 'add-asset-link'
+
+  = content_tag('button', 'Add images?', id: 'show-asset-form')
 
   = f.submit
 
 #cross
-  x
+  %i.fa.fa-times.fa-lg
+
+
+%section#assets-form.dim
+
+  #close-assets-form
+    %i.fa.fa-times.fa-lg
+
+  .new-assets
+    =render 'assets/form', asset: Asset.new
+
+  = content_tag('button', 'Add more images?', {class: 'add-asset', 'data-url' => new_asset_path })
+
+
 
 = javascript_include_tag 'posts'
+= javascript_include_tag 'assets'

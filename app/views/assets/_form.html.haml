@@ -1,5 +1,8 @@
-- prefix = 'post[asset_attributes][]'
-%section.form-input
-  =fields_for prefix, asset do |f|
-    =f.label :image
-    =f.file_field :image
+- @asset = asset if local_assigns.has_key? :asset
+= form_for @asset do |f|
+
+  %section.form-input
+    = f.label :image
+    = f.file_field :image
+
+    = f.submit

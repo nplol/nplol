@@ -1,4 +1,4 @@
-$(document).ready ->
+$ ->
   $('.asset').each (index, element) ->
 
     # Setup for Zeroclipboard
@@ -26,35 +26,19 @@ $(document).ready ->
     $(element).on 'mouseover', ->
       updateCross($(@))
 
-  # Adding a new Asset field to the form.
-  $('#add-asset-link').on 'click', (e) ->
-    e.preventDefault()
+    updateCross = ($element) ->
+      $cross = $('#cross')
+      $cross.attr('data-asset-id', $element.attr('data-asset-id'))
+      $cross.offset( { top: $element.offset().top, left: $element.offset().left-50 } )
+      #    $cross.offset( { top: 50, left: 50 } )
+      $cross.show()
 
-    debugger
+    hideCross = ->
+  #    $('#cross').hide()
 
-    $.ajax(@.href)
-    .done( (html) ->
-        addAsset(html)
-      )
-    .fail( ->
-        failedToAddAsset()
-      )
+    $('#cross').on 'click', ->
+      $(".asset[data-asset-id=#{$(@).attr('data-asset-id')}]").remove()
 
-  addAsset = (html) ->
-    $(html).insertAfter('.form-input:last')
-
-  failedToAddAsset = ->
-    console.log 'Failed to load asset template :-('
-
-  updateCross = ($element) ->
-    $cross = $('#cross')
-    $cross.attr('data-asset-id', $element.attr('data-asset-id'))
-    $cross.offset( { top: $element.offset().top, left: $element.offset().left-50 } )
-#    $cross.offset( { top: 50, left: 50 } )
-    $cross.show()
-
-  hideCross = ->
-#    $('#cross').hide()
-
-  $('#cross').on 'click', ->
-    $(".asset[data-asset-id=#{$(@).attr('data-axsset-id')}]").remove()
+    $('#show-asset-form').on 'click', (e) ->
+      e.preventDefault()
+      $('#assets-form').fadeIn('fast')

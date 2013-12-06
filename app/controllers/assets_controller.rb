@@ -1,8 +1,13 @@
 class AssetsController < ApplicationController
 
   def new
-    @asset = Post.find(params[:post_id]).assets.build
-
-    render layout: false
+    @asset = Asset.new
+    render partial: 'form', layout: false
   end
+
+  def create
+    @asset.save
+    render @asset.to_json
+  end
+
 end

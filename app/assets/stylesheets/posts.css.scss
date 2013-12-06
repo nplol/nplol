@@ -90,3 +90,14 @@ img {
   position: absolute;
   z-index: 999;
 }
+
+.dim
+{
+  height:100%;
+  width:100%;
+  position:fixed;
+  left:0;
+  top:0;
+  z-index:1 !important;
+  background: rgba(0,0,0,0.6);
+}

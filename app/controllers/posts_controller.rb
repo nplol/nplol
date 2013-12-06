@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   before_filter :setup_negative_captcha, only: :show
 
   def index
-  	@posts = Post.tagged_with('dev', exclude: true).order('created_at DESC')
+  	@posts = Post.published
   end
 
   def new
@@ -16,7 +16,8 @@ class PostsController < ApplicationController
   	@post = Post.new(post_params)
 
   	if @post.save
-    	redirect_to @post
+      @post.publish!
+      redirect_to @post
   	else
     	render 'new'
     end

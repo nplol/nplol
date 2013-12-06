@@ -1,16 +1,18 @@
 Nplol::Application.routes.draw do
 
   resources :posts do
-  	resources :comments
-    resources :assets, only: :new
+  	resources :comments, only: [:new, :create]
   end
 
-  namespace 'dev' do
-    resources :posts
-    resources :comments
-  end
+  resources :assets, only: [:new, :create]
 
-  get 'dev', to: 'dev/posts#index'
+  #
+  #namespace 'dev' do
+  #  resources :posts
+  #  resources :comments
+  #end
+  #
+  #get 'dev', to: 'dev/posts#index'
 
   root 'posts#index'
 
