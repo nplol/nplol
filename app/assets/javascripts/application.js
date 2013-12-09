@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require flowtype
 //= require jquery.tipsy
+//= require header
 
 $(document).ready(function() {
 	$('body').flowtype({
@@ -26,5 +27,7 @@ $(document).ready(function() {
   $('.notice').on('click', function() {
     $(this).fadeOut('fast')
   })
+
+  $('#main').css('height', $(window).height()-100+'px')
 
 });

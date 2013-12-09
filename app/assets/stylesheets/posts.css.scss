@@ -11,11 +11,6 @@ $black: #2c3e50;
 $gray: rgba(0,0,0,0.3);
 $postPadding: 0 3% 0 3%;
 
-.form-input {
-  @include outer-container;
-  label { @include span-columns(3); }
-  input, textarea { @include span-columns(9); margin: 1% 0;}
-}
 
 .label { @include span-columns(3); }
 
@@ -28,6 +23,20 @@ $postPadding: 0 3% 0 3%;
       margin: 2%;
     }
   }
+}
+
+.post {
+  width: 33%;
+  display: inline-block;
+  background: #ffffff;
+  border: 3px solid #91b1ac;
+//  box-shadow: 1px 1px 1px rgba(0,0,0,.75);
+  box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
+  padding: 2%;
+  border-radius: 3px;
+  margin: 1%;
+  position: relative;
+  height: 33%;
 }
 
 .asset {
@@ -52,7 +61,6 @@ $postPadding: 0 3% 0 3%;
 }
 
 
-
 #post_content{
 	height:300px;
 }
@@ -61,12 +69,6 @@ $postPadding: 0 3% 0 3%;
   p {
     word-break: break-all;
   }
-}
-
- .post-container {
-  display: block;
-  border-bottom: 1px dashed #ddd;
-  padding-bottom: 4%;
 }
 
 #add-asset {

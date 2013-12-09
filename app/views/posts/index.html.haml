@@ -1,8 +1,8 @@
 %section.posts
   %ul
   - @posts.each do |post|
-    %li.post-container
-      %article.post
+    %li.post
+      %article
         %h1.title
           = link_to post.title, post
         %secion.post-meta

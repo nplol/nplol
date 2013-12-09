@@ -6,9 +6,11 @@
     = javascript_include_tag 'application'
     = csrf_meta_tags
   %body
+    %header
+      %i.fa.fa-fire(title='What\'s our passion?')
+      = link_to 'nplol', root_path
+      %i.fa.fa-search.fa-small(title='Search for stuff.')
     %section#main
       - if flash[:notice]
         %section.notice.message= flash[:notice]
       = yield
-    %secion#logo
-      = link_to 'nplol', root_path

@@ -1,4 +1,5 @@
 $ ->
+
   $('.asset').each (index, element) ->
 
     $(element).tipsy({fallback: 'Click to see image URL', fade: true})
