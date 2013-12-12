@@ -30,4 +30,8 @@ class Post < ActiveRecord::Base
     Post.tagged_with('dev', exclude: true).order('created_at DESC').where('published', true)
   end
 
+  def meme?
+    self.is_a? Meme
+  end
+
 end

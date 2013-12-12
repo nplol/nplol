@@ -25,20 +25,6 @@ $postPadding: 0 3% 0 3%;
   }
 }
 
-.post {
-  width: 33%;
-  display: inline-block;
-  background: #ffffff;
-  border: 3px solid #91b1ac;
-//  box-shadow: 1px 1px 1px rgba(0,0,0,.75);
-  box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
-  padding: 2%;
-  border-radius: 3px;
-  margin: 1%;
-  position: relative;
-  height: 33%;
-}
-
 .asset {
   opacity: 0.6;
 }
@@ -109,6 +95,7 @@ img {
   max-width: 100%;
   margin: 0 auto;
 }
+
 
 #cross {
   display: none;
