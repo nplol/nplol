@@ -14,9 +14,8 @@ class PostsController < ApplicationController
 
   def create
     meme? ? @post = Meme.new(meme_params) : @post = Post.new(post_params)
-
+    @post.publish!
   	if @post.save
-      @post.publish!
       redirect_to post_path(@post)
     else
     	render 'new'

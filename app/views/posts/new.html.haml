@@ -5,6 +5,9 @@
     %select.post-type
       =options_for_select([['Normal', post_form_path], ['Meme', meme_form_path]])
     %section#post-form
-      =render 'form'
+      - if @post.meme?
+        = render 'meme_form'
+      - else
+        =render 'form'
 
 =javascript_include_tag 'posts'
