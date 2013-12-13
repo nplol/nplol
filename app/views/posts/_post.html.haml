@@ -1,4 +1,4 @@
 .post{class: ('meme' if post.meme?)}
   %article
     =post.title
-    =image_tag(post.image.url(:thumb)) if post.meme?
+    =image_tag(post.image.url(:medium)) if post.meme?
