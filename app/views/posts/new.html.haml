@@ -1,9 +1,10 @@
-%h1 New post
+%article#post
+  %h1 New post
 
-%section
-  %select.post-type
-    =options_for_select(['Normal', 'Meme'])
-  %section#post-form
-    =render 'form'
+  %section
+    %select.post-type
+      =options_for_select([['Normal', post_form_path], ['Meme', meme_form_path]])
+    %section#post-form
+      =render 'form'
 
 =javascript_include_tag 'posts'

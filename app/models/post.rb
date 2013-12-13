@@ -3,7 +3,7 @@ class Post < ActiveRecord::Base
 						length: {minimum: 5},
 						uniqueness: true
 
-	validates :content, presence: true
+	validates :content, presence: true, unless: :meme?
 
 	has_many :comments, dependent: :destroy
 
@@ -11,6 +11,11 @@ class Post < ActiveRecord::Base
   accepts_nested_attributes_for :assets, :allow_destroy => true
 
   acts_as_taggable
+
+  def initilalize(options={})
+    super
+    self.type ||= 'post'
+  end
 
   def asset_attributes=(asset_attributes)
     asset_attributes.each do |attributes|

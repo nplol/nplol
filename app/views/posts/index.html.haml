@@ -1,23 +1,22 @@
 %section#posts
   - @posts.each do |post|
-    .post{class: ('meme' if post.meme?)}
-      %article
-        =post.title
-        -#%h1.title
-        -#  = link_to post.title, post
-        -#%secion.post-meta
-        -#  %section.published
-        -#    %i.fa.fa-clock-o.fa-lg
-        -#    =post.created_at.strftime("%B #{post.created_at.day.ordinalize}, %Y")
-        -#  %section.tags
-        -#    %i.fa.fa-tags.fa-lg
-        -#    =post.tag_list
-        -#  %section.comments
-        -#    =link_to post do
-        -#      %i.fa.fa-comment-o.fa-lg
-        -#      = "#{post.comments.count} comments"
-        -#=truncate_html(markdown(post.content), length: 1000, omission: ' <span class="omission">...</span>')
-        -#=link_to 'Read more', post, class: 'read-more'
+    = render 'post', post: post
+
+    -#%h1.title
+    -#  = link_to post.title, post
+    -#%secion.post-meta
+    -#  %section.published
+    -#    %i.fa.fa-clock-o.fa-lg
+    -#    =post.created_at.strftime("%B #{post.created_at.day.ordinalize}, %Y")
+    -#  %section.tags
+    -#    %i.fa.fa-tags.fa-lg
+    -#    =post.tag_list
+    -#  %section.comments
+    -#    =link_to post do
+    -#      %i.fa.fa-comment-o.fa-lg
+    -#      = "#{post.comments.count} comments"
+    -#=truncate_html(markdown(post.content), length: 1000, omission: ' <span class="omission">...</span>')
+    -#=link_to 'Read more', post, class: 'read-more'
 
 
 = javascript_include_tag 'post_listing'

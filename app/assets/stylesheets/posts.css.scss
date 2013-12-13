@@ -82,7 +82,16 @@ $postPadding: 0 3% 0 3%;
 }
 
 #post {
-	border-bottom: 1px dashed #ddd;
+  max-width: 950px;
+  background: #ffffff;
+  padding: 3%;
+  margin: 0 auto;
+  border: 3px solid #91b1ac;
+  box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
+}
+
+.hidden {
+  display: none;
 }
 
 h1 {

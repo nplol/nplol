@@ -1,6 +1,17 @@
-= form_for @post, :html => {:multipart => true} do |f|
+- url_options = {}
+- if @post.new_record?
+  - url_options[:action] = 'new'
+  - url_options[:button_text] = 'Save post'
+  - url_options[:method] = 'post'
+- else
+  - url_options[:action] = 'update'
+  - url_options[:button_text] = 'Update post'
+  - url_options[:method] = 'put'
+
+= form_for(:post, {url: {controller: 'posts', action: url_options[:action] }, method: url_options[:method] }) do |f|
   - if @post.errors.any?
     #error_explanation
+
     %h2
     = pluralize(@post.errors.count, "error") + " prohibited this post from being saved"
 
@@ -17,8 +28,9 @@
   %section.form-input
     = f.label :image
     = f.file_field :image
-
-  = link_to 'Add more images', new_post_asset_path(@post), id: 'add-asset-link'
+  %section.form-input
+    = f.hidden_field :type, value: @post.type
 
   = f.submit
 
+= javascript_include_tag 'posts'

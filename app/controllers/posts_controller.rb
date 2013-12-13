@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-  http_basic_authenticate_with name: "2pac", password: "2pac", except: [:index, :show, :dev]
+  http_basic_authenticate_with name: "2pac", password: "2pac", except: [:index, :show]
 
   before_filter :setup_negative_captcha, only: :show
 
@@ -13,14 +13,24 @@ class PostsController < ApplicationController
   end
 
   def create
-  	@post = Post.new(post_params)
+    meme? ? @post = Meme.new(meme_params) : @post = Post.new(post_params)
 
   	if @post.save
       @post.publish!
-      redirect_to @post
-  	else
+      redirect_to post_path(@post)
+    else
     	render 'new'
     end
+  end
+
+  def meme
+    @post = Meme.new
+    render partial: 'meme_form', layout: false
+  end
+
+  def form
+    @post = Post.new
+    render partial: 'form', layout: false
   end
 
   def edit
@@ -28,11 +38,12 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = Post.update(params[:id], post_params)
-
-    if @post.save
+    @post = Post.find(params[:id])
+    @post.meme? ? params = meme_params : params = post_params
+    if @post.update(params)
       flash[:notice] = 'Post updated.'
-      redirect_to @post
+      return redirect_to @post unless @post.meme?
+      redirect_to root_path
     else
       render 'edit'
     end
@@ -40,7 +51,7 @@ class PostsController < ApplicationController
 
   def show
   	@post = Post.find(params[:id])
-    redirect_to dev_post_path(@post) if @post.tag_list.include? 'dev'
+    redirect_to root_path if @post.meme?
   end
 
   def destroy
@@ -52,8 +63,16 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit( :title, :content, :tag_list,
+    params.require(:post).permit( :title, :content, :tag_list, :type,
                                   asset_attributes: [ :image ] )
+  end
+
+  def meme_params
+    params.require(:post).permit( :title, :type, :tag_list, :image)
+  end
+
+  def meme?
+    params[:post][:type] == 'meme'
   end
 
 end

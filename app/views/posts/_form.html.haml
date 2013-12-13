@@ -18,19 +18,21 @@
   %section.form-input
     = f.label :content
     = f.text_area :content
-  %secion.assets
+  %secion.assets{class: ('hidden' if @post.assets.empty?)}
     %section.label
       =t('assets')
     %section.images
       - @post.assets.each do |asset|
         = render asset
-  %section.asset-tools
+  %section.asset-tools{class: ('hidden' if @post.assets.empty?)}
     %section.label
       &nbsp;
     %section.tools-container
       %input.asset-url
       .remove-asset
         %i.fa.fa-times.fa-lg
+  %section.form-input
+    = f.hidden_field :type, value: @post.type
 
   = content_tag('button', 'Add images?', id: 'show-asset-form')
 
