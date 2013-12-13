@@ -71,7 +71,7 @@ class PostsController < ApplicationController
   end
 
   def meme?
-    params[:post][:type] == 'meme'
+    params[:post][:type] == 'Meme'
   end
 
 end
