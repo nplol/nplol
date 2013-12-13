@@ -12,7 +12,7 @@ class Post < ActiveRecord::Base
 
   acts_as_taggable
 
-  def initilalize(options={})
+  def initialize(options={})
     super
     self.type ||= 'post'
   end
