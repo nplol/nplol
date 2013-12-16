@@ -12,11 +12,6 @@ class Post < ActiveRecord::Base
 
   acts_as_taggable
 
-  def initialize(options={})
-    super
-    self.type ||= 'post'
-  end
-
   def asset_attributes=(asset_attributes)
     asset_attributes.each do |attributes|
       assets.build(attributes)

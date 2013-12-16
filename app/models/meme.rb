@@ -6,9 +6,4 @@ class Meme < Post
             length: {minimum: 5},
             uniqueness: true
 
-  def initialize(options={})
-    super
-    self.type ||= 'meme'
-  end
-
 end

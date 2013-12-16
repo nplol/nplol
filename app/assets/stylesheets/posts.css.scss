@@ -81,6 +81,10 @@ $postPadding: 0 3% 0 3%;
   }
 }
 
+.post article {
+  max-height: 100%;
+  overflow: hidden;
+}
 
 
 #post {
