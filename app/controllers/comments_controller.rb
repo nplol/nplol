@@ -7,10 +7,9 @@ class CommentsController < ApplicationController
     @comment = @post.comments.build(@captcha.values)
     
     if @captcha.valid? && @comment.save
-      flash[:notice] = 'Comment created'
       render @comment, layout: false
     else
-      render partial: 'form', layout: false
+      render partial: 'form', layout: false, status: 400
     end
   end
  
