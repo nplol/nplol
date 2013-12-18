@@ -8,7 +8,6 @@
   - url_options[:button_text] = 'Update post'
   - url_options[:method] = 'put'
 
--#= form_for(:post, {url: {controller: 'posts', action: url_options[:action] }, method: url_options[:method] }) do |f|
 = form_for @post do |f|
   - if @post.errors.any?
     #error_explanation

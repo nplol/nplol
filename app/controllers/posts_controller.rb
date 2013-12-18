@@ -25,7 +25,7 @@ class PostsController < ApplicationController
   end
 
   def form
-    @post = Post.new
+    meme? ? @post = Meme.new : @post = Post.new
     render partial: 'posts/memes/meme_form', layout: false and return if meme?
     render partial: 'form', layout: false
   end
