@@ -17,7 +17,6 @@
 //= require header
 //= require packery
 //= require global
-//= require comments
 
 $(document).ready(function() {
 	$('body').flowtype({

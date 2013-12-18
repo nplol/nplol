@@ -49,12 +49,7 @@ class PostsController < ApplicationController
   def show
   	@post = Post.find(params[:id])
 
-    if @post.meme?
-      render 'posts/memes/show', layout: !request.xhr? and return
-    else
-      render layout: !request.xhr?
-    end
-
+    render 'show', layout: false if request.xhr?
   end
 
   def destroy

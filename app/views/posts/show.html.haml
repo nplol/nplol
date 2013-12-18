@@ -11,8 +11,12 @@
       =link_to @post do
         %i.fa.fa-comment-o.fa-lg
         = "#{@post.comments.count} comments"
-  %p
-    = markdown(@post.content)
+  - if @post.meme?
+    %section
+      =image_tag(@post.image.url(:large))
+  - else
+    %p
+      = markdown(@post.content)
 
   %section#comments
     - @post.comments.order('created_at ASC').each do |comment|
@@ -21,17 +25,7 @@
   %section#new-comment
     %p
       Write something clever.
-    = form_for([@post, @comment = @comment || @post.comments.build])  do |f|
-      - if @comment.errors.any?
-        %section.notice.error
-          %ul
-            = render 'partials/error', { errors: @comment.errors }
-      = raw negative_captcha(@captcha)
-      %section.form-input
-        = negative_label_tag(@captcha, :name, 'Name')
-        = negative_text_field_tag(@captcha, :name)
-      %section.form-input
-        = negative_label_tag(@captcha, :text, 'Text')
-        = negative_text_area_tag(@captcha, :text)
+    = render 'comments/form', comment: @post.comments.build
 
-      = f.submit
+
+= javascript_include_tag 'comments'
