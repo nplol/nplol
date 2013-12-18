@@ -1,7 +1,3 @@
-// Place all the styles related to the posts controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
 @import 'bourbon';
 @import 'neat';
 
@@ -11,6 +7,76 @@ $black: #2c3e50;
 $gray: rgba(0,0,0,0.3);
 $postPadding: 0 3% 0 3%;
 
+.post {
+  background: #f1f1f1;
+  border: 3px solid #91b1ac;
+  box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
+  padding: 2%;
+  border-radius: 3px;
+  width: 300px;
+  height: 47%;
+  float: left;
+}
+
+.post:hover {
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.post-meta {
+  font-size: 0.75em;
+  display: block;
+  text-align: center;
+  @include outer-container;
+  section {
+    @include span-columns(4);
+  }
+  a {
+    color: $black;
+  }
+  i {
+    color: $red;
+  }
+}
+
+.post article {
+  max-height: 100%;
+  overflow: hidden;
+}
+
+
+#post {
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 3%;
+  background: #ffffff;
+  border: 3px solid #91b1ac;
+  box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
+}
+
+.post:before {
+  display: block;
+}
+
+.meme {
+  text-align: center;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+input[type=submit] {
+  @include button($red);
+}
+
+.form-input {
+  @include outer-container;
+  label { @include span-columns(3); }
+  input, textarea { @include span-columns(9); margin: 1% 0;}
+}
 
 .label { @include span-columns(3); }
 
@@ -46,17 +112,6 @@ $postPadding: 0 3% 0 3%;
   }
 }
 
-
-#post_content{
-	height:300px;
-}
-
-.post, #post {
-  p {
-    word-break: break-all;
-  }
-}
-
 #add-asset {
   display: block;
 }
@@ -65,52 +120,9 @@ $postPadding: 0 3% 0 3%;
   display: inline-block;
 }
 
-.post-meta {
-  font-size: 0.75em;
-  display: block;
-  text-align: center;
-  @include outer-container;
-  section {
-    @include span-columns(4);
-  }
-  a {
-    color: $black;
-  }
-  i {
-    color: $red;
-  }
-}
-
-.post article {
-  max-height: 100%;
-  overflow: hidden;
-}
-
-
-#post {
-  max-width: 950px;
-  background: #ffffff;
-  padding: 3%;
-  margin: 0 auto;
-  border: 3px solid #91b1ac;
-  box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
-}
-
 .hidden {
   display: none;
 }
-
-h1 {
-  font-size: 1.5em;
-  text-align: center;
-}
-
-img {
-  display: block;
-  max-width: 100%;
-  margin: 0 auto;
-}
-
 
 #cross {
   display: none;
@@ -118,4 +130,18 @@ img {
   z-index: 1;
   top:0;
   left:0;
+}
+
+input[type=text] {
+  font-family: 'bitter';
+  font-size: 16px;
+  padding: 1%;
+}
+
+textarea {
+  height: 150px;
+  resize: vertical;
+  font-family: 'bitter';
+  font-size: 16px;
+  padding: 1%;
 }

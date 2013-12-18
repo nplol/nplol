@@ -12,7 +12,7 @@
         %i.fa.fa-comment-o.fa-lg
         = "#{@post.comments.count} comments"
   %p
-    = markdown(@post.content)
+    = @post.image
 
   %section#comments
     - @post.comments.order('created_at ASC').each do |comment|

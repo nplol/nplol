@@ -1,7 +1,3 @@
-/*
-* Application-wide layout
-*/
-
 @import "bourbon";
 @import "neat";
 
@@ -9,18 +5,15 @@
 @include font-face(bitter-bold, 'bitter/bitter-bold', normal, $asset-pipeline: true);
 @include font-face(typewriter, 'typewriter/typewriter', normal, $asset-pipeline: true);
 
-// application-wide mixins
 @mixin box-shadow($top, $left, $blur, $color, $inset:"") {
   box-shadow:$top $left $blur $color #{$inset};
 }
 
-// application-wide variables
 $red: #e95c33;
 $blue: #41b7d8;
 $black: #2c3e50;
 $green: #a2c5bf;
 
-// application-wide styles
 
 strong {
   font-family: 'bitter-bold';
@@ -30,88 +23,8 @@ body {
   font-family: 'bitter';
   font-size: 18px;
   line-height: 26px;
-//  background: #e7e7e2;
   background: $green;
   color: $black;
-}
-
-.post {
-  background: #ffffff;
-  border: 3px solid #91b1ac;
-  box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
-  padding: 2%;
-  border-radius: 3px;
-  width: 300px;
-  height: 47%;
-  float: left;
-}
-
-.meme {
- text-align: center;
-}
-
-.post:before {
-  display: block;
-}
-
-.wide {
-  width: 600px;
-}
-
-///*
-//tint
-//*/
-//
-//.tint {
-//  content: "";
-//  position: absolute;
-//  width: 100%;
-//  height: 100%;
-//  top: 0;
-//  bottom: 0;
-//  left: 0;
-//  right: 0;
-//  background: rgba(0,0,0,.3);
-//  transition: all .3s linear;
-//}
-//
-//.tint:hover {
-//  background: none;
-//}
-
-header {
-  font-family: 'typewriter';
-  padding: 1%;
-  position: fixed;
-  top:0;
-  text-align: center;
-  font-size:1em;
-  a,i {
-    color: $black;
-    display: inline-block;
-    padding: 0 1%;
-  }
-  i {
-    color:#898989;
-    font-size: 18px;
-  }
-  i:hover {
-    color: $black;
-    cursor: pointer;
-  }
-  width: 100%;
-  background: #f3f3f3;
-  z-index: 100;
-}
-
-input[type=submit] {
-  @include button($red);
-}
-
-.form-input {
-  @include outer-container;
-  label { @include span-columns(3); }
-  input, textarea { @include span-columns(9); margin: 1% 0;}
 }
 
 button {
@@ -149,20 +62,6 @@ ul {
 a {
   color: $blue;
   text-decoration: none;
-}
-
-input[type=text] {
-  font-family: 'bitter';
-  font-size: 16px;
-  padding: 1%;
-}
-
-textarea {
-  height: 150px;
-  resize: vertical;
-  font-family: 'bitter';
-  font-size: 16px;
-  padding: 1%;
 }
 
 .notice {
@@ -220,3 +119,24 @@ a {
   display: block;
   clear: both;
 }
+
+///*
+//tint
+//*/
+//
+//.tint {
+//  content: "";
+//  position: absolute;
+//  width: 100%;
+//  height: 100%;
+//  top: 0;
+//  bottom: 0;
+//  left: 0;
+//  right: 0;
+//  background: rgba(0,0,0,.3);
+//  transition: all .3s linear;
+//}
+//
+//.tint:hover {
+//  background: none;
+//}

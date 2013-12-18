@@ -2,6 +2,6 @@
   %h1 Edit post
 
   - if @post.meme?
-    = render 'meme_form'
+    = render 'posts/memes/meme_form'
   - else
     =render 'form'

@@ -1,4 +1,5 @@
 $ ->
+
   resizePosts = ($posts, height) ->
     $posts.each (index, element) ->
       $(element).css('height', 0.47*height+'px')
@@ -16,6 +17,15 @@ $ ->
     gutter: 20,
     isHorizontal: true
   }
+
+  $('.post').on 'click', (event) ->
+    $.ajax("posts/#{$(@).data('post-id')}").
+      done( (html) ->
+        updateMainCanvas(html)
+        ).
+      fail( ->
+        console.log('Loading post failed.'))
+
 
 
 

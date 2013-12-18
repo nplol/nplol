@@ -1,5 +1,8 @@
 $ ->
 
+  dim = (lightSwitch) ->
+    if lightSwitch then $('.dim').fadeIn('fast') else $('.dim').fadeOut('fast')
+
   # Adding a new Asset field to the form.
   $('.add-asset').on 'click', (e) ->
     e.preventDefault()
@@ -16,7 +19,7 @@ $ ->
 
   $('#close-assets-form').on 'click', (event) ->
     event.preventDefault()
-    $('#assets-form-background').fadeOut('fast')
+    dim(false)
 
   failedToAddAssetForm = ->
     console.log 'Failed to load asset template :-('

@@ -2,11 +2,11 @@
   %h1 New post
 
   %section
-    %select.post-type
-      =options_for_select([['Normal', post_form_path], ['Meme', meme_form_path]])
+    %select.post-type{ data: {form_path: post_form_path} }
+      =options_for_select(['Normal', 'Meme'])
     %section#post-form
       - if @post.meme?
-        = render 'meme_form'
+        = render 'posts/memes/meme_form'
       - else
         =render 'form'
 

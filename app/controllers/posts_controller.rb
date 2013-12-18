@@ -6,6 +6,8 @@ class PostsController < ApplicationController
 
   def index
   	@posts = Post.published
+
+    return render 'index', layout: !request.xhr?
   end
 
   def new
@@ -22,13 +24,9 @@ class PostsController < ApplicationController
     end
   end
 
-  def meme
-    @post = Meme.new
-    render partial: 'meme_form', layout: false
-  end
-
   def form
     @post = Post.new
+    render partial: 'posts/memes/meme_form', layout: false and return if meme?
     render partial: 'form', layout: false
   end
 
@@ -50,7 +48,13 @@ class PostsController < ApplicationController
 
   def show
   	@post = Post.find(params[:id])
-    redirect_to root_path if @post.meme?
+
+    if @post.meme?
+      render 'posts/memes/show', layout: !request.xhr? and return
+    else
+      render layout: !request.xhr?
+    end
+
   end
 
   def destroy

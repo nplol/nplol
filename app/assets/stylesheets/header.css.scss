@@ -1,0 +1,26 @@
+$black: #2c3e50;
+
+header {
+  font-family: 'typewriter';
+  padding: 1%;
+  position: fixed;
+  top:0;
+  text-align: center;
+  font-size:1em;
+  a,i {
+    color: $black;
+    display: inline-block;
+    padding: 0 1%;
+  }
+  i {
+    color:#898989;
+    font-size: 18px;
+  }
+  i:hover {
+    color: $black;
+    cursor: pointer;
+  }
+  width: 100%;
+  background: #f3f3f3;
+  z-index: 100;
+}

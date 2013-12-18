@@ -27,7 +27,7 @@ class Post < ActiveRecord::Base
   end
 
   def self.published
-    Post.tagged_with('dev', exclude: true).order('created_at DESC').where('published', true)
+    Post.order('created_at DESC').where('published', true)
   end
 
   def meme?

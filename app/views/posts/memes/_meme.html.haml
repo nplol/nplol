@@ -1,0 +1,5 @@
+#post.meme{ data: { post_id: post.id } }
+  %article
+    %h1=post.title
+    .image
+      =image_tag(post.image.url(:medium))

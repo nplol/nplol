@@ -3,7 +3,10 @@ $ ->
   # meme form loading
   $('.post-type').on 'change', (event) ->
 
-    $.ajax($(@).val())
+    $.ajax({
+      url: $(@).data('formPath'),
+      type: 'post',
+      data:  { 'post[type]': $(@).val() } })
       .done( (html) -> renderForm(html)
       )
       .fail( -> failedToRenderForm()

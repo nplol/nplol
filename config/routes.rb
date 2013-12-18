@@ -6,16 +6,7 @@ Nplol::Application.routes.draw do
 
   resources :assets, only: [:new, :create]
 
-  get '/meme/new', to: 'posts#meme', as: 'meme_form'
-  get '/post_form', to: 'posts#form', as: 'post_form'
-
-  #
-  #namespace 'dev' do
-  #  resources :posts
-  #  resources :comments
-  #end
-  #
-  #get 'dev', to: 'dev/posts#index'
+  post '/post_form', to: 'posts#form', as: 'post_form'
 
   root 'posts#index'
 

@@ -16,6 +16,7 @@
 //= require jquery.tipsy
 //= require header
 //= require packery
+//= require global
 
 $(document).ready(function() {
 	$('body').flowtype({
