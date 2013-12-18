@@ -16,15 +16,7 @@
 
   %section#comments
     - @post.comments.order('created_at ASC').each do |comment|
-      - unless comment.invalid?
-        .comment-container
-          .comment
-            %p
-              = comment.text
-              %span.author
-                (
-                =comment.name
-                )
+      =render comment
 
   %section#new-comment
     %p

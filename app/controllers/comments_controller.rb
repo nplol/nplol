@@ -8,13 +8,9 @@ class CommentsController < ApplicationController
     
     if @captcha.valid? && @comment.save
       flash[:notice] = 'Comment created'
-      if @post.tag_list.include? 'dev'
-        redirect_to dev_post_path(@post)
-      else
-        redirect_to @post
-      end
+      render @comment, layout: false
     else
-      render 'posts/show'
+      render partial: 'form', layout: false
     end
   end
  

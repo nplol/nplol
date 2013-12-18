@@ -19,7 +19,7 @@ $ ->
   }
 
   $('.post').on 'click', (event) ->
-    $.ajax("posts/#{$(@).data('post-id')}").
+    $.ajax("/posts/#{$(@).data('post-id')}").
       done( (html) ->
         updateMainCanvas(html)
         ).

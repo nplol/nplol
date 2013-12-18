@@ -1,0 +1,15 @@
+- @comment = comment if local_assigns.has_key? :comment
+= form_for([@comment.post, @comment], remote: true) do |f|
+  - if @comment.errors.any?
+    %section.notice.error
+      %ul
+        = render 'partials/error', { errors: @comment.errors }
+  = raw negative_captcha(@captcha)
+  %section.form-input
+    = negative_label_tag(@captcha, :name, 'Name')
+    = negative_text_field_tag(@captcha, :name)
+  %section.form-input
+    = negative_label_tag(@captcha, :text, 'Text')
+    = negative_text_area_tag(@captcha, :text)
+
+  = f.submit

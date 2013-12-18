@@ -11,35 +11,14 @@
       =link_to @post do
         %i.fa.fa-comment-o.fa-lg
         = "#{@post.comments.count} comments"
-  %p
-    = @post.image
+  %section
+    =image_tag(@post.image.url(:large))
 
   %section#comments
     - @post.comments.order('created_at ASC').each do |comment|
-      - unless comment.invalid?
-        .comment-container
-          .comment
-            %p
-              = comment.text
-              %span.author
-                (
-                =comment.name
-                )
+      =render comment
 
   %section#new-comment
     %p
       Write something clever.
-    = form_for([@post, @comment = @comment || @post.comments.build])  do |f|
-      - if @comment.errors.any?
-        %section.notice.error
-          %ul
-            = render 'partials/error', { errors: @comment.errors }
-      = raw negative_captcha(@captcha)
-      %section.form-input
-        = negative_label_tag(@captcha, :name, 'Name')
-        = negative_text_field_tag(@captcha, :name)
-      %section.form-input
-        = negative_label_tag(@captcha, :text, 'Text')
-        = negative_text_area_tag(@captcha, :text)
-
-      = f.submit
+    = render 'comments/form', comment: @post.comments.build
