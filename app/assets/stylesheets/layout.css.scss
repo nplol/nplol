@@ -42,7 +42,6 @@ h1,h2,h3,h4,h5,h6,p {
   font-family: inherit;
   font-size: inherit;
   margin: 3% 0;
-  word-break: break-all;
 }
 
 .title {
@@ -89,6 +88,10 @@ a {
 
 a {
   cursor: pointer;
+}
+
+p {
+  word-break: break-all;
 }
 
 /*
