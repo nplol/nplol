@@ -6,6 +6,7 @@ $ ->
     $('#main').html(html)
 
   getListingLayout = ->
+    return false if $('.posts').length > 0
     $.ajax('')
       .done((html) ->
         updateMainCanvas(html)
@@ -17,5 +18,5 @@ $ ->
     xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
 
   $(window).on 'popstate', (event) ->
-    if(event.originalEvent.state != null)
+    if(event.originalEvent.state == null)
       getListingLayout()

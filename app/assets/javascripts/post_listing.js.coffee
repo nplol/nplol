@@ -23,7 +23,8 @@ $ ->
     $.ajax("/posts/#{post_id}").
       done( (html) ->
         updateMainCanvas(html)
-        history.replaceState({ }, "", "/posts/#{post_id}");
+        history.pushState({  }, "", "/posts/#{post_id}")
+        window.history.go(1)
       ).
       fail( ->
         console.log('Loading post failed.'))
