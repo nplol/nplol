@@ -3,13 +3,13 @@
     - if post.meme?
       .post.meme{ data: { post_id: post.id } }
         %article
-          %h1=post.title
+          %h3=post.title
           .image
             =image_tag(post.image.url(:medium))
     - else
       .post{ data: { post_id: post.id } }
         %article
-          %h1=post.title
+          %h3=post.title
           %p
             = markdown(post.content)
 
