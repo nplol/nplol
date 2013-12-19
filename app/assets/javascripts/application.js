@@ -12,19 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require flowtype
 //= require jquery.tipsy
 //= require header
 //= require packery
 //= require global
 
 $(document).ready(function() {
-	$('body').flowtype({
-   minimum   : 500,
-   maximum   : 1200,
-   minFont   : 12,
-   maxFont   : 24
-  });
 
   $('.notice').on('click', function() {
     $(this).fadeOut('fast')

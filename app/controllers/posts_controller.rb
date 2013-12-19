@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   def index
   	@posts = Post.published
 
-    return render 'index', layout: !request.xhr?
+    return render 'index', layout: false if request.xhr?
   end
 
   def new

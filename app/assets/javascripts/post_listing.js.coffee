@@ -19,10 +19,12 @@ $ ->
   }
 
   $('.post').on 'click', (event) ->
-    $.ajax("/posts/#{$(@).data('post-id')}").
+    post_id = $(@).data('post-id')
+    $.ajax("/posts/#{post_id}").
       done( (html) ->
         updateMainCanvas(html)
-        ).
+        history.pushState({  }, "", "/posts/#{post_id}");
+      ).
       fail( ->
         console.log('Loading post failed.'))
 

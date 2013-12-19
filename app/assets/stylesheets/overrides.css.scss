@@ -1,0 +1,29 @@
+@import "bourbon";
+$red: #e95c33;
+$blue: #41b7d8;
+
+strong {
+  font-family: 'bitter-bold';
+}
+
+button {
+  @include button($red);
+}
+
+h1,h2,h3,h4,h5,h6,p {
+  font-family: inherit;
+  font-size: inherit;
+  margin: 3% 0;
+}
+
+ul {
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+
+a {
+  color: $blue;
+  text-decoration: none;
+  cursor: pointer;
+}

@@ -7,7 +7,8 @@ $ ->
       url: $(@).data('formPath'),
       type: 'post',
       data:  { 'post[type]': $(@).val() } })
-      .done( (html) -> renderForm(html)
+      .done( (html) ->
+        renderForm(html)
       )
       .fail( -> failedToRenderForm()
       )

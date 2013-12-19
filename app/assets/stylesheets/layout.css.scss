@@ -1,23 +1,11 @@
 @import "bourbon";
-@import "neat";
 
 @include font-face(bitter, 'bitter/bitter', normal, $asset-pipeline: true);
 @include font-face(bitter-bold, 'bitter/bitter-bold', normal, $asset-pipeline: true);
 @include font-face(typewriter, 'typewriter/typewriter', normal, $asset-pipeline: true);
 
-@mixin box-shadow($top, $left, $blur, $color, $inset:"") {
-  box-shadow:$top $left $blur $color #{$inset};
-}
-
-$red: #e95c33;
-$blue: #41b7d8;
 $black: #2c3e50;
 $green: #a2c5bf;
-
-
-strong {
-  font-family: 'bitter-bold';
-}
 
 body {
   font-family: 'bitter';
@@ -27,120 +15,10 @@ body {
   color: $black;
 }
 
-button {
-  @include button($red);
-}
-
 #main {
-  margin: 100px 1% 0 1%;
+  margin-top: 100px;
   overflow-x: scroll;
   overflow-y: hidden;
   position: relative;
+  padding: 0 20px;
 }
-
-h1,h2,h3,h4,h5,h6,p {
-  font-family: inherit;
-  font-size: inherit;
-  margin: 3% 0;
-}
-
-.title {
-  font-size: 3em;
-  line-height: 1em;
-  margin-top: 8%;
-  a {
-    color: #2c3e50;
-  }
-}
-
-ul {
-  list-style:none;
-  margin:0;
-  padding:0;
-}
-
-a {
-  color: $blue;
-  text-decoration: none;
-}
-
-.notice {
-  padding: 1%;
-}
-.error {
-  background-color: rgba($red, 0.3);
-}
-.message {
-  background-color: rgba($blue, 0.3);
-}
-
-.omission {
-  color: $red;
-}
-
-.read-more {
-  background: $red;
-  padding: 1% 2%;
-  border-radius: 0.75em;
-  color: #fff;
-  display: inline-block;
-}
-
-a {
-  cursor: pointer;
-}
-
-p {
-  word-break: break-all;
-}
-
-/*
-* Media queries
-*/
-
-@media (max-width: 767px){
-  #main {
-    margin: 0;
-    width: 100%;
-  }
-  #logo {
-    display: none;
-  }
-}
-
-@media screen and (device-width: 384px) and (device-height: 592px) and (-webkit-device-pixel-ratio: 2) {
-  #main {
-    margin: 0;
-    width: 100%;
-  }
-  #logo {
-    display: none;
-  }
-}
-
-.packery:after {
-  content: ' ';
-  display: block;
-  clear: both;
-}
-
-///*
-//tint
-//*/
-//
-//.tint {
-//  content: "";
-//  position: absolute;
-//  width: 100%;
-//  height: 100%;
-//  top: 0;
-//  bottom: 0;
-//  left: 0;
-//  right: 0;
-//  background: rgba(0,0,0,.3);
-//  transition: all .3s linear;
-//}
-//
-//.tint:hover {
-//  background: none;
-//}
