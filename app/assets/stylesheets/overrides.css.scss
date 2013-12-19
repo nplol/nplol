@@ -6,7 +6,7 @@ strong {
   font-family: 'bitter-bold';
 }
 
-button {
+button,input[type=submit]  {
   @include button($red);
 }
 
@@ -35,4 +35,8 @@ a {
   color: $blue;
   text-decoration: none;
   cursor: pointer;
+}
+
+.hidden {
+  display: none;
 }

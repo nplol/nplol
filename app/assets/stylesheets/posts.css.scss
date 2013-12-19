@@ -1,11 +1,13 @@
 @import 'bourbon';
 @import 'neat';
 
-$blue: #41b7d8;
 $red: #e95c33;
 $black: #2c3e50;
-$gray: rgba(0,0,0,0.3);
-$postPadding: 0 3% 0 3%;
+$green: #a2c5bf;
+
+#posts {
+  margin-top: 100px;
+}
 
 .post {
   background: #f1f1f1;
@@ -16,11 +18,23 @@ $postPadding: 0 3% 0 3%;
   width: 300px;
   height: 47%;
   float: left;
+  article {
+    max-height: 100%;
+    overflow: hidden;
+  }
+}
+
+.post:before {
+  display: block;
 }
 
 .post:hover {
   background: #ffffff;
   cursor: pointer;
+}
+
+.meme {
+  text-align: center;
 }
 
 .post-meta {
@@ -39,109 +53,21 @@ $postPadding: 0 3% 0 3%;
   }
 }
 
-.post article {
-  max-height: 100%;
-  overflow: hidden;
-}
-
 
 #post {
   max-width: 950px;
   margin: 0 auto;
   padding: 3%;
   background: #ffffff;
-  border: 3px solid #91b1ac;
-  box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
-}
-
-.post:before {
-  display: block;
-}
-
-.meme {
-  text-align: center;
+  border-left: 5px solid #91b1ac;
+  border-right: 5px solid #91b1ac;
+  h1 {
+    padding-top: 60px;
+  }
 }
 
 img {
   display: block;
   max-width: 100%;
   margin: 0 auto;
-}
-
-input[type=submit] {
-  @include button($red);
-}
-
-.form-input {
-  @include outer-container;
-  label { @include span-columns(3); }
-  input, textarea { @include span-columns(9); margin: 1% 0;}
-}
-
-.label { @include span-columns(3); }
-
-.assets {
-  @include outer-container;
-  .images{
-    @include span-columns(9);
-    img {
-      display: inline-block;
-      margin: 2%;
-    }
-  }
-}
-
-.asset {
-  opacity: 0.6;
-}
-
-.asset.active, .asset:hover {
-  opacity: 1;
-}
-
-.asset-tools {
-  @include outer-container;
-  .tools-container {
-    @include span-columns(9);
-    .asset-url {
-      @include span-columns(6 of 9);
-    }
-    .remove-asset {
-      @include span-columns(3 of 9);
-    }
-  }
-}
-
-#add-asset {
-  display: block;
-}
-
-.asset {
-  display: inline-block;
-}
-
-.hidden {
-  display: none;
-}
-
-#cross {
-  display: none;
-  position: absolute;
-  z-index: 1;
-  top:0;
-  left:0;
-}
-
-input[type=text] {
-  font-family: 'bitter';
-  font-size: 16px;
-  padding: 1%;
-}
-
-textarea {
-  height: 150px;
-  resize: vertical;
-  font-family: 'bitter';
-  font-size: 16px;
-  padding: 1%;
 }

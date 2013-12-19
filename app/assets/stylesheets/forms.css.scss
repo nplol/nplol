@@ -1,0 +1,24 @@
+@import 'bourbon';
+@import 'neat';
+
+.form-input {
+  @include outer-container;
+  label { @include span-columns(3); }
+  input, textarea { @include span-columns(9); margin: 1% 0;}
+}
+
+.label { @include span-columns(3); }
+
+input[type=text] {
+  font-family: 'bitter';
+  font-size: 16px;
+  padding: 1%;
+}
+
+textarea {
+  height: 150px;
+  resize: vertical;
+  font-family: 'bitter';
+  font-size: 16px;
+  padding: 1%;
+}
