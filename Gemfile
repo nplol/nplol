@@ -27,13 +27,9 @@ gem 'aws-sdk'
 # negative captcha to avoid spam-bots
 gem 'negative_captcha'
 
-# use rspec for testing
-gem 'rspec-rails', :group => [:development, :test]
 
 group :development do
   gem 'better_errors'
-  #gem 'binding_of_caller'
-  #gem 'foreman'
 end
 
 group :test do

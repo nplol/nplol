@@ -3,7 +3,7 @@
 
   %section
     %select.post-type{ data: {form_path: post_form_path} }
-      =options_for_select(['Normal', 'Meme'])
+      =options_for_select(['normal', 'meme'])
     %section#post-form
       - if @post.meme?
         = render 'posts/memes/meme_form'
