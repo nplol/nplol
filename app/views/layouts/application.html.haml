@@ -11,6 +11,4 @@
       = link_to 'nplol', root_path
       %i.fa.fa-search.fa-small(title='Search for stuff.')
     %section#main
-      - if flash[:notice]
-        %section.notice.message= flash[:notice]
       = yield

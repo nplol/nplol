@@ -1,8 +1,11 @@
-- @asset = asset if local_assigns.has_key? :asset
-= form_for @asset do |f|
+= form_for @asset, remote: true do |f|
+  - if @asset.errors.any?
+    %section.notice.error
+      %ul
+        = render 'partials/error', { errors: @asset.errors }
 
   %section.form-input
     = f.label :image
     = f.file_field :image
 
-    = f.submit 'Upload image'
+  = f.submit 'Upload image'

@@ -16,11 +16,3 @@
 //= require header
 //= require packery
 //= require global
-
-$(document).ready(function() {
-
-  $('.notice').on('click', function() {
-    $(this).fadeOut('fast')
-  })
-
-});

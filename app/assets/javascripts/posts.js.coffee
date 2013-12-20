@@ -17,7 +17,7 @@ $ ->
       $('#post-form').html(html)
 
     failedToRenderForm = ->
-      console.log('I\'m a failure.')
+      console.log('Failed to load post form.')
 
 
   $('.asset').each (index, element) ->
@@ -33,10 +33,7 @@ $ ->
       $(".asset[data-asset-id=#{$(@).data('assetId')}]").remove()
       $('.asset-url').val('')
 
-    $('#show-asset-form').on 'click', (e) ->
-      e.preventDefault()
-      $('#assets-form-background').fadeIn('fast')
-
-    changeActiveAsset = ($asset) ->
+  changeActiveAsset = ($asset) ->
       $('.asset.active').removeClass('active')
       $asset.addClass('active')
+

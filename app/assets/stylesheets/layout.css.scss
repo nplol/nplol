@@ -25,3 +25,19 @@ body {
   position: relative;
   padding: 0 20px;
 }
+
+.button {
+  @include button($red);
+  padding: 2px 14px 0 14px;
+}
+
+.dim {
+  display: none;
+  height:100%;
+  width:100%;
+  position:fixed;
+  left:0;
+  top:0;
+  z-index:1 !important;
+  background: rgba(0,0,0,0.6);
+}

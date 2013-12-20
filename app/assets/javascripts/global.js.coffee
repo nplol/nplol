@@ -1,7 +1,6 @@
 $ ->
 
   # class containing global methods and variables.
-
   window.updateMainCanvas = (html) ->
     $('#main').html(html)
 
@@ -18,5 +17,5 @@ $ ->
     xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
 
   $(window).on 'popstate', (event) ->
-    if(event.originalEvent.state == null)
+    if(event.originalEvent.state != null)
       getListingLayout()

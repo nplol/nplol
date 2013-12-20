@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-  http_basic_authenticate_with name: "2pac", password: "2pac", except: [:index, :show]
+  http_basic_authenticate_with name: '2pac', password: '2pac', except: [:index, :show]
 
   before_filter :setup_negative_captcha, only: :show
 
