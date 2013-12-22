@@ -1,6 +1,8 @@
 class Quote < Post
 
-  def model.name
+  validates_presence_of :quotee
+
+  def self.model_name
     Post.model_name
   end
 
