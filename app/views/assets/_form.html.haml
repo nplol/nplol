@@ -4,8 +4,14 @@
       %ul
         = render 'partials/error', { errors: @asset.errors }
 
+  -# generates anti-CSRF token
+  =token_tag(nil)
+
   %section.form-input
     = f.label :image
     = f.file_field :image
 
-  = f.submit 'Upload image'
+  %section.buttons
+    = f.submit
+
+= javascript_include_tag 'assets'

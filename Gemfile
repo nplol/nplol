@@ -20,6 +20,9 @@ gem 'redcarpet'
 gem 'haml'
 gem 'acts-as-taggable-on'
 
+# remote file upload
+gem 'remotipart'
+
 # paperclip and aws for remote file upload
 gem 'paperclip'
 gem 'aws-sdk'

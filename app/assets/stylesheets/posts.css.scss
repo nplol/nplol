@@ -6,7 +6,8 @@ $black: #2c3e50;
 $green: #a2c5bf;
 
 #posts {
-  margin-top: 100px;
+  padding-top: 100px;
+  height: 100vh;
 }
 
 .post {
@@ -16,12 +17,18 @@ $green: #a2c5bf;
   padding: 2%;
   border-radius: 3px;
   width: 300px;
-  height: 47%;
+  height: calc(50% - 70px);
+  min-height: 200px;
   float: left;
   article {
     max-height: 100%;
     overflow: hidden;
   }
+}
+
+.post.quote {
+  height: calc(25% - 70px);
+  width: 620px;
 }
 
 .post:before {
@@ -56,6 +63,7 @@ $green: #a2c5bf;
 
 #post {
   max-width: 950px;
+  min-height: 100%;
   margin: 0 auto;
   padding: 3%;
   background: #ffffff;

@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.tipsy
+//= require jquery.remotipart
 //= require header
 //= require packery
 //= require global
+

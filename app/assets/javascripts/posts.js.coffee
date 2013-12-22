@@ -37,3 +37,18 @@ $ ->
       $('.asset.active').removeClass('active')
       $asset.addClass('active')
 
+  $('.add-asset').on 'ajax:success', (event, html) ->
+    addAssetForm(html)
+
+  addAssetForm = (html) ->
+    dim(true)
+    $('.dim').append(html)
+
+  dim = (lightSwitch) ->
+    prependDimmer() unless $('.dim').length > 0
+    if lightSwitch then $('.dim').fadeIn('fast') else $('.dim').fadeOut('fast')
+
+  prependDimmer = ->
+    $('#main').prepend('<div class="dim"></div>')
+
+

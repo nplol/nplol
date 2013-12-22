@@ -14,7 +14,7 @@
       <img src="./assets/0.8.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2013-12-19T15:30:07+01:00">2013-12-19T15:30:07+01:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2013-12-22T20:20:33+01:00">2013-12-22T20:20:33+01:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -25,7 +25,7 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.91
+         1.92
        </span>
     </span> hits/line)
   </h2>
@@ -73,9 +73,9 @@
       <tr>
         <td class="strong"><a href="#a321b26dcb4d8a4c4b57b444bf652808ac5abfd2" class="src_link" title="app/models/asset.rb">app/models/asset.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>8</td>
-        <td>4</td>
-        <td>4</td>
+        <td>10</td>
+        <td>5</td>
+        <td>5</td>
         <td>0</td>
         <td>1.0</td>
       </tr>
@@ -92,10 +92,10 @@
       
       <tr>
         <td class="strong"><a href="#a84574899ed5402261a78a6c3ccc7128efe0c5e4" class="src_link" title="app/models/meme.rb">app/models/meme.rb</a></td>
-        <td class="yellow strong">83.33 %</td>
-        <td>14</td>
-        <td>6</td>
+        <td class="red strong">80.0 %</td>
+        <td>11</td>
         <td>5</td>
+        <td>4</td>
         <td>1</td>
         <td>0.8</td>
       </tr>
@@ -208,9 +208,9 @@
       <tr>
         <td class="strong"><a href="#a321b26dcb4d8a4c4b57b444bf652808ac5abfd2" class="src_link" title="app/models/asset.rb">app/models/asset.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>8</td>
-        <td>4</td>
-        <td>4</td>
+        <td>10</td>
+        <td>5</td>
+        <td>5</td>
         <td>0</td>
         <td>1.0</td>
       </tr>
@@ -227,10 +227,10 @@
       
       <tr>
         <td class="strong"><a href="#a84574899ed5402261a78a6c3ccc7128efe0c5e4" class="src_link" title="app/models/meme.rb">app/models/meme.rb</a></td>
-        <td class="yellow strong">83.33 %</td>
-        <td>14</td>
-        <td>6</td>
+        <td class="red strong">80.0 %</td>
+        <td>11</td>
         <td>5</td>
+        <td>4</td>
         <td>1</td>
         <td>0.8</td>
       </tr>
@@ -526,7 +526,7 @@
         <li class="covered" data-hits="1" data-linenumber="3">
           <span class="hits">1</span>
           
-          <code class="ruby">  http_basic_authenticate_with name: &quot;2pac&quot;, password: &quot;2pac&quot;, except: [:index, :show]</code>
+          <code class="ruby">  http_basic_authenticate_with name: &#39;2pac&#39;, password: &#39;2pac&#39;, except: [:index, :show]</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="4">
@@ -568,7 +568,7 @@
         <li class="covered" data-hits="1" data-linenumber="10">
           <span class="hits">1</span>
           
-          <code class="ruby">    return render &#39;index&#39;, layout: !request.xhr?</code>
+          <code class="ruby">    return render &#39;index&#39;, layout: false if request.xhr?</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="11">
@@ -976,8 +976,8 @@
     <h3>app/models/asset.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>4</b> relevant lines. 
-      <span class="green"><b>4</b> lines covered</span> and
+      <b>5</b> relevant lines. 
+      <span class="green"><b>5</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -1018,7 +1018,7 @@
         <li class="covered" data-hits="1" data-linenumber="6">
           <span class="hits">1</span>
           
-          <code class="ruby">  validates_attachment_content_type :image, content_type: &#39;image/png&#39;</code>
+          <code class="ruby">  validates_attachment_presence :image</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="7">
@@ -1027,7 +1027,19 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="8">
+        <li class="covered" data-hits="1" data-linenumber="8">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  validates_attachment_content_type :image, content_type: &#39;image/png&#39;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="9">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="10">
           
           
           <code class="ruby">end</code>
@@ -1112,10 +1124,10 @@
         <div class="source_table" id="a84574899ed5402261a78a6c3ccc7128efe0c5e4">
   <div class="header">
     <h3>app/models/meme.rb</h3>
-    <h4><span class="yellow">83.33 %</span> covered</h4>
+    <h4><span class="red">80.0 %</span> covered</h4>
     <div>
-      <b>6</b> relevant lines. 
-      <span class="green"><b>5</b> lines covered</span> and
+      <b>5</b> relevant lines. 
+      <span class="green"><b>4</b> lines covered</span> and
       <span class="red"><b>1</b> lines missed.</span>
     </div>
   </div>
@@ -1147,61 +1159,43 @@
           <code class="ruby">  validates_attachment_content_type :image, :content_type =&gt; /^image\/(png|gif|jpeg|jpg)/</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="5">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="5">
           
-          <code class="ruby">  validates :title, 	presence: true,</code>
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="6">
           
           
-          <code class="ruby">            length: {minimum: 5},</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="7">
-          
-          
-          <code class="ruby">            uniqueness: true</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="8">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="9">
-          
-          
           <code class="ruby">  # awesome hack: http://stackoverflow.com/questions/4507149/best-practices-to-handle-routes-for-sti-subclasses-in-rails</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="10">
+        <li class="covered" data-hits="1" data-linenumber="7">
           <span class="hits">1</span>
           
           <code class="ruby">  def self.model_name</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="11">
+        <li class="missed" data-hits="0" data-linenumber="8">
           
           
           <code class="ruby">    Post.model_name</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="12">
+        <li class="never" data-hits="" data-linenumber="9">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="13">
+        <li class="never" data-hits="" data-linenumber="10">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="14">
+        <li class="never" data-hits="" data-linenumber="11">
           
           
           <code class="ruby">end</code>
