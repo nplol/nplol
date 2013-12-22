@@ -8,6 +8,7 @@ $black: #2c3e50;
 $green: #a2c5bf;
 $red: #e95c33;
 
+
 body {
   font-family: 'bitter';
   font-size: 18px;
@@ -17,7 +18,7 @@ body {
 }
 
 #main {
-  height: 100vh;
+  min-height: 100vh;
   overflow-x: scroll;
   overflow-y: hidden;
   position: relative;
