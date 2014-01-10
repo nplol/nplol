@@ -1,13 +1,12 @@
 = form_for @post, :html => {:multipart => true} do |f|
   - if @post.errors.any?
-    #error_explanation
+    .errors
+      %h2
+      = pluralize(@post.errors.count, 'error') + ' prohibited this post from being saved'
 
-    %h2
-    = pluralize(@post.errors.count, 'error') + ' prohibited this post from being saved'
-
-    %ul
-      - @post.errors.full_messages.each do |msg|
-        %li= msg
+      %ul
+        - @post.errors.full_messages.each do |msg|
+          %li= msg
 
   %section.form-input
     = f.label :title
@@ -31,11 +30,7 @@
       %input.asset-url
       .remove-asset
         %i.fa.fa-times.fa-lg
-  %section.form-input
-    = f.hidden_field :type, value: @post.type
 
   %section.buttons
     = link_to 'Add images?', new_asset_path, remote: true, class: 'button add-asset'
     = f.submit
-
-= javascript_include_tag 'assets'

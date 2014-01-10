@@ -1,6 +1,6 @@
-= form_for @asset, remote: true do |f|
+= form_for @asset, remote: true, data: { type: 'html' } do |f|
   - if @asset.errors.any?
-    %section.notice.error
+    %section.errors
       %ul
         = render 'partials/error', { errors: @asset.errors }
 

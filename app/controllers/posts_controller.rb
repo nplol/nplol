@@ -62,7 +62,7 @@ class PostsController < ApplicationController
   private
   def post_params
     params.require(:post).permit( :title, :content, :tag_list, :type,
-                                  asset_attributes: [ :image ] )
+                                  asset_attributes: [ :id ] )
   end
 
   def meme_params

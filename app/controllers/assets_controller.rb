@@ -13,6 +13,7 @@ class AssetsController < ApplicationController
     if @asset.save
       render @asset, layout: false
     else
+      #render json: @asset.errors.full_messages, status: 400
       render partial: 'form', layout: false, status: 400
     end
   end
