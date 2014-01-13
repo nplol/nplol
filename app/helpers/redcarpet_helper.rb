@@ -7,6 +7,8 @@ module RedcarpetHelper
   
 end
 
+# monkey patch for the HTML generation of RedCarpet to
+# allow classes to be added to images.
 class HTMLBlockCode < Redcarpet::Render::HTML
   include ActionView::Helpers::AssetTagHelper
 
