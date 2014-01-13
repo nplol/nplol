@@ -13,15 +13,21 @@ class AssetsController < ApplicationController
     if @asset.save
       render @asset, layout: false
     else
-      #render json: @asset.errors.full_messages, status: 400
       render partial: 'form', layout: false, status: 400
     end
+  end
+
+  def destroy
+    @asset = Asset.find(params[:id])
+
+    @asset.destroy
+    render nothing: true, status: :ok
   end
 
   private
 
   def asset_params
-    params.fetch(:asset, { }).permit(:image)
+    params.require(:asset).permit(:image)
   end
 
 end

@@ -1,6 +1,7 @@
 $ ->
 
-  # meme form loading
+  # load a new form based on the input in the
+  # dropdown menu - current choices: normal, meme, (quote)
   $('.post-type').on 'change', (event) ->
 
     $.ajax({
@@ -18,24 +19,6 @@ $ ->
 
     failedToRenderForm = ->
       console.log('Failed to load post form.')
-
-
-  $('.asset').each (index, element) ->
-
-    $(element).tipsy({fallback: 'Click to see image URL', fade: true})
-
-    $(element).on 'click', ->
-      changeActiveAsset($(@))
-      $('.asset-url').val($(@).attr('src'))
-      $('.remove-asset').data('assetId', $(@).attr('data-asset-id'))
-
-    $('.remove-asset').on 'click', ->
-      $(".asset[data-asset-id=#{$(@).data('assetId')}]").remove()
-      $('.asset-url').val('')
-
-  changeActiveAsset = ($asset) ->
-      $('.asset.active').removeClass('active')
-      $asset.addClass('active')
 
   $('.add-asset').on 'ajax:success', (event, html) ->
     addAssetForm(html)
