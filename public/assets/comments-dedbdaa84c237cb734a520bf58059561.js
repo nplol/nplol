@@ -1,1 +1,0 @@
-(function(){$(function(){var n;return console.log($("#new_comment").length),$("#new_comment").on("ajax:success",function(e,t){return $("#comments").append(t),n($(this))}),$("#new_comment").on("ajax:error",function(n,e){return $(this).html(e.responseText)}),n=function(n){return n.find("input[type=text], textarea").val(""),n.find(".error").remove()}})}).call(this);
