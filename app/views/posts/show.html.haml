@@ -22,8 +22,9 @@
     %p Write something clever.
     = render 'comments/form', comment: @post.comments.build
 
-  %section#comments
-    - @post.comments.order('created_at ASC').each do |comment|
-      =render comment
+  - if @post.comments.length > 1
+    %section#comments
+      - @post.comments.order('created_at ASC').each do |comment|
+        =render comment
 
 = javascript_include_tag 'comments'
