@@ -1,23 +1,28 @@
 $ ->
 
-  $('#new_asset').on 'ajax:beforeSend', (event, xhr, settings) ->
-    $(@).find('input[name=commit]').val('Submitting image').addClass('disabled')
+  window.addListenersToAssetForm = ->
+    debugger
+    $('#new_asset').on 'ajax:beforeSend', (event, xhr, settings) ->
+      $(@).find('input[name=commit]').val('Submitting image').addClass('disabled')
 
-  $('#new_asset').on 'ajax:success', (event, data, status, xhr) ->
-    existingAssets = $('.asset').length > 0
+    $('#new_asset').on 'ajax:success', (event, data, status, xhr) ->
+      existingAssets = $('.asset').length > 0
 
-    # append new asset to the DOM
-    $('.assets .images').append(xhr.responseText)
+      # append new asset to the DOM
+      $('.assets .images').append(xhr.responseText)
 
-    # wrap the new asset as a jQuery object
-    $asset = $('.asset:last')
+      # wrap the new asset as a jQuery object
+      $asset = $('.asset:last')
 
-    addAssetToPost($asset)
-    configureAsset($asset)
+      addAssetToPost($asset)
+      configureAsset($asset)
 
-    showAssetsAndTools() unless existingAssets
+      showAssetsAndTools() unless existingAssets
 
-    dim(false)
+      dim(false)
+
+    $('#new_asset').on 'ajax:error', (event, xhr, status, error) ->
+      $('.dim').html(xhr.responseText)
 
   showAssetsAndTools = ->
     $('.assets').removeClass('hidden')
@@ -27,13 +32,10 @@ $ ->
     $('.assets').addClass('hidden')
     $('.asset-tools').addClass('hidden')
 
-  $('#new_asset').on 'ajax:error', (event, xhr, status, error) ->
-    $('.dim').html(xhr.responseText)
-
   addAssetToPost = ($asset) ->
     input = $("<input>")
       .attr("type", "hidden")
-      .attr("name", "post[asset_attributes]").val($asset.data('asset-id'));
+      .attr("name", "post[asset_attributes][id]").val($asset.data('asset-id'));
     $('form:last').append($(input))
 
   # iterate over each asset and add respective handlers and tooltips.
@@ -52,8 +54,6 @@ $ ->
     $('.asset.active').removeClass('active')
     $asset.addClass('active')
 
-  # remove the active asset -> Will send a message to the server to
-  # delete the asset with the accompanying ID.
   $('.remove-asset').on 'click', ->
     $asset = $(".asset[data-asset-id=#{$(@).data('assetId')}]")
     deleteAsset($asset)
@@ -67,6 +67,3 @@ $ ->
         $('.asset-url').val('')
         hideAssetsAndTools()
       )
-#    .fail( -> failedToRenderForm()
-#        console.log('Failed to delete asset.')
-#      )

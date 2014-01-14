@@ -1,6 +1,7 @@
 $ ->
 
-  # class containing global methods and variables.
+  # _window_ is the global namespace
+
   window.updateMainCanvas = (html) ->
     $('#main').html(html)
 
@@ -9,6 +10,10 @@ $ ->
     prependDimmer() unless $('.dim').length > 0
     $('.dim').html('') unless lightSwitch
     if lightSwitch then $('.dim').fadeIn('fast') else $('.dim').fadeOut('fast')
+
+  window.clearForm = ($form) ->
+    $form.find('input[type=text]').val('')
+    $form.find('textarea').val('')
 
   # keyCode 27: escape
   $(document).keydown((event) ->

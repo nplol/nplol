@@ -11,21 +11,19 @@
       =link_to @post do
         %i.fa.fa-comment-o.fa-lg
         = "#{@post.comments.count} comments"
-  - if @post.meme?
-    %section
+  %section.content
+    - if @post.meme?
       =image_tag(@post.image.url(:large))
-  - else
-    %p
-      = markdown(@post.content)
+    - else
+      %p
+        = markdown(@post.content)
+
+  %section#new-comment
+    %p Write something clever.
+    = render 'comments/form', comment: @post.comments.build
 
   %section#comments
     - @post.comments.order('created_at ASC').each do |comment|
       =render comment
-
-  %section#new-comment
-    %p
-      Write something clever.
-    = render 'comments/form', comment: @post.comments.build
-
 
 = javascript_include_tag 'comments'

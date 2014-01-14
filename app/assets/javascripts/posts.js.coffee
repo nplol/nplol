@@ -26,3 +26,5 @@ $ ->
   addAssetForm = (html) ->
     dim(true)
     $('.dim').append(html)
+    addListenersToAssetForm()
+

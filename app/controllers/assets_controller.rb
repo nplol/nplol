@@ -27,7 +27,7 @@ class AssetsController < ApplicationController
   private
 
   def asset_params
-    params.require(:asset).permit(:image)
+    params.require(:asset).permit(:image) if params[:asset]
   end
 
 end

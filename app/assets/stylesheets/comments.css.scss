@@ -2,15 +2,56 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$green: #a2c5bf;
+$darkGreen: #91b1ac;
+@import 'bourbon';
+
+@include font-face(bitter-bold, 'bitter/bitter-bold', normal, $asset-pipeline: true);
+
 #comments {
-	margin-top: 3%;
+  margin-top: 3%;
+  border-top: 3px solid $darkGreen;
+}
+
+.comment-container {
+  margin-top: 20px;
 }
 
 .comment {
-	display: block;
-	margin-bottom: 2%;
-	background: rgba(222,222,222,0.4);
-	padding: 1%;
+  display: block;
+  background: #c5d8d5;
+  position: relative;
+  margin-left: 60px;
+  padding: 3px;
+  .inner {
+    background: #ffffff;
+    border: 1px solid $darkGreen;
+    border-radius: 3px;
+    padding: 10px;
+    p {
+      margin:0;
+    }
+  }
+}
+
+.comment:before {
+  content: "";
+  display: block;
+  height: 0;
+  width: 0;
+  border: 10px solid #EEE;
+  border-width: 10px 10px 10px 0;
+  border-color: rgba(238,238,238,0) #c5d8d5 rgba(238,238,238,0) rgba(238,238,238,0);
+  position: absolute;
+  left: -10px;
+  top: 15px;
+}
+
+.avatar {
+  height:48px;
+  width:48px;
+  float: left;
+  position: relative;
 }
 
 .author {
@@ -20,4 +61,8 @@
 
 input.input-error, textarea.input-error {
   border: 1px red solid;
+}
+
+.commenter {
+  font-size: 0.75em;
 }

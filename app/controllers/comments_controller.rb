@@ -5,7 +5,8 @@ class CommentsController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
     @comment = @post.comments.build(@captcha.values)
-    
+
+    # todo: FLASH
     if @captcha.valid? && @comment.save
       render @comment, layout: false
     else
