@@ -26,6 +26,7 @@ module Nplol
       g.helper_specs false
     end
 
+    # gist for adding default error messages to the fields with errors.
     config.action_view.field_error_proc = Proc.new do |html_tag, instance|
       class_attr_index = html_tag.index 'class="'
 
