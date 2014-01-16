@@ -16,8 +16,8 @@ class PostsController < ApplicationController
 
   def create
     meme? ? @post = Meme.new(meme_params) : @post = Post.new(post_params)
-    @post.publish!
   	if @post.save
+      @post.publish!
       redirect_to post_path(@post)
     else
     	render 'new'
@@ -62,7 +62,7 @@ class PostsController < ApplicationController
   private
   def post_params
     params.require(:post).permit( :title, :content, :tag_list, :type,
-                                  asset_attributes: [ :id ] )
+                                  asset_attributes: [  ] )
   end
 
   def meme_params

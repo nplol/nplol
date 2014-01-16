@@ -13,7 +13,10 @@ class Post < ActiveRecord::Base
   acts_as_taggable
 
   def asset_attributes=(asset_ids)
-    p asset_ids
+    assets.clear
+    asset_ids.each do |asset_id|
+      assets << Asset.find(asset_id)
+    end
   end
 
   def publish!

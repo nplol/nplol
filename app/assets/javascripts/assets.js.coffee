@@ -1,14 +1,14 @@
 $ ->
 
+  # needs to be made global so that it can be called from posts.js.coffee
   window.addListenersToAssetForm = ->
-    debugger
     $('#new_asset').on 'ajax:beforeSend', (event, xhr, settings) ->
       $(@).find('input[name=commit]').val('Submitting image').addClass('disabled')
 
     $('#new_asset').on 'ajax:success', (event, data, status, xhr) ->
-      existingAssets = $('.asset').length > 0
+      showAssetsAndTools() unless existingAssets()
 
-      # append new asset to the DOM
+    # append new asset to the DOM
       $('.assets .images').append(xhr.responseText)
 
       # wrap the new asset as a jQuery object
@@ -17,30 +17,27 @@ $ ->
       addAssetToPost($asset)
       configureAsset($asset)
 
-      showAssetsAndTools() unless existingAssets
-
       dim(false)
 
     $('#new_asset').on 'ajax:error', (event, xhr, status, error) ->
-      $('.dim').html(xhr.responseText)
+      $(@).html(xhr.responseText)
 
   showAssetsAndTools = ->
-    $('.assets').removeClass('hidden')
-    $('.asset-tools').removeClass('hidden')
+    $('.assets').fadeIn('fast')
+    $('.asset-tools').fadeIn('fast')
 
   hideAssetsAndTools = ->
-    $('.assets').addClass('hidden')
-    $('.asset-tools').addClass('hidden')
+    $('.assets').fadeOut('fast')
+    $('.asset-tools').fadeOut('fast')
+
+  existingAssets = ->
+    $('.asset').length > 0
 
   addAssetToPost = ($asset) ->
     input = $("<input>")
       .attr("type", "hidden")
-      .attr("name", "post[asset_attributes][id]").val($asset.data('asset-id'));
+      .attr("name", "post[asset_attributes][]").val($asset.data('asset-id'));
     $('form:last').append($(input))
-
-  # iterate over each asset and add respective handlers and tooltips.
-  $('.asset').each (index, element) ->
-    configureAsset($(element))
 
   configureAsset = ($asset) ->
     $asset.tipsy({fallback: 'Click to see image URL', fade: true})
@@ -65,5 +62,10 @@ $ ->
     .done( (html) ->
         $asset.remove()
         $('.asset-url').val('')
-        hideAssetsAndTools()
+        $("input[value=#{$asset.attr('data-asset-id')}]").remove()
+        hideAssetsAndTools() unless existingAssets()
       )
+
+  # iterate over each asset and add respective handlers and tooltips.
+  $('.asset').each (index, element) ->
+    configureAsset($(element))

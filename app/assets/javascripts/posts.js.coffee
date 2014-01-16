@@ -22,9 +22,8 @@ $ ->
 
   $('.add-asset').on 'ajax:success', (event, html) ->
     addAssetForm(html)
+    addListenersToAssetForm()
 
   addAssetForm = (html) ->
     dim(true)
     $('.dim').append(html)
-    addListenersToAssetForm()
-
