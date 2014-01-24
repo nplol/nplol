@@ -1,11 +1,12 @@
 @import 'bourbon';
 @import 'neat';
+@import 'colors';
 
-$red: #e95c33;
-$black: #2c3e50;
-$green: #a2c5bf;
-$darkGreen: #91b1ac;
-$offWhite: #f1f1f1;
+//$red: #e95c33;
+//$black: #2c3e50;
+//$green: #a2c5bf;
+//$darkGreen: #91b1ac;
+//$offWhite: #f1f1f1;
 
 // layout-variables for the post listing
 $standardWidth: 300px;
@@ -15,12 +16,12 @@ $doubleHeight: calc(50% + 20px);
 
 #posts {
   padding-top: 100px;
-  height: 100vh;
+  padding-left: 20px;
+  min-height:100vh;
 }
 
 .post {
   background: $offWhite;
-  border: 3px solid $darkGreen;
   box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
   padding: 2%;
   border-radius: 3px;
@@ -79,8 +80,6 @@ $doubleHeight: calc(50% + 20px);
   margin: 0 auto;
   padding: 3%;
   background: #ffffff;
-  border-left: 5px solid $darkGreen;
-  border-right: 5px solid $darkGreen;
   h1 {
     padding-top: 60px;
   }
@@ -94,4 +93,22 @@ $doubleHeight: calc(50% + 20px);
     }
   }
 
+}
+
+#post.green {
+  border-left: 5px solid $darkGreen;
+  border-right: 5px solid $darkGreen;
+}
+
+#post.red {
+  border-left: 5px solid $red;
+  border-right: 5px solid $red;
+}
+
+.post.green {
+  border: 3px solid $darkGreen;
+}
+
+.post.red {
+  border: 3px solid $red;
 }

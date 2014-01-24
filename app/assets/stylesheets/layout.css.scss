@@ -1,33 +1,36 @@
-@import "bourbon";
+@import 'bourbon';
 
 @include font-face(bitter, 'bitter/bitter', normal, $asset-pipeline: true);
 @include font-face(bitter-bold, 'bitter/bitter-bold', normal, $asset-pipeline: true);
 @include font-face(typewriter, 'typewriter/typewriter', normal, $asset-pipeline: true);
 
-$black: #2c3e50;
-$green: #a2c5bf;
-$red: #e95c33;
+@import 'colors';
 
+@mixin wideBorder($color) {
+  border-left: 5px solid $color;
+  border-right: 5px solid $color;
+}
+
+@mixin border($color) {
+  border: 3px solid $color;
+}
+
+@mixin arrow($color) {
+  border-color: rgba(238, 238, 238, 0) $color rgba(238, 238, 238, 0) rgba(238, 238, 238, 0);
+}
 
 body {
   font-family: 'bitter';
   font-size: 18px;
   line-height: 26px;
-  background: $green;
   color: $black;
 }
 
 #main {
-  min-height: 100vh;
+  min-height: 100%;
   overflow-x: scroll;
   overflow-y: hidden;
   position: relative;
-  padding: 0 20px;
-}
-
-.button {
-  @include button($red);
-  padding: 2px 14px 0 14px;
 }
 
 .dim {
@@ -44,3 +47,79 @@ body {
 .disabled {
   opacity: 0.7;
 }
+
+.red {
+  background-color: $red;
+  .color-border-wide {
+    @include wideBorder($darkRed);
+  }
+  .color-border {
+    @include border($darkRed)
+  }
+
+  button,input[type=submit]  {
+    @include button($red);
+  }
+
+  #comments {
+    border-top: 3px solid $darkRed;
+    .comment:before {
+      @include arrow($lightRed)
+    }
+    .comment {
+      background: $lightRed;
+    }
+  }
+
+}
+
+.green {
+  background-color: $green;
+  .color-border-wide {
+    @include wideBorder($darkGreen);
+  }
+  .color-border {
+    @include border($darkGreen)
+  }
+
+  button,input[type=submit]  {
+    @include button($darkGreen);
+  }
+
+  #comments {
+    border-top: 3px solid $darkGreen;
+    .comment:before {
+      @include arrow($green)
+    }
+    .comment {
+      background: $green;
+    }
+  }
+
+}
+
+.navy {
+  background-color: $navy;
+  .color-border-wide {
+    @include wideBorder($darkNavy);
+  }
+  .color-border {
+    @include border($darkNavy)
+  }
+
+  button,input[type=submit]  {
+    @include button($navy);
+  }
+
+  #comments {
+    border-top: 3px solid $navy;
+    .comment:before {
+      @include arrow($lightNavy)
+    }
+    .comment {
+      background: $lightNavy;
+    }
+  }
+
+}
+

@@ -1,13 +1,10 @@
 @import "bourbon";
-$red: #e95c33;
-$blue: #41b7d8;
+@import 'colors';
+//$red: #e95c33;
+//$blue: #41b7d8;
 
 strong {
   font-family: 'bitter-bold';
-}
-
-button,input[type=submit]  {
-  @include button($red);
 }
 
 h1,h2,h3,h4,h5,h6,p {

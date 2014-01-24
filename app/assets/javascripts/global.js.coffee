@@ -5,7 +5,6 @@ $ ->
   window.updateMainCanvas = (html) ->
     $('#main').html(html)
 
-
   # dim the background
   window.dim = (lightSwitch) ->
     prependDimmer() unless $('.dim').length > 0
