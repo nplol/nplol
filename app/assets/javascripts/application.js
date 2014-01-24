@@ -17,5 +17,4 @@
 //= require header
 //= require packery
 //= require global
-//= require layout
 
