@@ -1,0 +1,1 @@
+(function(){$(function(){return $(".post").on("click",function(){var t;return t=$(this).data("post-id"),$.ajax("/posts/"+t).done(function(n){return updateMainCanvas(n),history.pushState({},"",""),history.pushState({},"","/posts/"+t),window.history.go(2)}).fail(function(){return console.log("Loading post failed.")})})})}).call(this);
