@@ -5,8 +5,7 @@ class PostsController < ApplicationController
   before_filter :setup_negative_captcha, only: :show
 
   def index
-  	@posts = Post.published
-
+  	@posts = Post.all
     return render 'index', layout: false if request.xhr?
   end
 
@@ -17,7 +16,6 @@ class PostsController < ApplicationController
   def create
     meme? ? @post = Meme.new(meme_params) : @post = Post.new(post_params)
   	if @post.save
-      @post.publish!
       redirect_to post_path(@post)
     else
     	render 'new'
@@ -70,7 +68,7 @@ class PostsController < ApplicationController
   end
 
   def meme?
-    params[:post][:type] == 'meme'
+    params[:post_type] == 'meme'
   end
 
 end

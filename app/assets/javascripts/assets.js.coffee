@@ -44,7 +44,7 @@ $ ->
 
     $asset.on 'click', ->
       changeActiveAsset($(@))
-      $('.asset-url').val($(@).attr('src'))
+      $('.asset-url').val($(@).attr('data-large-url'))
       $('.remove-asset').data('assetId', $(@).attr('data-asset-id'))
 
   changeActiveAsset = ($asset) ->

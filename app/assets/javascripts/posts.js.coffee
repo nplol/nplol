@@ -7,7 +7,7 @@ $ ->
     $.ajax({
       url: $(@).data('formPath'),
       type: 'post',
-      data:  { 'post[type]': $(@).val() } })
+      data:  { 'post_type': $(@).val() } })
       .done( (html) ->
         renderForm(html)
       )

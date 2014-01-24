@@ -28,8 +28,8 @@
   %section.form-input
     = f.label :image
     = f.file_field :image
-  %section.form-input
-    = f.hidden_field :type, value: @post.type
+
+  = hidden_field_tag :post_type, 'meme'
 
   = f.submit
 

@@ -17,6 +17,9 @@
   %section.form-input
     = f.label :content
     = f.text_area :content
+
+  = hidden_field_tag :post_type, 'post'
+
   %secion.assets{class: ('hidden' if @post.assets.empty?)}
     %section.label
       =t('assets')

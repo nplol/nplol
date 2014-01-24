@@ -7,7 +7,7 @@ class Post < ActiveRecord::Base
 
 	has_many :comments, dependent: :destroy
 
-  has_many :assets, dependent: :destroy
+  has_many :assets
   accepts_nested_attributes_for :assets, :allow_destroy => true
 
   acts_as_taggable
@@ -19,20 +19,12 @@ class Post < ActiveRecord::Base
     end
   end
 
-  def publish!
-    self.published = true
-  end
-
-  def unpublish!
-    self.published = false
-  end
-
-  def self.published
-    Post.order('created_at DESC').where('published', true)
-  end
-
   def meme?
     self.is_a? Meme
+  end
+
+  def self.all
+    super.order('created_at DESC')
   end
 
 end

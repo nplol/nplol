@@ -1,6 +1,6 @@
 $ ->
 
-  # _window_ is the global namespace
+  # *window* is the global namespace
 
   window.updateMainCanvas = (html) ->
     $('#main').html(html)

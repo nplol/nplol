@@ -7,6 +7,12 @@ $green: #a2c5bf;
 $darkGreen: #91b1ac;
 $offWhite: #f1f1f1;
 
+// layout-variables for the post listing
+$standardWidth: 300px;
+$doubleWidth: 620px;
+$standardHeight: calc(25%);
+$doubleHeight: calc(50% + 20px);
+
 #posts {
   padding-top: 100px;
   height: 100vh;
@@ -18,9 +24,8 @@ $offWhite: #f1f1f1;
   box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
   padding: 2%;
   border-radius: 3px;
-  width: 300px;
-  height: calc(50% - 70px);
-  min-height: 200px;
+  width: $standardWidth;
+  height: $doubleHeight;
   float: left;
   article {
     max-height: 100%;
@@ -33,9 +38,9 @@ $offWhite: #f1f1f1;
   }
 }
 
-.post.quote {
-  height: calc(25% - 70px);
-  width: 620px;
+.post.meme {
+  height: $standardHeight;
+  width: $standardWidth;
 }
 
 .post:before {
