@@ -52,6 +52,9 @@ body {
   background-color: $red;
   .color-border-wide {
     @include wideBorder($darkRed);
+    i {
+      color: $darkRed;
+    }
   }
   .color-border {
     @include border($darkRed)
@@ -77,22 +80,25 @@ body {
   background-color: $green;
   .color-border-wide {
     @include wideBorder($darkGreen);
+    i {
+      color: $darkGreen;
+    }
   }
   .color-border {
     @include border($darkGreen)
   }
 
   button,input[type=submit]  {
-    @include button($darkGreen);
+    @include button($green);
   }
 
   #comments {
-    border-top: 3px solid $darkGreen;
+    border-top: 3px solid $green;
     .comment:before {
-      @include arrow($green)
+      @include arrow($lightGreen)
     }
     .comment {
-      background: $green;
+      background: $lightGreen;
     }
   }
 
@@ -102,6 +108,9 @@ body {
   background-color: $navy;
   .color-border-wide {
     @include wideBorder($darkNavy);
+    i {
+      color: $darkNavy;
+    }
   }
   .color-border {
     @include border($darkNavy)
