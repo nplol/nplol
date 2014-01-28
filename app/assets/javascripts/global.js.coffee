@@ -2,8 +2,20 @@ $ ->
 
   # *window* is the global namespace
 
-  window.updateMainCanvas = (html) ->
-    $('#main').html(html)
+  # switches between the two current views: article and listing.
+  window.changeView = (layoutName) ->
+    if layoutName == 'article'
+      $('body').addClass('article-view').removeClass('listing-view')
+      $('#listing').addClass('hidden')
+      $('#article').removeClass('hidden')
+    else if layoutName == 'listing'
+      $('body').addClass('listing-view').removeClass('article-view')
+      $('#article').addClass('hidden')
+      $('#listing').removeClass('hidden')
+      if $('.post').length > 0
+        $('#listing').packery()
+      else
+        fetchPosts() unless $('.post').length > 0
 
   # dim the background
   window.dim = (lightSwitch) ->
@@ -23,16 +35,22 @@ $ ->
   prependDimmer = ->
     $('#main').prepend('<div class="dim"></div>')
 
-  # To support ajax navigation a state is added TWICE when a post is loaded into the main view,
-  # so that when backspace is pressed you get sent back to the main page.
-  $(window).on 'popstate', (event) ->
-    if(event.originalEvent.state != null)
-      getListingLayout()
-
-  getListingLayout = ->
-    return false if $('.posts').length > 0
-    $.ajax('')
+  fetchPosts = ->
+    $.ajax('/')
       .done((html) ->
-        updateMainCanvas(html)
-      )
-      .fail(-> console.log('Failed to load main layout.'))
+        $('#listing').html(html))
+
+  # hack due to popstate being fired instantly in chrome.
+  # http://stackoverflow.com/questions/7860960/popstate-returns-event-state-is-undefined
+  popped = ('state' in window.history)
+  initialURL = location.href
+
+  $(window).on 'popstate', (event) ->
+    initialPop = !popped && location.href == initialURL
+    popped = true
+    return if initialPop
+
+    # only pushState applies state to the event.
+    state = event.originalEvent.state
+
+    changeView('listing') unless state?

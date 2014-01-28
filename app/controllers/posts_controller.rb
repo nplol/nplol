@@ -6,6 +6,7 @@ class PostsController < ApplicationController
 
   def index
   	@posts = Post.all
+    # xhr call made from global.js.coffee
     return render 'index', layout: false if request.xhr?
   end
 

@@ -33,6 +33,49 @@ body {
   position: relative;
 }
 
+#article {
+  opacity: 0;
+  max-width: 950px;
+  width:0;
+  margin: 0 auto;
+  -webkit-transition: border-color 0.3s ease-in-out 0.05s, opacity 0.3s, padding 0s, -webkit-transform 0.3s, width 1s, height 2s;
+}
+
+#article.hidden {
+  height: 0;
+}
+
+.article-view {
+  #article {
+    min-height: 100%;
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+
+#listing {
+  padding-top: 100px;
+  padding-left: 20px;
+  min-height: 100vh;
+}
+
+#listing.hidden {
+  height:0;
+  display: none;
+}
+
+//.post-view .article {
+//  min-height: 100%;
+//  opacity: 1;
+//  padding: 28px 5% 75px;
+//  width: 100%;
+//}
+
+//.article.hide {
+//  height:0;
+//}
+
 .dim {
   display: none;
   height:100%;

@@ -9,6 +9,7 @@ end
 
 # monkey patch for the HTML generation of RedCarpet to
 # allow classes to be added to images.
+# scheme: ![image_url](alt_text|class1|class2|...)
 class HTMLBlockCode < Redcarpet::Render::HTML
   include ActionView::Helpers::AssetTagHelper
 

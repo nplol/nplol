@@ -1,0 +1,8 @@
+-if layout == 'article-view'
+  %section#article
+    = yield
+  %section#listing.hidden
+-else
+  %section#article.hidden
+  %section#listing
+    = yield

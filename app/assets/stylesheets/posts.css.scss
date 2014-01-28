@@ -14,11 +14,6 @@ $doubleWidth: 620px;
 $standardHeight: calc(25%);
 $doubleHeight: calc(50% + 20px);
 
-#posts {
-  padding-top: 100px;
-  padding-left: 20px;
-  min-height:100vh;
-}
 
 .post {
   background: $offWhite;
@@ -28,6 +23,7 @@ $doubleHeight: calc(50% + 20px);
   width: $standardWidth;
   height: $doubleHeight;
   float: left;
+  -webkit-transition: height, 2s;
   article {
     max-height: 100%;
     overflow: hidden;
@@ -51,6 +47,7 @@ $doubleHeight: calc(50% + 20px);
 .post:hover {
   background: #ffffff;
   cursor: pointer;
+  height: 500px;
 }
 
 .meme {
@@ -75,11 +72,11 @@ $doubleHeight: calc(50% + 20px);
 
 
 #post {
-  max-width: 950px;
-  min-height: 100vh;
+  min-height: 100%;
   margin: 0 auto;
   padding: 3%;
   background: #ffffff;
+  transition: all 1s ease-in;
   h1 {
     padding-top: 60px;
   }

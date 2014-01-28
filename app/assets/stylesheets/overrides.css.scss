@@ -1,7 +1,11 @@
 @import "bourbon";
 @import 'colors';
-//$red: #e95c33;
-//$blue: #41b7d8;
+
+html, body {
+  margin:0;
+  padding:0;
+  height: 100%;
+}
 
 strong {
   font-family: 'bitter-bold';
@@ -34,6 +38,6 @@ a {
   cursor: pointer;
 }
 
-.hidden, .button.hidden {
+.button.hidden {
   display: none;
 }
