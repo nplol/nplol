@@ -3,7 +3,13 @@ $ ->
   # *window* is the global namespace
 
   # switches between the two current views: article and listing.
-  window.changeView = (layoutName) ->
+  window.initiateTransition = (layoutName) ->
+    $('#transition-wrapper').addClass('transition')
+    callback = -> changeView(layoutName)
+    setTimeout( callback, 1500)
+
+  changeView = (layoutName) ->
+    $('#transition-wrapper').removeClass('transition')
     if layoutName == 'article'
       $('body').addClass('article-view').removeClass('listing-view')
       $('#listing').addClass('hidden')
@@ -53,4 +59,4 @@ $ ->
     # only pushState applies state to the event.
     state = event.originalEvent.state
 
-    changeView('listing') unless state?
+    initiateTransition('listing') unless state?

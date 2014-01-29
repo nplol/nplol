@@ -16,7 +16,7 @@ $ ->
       done( (html) ->
         articleView(html)
         history.pushState({ value: 'value' }, null, "/posts/#{post_id}")
-        changeView('article')
+        initiateTransition('article')
       ).
       fail( ->
         console.log('Loading post failed.'))
