@@ -4,7 +4,6 @@ $ ->
 
   # switches between the two current views: article and listing.
   window.changeView = (html) ->
-    $('#main').addClass('transition')
     callback = ->
       $('#main').html(html).removeClass('transition')
     setTimeout(callback, 1250)
@@ -44,4 +43,5 @@ $ ->
     return if initialPop
 
     # only pushState applies state to the event.
+    $('#main').addClass('transition')
     fetchPosts()
