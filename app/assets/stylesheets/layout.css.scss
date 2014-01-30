@@ -27,66 +27,20 @@ body {
 }
 
 #main {
-  min-height: 100%;
+  height: 100%;
+  width:100%;
   overflow-x: scroll;
-  overflow-y: hidden;
-  position: relative;
-}
-
-#article {
-  opacity: 0;
-  padding-top: 45px;
-  max-width: 950px;
-  width:0;
-  margin: 0 auto;
-}
-
-#article.hidden {
-  height: 0;
-}
-
-.article-view {
-  #article {
-    min-height: 100vh;
-    width: 100%;
-    opacity: 1;
-  }
-}
-
-
-#listing {
-  padding-top: 100px;
-  padding-left: 20px;
-  opacity:0;
-}
-
-#listing.hidden {
-  height:0;
-}
-
-.listing-view {
-  #listing {
-    height: 100%;
-    opacity:1;
-  }
-}
-
-/*
-* Transition wrapper.
-*/
-
-#transition-wrapper {
   position: absolute;
+  bottom:0;
   top:0;
-  height:100%;
-  width: 100%;
-  -webkit-transition: all .75s ease-in-out;
+  -webkit-transition: top 1s ease-in-out;
+  -webkit-transform: translateZ(1)
 }
 
-#transition-wrapper.transition {
-  top: 100%;
-  bottom:0;
+#main.transition {
+  top:100%;
 }
+
 .dim {
   display: none;
   height:100%;
@@ -109,10 +63,6 @@ body {
 
 .red {
   background-color: $red;
-
-  #block {
-    background: $red;
-  }
 
   .color-border-wide {
     @include wideBorder($darkRed);
@@ -142,9 +92,6 @@ body {
 
 .green {
   background-color: $green;
-  #block {
-    background: $green;
-  }
   .color-border-wide {
     @include wideBorder($darkGreen);
     i {
@@ -173,9 +120,6 @@ body {
 
 .navy {
   background-color: $navy;
-  #block {
-    background: $navy;
-  }
   .color-border-wide {
     @include wideBorder($darkNavy);
     i {

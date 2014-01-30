@@ -1,15 +1,16 @@
-- @posts.each do |post|
-  - if post.meme?
-    .post.meme.color-border{ data: { post_id: post.id } }
-      %article
-        %h3=post.title
-        .image
-          =image_tag(post.image.url(:medium))
-  - else
-    .post.color-border{ data: { post_id: post.id } }
-      %article
-        %h3=post.title
-        %p
-          = markdown(post.content)
+#posts
+  - @posts.each do |post|
+    - if post.meme?
+      .post.meme.color-border{ data: { post_id: post.id } }
+        %article
+          %h3=post.title
+          .image
+            =image_tag(post.image.url(:medium))
+    - else
+      .post.color-border{ data: { post_id: post.id } }
+        %article
+          %h3=post.title
+          %p
+            = markdown(post.content)
 
 = javascript_include_tag 'post_listing'

@@ -5,11 +5,13 @@
     = stylesheet_link_tag    'application'
     = javascript_include_tag 'application'
     = csrf_meta_tags
-  %body{ class: get_layout }
+  %body{ class: "#{get_layout} %w[green red navy].sample" }
     %header
       %i.fa.fa-fire(title='Yes, this is fire.')
       = link_to 'nplol', root_path
       %i.fa.fa-search.fa-small(title='Search for stuff.')
-    #main{ class: %w[green red navy].sample }
-      #transition-wrapper
-        =render 'layouts/layout', layout: get_layout
+    #main
+      =yield
+    -##main{ class: %w[green red navy].sample }
+    -#  #transition-wrapper
+    -#    =render 'layouts/layout', layout: get_layout

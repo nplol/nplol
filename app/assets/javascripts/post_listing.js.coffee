@@ -1,6 +1,6 @@
 $ ->
 
-  $container = $('#listing')
+  $container = $('#posts')
 
   $container.packery {
     itemSelector: '.post',
@@ -14,14 +14,9 @@ $ ->
 
     $.ajax("/posts/#{post_id}").
       done( (html) ->
-        articleView(html)
         history.pushState({ value: 'value' }, null, "/posts/#{post_id}")
-        initiateTransition('article')
+        changeView(html)
       ).
       fail( ->
         console.log('Loading post failed.'))
-
-  articleView = (html) ->
-    $('#article').html(html)
-
 
