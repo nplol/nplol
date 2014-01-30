@@ -4,8 +4,10 @@ $ ->
 
   # switches between the two current views: article and listing.
   window.changeView = (html) ->
+    $('#spinner').fadeIn('fast')
     callback = ->
       $('#main').html(html).removeClass('transition')
+      $('#spinner').fadeOut('fast')
     setTimeout(callback, 1250)
 
   # dim the background
