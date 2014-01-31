@@ -9,6 +9,25 @@ $standardHeight: calc(25%);
 $doubleHeight: calc(50% + 20px);
 
 
+@mixin arrow($direction) {
+  width: 55px;
+  height: 50px;
+  background: #ffffff;
+  position: fixed;
+  top: 50%;
+  padding-top: 11px;
+  box-shadow: 2px 3px 4px rgba(0,0,0,.3);
+  padding-left: 18px;
+  cursor: pointer;
+  @if $direction == 'left' {
+   left: calc(50% - 510px);
+  }
+  @else {
+    right: calc(50% - 510px);
+    border-left: 1px solid #ddd;
+  }
+}
+
 #posts {
   padding-top: 100px;
   padding-left: 20px;
@@ -22,6 +41,8 @@ $doubleHeight: calc(50% + 20px);
   margin: 0 auto;
   padding: 3%;
   background: #ffffff;
+  position: relative;
+  z-index:1;
   h1 {
     padding-top: 60px;
   }
@@ -34,8 +55,33 @@ $doubleHeight: calc(50% + 20px);
       margin: 0 auto;
     }
   }
-
 }
+
+#next {
+  @include arrow(left);
+}
+
+#previous {
+  @include arrow(right);
+}
+
+.arrow {
+  z-index: 0;
+  -webkit-transition: all .2s ease-in-out;
+}
+
+.arrow:hover {
+  z-index: 2;
+}
+
+#next:hover {
+  margin-left: -14px;
+}
+
+#previous:hover {
+  margin-right: -14px;
+}
+
 
 .post {
   background: $offWhite;

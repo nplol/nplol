@@ -23,8 +23,12 @@ class Post < ActiveRecord::Base
     self.is_a? Meme
   end
 
-  def self.all
-    super.order('created_at DESC')
+  def next?
+    Post.first(conditions: ['id > ?', id], order: 'id ASC')
+  end
+
+  def previous?
+    Post.first(conditions: ['id < ?', id], order: 'id DESC')
   end
 
 end

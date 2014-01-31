@@ -26,4 +26,13 @@
     - @post.comments.order('created_at DESC').each do |comment|
       =render comment
 
+- if @post.next?
+  =link_to @post.next?, id: 'next', class: 'arrow hidden', data: {id: @post.next?.id}, remote: true do
+    %i.fa.fa-arrow-left.fa-lg &nbsp;
+- if @post.previous?
+  =link_to @post.previous?, id: 'previous', class: 'arrow hidden', data: {id: @post.previous?.id}, remote: true  do
+    %i.fa.fa-arrow-right.fa-lg &nbsp;
+
+
 = javascript_include_tag 'comments'
+= javascript_include_tag 'posts'

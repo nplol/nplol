@@ -91,6 +91,9 @@ body {
       background: $lightRed;
     }
   }
+  .arrow {
+    color: $darkRed;
+  }
 
 }
 
@@ -119,6 +122,9 @@ body {
       background: $lightGreen;
     }
   }
+  .arrow {
+    color: $darkGreen;
+  }
 
 }
 
@@ -146,6 +152,9 @@ body {
     .comment {
       background: $lightNavy;
     }
+  }
+  .arrow {
+    color: $darkNavy;
   }
 
 }

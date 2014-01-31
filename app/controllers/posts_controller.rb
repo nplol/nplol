@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   before_filter :setup_negative_captcha, only: :show
 
   def index
-  	@posts = Post.all
+  	@posts = Post.all.order('created_at DESC')
     # xhr call made from global.js.coffee
     return render 'index', layout: false if request.xhr?
   end

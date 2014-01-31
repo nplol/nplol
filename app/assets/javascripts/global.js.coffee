@@ -5,6 +5,7 @@ $ ->
   # switches between the two current views: article and listing.
   window.changeView = (html) ->
     $('#spinner').fadeIn('fast')
+    $('.arrow').fadeOut('fast')
     callback = ->
       $('#main').html(html).removeClass('transition')
       $('#spinner').fadeOut('fast')
@@ -34,6 +35,13 @@ $ ->
         changeView(html)
         $('#posts').packery())
 
+  fetchPost = (url) ->
+    $.ajax(url).
+      done( (html) ->
+        changeView(html)).
+      fail( ->
+        console.log('failed to load post.'))
+
   # hack due to popstate being fired instantly in chrome.
   # http://stackoverflow.com/questions/7860960/popstate-returns-event-state-is-undefined
   popped = ('state' in window.history)
@@ -45,5 +53,10 @@ $ ->
     return if initialPop
 
     # only pushState applies state to the event.
+    state = event.originalEvent.state
+
     $('#main').addClass('transition')
-    fetchPosts()
+    if state
+      fetchPost(state.url)
+    else
+      fetchPosts()
