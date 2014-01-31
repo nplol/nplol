@@ -20,6 +20,8 @@ gem 'redcarpet'
 gem 'haml'
 gem 'acts-as-taggable-on'
 
+gem 'passenger'
+
 # remote file upload
 gem 'remotipart'
 
@@ -43,8 +45,3 @@ group :test do
   gem 'timecop'
   gem 'poltergeist'
 end
-
-#group :staging, :production do
-  #gem 'newrelic_rpm', '>= 3.6.7'
-  #gem 'rails_12factor'
-#end
