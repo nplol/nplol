@@ -16,7 +16,8 @@ $ ->
     $.ajax("/posts/#{post_id}").
       done( (html) ->
         changeView(html)
-        history.pushState({ value: 'value' }, null, "/posts/#{post_id}")
+        url = "/posts/#{post_id}"
+        history.pushState({ url: url }, null, url)
       ).
       fail( ->
         console.log('Loading post failed.'))

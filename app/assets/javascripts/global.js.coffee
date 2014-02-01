@@ -56,6 +56,7 @@ $ ->
     state = event.originalEvent.state
 
     $('#main').addClass('transition')
+    debugger
     if state
       fetchPost(state.url)
     else

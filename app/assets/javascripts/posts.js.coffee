@@ -44,9 +44,3 @@ $ ->
     $('.arrow').fadeIn('fast')
 
   $('.arrow').fadeIn('fast') unless $('#main').hasClass('transition')
-
-  adjustArrows = ->
-    $post = $('#post')
-    $('#next').css('margin-left', "#{parseInt($post.attr('width'))/2}px")
-
-  adjustArrows()
