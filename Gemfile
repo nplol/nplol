@@ -32,6 +32,8 @@ gem 'aws-sdk'
 # negative captcha to avoid spam-bots
 gem 'negative_captcha'
 
+gem 'google-analytics-rails'
+
 
 group :development do
   gem 'better_errors'
