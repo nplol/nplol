@@ -10,7 +10,7 @@
   %body{ class: "#{get_layout} #{%w[green red navy].sample}" }
     %header
       %i.fa.fa-fire(title='Yes, this is fire.')
-      = link_to 'nplol', root_path
+      = link_to image_tag('logo.svg', id: 'logo'), root_path
       %i.fa.fa-search.fa-small(title='Search for stuff.')
     #spinner.hidden
       .stick
