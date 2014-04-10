@@ -1,3 +1,0 @@
-== README
-
-Web application using paperclip to upload multiple files to Amazon AWS.
