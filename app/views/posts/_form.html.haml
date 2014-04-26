@@ -37,7 +37,7 @@
 
   %section.buttons
     = link_to 'Add images?', new_asset_path, remote: true, class: 'button add-asset'
-    = link_to "Delete post?", post_path(@post), method: :delete, confirm: "Are you sure?"
+    = link_to "Delete post?", post_path(@post), method: :delete, confirm: "Are you sure?" if @post.id
     = f.submit
 
 =javascript_include_tag 'assets'
