@@ -1,7 +1,10 @@
 - if current_user.nil?
-  %i.fa.fa-google(title="Sign in")
+  %a.login.google{ href: authenticate_path }
+    %i.fa.fa-google(title="Sign in")
 - else
-  %i.fa.fa-pencil(title="New Post")
-  %i.fa.fa-cog(title="Settings")
+  %a.new-post
+    %i.fa.fa-pencil(title="New Post")
+  %a.settings
+    %i.fa.fa-cog(title="Settings")
 
 = render 'users/menu'

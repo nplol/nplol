@@ -1,7 +1,7 @@
 $ ->
 
   # needs to be made global so that it can be called from posts.js.coffee
-  window.addListenersToAssetForm = ->
+  @addListenersToAssetForm = ->
     $('#new_asset').on 'ajax:beforeSend', (event, xhr, settings) ->
       $(@).find('input[name=commit]').val('Submitting image').addClass('disabled')
 

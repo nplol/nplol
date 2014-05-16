@@ -1,1 +1,0 @@
-(function(){$(function(){var t;return t=$("#posts"),t.packery({itemSelector:".post",gutter:20,isHorizontal:!0}),$(".post").on("click",function(){var t;return t=$(this).data("post-id"),$.ajax("/posts/"+t).done(function(o){return history.pushState({value:"value"},null,"/posts/"+t),changeView(o)}).fail(function(){return console.log("Loading post failed.")})})})}).call(this);

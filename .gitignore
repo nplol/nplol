@@ -11,6 +11,8 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+/public/assets
+/coverage
 
 #Ignore dotfiles
 /.idea

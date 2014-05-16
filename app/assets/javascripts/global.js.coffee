@@ -3,7 +3,7 @@ $ ->
   # *window* is the global namespace
 
   # switches between the two current views: article and listing.
-  window.changeView = (html) ->
+  @changeView = (html) ->
     $('#spinner').fadeIn('fast')
     $('.arrow').fadeOut('fast')
     callback = ->
@@ -12,12 +12,12 @@ $ ->
     setTimeout(callback, 1250)
 
   # dim the background
-  window.dim = (lightSwitch) ->
+  @dim = (lightSwitch) ->
     prependDimmer() unless $('.dim').length > 0
     $('.dim').html('') unless lightSwitch
     if lightSwitch then $('.dim').fadeIn('fast') else $('.dim').fadeOut('fast')
 
-  window.clearForm = ($form) ->
+  @clearForm = ($form) ->
     $form.find('input[type=text]').val('')
     $form.find('textarea').val('')
 

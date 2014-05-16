@@ -13,6 +13,8 @@
 //= require jquery-2.1.1
 //= require jquery_ujs
 //= require jquery.tipsy
+//= require q
+//= require_directory ./lib
 //= require header
 //= require packery
 //= require global

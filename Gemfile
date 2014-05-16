@@ -32,7 +32,7 @@ gem 'google-analytics-rails'
 gem 'omniauth-google-oauth2'
 
 group :development do
-  gem 'better_errors'
+  gem 'better_errors', '~> 1.1.0'
   gem 'spring'
 end
 

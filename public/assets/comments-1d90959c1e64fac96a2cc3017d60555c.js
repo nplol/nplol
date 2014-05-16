@@ -1,1 +1,0 @@
-(function(){$(function(){return $("#new_comment").on("ajax:success",function(n,e){return $("#comments").append(e),clearForm($(this))}),$("#new_comment").on("ajax:error",function(n,e){return $(this).html(e.responseText)})})}).call(this);
