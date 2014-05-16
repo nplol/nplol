@@ -4,9 +4,7 @@
 
 $green: #a2c5bf;
 $darkGreen: #91b1ac;
-@import 'bourbon';
 
-@include font-face(bitter-bold, 'bitter/bitter-bold', normal, $asset-pipeline: true);
 
 #comments {
   margin-top: 3%;

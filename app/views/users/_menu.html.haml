@@ -1,0 +1,6 @@
+%section#user-menu{ class: "#{'logged-in' if current_user}" }
+  -if current_user
+    .user-name= "#{current_user[:name]}"
+    .new-post New post?
+  -else
+    .login Log in

@@ -46,7 +46,6 @@ ActiveRecord::Schema.define(version: 20140124112716) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.boolean  "published",          default: false
-    t.string   "type"
   end
 
   create_table "taggings", force: true do |t|

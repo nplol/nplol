@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
 
-  before_filter :setup_negative_captcha, only: :create
-  
+  before_filter :authenticated?
+
   def create
     @post = Post.find(params[:post_id])
     @comment = @post.comments.build(@captcha.values)
@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
       render partial: 'form', layout: false, status: 400
     end
   end
- 
+
   private
     def comment_params
       params.require(:comment).permit(:name, :text)

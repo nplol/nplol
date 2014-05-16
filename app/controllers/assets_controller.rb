@@ -1,6 +1,6 @@
 class AssetsController < ApplicationController
 
-  http_basic_authenticate_with name: '2pac', password: '2pac'
+  before_filter: :authenticated?
 
   def new
     @asset = Asset.new

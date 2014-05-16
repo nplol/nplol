@@ -37,9 +37,9 @@ Nplol::Application.configure do
   config.paperclip_defaults = {
       :storage => :s3,
       :s3_credentials => {
-          :bucket => Settings.s3_bucket_name,
-          :access_key_id => Settings.access_key_id,
-          :secret_access_key => Settings.secret_access_key
+          :bucket => Settings.s3.bucket_name,
+          :access_key_id => Settings.s3.access_key_id,
+          :secret_access_key => Settings.s3.secret_access_key
       }
   }
 

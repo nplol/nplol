@@ -5,14 +5,8 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def setup_negative_captcha
-    @captcha = NegativeCaptcha.new(
-        # A secret key entered in environment.rb. 'rake secret' will give you a good one.
-        secret: NEGATIVE_CAPTCHA_SECRET,
-        spinner: request.remote_ip,
-        # Whatever fields are in your form
-        fields: [:name, :text],
-        params: params
-    )
+  def authenticated?
+    return false unless session[:user]
   end
+
 end

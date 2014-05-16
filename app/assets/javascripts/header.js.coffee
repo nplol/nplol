@@ -1,3 +1,8 @@
 $ ->
-  $('header i:first').tipsy({fade: true, gravity: 'e'})
-  $('header i:last').tipsy({fade: true, gravity: 'w'})
+
+  $('header i')
+  .on('click',  -> showMenu() )
+  .tipsy {fade: true, gravity: 'n'}
+
+  showMenu = ->
+    debugger
