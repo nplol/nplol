@@ -2,7 +2,10 @@ class PostsController < ApplicationController
 
   before_filter :authenticated?, except: [:index, :show]
 
+  # after_action :index, :allow_iframe
+
   def index
+    p response.headers
   	@posts = Post.all.order('created_at DESC')
     # xhr call made from global.js.coffee
     return render 'index', layout: false if request.xhr?
@@ -68,6 +71,12 @@ class PostsController < ApplicationController
 
   def meme?
     params[:post_type] == 'meme'
+  end
+
+  def allow_iframe
+    p response.headers
+    response.headers['X-Frame-Options'] = 'ALLOW-FROM https://accounts.google.com'
+    p response.headers
   end
 
 end

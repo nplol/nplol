@@ -1,6 +1,10 @@
-$ ->
+$ =>
 
-  # *window* is the global namespace
+  @updateHeader = ->
+    Q($.get '/header')
+    .then(
+      (header) -> $('header').html(header)
+    )
 
   # switches between the two current views: article and listing.
   @changeView = (html) ->
