@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   private
 
   def authenticated?
-    return false unless session[:user]
+    redirect_to root_path unless session[:user]
   end
 
 end

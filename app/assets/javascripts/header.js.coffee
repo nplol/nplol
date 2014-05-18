@@ -3,16 +3,16 @@ $ ->
   $('#user-menu').detach().appendTo('body')
 
   $('header i')
-  .tipsy {fade: true, gravity: 'n', block: -> !($('#user-menu').hasClass('active'))}
+  .on 'click', ->
+    $(@).tipsy 'hide'
+  .tipsy {fade: true, gravity: 'n', block: -> !($('#user-menu').hasClass('active') && @$element.hasClass('fa-cog')) }
 
   $('.settings')
   .on 'click', =>
     showMenu()
 
-  $('.new-post')
-  .on 'click', ->
-    debugger
-
   showMenu = ->
-    leftPosition = $('.settings').offset().left - $('.settings').width()/2
     $('#user-menu').toggleClass('active')
+
+  $('.logout').on 'ajax:success', ->
+    window.location.reload(true)

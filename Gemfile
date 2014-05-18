@@ -13,6 +13,7 @@ gem 'pg'
 gem 'uglifier'
 gem 'settingslogic'
 gem 'acts-as-taggable-on'
+gem 'cancan'
 
 # use unicorn as the webserver
 gem 'unicorn'

@@ -2,10 +2,11 @@
   %a.login.google{ href: authenticate_path }
     %i.fa.fa-google(title="Sign in")
 - else
-  %a.new-post
+  %a.new-post{ href: new_post_path }
     %i.fa.fa-pencil(title="New Post")
   %a.settings
     %i.fa.fa-cog(title="Settings")
 
 =render 'users/menu' if current_user
 = javascript_include_tag 'header'
+= javascript_include_tag 'auth'

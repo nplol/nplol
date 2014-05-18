@@ -1,13 +1,5 @@
 $ =>
 
-  @updateHeader = ->
-    Q($.get '/header')
-    .then(
-      (header) ->
-        $('#user-menu').remove()
-        $('header').html(header)
-    )
-
   # switches between the two current views: article and listing.
   @changeView = (html) ->
     $('#spinner').fadeIn('fast')

@@ -7,6 +7,17 @@ $doubleWidth: 620px;
 $standardHeight: calc(25%);
 $doubleHeight: calc(50% + 20px);
 
+#post {
+  flex: 1;
+  margin: 0 auto;
+  max-width: 950px;
+  background: #fff;
+  border-right: 5px solid $darkNavy;
+  border-left: 5px solid $darkNavy;
+  padding: 2em 5em;
+  margin-top: 46px;
+}
+
 
 @mixin arrow($direction) {
   width: 55px;
@@ -30,31 +41,27 @@ $doubleHeight: calc(50% + 20px);
 #posts {
   padding-top: 100px;
   padding-left: 20px;
-  height: 100%;
 }
 
-#post {
-  max-width: 950px;
-  width: 100%;
-  min-height: 100%;
-  margin: 0 auto;
-  padding: 3%;
-  background: #ffffff;
-  position: relative;
-  z-index:1;
-  h1 {
-    padding-top: 60px;
-  }
-  .content {
-    padding-bottom: 5%;
-    border-bottom: 1px dashed $darkGreen;
-    img {
-      display: block;
-      max-width: 100%;
-      margin: 0 auto;
-    }
-  }
-}
+// #post {
+//   max-width: 950px;
+//   margin: 0 auto;
+//   padding: 3%;
+//   background: #ffffff;
+//   position: relative;
+//   h1 {
+//     padding-top: 60px;
+//   }
+//   .content {
+//     padding-bottom: 5%;
+//     border-bottom: 1px dashed $darkGreen;
+//     img {
+//       display: block;
+//       max-width: 100%;
+//       margin: 0 auto;
+//     }
+//   }
+// }
 
 #next {
   @include arrow(left);

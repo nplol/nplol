@@ -7,8 +7,8 @@ $ ->
     if window.focus
       popup.focus()
 
-    popup.onunload = ->
-      updateHeader()
+    popup.onunload = =>
+      @location.reload(true)
 
   $('.google').on 'click', ->
     login('/auth/google_oauth2', 500, 500)

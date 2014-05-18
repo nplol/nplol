@@ -22,10 +22,9 @@
         this.enabled = true;
         this.fixTitle();
     };
-
     Tipsy.prototype = {
         show: function() {
-            if ( !(this.options.block === undefined) && !this.options.block()) {
+            if ( !(this.options.block === undefined) && !this.options.block.call(this) ) {
                 return false;
             }
             var title = this.getTitle();

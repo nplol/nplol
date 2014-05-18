@@ -1,9 +1,9 @@
 %section#user-menu
   .caret
-    %span.caret-outer  
+    %span.caret-outer
     %span.caret-inner
   %ul
     %li.user
       =image_tag(current_user.avatar)
       ="#{current_user.name}"
-    %li.logout Logout
+    %li.logout= link_to 'Logout', logout_path, remote: true
