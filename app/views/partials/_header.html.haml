@@ -7,4 +7,5 @@
   %a.settings
     %i.fa.fa-cog(title="Settings")
 
-= render 'users/menu'
+=render 'users/menu' if current_user
+= javascript_include_tag 'header'

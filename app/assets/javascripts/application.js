@@ -15,6 +15,5 @@
 //= require jquery.tipsy
 //= require q
 //= require auth
-//= require header
 //= require packery
 //= require global

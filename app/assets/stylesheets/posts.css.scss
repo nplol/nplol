@@ -1,5 +1,4 @@
 @import 'bourbon';
-@import 'neat';
 @import 'colors';
 
 // layout-variables for the post listing
@@ -126,12 +125,9 @@ $doubleHeight: calc(50% + 20px);
   font-size: 0.75em;
   display: block;
   text-align: center;
-  @include outer-container;
   section {
-    @include span-columns(4);
   }
   a {
     color: $black;
   }
 }
-

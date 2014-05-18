@@ -4,6 +4,7 @@ class SessionsController < ApplicationController
 
   def create
     oauth_hash = request.env['omniauth.auth']['info'].symbolize_keys!
+    p "hash: #{oauth_hash}"
     session[:user] = User.new(oauth_hash)
     render 'users/oauth/_confirm', layout: false
   end

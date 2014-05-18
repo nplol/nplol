@@ -3,7 +3,9 @@ $ =>
   @updateHeader = ->
     Q($.get '/header')
     .then(
-      (header) -> $('header').html(header)
+      (header) ->
+        $('#user-menu').remove()
+        $('header').html(header)
     )
 
   # switches between the two current views: article and listing.

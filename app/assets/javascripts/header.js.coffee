@@ -1,10 +1,12 @@
 $ ->
+  $('.tipsy').remove()
+  $('#user-menu').detach().appendTo('body')
 
   $('header i')
-  .tipsy {fade: true, gravity: 'n'}
+  .tipsy {fade: true, gravity: 'n', block: -> !($('#user-menu').hasClass('active'))}
 
   $('.settings')
-  .on 'click', ->
+  .on 'click', =>
     showMenu()
 
   $('.new-post')
@@ -12,4 +14,5 @@ $ ->
     debugger
 
   showMenu = ->
-    debugger
+    leftPosition = $('.settings').offset().left - $('.settings').width()/2
+    $('#user-menu').toggleClass('active')

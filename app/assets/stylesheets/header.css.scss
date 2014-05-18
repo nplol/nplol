@@ -1,16 +1,15 @@
-$black: #2c3e50;
+@import 'colors';
+@import 'bourbon';
 
 header {
-  font-family: 'typewriter';
-  padding: 1%;
+  padding: 10px 20px 10px 0;
   position: fixed;
   top:0;
   text-align: right;
   font-size:1em;
   width: 100%;
-  background: #f3f3f3;
-  z-index: 100;
-  box-shadow: 0 0 1px 2px rgba(0, 0, 0, 0.1);
+  background: $gray;
+  box-shadow: 0 0 1px 4px rgba(0, 0, 0, 0.2);
 
   .title {
     font-size: 3em;
@@ -24,7 +23,7 @@ header {
   a,i {
     color: $black;
     display: inline-block;
-    padding: 0 1%;
+    padding: 0 5px;
   }
 
   i {
@@ -37,8 +36,72 @@ header {
     cursor: pointer;
   }
 
-  #user-menu {
-    display: none;
+}
+
+#user-menu {
+  display: none;
+  font-family: 'verdana';
+  position: absolute;
+  padding: 10px;
+  text-align: left;
+  background: $gray;
+  font-size: .8em;
+  right: 10px;
+  top: 40px;
+  border-radius: 4px;
+  box-shadow: 0 0 1px 2px rgba(0, 0, 0, 0.1);
+
+  &.active {
+    display: flex;
+    z-index: 2;
+  }
+
+  li {
+    display: flex;
+    padding: 10px 1em;
+
+  &:first-of-type {
+    align-items: center;
+  }
+
+    img {
+      margin-right: 10px;
+      width:32px;
+      height:32px;
+    }
+  }
+
+  .caret {
+    display: block;
+    width: 18px;
+    height: 10px;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid $gray;
+    position: absolute;
+    top: -10px;
+    left: 103px;
+
+    .caret-inner {
+      position: absolute;
+      top: 1px;
+      left: -9px;
+      border-left: 9px solid transparent;
+      border-right: 9px solid transparent;
+      border-bottom: 9px solid #f3f3f3;
+    }
+
+    .caret-outer {
+      position: absolute;
+      border-bottom: 10px solid #8899a6;
+      border-bottom-color: rgba(0,0,0,0.1);
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      height: auto;
+      left: -10px;
+      top: 0;
+      width: auto;
+    }
   }
 
 }
