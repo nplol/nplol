@@ -1,5 +1,5 @@
 - if current_user.nil?
-  %a.login.google{ href: authenticate_path }
+  %a.login.google
     %i.fa.fa-google(title="Sign in")
 - else
   %a.new-post{ href: new_post_path }
@@ -7,6 +7,9 @@
   %a.settings
     %i.fa.fa-cog(title="Settings")
 
-=render 'users/menu' if current_user
+%section.omniauth-token(style="display:none;")=session['omniauth.state']
+
 = javascript_include_tag 'header'
 = javascript_include_tag 'auth'
+
+=render 'users/menu' if current_user

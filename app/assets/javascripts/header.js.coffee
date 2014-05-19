@@ -1,4 +1,4 @@
-$ ->
+$ =>
   $('.tipsy').remove()
   $('#user-menu').detach().appendTo('body')
 
@@ -14,5 +14,5 @@ $ ->
   showMenu = ->
     $('#user-menu').toggleClass('active')
 
-  $('.logout').on 'ajax:success', ->
-    window.location.reload(true)
+  $('.logout').on 'ajax:success', (event, html, xhr) =>
+    updateHeader(html)

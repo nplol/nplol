@@ -14,10 +14,7 @@ Nplol::Application.routes.draw do
   root 'posts#index'
 
   # Oatuh paths
-  get '/auth/google_oauth2', as: 'authenticate'
-  get '/auth/google_oauth2/callback/', to: 'sessions#create', as: 'oauth_callback'
+  post '/auth/google_oauth2/callback/', to: 'sessions#create', as: 'oauth_callback'
   get '/logout', to: 'sessions#destroy', as: 'logout'
-  get '/header', to: 'sessions#header', as: 'header'
-
 
 end

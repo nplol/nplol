@@ -9,6 +9,10 @@ $ =>
       $('#spinner').fadeOut('fast')
     setTimeout(callback, 1250)
 
+  @updateHeader = (html) ->
+    $('#user-menu').remove()
+    $('header').html(html)
+
   # dim the background
   @dim = (lightSwitch) ->
     prependDimmer() unless $('.dim').length > 0

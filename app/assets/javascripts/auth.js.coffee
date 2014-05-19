@@ -1,15 +1,43 @@
-$ ->
+$ =>
 
-  login = (provider_url, width, height) =>
-    features = "width=#{width} height=#{height}"
-    popup = window.open(provider_url, 'Login', features)
+  # load the Google oauth client library
+  $.ajax
+    url:'https://apis.google.com/js/client:plus.js?onload=initGoogleAuth'
+    dataType: 'script'
+    cache: true
 
-    if window.focus
-      popup.focus()
+  clientId = '636455440074-nceplif7r2ldtnhdsg8dsi56ee1bmof3.apps.googleusercontent.com'
+  apiKey = 'AIzaSyAYuhT2qzk1Pb2fzPlT7SfFhieeNr6kge0'
+  scope = 'email profile'
 
-    popup.onunload = =>
-      @location.reload(true)
+  @initGoogleAuth = ->
+    gapi.client.setApiKey(apiKey)
 
-  $('.google').on 'click', ->
-    login('/auth/google_oauth2', 500, 500)
-    return false
+    $('.google').on 'click', (event) ->
+      event.preventDefault()
+      gapi.auth.authorize
+        client_id: clientId
+        scope: scope
+        immediate: false
+        response_type: 'code'
+        googleAuthCallback
+
+  googleAuthCallback = (authResponse) ->
+    if !authResponse || authResponse.error
+      return console.log 'Google auth failed'
+    csrf_token = $('.omniauth-token').text()
+    authResponse.state = csrf_token
+    Q($.ajax
+      method: 'post'
+      url: '/auth/google_oauth2/callback'
+      dataType: 'html'
+      data: authResponse
+    )
+    .then(
+      (html) ->
+        updateHeader(html)
+    )
+    .fail(
+      (error) ->
+        debugger
+    )
