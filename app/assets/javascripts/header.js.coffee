@@ -14,5 +14,16 @@ $ =>
   showMenu = ->
     $('#user-menu').toggleClass('active')
 
+  $('.logout').on 'click', ->
+    closeHeader()
+
   $('.logout').on 'ajax:success', (event, html, xhr) =>
-    updateHeader(html)
+    $('#user-menu').remove()
+    setTimeout( -> showHeader(html) ,
+    800)
+
+  @closeHeader = ->
+    $('header').addClass('transition').html('')
+
+  @showHeader = (html) ->
+    $('header').removeClass('transition').html(html)

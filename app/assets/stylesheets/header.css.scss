@@ -3,6 +3,8 @@
 
 header {
   padding: 10px 20px 10px 0;
+  box-sizing: border-box;
+  @include transition( all .8s );
   position: fixed;
   top:0;
   text-align: right;
@@ -11,6 +13,10 @@ header {
   background: $gray;
   box-shadow: 0 0 1px 4px rgba(0, 0, 0, 0.2);
   z-index: 2;
+
+  &.transition {
+    padding: 0;
+  }
 
   .title {
     font-size: 3em;

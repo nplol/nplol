@@ -27,6 +27,7 @@ $ =>
       return console.log 'Google auth failed'
     csrf_token = $('.omniauth-token').text()
     authResponse.state = csrf_token
+    closeHeader()
     Q($.ajax
       method: 'post'
       url: '/auth/google_oauth2/callback'
@@ -35,9 +36,9 @@ $ =>
     )
     .then(
       (html) ->
-        updateHeader(html)
+        showHeader(html)
     )
     .fail(
       (error) ->
-        debugger
+        console.log error
     )
