@@ -1,36 +1,43 @@
 $ =>
-  $('.tipsy').remove()
-  $('#user-menu').detach().appendTo('body')
 
-  $('header i')
-  .on 'click', ->
-    $(@).tipsy 'hide'
-  .tipsy {fade: true, gravity: 'n', block: -> !($('#user-menu').hasClass('active') && @$element.hasClass('fa-cog')) }
+  class Header
 
-  $('.settings')
-  .on 'click', =>
-    showMenu()
+    constructor: (html) ->
+      @$el = $('header')
+      $('.tipsy').remove()
+      $('#user-menu').detach().appendTo('body')
+      @initBindings()
 
-  showMenu = ->
-    $('#user-menu').toggleClass('active')
+    reload: (html) ->
+      @$el.html(html)
+      @toggle()
 
-  $('.authorize').on 'click', ->
-    closeHeader()
+    initBindings: =>
+      $('header i')
+      .on 'click', ->
+        $(@).tipsy 'hide'
+      .tipsy {fade: true, gravity: 'n', block: -> !($('#user-menu').hasClass('active') && @$element.hasClass('fa-cog')) }
 
-  $('.authorize').on 'ajax:error', (xhr, status, error) =>
-    showHeader()
+      $('.settings')
+      .on 'click', =>
+        @toggleMenu()
 
-  $('.authorize').on 'ajax:success', (event, html, xhr) =>
-    $('#user-menu').remove()
-    setTimeout( -> updateHeader(html),
-    800)
+      $('.authorize').on 'click', =>
+        @toggle()
 
-  @closeHeader = ->
-    $('header').addClass('transition')
+      $('.authorize').on 'ajax:error', (xhr, status, error) =>
+        @toggleMenu()
+        @toggle()
 
-  @showHeader = ->
-    $('header').removeClass('transition')
+      $('.authorize').on 'ajax:success', (event, html, xhr) =>
+        $('#user-menu').remove()
+        setTimeout( => @reload(html),
+        800)
 
-  @updateHeader = (html) ->
-    $('header').html(html)
-    showHeader()
+    toggleMenu: ->
+      $('#user-menu').toggleClass('active')
+
+    toggle: ->
+      @$el.toggleClass('transition')
+
+  @Header = new Header()

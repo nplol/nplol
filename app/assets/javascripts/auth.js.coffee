@@ -28,7 +28,7 @@ $ =>
         return console.log 'Google auth failed'
       csrf_token = $('.omniauth-token').text()
       authResponse.state = csrf_token
-      closeHeader()
+      Header.toggle()
       Q($.ajax
           method: 'post'
           url: '/auth/google_oauth2/callback'
@@ -37,7 +37,7 @@ $ =>
       )
       .then(
         (html) ->
-          updateHeader(html)
+          Header.reload(html)
       )
       .fail(
         (error) ->
@@ -56,7 +56,7 @@ $ =>
         @twitter_window.focus()
 
       $(window).on 'auth', (event) =>
-        closeHeader()
+        Header.toggle()
         Q($.ajax
             method: 'get'
             url: '/header'
@@ -64,7 +64,7 @@ $ =>
         )
         .then(
           (html) ->
-            setTimeout(-> updateHeader(html),
+            setTimeout( -> Header.reload(html),
             800)
         )
         .fail(
