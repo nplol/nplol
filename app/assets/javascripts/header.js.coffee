@@ -17,13 +17,20 @@ $ =>
   $('.authorize').on 'click', ->
     closeHeader()
 
+  $('.authorize').on 'ajax:error', (xhr, status, error) =>
+    showHeader()
+
   $('.authorize').on 'ajax:success', (event, html, xhr) =>
     $('#user-menu').remove()
-    setTimeout( -> showHeader(html) ,
+    setTimeout( -> updateHeader(html),
     800)
 
   @closeHeader = ->
     $('header').addClass('transition')
 
-  @showHeader = (html) ->
-    $('header').removeClass('transition').html(html)
+  @showHeader = ->
+    $('header').removeClass('transition')
+
+  @updateHeader = (html) ->
+    $('header').html(html)
+    showHeader()

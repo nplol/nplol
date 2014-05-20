@@ -4,6 +4,7 @@
     %span.caret-inner
   %ul
     %li.user
+      =image_tag('crown.svg', class: 'crown') if current_user.nplol?
       =image_tag(current_user.avatar)
       ="#{current_user.name}"
     - unless current_user.nplol?

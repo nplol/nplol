@@ -69,18 +69,44 @@ header {
     z-index: 2;
   }
 
+  a {
+    color: #333;
+  }
+
   li {
     display: flex;
     padding: 10px 1em;
+    @include transition( background .4s );
+    border-radius: 4px;
+    opacity: .8;
 
-  &:first-of-type {
-    align-items: center;
-  }
+    &:hover {
+      background: $navy;
+      opacity: 1;
+      color: #fff;
+      a {
+        color: #fff;
+      }
+    }
+
+    &:first-of-type {
+      align-items: center;
+
+      &:hover {
+        background: #fff;
+        color: #333;
+      }
+    }
 
     img {
       margin-right: 10px;
       width:32px;
       height:32px;
+
+      &.crown {
+        position: absolute;
+        top:0;
+      }
     }
   }
 
@@ -93,7 +119,7 @@ header {
     border-bottom: 10px solid #fff;
     position: absolute;
     top: -10px;
-    left: 103px;
+    right: 0;
 
     .caret-inner {
       position: absolute;

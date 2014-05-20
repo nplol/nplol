@@ -37,7 +37,7 @@ $ =>
       )
       .then(
         (html) ->
-          showHeader(html)
+          updateHeader(html)
       )
       .fail(
         (error) ->
@@ -64,7 +64,7 @@ $ =>
         )
         .then(
           (html) ->
-            setTimeout(-> showHeader(html),
+            setTimeout(-> updateHeader(html),
             800)
         )
         .fail(
