@@ -1,19 +1,67 @@
 @import 'bourbon';
 
-.form-input {
+form {
+  margin-top: 50px;
 }
 
+.form-element {
+  display: flex;
+  margin-bottom: 1em;
 
-input[type=text] {
-  font-family: 'bitter';
-  font-size: 16px;
-  padding: 1%;
+  input {
+    flex: 1;
+    padding: 10px;
+    border: 0;
+    border-bottom: 1px solid #ddd;
+    opacity: .6;
+    font-size: 22px;
+
+    &[name*=title] {
+      font-size: 52px;
+    }
+
+    &:focus {
+      opacity: 1;
+      outline:0;
+    }
+
+  }
+
+  textarea {
+    flex: 1;
+    border: 0;
+    padding: 10px;
+    font-size: 18px;
+    font-family: 'bitter';
+    height: 500px;
+    opacity: .6;
+
+    &:focus{
+      opacity: 1;
+      outline:0;
+    }
+  }
+
+  label {
+    width: 80px;
+  }
 }
 
-textarea {
-  height: 150px;
-  resize: vertical;
-  font-family: 'bitter';
-  font-size: 16px;
-  padding: 1%;
-}
+//
+// .form-input {
+// }
+//
+//
+// input[type=text] {
+//   font-family: 'bitter';
+//   font-size: 16px;
+//   padding: 1%;
+// }
+//
+// textarea {
+//   height: 150px;
+//   resize: vertical;
+//   font-family: 'bitter';
+//   font-size: 16px;
+//   padding: 1%;
+// }

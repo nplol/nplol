@@ -1,13 +1,6 @@
 %section#post
   %h2 New post
 
-  %section
-    %select.post-type{ data: {form_path: post_form_path} }
-      =options_for_select(['normal', 'meme'])
-    %section#post-form
-      - if @post.meme?
-        = render 'posts/memes/meme_form'
-      - else
-        =render 'form'
+  = render 'form'
 
 =javascript_include_tag 'posts'
