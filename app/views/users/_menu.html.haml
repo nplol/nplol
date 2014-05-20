@@ -6,4 +6,6 @@
     %li.user
       =image_tag(current_user.avatar)
       ="#{current_user.name}"
-    %li.logout= link_to 'Logout', logout_path, remote: true
+    - unless current_user.nplol?
+      %li.authorize= link_to 'Authorize nplol status', authorize_path, remote: true
+    %li.logout= link_to 'Logout', logout_path

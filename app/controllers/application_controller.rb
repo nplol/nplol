@@ -11,8 +11,8 @@ class ApplicationController < ActionController::Base
      session['omniauth.state'] ||= SecureRandom.hex(24)
   end
 
-  def authenticated?
-    redirect_to root_path unless session[:user]
+  def current_user
+    session[:user]
   end
 
 end

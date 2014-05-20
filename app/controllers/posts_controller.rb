@@ -1,9 +1,13 @@
 class PostsController < ApplicationController
 
-  before_filter :authenticated?, except: [:index, :show]
+  load_and_authorize_resource except: [:index, :show]
+
+  rescue_from CanCan::AccessDenied do
+    redirect_to root_path
+  end
+
 
   def index
-    p response.headers
   	@posts = Post.all.order('created_at DESC')
     # xhr call made from global.js.coffee
     return render 'index', layout: false if request.xhr?

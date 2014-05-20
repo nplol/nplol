@@ -14,11 +14,10 @@ $ =>
   showMenu = ->
     $('#user-menu').toggleClass('active')
 
-  $('.logout').on 'click', ->
+  $('.authorize').on 'click', ->
     closeHeader()
 
-  $('.logout').on 'ajax:success', (event, html, xhr) =>
-    $('iframe:last').remove() if $('iframe').length > 1
+  $('.authorize').on 'ajax:success', (event, html, xhr) =>
     $('#user-menu').remove()
     setTimeout( -> showHeader(html) ,
     800)

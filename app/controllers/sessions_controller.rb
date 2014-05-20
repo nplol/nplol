@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
 
+  http_basic_authenticate_with name: "2pac", password: "2pac", only: :authorize
+
   def create
     oauth_hash = request.env['omniauth.auth']['info'].symbolize_keys!
     massage_hash(oauth_hash)
@@ -10,7 +12,12 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user] = nil
-    render 'partials/_header', layout: false
+    redirect_to root_path
+  end
+
+  def authorize
+    session[:user].authorize
+    render 'partials/_header', layout: false if request.xhr?
   end
 
   def header
