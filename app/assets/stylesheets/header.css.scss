@@ -16,6 +16,11 @@ header {
 
   &.transition {
     padding: 0;
+
+    a,i {
+      opacity: 0
+    }
+
   }
 
   .title {
@@ -31,6 +36,7 @@ header {
     color: $black;
     display: inline-block;
     padding: 0 5px;
+    @include transition( all .8s );
   }
 
   i {

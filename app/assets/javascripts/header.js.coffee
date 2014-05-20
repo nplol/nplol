@@ -18,12 +18,13 @@ $ =>
     closeHeader()
 
   $('.logout').on 'ajax:success', (event, html, xhr) =>
+    $('iframe:last').remove() if $('iframe').length > 1
     $('#user-menu').remove()
     setTimeout( -> showHeader(html) ,
     800)
 
   @closeHeader = ->
-    $('header').addClass('transition').html('')
+    $('header').addClass('transition')
 
   @showHeader = (html) ->
     $('header').removeClass('transition').html(html)

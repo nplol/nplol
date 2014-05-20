@@ -6,3 +6,6 @@ development:
   google:
     client_id: '636455440074-nceplif7r2ldtnhdsg8dsi56ee1bmof3.apps.googleusercontent.com'
     client_secret: '3tmxLdHliZ5GE7EDiuHxf0It'
+  twitter:
+    api_key: '91BVCERF4bBowgea6UIIWermY'
+    secret: 'pGCCxCXtUf2gbjwLcWBBu2aSK6nM8abCwn3k0qNupXxyzGzEyQ'

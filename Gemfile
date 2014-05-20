@@ -29,8 +29,9 @@ gem 'aws-sdk'
 # analytics all the things
 gem 'google-analytics-rails'
 
-# use ouath for authing with google
+# use ouath for authing with third-parties
 gem 'omniauth-google-oauth2'
+gem 'omniauth-twitter'
 
 group :development do
   gem 'better_errors', '~> 1.1.0'
