@@ -13,7 +13,7 @@ $ =>
       @toggle()
 
     initBindings: =>
-      $('header i')
+      $('header i, header .logo-icon')
       .on 'click', ->
         $(@).tipsy 'hide'
       .tipsy {fade: true, gravity: 'n', block: -> !($('#user-menu').hasClass('active') && @$element.hasClass('fa-cog')) }
