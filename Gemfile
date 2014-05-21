@@ -12,7 +12,7 @@ gem 'haml'
 gem 'pg'
 gem 'uglifier'
 gem 'settingslogic'
-gem 'acts-as-taggable-on'
+gem 'acts-as-taggable-on', '~> 3.2.3'
 gem 'cancan'
 
 # use unicorn as the webserver

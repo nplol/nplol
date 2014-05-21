@@ -9,7 +9,6 @@ class PostsController < ApplicationController
 
   def index
   	@posts = Post.all.order('created_at DESC')
-    # xhr call made from global.js.coffee
     return render 'index', layout: false if request.xhr?
   end
 
@@ -18,12 +17,13 @@ class PostsController < ApplicationController
   end
 
   def create
-    meme? ? @post = Meme.new(meme_params) : @post = Post.new(post_params)
-  	if @post.save
-      redirect_to post_path(@post)
-    else
-    	render 'new'
-    end
+    p "lol"
+    # @post = Post.new(post_params)
+    # if @post.save
+      # redirect_to post_path(@post)
+    # else
+    	# render 'new'
+    # end
   end
 
   def form
@@ -63,16 +63,11 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit( :title, :content, :tag_list, :type,
-                                  asset_attributes: [  ] )
+    params.require(:post).permit(:title, :content, :tag_list)
   end
 
   def meme_params
     params.require(:post).permit( :title, :type, :tag_list, :image)
-  end
-
-  def meme?
-    params[:post_type] == 'meme'
   end
 
 end

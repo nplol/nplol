@@ -13,9 +13,9 @@
   %section.form-element
     = f.text_field :tag_list, placeholder: 'Tags'
   %section.form-element
-    %textarea{ oninput: 'this.editor.update()', id: 'content', placeholder: 'Write some stuff, brah.' }
+    %textarea{ oninput: 'this.editor.update()', id: 'post_content', name: 'post[content]', placeholder: 'Write some stuff, brah.' }
 
-  #preview
+  %section#preview
 
   = javascript_include_tag 'markdown'
   :javascript
@@ -27,10 +27,8 @@
           input.editor = this;
           this.update();
       }
-      new Editor(document.getElementById("content"), document.getElementById("preview"));
+      new Editor(document.getElementById("post_content"), document.getElementById("preview"));
     })
-
-  = hidden_field_tag :post_type, 'post'
 
   %secion.assets{class: ('hidden' if @post.assets.empty?)}
     %section.label
