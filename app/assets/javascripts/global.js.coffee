@@ -2,12 +2,9 @@ $ =>
 
   # switches between the two current views: article and listing.
   @changeView = (html) ->
-    $('#spinner').fadeIn('fast')
-    $('.arrow').fadeOut('fast')
     callback = ->
-      $('#main').html(html).removeClass('transition')
-      $('#spinner').fadeOut('fast')
-    setTimeout(callback, 1250)
+      $('#app').html(html).removeClass('transition')
+    setTimeout(callback, 400)
 
   # dim the background
   @dim = (lightSwitch) ->
@@ -21,41 +18,41 @@ $ =>
 
   # keyCode 27: escape
   $(document).keydown((event) ->
-    dim(false) if event.keyCode == 27
+    # dim(false) if event.keyCode == 27
   )
 
   prependDimmer = ->
     $('#main').prepend('<div class="dim"></div>')
-
-  fetchPosts = ->
-    $.ajax('/')
-      .done((html) ->
-        changeView(html)
-        $('#posts').packery())
-
-  fetchPost = (url) ->
-    $.ajax(url).
-      done( (html) ->
-        changeView(html)).
-      fail( ->
-        console.log('failed to load post.'))
+  #
+  # fetchPosts = ->
+  #   $.ajax('/')
+  #     .done((html) ->
+  #       changeView(html)
+  #       $('#posts').packery())
+  #
+  # fetchPost = (url) ->
+  #   $.ajax(url).
+  #     done( (html) ->
+  #       changeView(html)).
+  #     fail( ->
+  #       console.log('failed to load post.'))
 
   # hack due to popstate being fired instantly in chrome.
   # http://stackoverflow.com/questions/7860960/popstate-returns-event-state-is-undefined
-  popped = ('state' in window.history)
-  initialURL = location.href
-
-  $(window).on 'popstate', (event) ->
-    initialPop = !popped && location.href == initialURL
-    popped = true
-    return if initialPop
-
-    # only pushState applies state to the event.
-    state = event.originalEvent.state
-
-    $('#main').addClass('transition')
-    debugger
-    if state
-      fetchPost(state.url)
-    else
-      fetchPosts()
+  # popped = ('state' in window.history)
+  # initialURL = location.href
+  #
+  # $(window).on 'popstate', (event) ->
+  #   initialPop = !popped && location.href == initialURL
+  #   popped = true
+  #   return if initialPop
+  #
+  #   # only pushState applies state to the event.
+  #   state = event.originalEvent.state
+  #
+  #   $('#main').addClass('transition')
+  #   debugger
+  #   if state
+  #     fetchPost(state.url)
+  #   else
+  #     fetchPosts()

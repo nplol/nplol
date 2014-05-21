@@ -1,13 +1,13 @@
-#posts
+%section#posts
   - @posts.each do |post|
     - if post.meme?
-      .post.meme.color-border{ data: { post_id: post.id } }
+      .post.meme{ data: { post_id: post.id } }
         %article
           %h3=post.title
           .image
             =image_tag(post.image.url(:medium))
     - else
-      .post.color-border{ data: { post_id: post.id } }
+      .post{ data: { post_id: post.id } }
         %article
           %h3=post.title
           %p

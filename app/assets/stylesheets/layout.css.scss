@@ -6,52 +6,27 @@
 @include font-face(typewriter, 'typewriter/typewriter', normal, $asset-pipeline: true);
 
 
-@mixin wideBorder($color) {
-  border-left: 5px solid $color;
-  border-right: 5px solid $color;
-}
-
-@mixin border($color) {
-  border: 3px solid $color;
-}
-
-@mixin arrow($color) {
-  border-color: rgba(238, 238, 238, 0) $color rgba(238, 238, 238, 0) rgba(238, 238, 238, 0);
-}
-
-#logo {
-  height: 21px;
-  vertical-align: middle;
-}
-
 body {
   font-family: 'bitter';
   font-size: 18px;
   line-height: 26px;
   color: $black;
-  background: $navy;
+  background: $lightBlue;
+  display: flex;
 }
 
 #app {
   display: flex;
-  min-height: 100vh;
-}
+  @include transition(transform .6s ease-in-out, opacity .4s);
+  opacity: 1;
+  flex: 1;
 
+  &.transition {
+    @include transform(translateY(300px));
+    @include transform-origin(0 100%);
+    opacity: 0;
+  }
 
-
-// #main {
-//   height: 100%;
-//   width:100%;
-//   overflow-x: scroll;
-//   position: absolute;
-//   bottom:0;
-//   top:0;
-//   -webkit-transition: top 1s ease-in-out;
-//   -webkit-transform: translateZ(1)
-// }
-
-#main.transition {
-  top:100%;
 }
 
 .dim {
@@ -71,103 +46,4 @@ body {
 
 .hidden {
   display: none;
-}
-
-
-/*
-  color-specific layouts.
-*/
-
-.red {
-  background-color: $red;
-
-  .color-border-wide {
-    @include wideBorder($darkRed);
-    i {
-      color: $darkRed;
-    }
-  }
-  .color-border {
-    @include border($darkRed)
-  }
-
-  button,input[type=submit]  {
-    @include button($red);
-  }
-
-  #comments {
-    border-top: 3px solid $darkRed;
-    .comment:before {
-      @include arrow($lightRed)
-    }
-    .comment {
-      background: $lightRed;
-    }
-  }
-  .arrow {
-    color: $darkRed;
-  }
-
-}
-
-.green {
-  background-color: $green;
-  .color-border-wide {
-    @include wideBorder($darkGreen);
-    i {
-      color: $darkGreen;
-    }
-  }
-  .color-border {
-    @include border($darkGreen)
-  }
-
-  button,input[type=submit]  {
-    @include button($green);
-  }
-
-  #comments {
-    border-top: 3px solid $green;
-    .comment:before {
-      @include arrow($lightGreen)
-    }
-    .comment {
-      background: $lightGreen;
-    }
-  }
-  .arrow {
-    color: $darkGreen;
-  }
-
-}
-
-.navy {
-  background-color: $navy;
-  .color-border-wide {
-    @include wideBorder($darkNavy);
-    i {
-      color: $darkNavy;
-    }
-  }
-  .color-border {
-    @include border($darkNavy)
-  }
-
-  button,input[type=submit]  {
-    @include button($navy);
-  }
-
-  #comments {
-    border-top: 3px solid $navy;
-    .comment:before {
-      @include arrow($lightNavy)
-    }
-    .comment {
-      background: $lightNavy;
-    }
-  }
-  .arrow {
-    color: $darkNavy;
-  }
-
 }
