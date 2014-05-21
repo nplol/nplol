@@ -13,6 +13,21 @@ header {
   background: $gray;
   box-shadow: 0 0 1px 4px rgba(0, 0, 0, 0.2);
   z-index: 2;
+  display: flex;
+  align-items: center;
+
+  .logo {
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+  }
+
+  .user-tools {
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
 
   &.transition {
     padding: 0;
@@ -39,6 +54,10 @@ header {
     @include transition( all .8s );
   }
 
+  img {
+    height: 32px;
+  }
+
   i {
     color:#898989;
     font-size: 18px;
@@ -60,7 +79,7 @@ header {
   background: #fff;
   font-size: .8em;
   right: 10px;
-  top: 40px;
+  top: 50px;
   border-radius: 4px;
   box-shadow: 0 0 1px 2px rgba(0, 0, 0, 0.1);
 
@@ -72,6 +91,7 @@ header {
   a {
     color: #333;
   }
+
 
   li {
     display: flex;

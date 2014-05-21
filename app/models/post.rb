@@ -5,9 +5,9 @@ class Post < ActiveRecord::Base
 
   validates :content, presence: true
 
-  # has_many :comments, dependent: :destroy
-  # has_many :assets
-  # accepts_nested_attributes_for :assets, :allow_destroy => true
+  has_many :comments, dependent: :destroy
+  has_many :assets
+  accepts_nested_attributes_for :assets, :allow_destroy => true
 
   acts_as_taggable
 
@@ -27,11 +27,11 @@ class Post < ActiveRecord::Base
   end
 
   def next?
-    Post.first(conditions: ['id > ?', id], order: 'id ASC')
+    Post.where("id > #{id}").order('id ASC').first
   end
 
   def previous?
-    Post.first(conditions: ['id < ?', id], order: 'id DESC')
+    Post.where("id < #{id}").order('id DESC').first
   end
 
 end

@@ -13,7 +13,7 @@ gem 'pg'
 gem 'uglifier'
 gem 'settingslogic'
 gem 'acts-as-taggable-on', '~> 3.2.3'
-gem 'cancan'
+gem 'pundit'
 
 # use unicorn as the webserver
 gem 'unicorn'
@@ -36,6 +36,7 @@ gem 'omniauth-twitter'
 group :development do
   gem 'better_errors', '~> 1.1.0'
   gem 'spring'
+  gem 'priscilla'
 end
 
 group :test do

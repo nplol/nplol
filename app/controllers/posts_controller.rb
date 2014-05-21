@@ -1,12 +1,5 @@
 class PostsController < ApplicationController
 
-  load_and_authorize_resource except: [:index, :show]
-
-  rescue_from CanCan::AccessDenied do
-    redirect_to root_path
-  end
-
-
   def index
   	@posts = Post.all.order('created_at DESC')
     return render 'index', layout: false if request.xhr?
@@ -17,13 +10,13 @@ class PostsController < ApplicationController
   end
 
   def create
-    p "lol"
-    # @post = Post.new(post_params)
-    # if @post.save
-      # redirect_to post_path(@post)
-    # else
-    	# render 'new'
-    # end
+    @post = Post.new(post_params)
+    authorize @post, :manage?
+    if @post.save
+      redirect_to post_path(@post)
+    else
+    	render 'new'
+    end
   end
 
   def form

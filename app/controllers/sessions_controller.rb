@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
 
-  http_basic_authenticate_with name: "2pac", password: "2pac", only: :authorize
+  http_basic_authenticate_with name: "2pac", password: "2pac", only: :authorize_nplol
 
   def create
     oauth_hash = request.env['omniauth.auth']['info'].symbolize_keys!
@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
     redirect_to root_path
   end
 
-  def authorize
+  def authorize_nplol
     session[:user].authorize
     render 'partials/_header', layout: false if request.xhr?
   end

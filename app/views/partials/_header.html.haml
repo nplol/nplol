@@ -1,18 +1,21 @@
-- if current_user.nil?
-  %a.login.google
-    %i.fa.fa-google-plus(title="Sign in")
-  %a.login.twitter
-    %i.fa.fa-twitter(title="Sign in")
-- else
-  - if current_user.nplol?
-    %a.new-post{ href: new_post_path }
-      %i.fa.fa-pencil(title="New Post")
-  %a.settings
-    %i.fa.fa-cog(title="Settings")
+%section.logo
+  =link_to root_path do
+    =image_tag('logo_min.svg')
+%section.user-tools
+  - if current_user.nil?
+    %a.login.google
+      %i.fa.fa-lg.fa-google-plus(title="Sign in")
+    %a.login.twitter
+      %i.fa.fa-lg.fa-twitter(title="Sign in")
+  - else
+    - if current_user.nplol?
+      %a.new-post{ href: new_post_path }
+        %i.fa.fa-lg.fa-pencil(title="New Post")
+    %a.settings
+      %i.fa.fa-lg.fa-cog(title="Settings")
 
-%section.omniauth-token(style="display:none;")=session['omniauth.state']
+  %section.omniauth-token(style="display:none;")=session['omniauth.state']
 
 = javascript_include_tag 'header'
 = javascript_include_tag 'auth'
-
-=render 'users/menu' if current_user
+= render 'users/menu' if current_user
