@@ -15,7 +15,6 @@
 //= require jquery.tipsy
 //= require q
 //= require packery
-//= require event-emitter
 //= require posts
 //= require header
 //= require auth
@@ -23,4 +22,17 @@
 
 $(document).ready(function() {
   window.app = new App();
+
+  initGoogleAuth = function() {
+    app.initGoogleAuth();
+  }
+
+  $.ajax({
+    url:'https://apis.google.com/js/client:plus.js?onload=initGoogleAuth',
+    dataType: 'script',
+    cache: true,
+  })
+
+
+
 })

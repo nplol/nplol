@@ -12,7 +12,6 @@ $height: 200px;
   background: #fff;
   padding: 2em 5em;
   margin-top: 46px;
-  min-height: 100vh;
 
   .post-meta {
     display:flex;
@@ -31,7 +30,9 @@ $height: 200px;
 
   .post {
     background: $darkBlue;
-    color: #fff;
+    border: 3px solid #fff;
+    box-shadow: 1px 1px 10px #000;
+    color: $white;
     box-sizing: border-box;
     width: $width;
     height: $height;

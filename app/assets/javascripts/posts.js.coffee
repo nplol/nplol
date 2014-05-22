@@ -1,15 +1,9 @@
 class PostGrid
 
-  constructor: () ->
-    $container = $('#posts')
-    $container.packery {
-      itemSelector: '.post',
-      gutter: 20,
-      isHorizontal: true
-    }
-    @initBindings()
+  constructor: ->
+    @load()
 
-  reload: =>
+  load: =>
     $container = $('#posts')
     $container.packery {
       itemSelector: '.post',
@@ -22,7 +16,7 @@ class PostGrid
     $('.post').on 'click', (event) ->
       event.preventDefault();
       post_id = $(@).data('post-id')
-      app.fetchPost("posts/#{post_id}")
+      app.fetchPost("/posts/#{post_id}")
 
 @PostGrid = PostGrid
 

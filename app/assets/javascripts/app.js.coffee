@@ -4,19 +4,17 @@ class App
   constructor: ->
     @postGrid = new PostGrid()
     @header = new Header()
+    @twitterAuth = new TwitterAuth()
     @initBindings()
 
   initBindings: ->
     $(window).on 'popstate', (event) =>
 
-      # only pushState applies state to the event.
       state = event.originalEvent.state
-
       if state && state.url != '/'
         @fetchPost(state.url)
       else
-        @fetchPost(null, @postGrid.reload)
-      # state ? _fetchPost(state.url) : _fetchPost(null, PostGrid.reload)
+        @fetchPost(null, @postGrid.load)
 
 
   fetchPost: (url = null, callback) ->
@@ -32,6 +30,17 @@ class App
       (error) ->
         console.log('failed to load post.')
     )
+
+  toggleHeader: ->
+    @header.toggle()
+
+  reloadHeader: (html) ->
+    @header.reload(html)
+
+  initGoogleAuth: ->
+    @googleAuth = new GoogleAuth()
+
+  # private API
 
   _changeView: (html, callback) ->
     $('#app').addClass('transition')

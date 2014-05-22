@@ -25,6 +25,3 @@
   %section#comments
     - @post.comments.order('created_at DESC').each do |comment|
       =render comment
-
-= javascript_include_tag 'comments'
-= javascript_include_tag 'posts'
