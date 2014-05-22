@@ -15,4 +15,12 @@
 //= require jquery.tipsy
 //= require q
 //= require packery
-//= require global
+//= require event-emitter
+//= require posts
+//= require header
+//= require auth
+//= require app
+
+$(document).ready(function() {
+  window.app = new App();
+})

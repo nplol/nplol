@@ -17,6 +17,4 @@
 
   %section.omniauth-token(style="display:none;")=session['omniauth.state']
 
-= javascript_include_tag 'header'
-= javascript_include_tag 'auth'
 = render 'users/menu' if current_user

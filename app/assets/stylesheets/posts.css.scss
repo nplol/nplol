@@ -12,6 +12,17 @@ $height: 200px;
   background: #fff;
   padding: 2em 5em;
   margin-top: 46px;
+  min-height: 100vh;
+
+  .post-meta {
+    display:flex;
+    text-align: center;
+
+    section {
+      flex: 1;
+    }
+  }
+
 }
 
 #posts {
