@@ -12,7 +12,7 @@ body {
   color: $black;
   @include background-image(
     radial-gradient(circle closest-side, rgba(255,255,255,.1  ), transparent),
-    url('wave_cunt.png'),
+    asset-url('wave_cunt.png'),
     linear-gradient($lightBlue, $lightBlue));
   background-position: bottom right;
   background-repeat: no-repeat, repeat-x;
