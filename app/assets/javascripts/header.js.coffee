@@ -21,6 +21,7 @@ class Header
 
     $('.authorize').on 'click', =>
       @toggle()
+      @toggleMenu()
 
     $('.authorize').on 'ajax:error', (xhr, status, error) =>
       @toggleMenu()

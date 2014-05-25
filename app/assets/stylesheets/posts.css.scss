@@ -29,10 +29,8 @@ $height: 200px;
   padding-left: 20px;
 
   .post {
-    background: $darkBlue;
-    border: 3px solid #fff;
-    box-shadow: 1px 1px 10px #000;
-    color: $white;
+    background: $white;
+    color: $darkGray;
     box-sizing: border-box;
     width: $width;
     height: $height;
@@ -43,6 +41,10 @@ $height: 200px;
     &:hover {
       @include transform(scaleX(1.05));
       cursor: pointer;
+
+      article {
+        color: $black;
+      }
     }
 
     article {
