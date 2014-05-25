@@ -3,9 +3,12 @@
 html {
   margin:0;
   padding:0;
+  background: $lightBlue;
+  display: flex;
 }
 
 body {
+  flex: 1;
   display: flex;
   min-height: 100vh;
   margin: 0;

@@ -16,7 +16,6 @@ class App
       else
         @fetchPost(null, @postGrid.load)
 
-
   fetchPost: (url = null, callback) ->
     url ||= '/'
     Q($.ajax(url)

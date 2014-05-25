@@ -11,6 +11,7 @@ class PostGrid
       isHorizontal: true
     }
     @initBindings()
+    # $('html').width($('#posts').width())
 
   initBindings: ->
     $('.post').on 'click', (event) ->
