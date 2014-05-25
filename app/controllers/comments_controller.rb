@@ -1,7 +1,5 @@
 class CommentsController < ApplicationController
 
-  before_filter :authenticated?
-
   def create
     @post = Post.find(params[:post_id])
     @comment = @post.comments.build(@captcha.values)

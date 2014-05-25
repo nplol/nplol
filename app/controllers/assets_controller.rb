@@ -1,7 +1,5 @@
 class AssetsController < ApplicationController
 
-  before_filter: :authenticated?
-
   def new
     @asset = Asset.new
     render partial: 'form', layout: false
