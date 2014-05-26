@@ -1,14 +1,22 @@
-// Place all the styles related to the comments controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
 $green: #a2c5bf;
 $darkGreen: #91b1ac;
 
 
-#comments {
-  margin-top: 3%;
-  border-top: 3px solid $darkGreen;
+#new_comment {
+  box-sizing: border-box;
+  margin: 100px auto 0 auto;
+
+  input[type="submit"] {
+    background: #da4c43;
+    padding: 20px 50px;
+    text-align: center;
+    color: #fff;
+    border: 0;
+    width: 100%;
+    font-family: 'bitter';
+    font-size: 22px;
+    box-sizing: border-box;
+  }
 }
 
 .comment-container {

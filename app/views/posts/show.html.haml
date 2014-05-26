@@ -19,10 +19,8 @@
         = markdown(@post.content)
 
   -# TODO
-  -# %section#new-comment
-  -#   %p Write something clever.
-  -#   = render 'comments/form', comment: @post.comments.build
-  -#
+  = render 'comments/form', comment: @post.comments.build
+
   %section#comments
     - @post.comments.order('created_at DESC').each do |comment|
       =render comment

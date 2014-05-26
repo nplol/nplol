@@ -61,10 +61,3 @@ $height: 200px;
   }
 
 }
-
-img#plane {
-  position: absolute;
-  top: 500px;
-  z-index: 1;
-  @include animation(boat 20s infinite)
-}

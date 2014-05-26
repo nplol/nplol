@@ -26,6 +26,8 @@ body {
   @include transition(transform .6s ease-in-out, opacity .4s);
   opacity: 1;
   flex: 1;
+  z-index: 2;
+  position: relative;
 
   &.transition {
     @include transform(translateY(300px));
@@ -52,4 +54,11 @@ body {
 
 .hidden {
   display: none;
+}
+
+img#plane {
+  position: absolute;
+  top: 500px;
+  @include animation(boat 20s infinite);
+  z-index: 1;
 }

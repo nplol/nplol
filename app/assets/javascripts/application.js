@@ -16,6 +16,7 @@
 //= require q
 //= require packery
 //= require posts
+//= require comments
 //= require header
 //= require auth
 //= require app

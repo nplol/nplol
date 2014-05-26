@@ -1,21 +1,19 @@
-class User
+class User < ActiveRecord::Base
 
   ROLES = %w(nplol regular)
 
-  attr_accessor :name, :avatar
+  validates_presence_of :name, :avatar, :role
 
-  def initialize(options = {})
-    @name = options[:name]
-    @avatar = options[:image]
-    @role = 'regular'
-  end
+  has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
+
 
   def authorize
-    @role = 'nplol'
+    self.role = 'nplol'
   end
 
   def nplol?
-    @role == 'nplol'
+    self.role == 'nplol'
   end
 
 end
