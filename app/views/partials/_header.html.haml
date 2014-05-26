@@ -9,7 +9,6 @@
     %a.login.twitter
       %i.fa.fa-lg.fa-twitter(title="Sign in")
   - else
-    - p current_user
     - if current_user.nplol?
       %a.new-post{ href: new_post_path }
         %i.fa.fa-lg.fa-pencil(title="New Post")

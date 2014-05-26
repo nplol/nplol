@@ -4,19 +4,20 @@ class SessionsController < ApplicationController
 
   def create
     oauth_hash = request.env['omniauth.auth']['info'].symbolize_keys!
-    options = massage_hash(oauth_hash)
-    session[:user] = User.find_by(name: options[:name]) || User.new(options)
+    options = user_params(oauth_hash)
+    user = User.find_by(email: options[:email]) || User.create(options)
+    session[:user_id] = user.uuid
     return render 'partials/_header', layout: false if request.xhr?
     render 'partials/_close_window', layout: false
   end
 
   def destroy
-    session[:user] = nil
+    reset_session
     redirect_to root_path
   end
 
   def authorize_nplol
-    session[:user].authorize
+    current_user.authorize!
     render 'partials/_header', layout: false if request.xhr?
   end
 
@@ -26,11 +27,11 @@ class SessionsController < ApplicationController
 
   private
 
-  def massage_hash(oauth_hash)
+  def user_params(oauth_hash)
     hash = { }
     hash[:name] = oauth_hash[:first_name] || oauth_hash[:name].split(' ').first
     hash[:avatar] = oauth_hash[:image]
-    hash[:role] = 'regular'
+    hash[:email] = oauth_hash[:email]
     hash
   end
 
