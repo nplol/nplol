@@ -33,6 +33,7 @@ $height: 200px;
 #posts {
   padding-top: 100px;
   padding-left: 20px;
+  z-index: 2;
 
   .post {
     background: $white;
@@ -59,4 +60,11 @@ $height: 200px;
 
   }
 
+}
+
+img#plane {
+  position: absolute;
+  top: 500px;
+  z-index: 1;
+  @include animation(boat 20s infinite)
 }

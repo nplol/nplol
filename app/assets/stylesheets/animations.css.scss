@@ -1,0 +1,21 @@
+@import 'bourbon';
+
+@include keyframes(boat) {
+ 0% {
+    right: 0;
+    opacity: 0;
+  }
+
+  5% {
+    opacity: 1;
+  }
+
+  93% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    right: 100%;
+  }
+}
