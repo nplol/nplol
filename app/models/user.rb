@@ -9,10 +9,10 @@ class User < ActiveRecord::Base
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
 
-  def initialize(params = {})
+  def initialize(params={})
     super(params)
-    self.role = 'regular'
     self.uuid = SecureRandom.uuid
+    self.role = 'regular'
   end
 
   def authorize!
