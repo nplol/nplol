@@ -5,6 +5,8 @@
 @include font-face(bitter-bold, 'bitter/bitter-bold', normal, $asset-pipeline: true);
 @include font-face(typewriter, 'typewriter/typewriter', normal, $asset-pipeline: true);
 
+
+
 body {
   font-family: 'bitter';
   font-size: 18px;
@@ -20,6 +22,7 @@ body {
 
 #app {
   display: flex;
+  overflow: scroll;
   @include transition(transform .6s ease-in-out, opacity .4s);
   opacity: 1;
   flex: 1;
