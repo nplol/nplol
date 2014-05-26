@@ -19,6 +19,7 @@ class GoogleAuth
 
   googleAuthCallback: (authResponse) ->
     if !authResponse || authResponse.error
+      debugger
       return console.log 'Google auth failed'
     csrf_token = $('.omniauth-token').text()
     authResponse.state = csrf_token
