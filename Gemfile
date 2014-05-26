@@ -15,8 +15,9 @@ gem 'settingslogic'
 gem 'acts-as-taggable-on', '~> 3.2.3'
 gem 'pundit'
 
-# use unicorn as the webserver
-gem 'unicorn'
+# use puma as the webserver
+gem 'puma'
+gem 'newrelic_rpm'
 
 # markdown
 gem 'truncate_html'
