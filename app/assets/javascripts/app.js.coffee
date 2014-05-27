@@ -4,8 +4,7 @@ class App
   constructor: ->
     @postGrid = new PostGrid()
     @header = new Header()
-    @githubAuth = new GithubAuth()
-    # @twitterAuth = new TwitterAuth()
+    @auth = new Auth()
     @initBindings()
 
   initBindings: ->
@@ -37,8 +36,8 @@ class App
   reloadHeader: (html) ->
     @header.reload(html)
 
-  initGoogleAuth: ->
-    @googleAuth = new GoogleAuth()
+  # initGoogleAuth: ->
+  #   @googleAuth = new GoogleAuth()
 
   # private API
 

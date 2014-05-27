@@ -23,17 +23,4 @@
 
 $(document).ready(function() {
   window.app = new App();
-
-  initGoogleAuth = function() {
-    app.initGoogleAuth();
-  }
-
-  $.ajax({
-    url:'https://apis.google.com/js/client:plus.js?onload=initGoogleAuth',
-    dataType: 'script',
-    cache: true,
-  })
-
-
-
 })

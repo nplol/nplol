@@ -17,7 +17,7 @@ Nplol::Application.routes.draw do
   get 'authorize', to: 'sessions#authorize_nplol', as: 'authorize'
 
   # Oatuh paths
-  post '/auth/google_oauth2/callback/', to: 'sessions#create'
+  # post '/auth/google_oauth2/callback/', to: 'sessions#create'
   # get '/auth/twitter/callback', to: 'sessions#create'
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy', as: 'logout'

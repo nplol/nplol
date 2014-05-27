@@ -1,75 +1,74 @@
 # load the Google oauth client library
-class GoogleAuth
 
+class Auth
   constructor: ->
-    @clientId = '636455440074-nceplif7r2ldtnhdsg8dsi56ee1bmof3.apps.googleusercontent.com'
-    @apiKey = 'AIzaSyAYuhT2qzk1Pb2fzPlT7SfFhieeNr6kge0'
-    @scope = 'email profile'
+    @googleAuth = new GoogleAuth()
+    @githubAuth = new GithubAuth()
 
-    gapi.client.setApiKey(@apiKey)
+  class GoogleAuth
 
-    $('.google').on 'click', (event) =>
-      event.preventDefault()
-      gapi.auth.authorize
-        client_id: @clientId
-        scope: @scope
-        immediate: true
-        response_type: 'code'
-        @googleAuthCallback
+    constructor: ->
+      @url = '/auth/google_oauth2'
 
-  googleAuthCallback: (authResponse) ->
-    if !authResponse || authResponse.error
-      return console.log 'Google auth failed'
-    csrf_token = $('.omniauth-token').text()
-    authResponse.state = csrf_token
-    app.toggleHeader()
-    Q($.ajax
-        method: 'post'
-        url: '/auth/google_oauth2/callback'
-        dataType: 'html'
-        data: authResponse
-    )
-    .then(
-      (html) ->
-        app.reloadHeader(html)
-    )
-    .fail(
-      (error) ->
-        console.log error
-    )
+      $('.google').on 'click', (event) =>
+        event.preventDefault()
 
-@GoogleAuth = GoogleAuth
-
-class GithubAuth
-  constructor: ->
-    @url = '/auth/github'
-
-    $('.github').on 'click', (event) =>
-      event.preventDefault()
-
-      params = 'location=0,status=0,width=800,height=600'
-      @github_window = window.open(@url, 'githubWindow', params)
-      @github_window.focus()
+        params = 'location=0,status=0,width=800,height=600'
+        @googleWindow = window.open(@url, 'googleWindow', params)
+        @googleWindow.focus()
 
 
-      $(window).on 'auth', (event) =>
-        app.toggleHeader()
-        Q($.ajax
-            method: 'get'
-            url: '/header'
-            dataType: 'html'
-        )
-        .then(
-          (html) ->
-            setTimeout( -> app.reloadHeader(html),
-            800)
-        )
-        .fail(
-          (error) ->
-            console.log error
-        )
-        
-@GithubAuth = GithubAuth
+        $(window).on 'auth', (event) =>
+          app.toggleHeader()
+          Q($.ajax
+              method: 'get'
+              url: '/header'
+              dataType: 'html'
+          )
+          .then(
+            (html) ->
+              setTimeout( -> app.reloadHeader(html),
+              800)
+          )
+          .fail(
+            (error) ->
+              console.log error
+          )
+
+  @GoogleAuth = GoogleAuth
+
+  class GithubAuth
+    constructor: ->
+      @url = '/auth/github'
+
+      $('.github').on 'click', (event) =>
+        event.preventDefault()
+
+        params = 'location=0,status=0,width=800,height=600'
+        @github_window = window.open(@url, 'githubWindow', params)
+        @github_window.focus()
+
+
+        $(window).on 'auth', (event) =>
+          app.toggleHeader()
+          Q($.ajax
+              method: 'get'
+              url: '/header'
+              dataType: 'html'
+          )
+          .then(
+            (html) ->
+              setTimeout( -> app.reloadHeader(html),
+              800)
+          )
+          .fail(
+            (error) ->
+              console.log error
+          )
+
+  @GithubAuth = GithubAuth
+
+@Auth = Auth
 
 # class TwitterAuth
 #
