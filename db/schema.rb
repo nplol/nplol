@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140526184722) do
+ActiveRecord::Schema.define(version: 20140527134711) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,6 +80,9 @@ ActiveRecord::Schema.define(version: 20140526184722) do
     t.string   "role"
     t.string   "uuid"
     t.string   "email"
+    t.string   "google_auth_token"
+    t.string   "google_refresh_token"
+    t.string   "twitter_auth_token"
   end
 
 end

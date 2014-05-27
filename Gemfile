@@ -47,3 +47,7 @@ group :test do
   gem 'simplecov', require: false
   gem 'poltergeist'
 end
+
+group :development, :test do
+  gem 'byebug'
+end
