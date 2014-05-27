@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     oauth_hash = request.env['omniauth.auth']
     options = user_params(oauth_hash)
     user = User.find_with_provider(options) || User.new(options)
-    user.save
+    user.save if user.new_record?
     session[:user_id] = user.uuid
     return render 'partials/_header', layout: false if request.xhr?
     render 'partials/_close_window', layout: false

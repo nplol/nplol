@@ -6,8 +6,8 @@
   - if current_user.nil?
     %a.login.google
       %i.fa.fa-lg.fa-google-plus(title="Sign in")
-    %a.login.twitter
-      %i.fa.fa-lg.fa-twitter(title="Sign in")
+    %a.login.github
+      %i.fa.fa-lg.fa-github(title="Sign in")
   - else
     - if current_user.nplol?
       %a.new-post{ href: new_post_path }

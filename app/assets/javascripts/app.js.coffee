@@ -4,7 +4,8 @@ class App
   constructor: ->
     @postGrid = new PostGrid()
     @header = new Header()
-    @twitterAuth = new TwitterAuth()
+    @githubAuth = new GithubAuth()
+    # @twitterAuth = new TwitterAuth()
     @initBindings()
 
   initBindings: ->

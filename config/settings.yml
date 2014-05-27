@@ -9,6 +9,9 @@ development:
   twitter:
     api_key: '91BVCERF4bBowgea6UIIWermY'
     secret: 'pGCCxCXtUf2gbjwLcWBBu2aSK6nM8abCwn3k0qNupXxyzGzEyQ'
+  github:
+    api_key: '73428824525ffc47bf0e'
+    secret:  '15d8ff66b3201fa5d8f78450dfefdc7c2e7f4476'
 
 production:
   s3:
@@ -21,3 +24,6 @@ production:
   twitter:
     api_key: '91BVCERF4bBowgea6UIIWermY'
     secret: 'pGCCxCXtUf2gbjwLcWBBu2aSK6nM8abCwn3k0qNupXxyzGzEyQ'
+  github:
+    api_key: '73428824525ffc47bf0e'
+    secret:  '15d8ff66b3201fa5d8f78450dfefdc7c2e7f4476'

@@ -19,12 +19,8 @@ class User < ActiveRecord::Base
     user = self.find_by(email: options[:email])
     return nil if user.nil?
 
-    unless options[:google_auth_token].nil?
-      user.google_auth_token = options[:google_auth_token]
-    else
-      user.twitter_auth_token = options[:twitter_auth_token]
-    end
-      user
+    user.update_attributes(options)
+    user
   end
 
   def authorize!

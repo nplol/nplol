@@ -40,33 +40,64 @@ class GoogleAuth
 
 @GoogleAuth = GoogleAuth
 
-class TwitterAuth
-
+class GithubAuth
   constructor: ->
-    @url = '/auth/twitter'
+    @url = '/auth/github'
 
-    $('.twitter').on 'click', (event) =>
+    $('.github').on 'click', (event) =>
       event.preventDefault()
 
       params = 'location=0,status=0,width=800,height=600'
-      @twitter_window = window.open(@url, 'twitterWindow', params)
-      @twitter_window.focus()
+      @github_window = window.open(@url, 'githubWindow', params)
+      @github_window.focus()
 
-    $(window).on 'auth', (event) =>
-      app.toggleHeader()
-      Q($.ajax
-          method: 'get'
-          url: '/header'
-          dataType: 'html'
-      )
-      .then(
-        (html) ->
-          setTimeout( -> app.reloadHeader(html),
-          800)
-      )
-      .fail(
-        (error) ->
-          console.log error
-      )
 
-@TwitterAuth = TwitterAuth
+      $(window).on 'auth', (event) =>
+        app.toggleHeader()
+        Q($.ajax
+            method: 'get'
+            url: '/header'
+            dataType: 'html'
+        )
+        .then(
+          (html) ->
+            setTimeout( -> app.reloadHeader(html),
+            800)
+        )
+        .fail(
+          (error) ->
+            console.log error
+        )
+        
+@GithubAuth = GithubAuth
+
+# class TwitterAuth
+#
+#   constructor: ->
+#     @url = '/auth/twitter'
+#
+#     $('.twitter').on 'click', (event) =>
+#       event.preventDefault()
+#
+      # params = 'location=0,status=0,width=800,height=600'
+      # @twitter_window = window.open(@url, 'twitterWindow', params)
+      # @twitter_window.focus()
+    #
+    # $(window).on 'auth', (event) =>
+    #   app.toggleHeader()
+    #   Q($.ajax
+    #       method: 'get'
+    #       url: '/header'
+    #       dataType: 'html'
+    #   )
+    #   .then(
+    #     (html) ->
+    #       setTimeout( -> app.reloadHeader(html),
+    #       800)
+    #   )
+    #   .fail(
+    #     (error) ->
+    #       console.log error
+    #   )
+#
+# @TwitterAuth = TwitterAuth

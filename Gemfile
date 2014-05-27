@@ -33,6 +33,7 @@ gem 'google-analytics-rails'
 # use ouath for authing with third-parties
 gem 'omniauth-google-oauth2'
 gem 'omniauth-twitter'
+gem 'omniauth-github'
 
 group :development do
   gem 'better_errors', '~> 1.1.0'
