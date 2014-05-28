@@ -1,10 +1,35 @@
-$green: #a2c5bf;
-$darkGreen: #91b1ac;
-
+@import 'bourbon';
 
 #new_comment {
   box-sizing: border-box;
   margin: 100px auto 0 auto;
+
+  .form-element {
+    height: 51px;
+    @include transition(height .6s ease-in-out);
+  }
+
+  .form-element.hidden {
+    height: 0;
+    overflow: hidden;
+
+    img {
+      opacity: 0;
+    }
+  }
+
+  aside {
+    display: flex;
+  }
+
+  img {
+    opacity: 1;
+    @include transition(opacity 1s)
+  }
+
+  .speech-bubble {
+    margin-left: 30px;
+  }
 
   input[type="submit"] {
     background: #da4c43;
@@ -31,7 +56,7 @@ $darkGreen: #91b1ac;
   padding: 3px;
   .inner {
     background: #ffffff;
-    border: 1px solid $darkGreen;
+    border: 1px solid #eee;
     border-radius: 3px;
     padding: 10px;
     p {

@@ -1,4 +1,5 @@
 @import 'bourbon';
+@import 'colors';
 
 form {
   margin-top: 50px;
@@ -8,6 +9,11 @@ form {
   display: flex;
   margin-bottom: 1em;
 
+  div {
+    flex: 1;
+    display: flex;
+  }
+
   input {
     flex: 1;
     padding: 10px;
@@ -15,6 +21,10 @@ form {
     border-bottom: 1px solid #ddd;
     opacity: .6;
     font-size: 22px;
+
+    &.input-error {
+      border-bottom: 1px solid $red;
+    }
 
     &[name*=title] {
       font-size: 52px;
@@ -46,22 +56,3 @@ form {
     width: 80px;
   }
 }
-
-//
-// .form-input {
-// }
-//
-//
-// input[type=text] {
-//   font-family: 'bitter';
-//   font-size: 16px;
-//   padding: 1%;
-// }
-//
-// textarea {
-//   height: 150px;
-//   resize: vertical;
-//   font-family: 'bitter';
-//   font-size: 16px;
-//   padding: 1%;
-// }

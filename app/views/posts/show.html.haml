@@ -18,9 +18,10 @@
       %p
         = markdown(@post.content)
 
-  -# TODO
   = render 'comments/form', comment: @post.comments.build
 
   %section#comments
     - @post.comments.order('created_at DESC').each do |comment|
       =render comment
+
+= javascript_include_tag 'comments'

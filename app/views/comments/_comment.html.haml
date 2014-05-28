@@ -1,9 +1,9 @@
 - @comment = comment if local_assigns.has_key? :comment
 %section.comment-container
-  =image_tag('commenter.png', class: 'avatar')
+  =image_tag(@comment.user.avatar, class: 'avatar')
   %section.comment
     .inner
       %p.commenter
-        %strong=@comment.name
+        %strong=@comment.user.name
         said
       %p= @comment.text

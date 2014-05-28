@@ -15,9 +15,7 @@
 //= require jquery.tipsy
 //= require q
 //= require packery
-//= require posts
-//= require comments
-//= require assets
+//= require post-grid
 //= require header
 //= require auth
 //= require app
