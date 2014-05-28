@@ -21,15 +21,16 @@
 
   aside {
     display: flex;
+
+    input {
+        margin-left: 30px;
+    }
+
   }
 
   img {
     opacity: 1;
     @include transition(opacity 1s)
-  }
-
-  .speech-bubble {
-    margin-left: 30px;
   }
 
   input[type="submit"] {

@@ -8,10 +8,9 @@
     - if current_user
       %aside
         = image_tag(current_user.avatar)
-      .speech-bubble
         = f.text_field :text, placeholder: 'Write something clever.'
     - else
-      %section
+      %section.message
         You need to click on one of the icons in the top right corner
         before you can comment, brah.
 

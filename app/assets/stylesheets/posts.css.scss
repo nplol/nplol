@@ -56,6 +56,12 @@ $height: 200px;
 
   }
 
+  .message {
+    padding: 10px 20px;
+    box-sizing: border-box;
+    box-shadow: 1px 1px 10px #ddd;
+  }
+
 }
 
 #posts {

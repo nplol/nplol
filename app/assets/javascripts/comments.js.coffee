@@ -26,7 +26,7 @@ $ ->
 
   _showForm = ->
     $form.find('.hidden').removeClass('hidden')
-    _buttonReady()
+    _buttonReady() unless $('.message').length > 0
 
   _clearForm = ->
     $form.find('input[type="text"]').removeClass('input-error').val('')
