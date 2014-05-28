@@ -59,6 +59,11 @@ body {
 img#plane {
   position: absolute;
   top: 500px;
-  @include animation(boat 20s infinite);
+  opacity: 0;
+  @include animation(plane 20s infinite);
   z-index: 1;
+}
+
+#stats {
+  z-index: 4;
 }

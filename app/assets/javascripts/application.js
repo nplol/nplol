@@ -13,6 +13,7 @@
 //= require jquery-2.1.1
 //= require jquery_ujs
 //= require jquery.tipsy
+//= require jquery.animate-enhanced
 //= require q
 //= require packery
 //= require posts

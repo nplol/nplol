@@ -36,10 +36,8 @@ class App
   reloadHeader: (html) ->
     @header.reload(html)
 
-  # initGoogleAuth: ->
-  #   @googleAuth = new GoogleAuth()
 
-  # private API
+  # private methods
 
   _changeView: (html, callback) ->
     $('#app').addClass('transition')
@@ -71,23 +69,3 @@ class App
   # prependDimmer = ->
     # $('#main').prepend('<div class="dim"></div>')
   #
-
-  # hack due to popstate being fired instantly in chrome.
-  # http://stackoverflow.com/questions/7860960/popstate-returns-event-state-is-undefined
-  # popped = ('state' in window.history)
-  # initialURL = location.href
-  #
-  # $(window).on 'popstate', (event) ->
-  #   # debugger
-  #   # initialPop = !popped && location.href == initialURL
-  #   # popped = true
-  #   # return if initialPop
-  #
-  #   # only pushState applies state to the event.
-  #   state = event.originalEvent.state
-  #
-  #   $('#app').addClass('transition')
-  #   if state
-  #     fetchPost(state.url)
-  #   else
-  #     fetchPosts()
