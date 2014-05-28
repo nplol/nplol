@@ -18,6 +18,7 @@
 //= require packery
 //= require posts
 //= require comments
+//= require assets
 //= require header
 //= require auth
 //= require app
