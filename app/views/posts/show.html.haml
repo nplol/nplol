@@ -27,10 +27,9 @@
     %section#details
       %span
         %i.fa.fa-pencil
-        = @post.author.name
+        - @post.author.username.nil? ? author = @post.author.name.split(' ').first : author = @post.author.username
+        = "@#{author.downcase}"
       %span
-        %i.fa.fa-comment-o
-        = @post.comments.length
 
 
 = javascript_include_tag 'comments'

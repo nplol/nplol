@@ -1,14 +1,10 @@
 @import 'bourbon';
 @import 'colors';
 
-@include font-face(bitter, 'bitter/bitter', normal, $asset-pipeline: true);
-@include font-face(bitter-bold, 'bitter/bitter-bold', normal, $asset-pipeline: true);
-@include font-face(typewriter, 'typewriter/typewriter', normal, $asset-pipeline: true);
-
-
+@include font-face(open-sans, 'OpenSans-Regular', normal, $asset-pipeline: true);
 
 body {
-  font-family: 'bitter';
+  font-family: 'open-sans';
   font-size: 18px;
   line-height: 26px;
   color: $black;
@@ -49,7 +45,8 @@ body {
 }
 
 .disabled {
-  opacity: 0.7;
+  opacity: 0.5;
+  cursor: no-drop;
 }
 
 .hidden {

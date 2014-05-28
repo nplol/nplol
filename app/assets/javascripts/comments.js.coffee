@@ -11,12 +11,18 @@ $ ->
       event.preventDefault()
       _showForm()
 
+  $form.on 'submit', (event) ->
+    $button.addClass('disabled').disabled = true
+
   $form.on 'ajax:success', (event, html) ->
-    $('#comments').append(html)
-    _clearForm()
+    $('#comments').prepend(html)
 
   $form.on 'ajax:error', (event, xhr, status, error) ->
-    $(@).html(xhr.responseText)
+    $form.html(xhr.responseText)
+
+  $form.on 'ajax:complete', ->
+    $button.removeClass('disabled').disabled = false
+    _clearForm()
 
   _showForm = ->
     $form.find('.hidden').removeClass('hidden')
