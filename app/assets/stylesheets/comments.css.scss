@@ -1,8 +1,9 @@
 @import 'bourbon';
+@import 'colors';
 
 #new_comment {
   box-sizing: border-box;
-  margin: 100px auto 0 auto;
+  margin: 50px 0;
 
   .form-element {
     height: 51px;
@@ -44,56 +45,74 @@
   }
 }
 
-.comment-container {
-  margin-top: 20px;
-}
-
 .comment {
-  display: block;
-  background: #c5d8d5;
-  position: relative;
-  margin-left: 60px;
-  padding: 3px;
-  .inner {
-    background: #ffffff;
-    border: 1px solid #eee;
-    border-radius: 3px;
-    padding: 10px;
+  flex: none;
+  width: 70%;
+  display: flex;
+  margin-bottom: 50px;
+  padding: 10px;
+  align-items: center;
+
+  img {
+    @include transition(opacity .4s ease-in-out);
+    opacity: .8;
+
+    &:hover {
+      opacity: 1;
+    }
+
+  }
+
+    &:nth-child(2n) {
+      align-self: flex-end;
+
+      section {
+        order: -1;
+        text-align: right;
+        margin-left: 0;
+
+        &:after {
+          border-width: 10px 0 10px 12px;
+          right: -11px;
+          left: auto;
+          border-color: transparent $fadedRed;
+        }
+
+        p {
+          background: $fadedRed;
+          color: $white;
+        }
+
+      }
+  }
+
+  aside {
+    width: 100px;
+    flex: none;
+  }
+
+  section {
+    box-sizing: border-box;
+    flex: 1;
+    position: relative;
+
+    &:after {
+      content: "";
+      position: absolute;
+      top: 25px;
+      left: -12px;
+      border-width: 10px 12px 10px 0;
+      border-style: solid;
+      border-color: transparent $fadedBlue;
+      display: block;
+      width: 0;
+    }
+
     p {
-      margin:0;
+      padding: 20px;
+      margin: 0;
+      background: $fadedBlue;
+      display: inline-block;
     }
   }
-}
-
-.comment:before {
-  content: "";
-  display: block;
-  height: 0;
-  width: 0;
-  border: 10px solid #EEE;
-  border-width: 10px 10px 10px 0;
-  border-color: rgba(238,238,238,0) #c5d8d5 rgba(238,238,238,0) rgba(238,238,238,0);
-  position: absolute;
-  left: -10px;
-  top: 15px;
-}
-
-.avatar {
-  height:48px;
-  width:48px;
-  float: left;
-  position: relative;
-}
-
-.author {
-  opacity: .6;
-  float: right;
-}
-
-input.input-error, textarea.input-error {
-  border: 1px red solid;
-}
-
-.commenter {
-  font-size: 0.75em;
 }

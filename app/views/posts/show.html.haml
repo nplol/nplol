@@ -18,10 +18,19 @@
       %p
         = markdown(@post.content)
 
-  = render 'comments/form', comment: @post.comments.build
 
-  %section#comments
-    - @post.comments.order('created_at DESC').each do |comment|
-      =render comment
+  = render 'comments/form', comment: @post.comments.build
+  %section.related
+    %section#comments
+      - @post.comments.order('created_at DESC').each do |comment|
+        =render comment
+    %section#details
+      %span
+        %i.fa.fa-pencil
+        = @post.author.name
+      %span
+        %i.fa.fa-comment-o
+        = @post.comments.length
+
 
 = javascript_include_tag 'comments'
