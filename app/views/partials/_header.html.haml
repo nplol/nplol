@@ -10,8 +10,10 @@
       %i.fa.fa-lg.fa-github(title="Sign in")
   - else
     - if current_user.nplol?
-      %a.new-post{ href: new_post_path }
-        %i.fa.fa-lg.fa-pencil(title="New Post")
+      %a.new-meme{ href: new_post_path(type: 'Meme') }
+        %i.fa.fa-lg.fa-reddit(title="New Meme")
+      %a.new-post{ href: new_post_path(type: 'Article') }
+        %i.fa.fa-lg.fa-pencil(title="New Article")
     %a.settings
       %i.fa.fa-lg.fa-cog(title="Settings")
 

@@ -12,43 +12,17 @@
     = f.text_field :title, placeholder: 'Title'
   %section.form-element
     = f.text_field :tag_list, placeholder: 'Tags'
-  %section.form-element
-    = f.text_area :content, placeholder: 'Write som stuff, brah.'
 
-  %section#preview
+  = f.hidden_field :type
 
-  = javascript_include_tag 'markdown'
-  :javascript
-    $(document).ready(function() {
-      function Editor(input, preview) {
-          this.update = function () {
-            preview.innerHTML = markdown.toHTML(input.value);
-          };
-          input.editor = this;
-          this.update();
-      }
-      $('#post_content').attr('oninput', 'this.editor.update()')
-      new Editor(document.getElementById("post_content"), document.getElementById("preview"));
-    })
+  - if @post.is_a?(Article)
+    = render 'markdown_content', f: f
+    = render 'assets', f: f
+    -# = hidden_field_tag :type, 'Article'
+  - else
+    %section.form-element
+      = f.label :image
+      = f.file_field :image
+    -# = hidden_field_tag :type, 'Meme'
 
-  %secion.assets{class: ('hidden' if @post.assets.empty?)}
-    %section.label
-      =t('assets')
-    %section.images
-      - @post.assets.each do |asset|
-        = render asset
-        = f.hidden_field :asset_attributes, name: 'post[asset_attributes][]', value: asset.id
-  %section.asset-tools{class: ('hidden' if @post.assets.empty?)}
-    %section.label
-      &nbsp;
-    %section.tools-container
-      %input.asset-url
-      .remove-asset
-        %i.fa.fa-times.fa-lg
-
-  %section.buttons
-    = link_to 'Add images?', new_asset_path, remote: true, class: 'button add-asset'
-    = link_to "Delete post?", post_path(@post), method: :delete, confirm: "Are you sure?" if @post.id
-    = f.submit
-
-= javascript_include_tag 'assets'
+  = f.submit

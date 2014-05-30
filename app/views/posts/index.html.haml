@@ -1,14 +1,9 @@
 %section#posts
   - @posts.each do |post|
-    - if post.meme?
-      .post.meme{ data: { post_id: post.id } }
-        %article
-          %h3=post.title
-          .image
-            =image_tag(post.image.url(:medium))
-    - else
-      .post{ data: { post_id: post.id } }
-        %article
-          %h3=post.title
-          %p
-            = markdown(post.content)
+    .post{ data: { post_id: post.id } }
+      %article
+        %h3= post.title
+        - if post.is_a?(Meme)
+          =image_tag(post.image.url(:medium))
+        - else
+          %p= markdown(post.content)

@@ -30,6 +30,11 @@ form {
       font-size: 52px;
     }
 
+    &[type="file"] {
+      border: 0;
+      display: flex;
+    }
+
     &:focus {
       opacity: 1;
       outline:0;
@@ -54,4 +59,15 @@ form {
   label {
     width: 80px;
   }
+}
+
+input[type="submit"] {
+  background: #da4c43;
+  padding: 20px 50px;
+  text-align: center;
+  color: #fff;
+  border: 0;
+  width: 100%;
+  font-size: 22px;
+  box-sizing: border-box;
 }

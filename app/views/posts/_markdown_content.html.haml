@@ -1,0 +1,18 @@
+%section.form-element
+  = f.text_area :content, placeholder: 'Write som stuff, brah.'
+
+%section#preview
+
+= javascript_include_tag 'markdown'
+:javascript
+  $(document).ready(function() {
+    function Editor(input, preview) {
+        this.update = function () {
+          preview.innerHTML = markdown.toHTML(input.value);
+        };
+        input.editor = this;
+        this.update();
+    }
+    $('#post_content').attr('oninput', 'this.editor.update()')
+    new Editor(document.getElementById('post_content'), document.getElementById("preview"));
+  })

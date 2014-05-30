@@ -1,9 +1,3 @@
 %article#post
-  %h1 Edit post
-
-  - if @post.meme?
-    = render 'posts/memes/meme_form'
-  - else
-    =render 'form'
-
-=javascript_include_tag 'posts'
+  %h1= "Edit #{@type.capitalize}"
+  = render 'form'

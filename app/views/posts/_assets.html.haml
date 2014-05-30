@@ -1,0 +1,16 @@
+%secion.assets{class: ('hidden' if @post.assets.empty?)}
+  %section.label
+    =t('assets')
+  %section.images
+    - @post.assets.each do |asset|
+      = render asset
+      = f.hidden_field :asset_attributes, name: 'post[asset_attributes][]', value: asset.id
+%section.asset-tools{class: ('hidden' if @post.assets.empty?)}
+  %section.label
+    &nbsp;
+  %section.tools-container
+    %input.asset-url
+    .remove-asset
+      %i.fa.fa-times.fa-lg
+
+= javascript_include_tag 'assets'

@@ -1,5 +1,5 @@
 %article#post
-  %h1.title= @post.title
+  %h1= @post.title
   %secion.post-meta
     %section.published
       %i.fa.fa-clock-o.fa-lg
@@ -10,13 +10,14 @@
     %section.comments
       =link_to @post do
         %i.fa.fa-comment-o.fa-lg
-        = "#{@post.comments.count} comments"
+        %span.count= @post.comments.count
+        comments
   %section.content
-    - if @post.meme?
-      =image_tag(@post.image.url(:large))
-    - else
+    - if @post.is_a?(Article)
       %p
         = markdown(@post.content)
+    - else
+      =image_tag(@post.image.url(:large))
 
 
   = render 'comments/form', comment: @post.comments.build
@@ -30,6 +31,3 @@
         - @post.author.username.nil? ? author = @post.author.name.split(' ').first : author = @post.author.username
         = "@#{author.downcase}"
       %span
-
-
-= javascript_include_tag 'comments'

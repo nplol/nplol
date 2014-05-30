@@ -1,7 +1,7 @@
 Nplol::Application.routes.draw do
 
   resources :posts do
-  	resources :comments, only: [:new, :create]
+    resources :comments, only: [:new, :create]
   end
 
   # assets have to live as top-level resources in order to be

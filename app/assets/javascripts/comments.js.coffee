@@ -16,6 +16,7 @@ $ ->
 
   $form.on 'ajax:success', (event, html) ->
     $('#comments').prepend(html)
+    _incrementCounter()
 
   $form.on 'ajax:error', (event, xhr, status, error) ->
     $form.html(xhr.responseText)
@@ -34,3 +35,6 @@ $ ->
   _buttonReady = ->
     $button.val('Post comment')
     $button.data('ready', true)
+
+  _incrementCounter = ->
+    $('.count').html(parseInt($('.count').text()) + 1)

@@ -16,6 +16,9 @@ class App
       else
         @fetchPost(null, @postGrid.load)
 
+    $(@).on 'new_comment', ->
+      debugger
+
   fetchPost: (url = null, callback) ->
     url ||= '/'
     Q($.ajax(url)

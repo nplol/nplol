@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :set_type, only: [:new, :create]
 
   def index
   	@posts = Post.all.order('created_at DESC')
@@ -6,24 +7,21 @@ class PostsController < ApplicationController
   end
 
   def new
-  	@post = Post.new
+    return redirect_to root_url unless params[:type]
+    @post = type_class.new
     authorize @post, :manage?
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = type_class.new(post_params)
+    @post.author = current_user
     authorize @post, :manage?
+
     if @post.save
       redirect_to post_path(@post)
     else
     	render 'new'
     end
-  end
-
-  def form
-    meme? ? @post = Meme.new : @post = Post.new
-    render partial: 'posts/memes/meme_form', layout: false and return if meme?
-    render partial: 'form', layout: false
   end
 
   def edit
@@ -32,19 +30,16 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    @post.meme? ? params = meme_params : params = post_params
-    if @post.update(params)
+    if @post.update(post_params)
       flash[:notice] = 'Post updated.'
-      return redirect_to @post unless @post.meme?
-      redirect_to root_path
+      redirect_to @post
     else
       render 'edit'
     end
   end
 
   def show
-  	@post = Post.find(params[:id])
-
+    @post = Post.find(params[:id])
     render 'show', layout: false if request.xhr?
   end
 
@@ -56,12 +51,18 @@ class PostsController < ApplicationController
   end
 
   private
-  def post_params
-    params.require(:post).permit(:title, :content, :tag_list)
+
+  def set_type
+    params[:post] ? @type = params[:post][:type] : @type = params[:type]
   end
 
-  def meme_params
-    params.require(:post).permit( :title, :type, :tag_list, :image)
+  def type_class
+    @type.constantize
   end
+
+  def post_params
+    params.require(:post).permit(:title, :content, :tag_list, :image)
+  end
+
 
 end

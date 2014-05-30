@@ -3,9 +3,8 @@ class Meme < Post
 
   validates_attachment_content_type :image, :content_type => /^image\/(png|gif|jpeg|jpg)/
 
-  belongs_to :author, class_name: 'User', foreign_key: 'user_id'
+  validates_attachment_presence :image
 
-  # awesome hack: http://stackoverflow.com/questions/4507149/best-practices-to-handle-routes-for-sti-subclasses-in-rails
   def self.model_name
     Post.model_name
   end
