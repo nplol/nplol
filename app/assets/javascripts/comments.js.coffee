@@ -1,44 +1,48 @@
 class CommentForm
 
   constructor: ->
+    @$button = $('#add_comment')
+    @$el = $('#comment_form_container')
+    @initBindings()
+
+  initBindings: ->
     # make sure to reload our comment form if a user logs in
     $(window).on 'auth', (event) ->
       location.reload(false)
 
-    $button = $('#add_comment')
-    $el = $('#comment_form_container')
-
-    $button.on 'click', (event) ->
-      unless $button.data().ready
+    @$button.on 'click', (event) =>
+      unless @$button.data().ready
         event.preventDefault()
-        _showForm()
+        @_showForm()
 
-    $el.on 'submit', (event) ->
-      $button.addClass('disabled').disabled = true
+    @$el.on 'submit', (event) =>
+      @$button.addClass('disabled').disabled = true
 
-    $el.on 'ajax:success', (event, html) ->
+    @$el.on 'ajax:success', (event, html) =>
       $('#comments').prepend(html)
-      _incrementCounter()
+      @_incrementCounter()
 
-    $el.on 'ajax:error', (event, xhr, status, error) ->
-      $el.html(xhr.responseText)
+    @$el.on 'ajax:error', (event, xhr, status, error) =>
+      @$el.html(xhr.responseText)
 
-    $el.on 'ajax:complete', ->
-      $button.removeClass('disabled').disabled = false
-      _clearForm()
+    @$el.on 'ajax:complete', =>
+      @$button.removeClass('disabled').disabled = false
+      @_clearForm()
 
-    _showForm = ->
-      $el.find('.hidden').removeClass('hidden')
-      _buttonReady() unless $('.message').length > 0
+  # private methods
 
-    _clearForm = ->
-      $el.find('input[type="text"]').removeClass('input-error').val('')
+  _showForm: ->
+    @$el.find('.hidden').removeClass('hidden')
+    @_buttonReady() unless $('.message').length > 0
 
-    _buttonReady = ->
-      $button.val('Post comment')
-      $button.data('ready', true)
+  _clearForm: ->
+    @$el.find('input[type="text"]').removeClass('input-error').val('')
 
-    _incrementCounter = ->
-      $('.count').html(parseInt($('.count').text()) + 1)
+  _buttonReady: ->
+    @$button.val('Post comment')
+    @$button.data('ready', true)
+
+  _incrementCounter: ->
+    $('.count').html(parseInt($('.count').text()) + 1)
 
 @CommentForm = CommentForm

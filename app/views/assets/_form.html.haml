@@ -1,15 +1,6 @@
-= form_for @asset, remote: true, data: { type: 'html' } do |f|
-  - if @asset.errors.any?
-    %section.errors
-      %ul
-        = render 'partials/error', { errors: @asset.errors }
+%section#asset-container
+  = form_for @asset, html: { multipart: true } do |f|
 
-  -# generates anti-CSRF token
-  =token_tag(nil)
-
-  %section.form-input
-    = f.label :image
-    = f.file_field :image
-
-  %section.buttons
-    = f.submit
+    %section.form-input
+      = f.label :image
+      = f.file_field :image

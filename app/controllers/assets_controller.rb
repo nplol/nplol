@@ -9,7 +9,7 @@ class AssetsController < ApplicationController
     @asset = Asset.new(asset_params)
 
     if @asset.save
-      render @asset, layout: false
+      render json: @asset.to_json(methods: :thumb_url)
     else
       render partial: 'form', layout: false, status: 400
     end

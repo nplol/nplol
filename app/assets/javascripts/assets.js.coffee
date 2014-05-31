@@ -1,4 +1,42 @@
-$ ->
+class AssetForm
+
+  constructor: (html) ->
+    $('.dim').html(html)
+    @$el = $('#asset-container')
+    @initBindings()
+
+  initBindings: ->
+    @$el.on 'new_asset', (event) =>
+      asset = event.asset
+      @showAssetsAndTools() unless $('.asset').length > 0
+      @addAssetToPost(asset)
+      @addAssetToDOM(asset)
+      app.emit $.Event('asset_created')
+
+    $('#asset_image').fileupload
+      dataType: 'json'
+      done: (e, data) =>
+        @$el.trigger $.Event('new_asset', { asset: data.result } )
+
+  addAssetToPost: (asset) ->
+    $('<input>')
+      .attr('type', 'hidden')
+      .attr('name', 'post[asset_attributes][]')
+      .val(asset.id)
+      .appendTo $('#new_post')
+
+  showAssetsAndTools: ->
+    $('.assets').fadeIn('fast')
+    $('.asset-tools').fadeIn('fast')
+
+  addAssetToDOM: (asset) ->
+    $('<img>')
+      .attr('src', asset.thumb_url)
+      .appendTo $('.assets .images')
+
+@AssetForm = AssetForm
+
+# $ ->
 
   # # needs to be made global so that it can be called from posts.js.coffee
   # @addListenersToAssetForm = ->

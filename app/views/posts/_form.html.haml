@@ -18,11 +18,10 @@
   - if @post.is_a?(Article)
     = render 'markdown_content', f: f
     = render 'assets', f: f
-    -# = hidden_field_tag :type, 'Article'
   - else
     %section.form-element
       = f.label :image
       = f.file_field :image
-    -# = hidden_field_tag :type, 'Meme'
 
   = f.submit
+  

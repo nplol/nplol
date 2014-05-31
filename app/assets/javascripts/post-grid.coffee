@@ -1,9 +1,6 @@
 class PostGrid
 
   constructor: ->
-    @load()
-
-  load: =>
     $container = $('#posts')
     $container.packery {
       itemSelector: '.post',

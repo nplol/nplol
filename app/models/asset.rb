@@ -7,4 +7,8 @@ class Asset < ActiveRecord::Base
 
   validates_attachment_content_type :image, content_type: 'image/png'
 
+  def thumb_url
+    image.url(:thumb)
+  end
+
 end

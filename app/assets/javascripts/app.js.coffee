@@ -15,10 +15,17 @@ class App
       else
         @fetchPost(null)
 
-    @$el.on 'comment_form', ->
-      @commentForm = new CommentForm()
+    @$el.on 'comment_form', =>
+      @commentForm ||= new CommentForm()
 
-    @$el.on 'post_grid', ->
+    @$el.on 'asset_form', (event) =>
+      @_dim(true)
+      @assetForm ||= new AssetForm(event.html)
+
+    @$el.on 'asset_created', =>
+      @_dim(false)
+
+    @$el.on 'post_grid', =>
       @postGrid = new PostGrid()
 
   fetchPost: (url = null, callback) ->
@@ -48,10 +55,18 @@ class App
   # private methods
 
   _changeView: (html) ->
-    $('#app').addClass('transition')
+    @$el.addClass('transition')
     timeout = ->
-      $('#app').html(html).removeClass('transition')
+      @$el.html(html).removeClass('transition')
     setTimeout(timeout, 400)
+
+  _dim: (lightSwitch) ->
+    @_prependDimmer() unless $('.dim').length > 0
+    $('.dim').html('') unless lightSwitch
+    if lightSwitch then $('.dim').fadeIn('fast') else $('.dim').fadeOut('fast')
+
+  _prependDimmer: ->
+    $('#app').prepend $('<div>', { class: 'dim'})
 
 @App = App
 
@@ -59,8 +74,6 @@ class App
   # dim the background
   # @dim = (lightSwitch) ->
   #   prependDimmer() unless $('.dim').length > 0
-  #   $('.dim').html('') unless lightSwitch
-  #   if lightSwitch then $('.dim').fadeIn('fast') else $('.dim').fadeOut('fast')
   #
   # @clearForm = ($form) ->
   #   $form.find('input[type=text]').val('')

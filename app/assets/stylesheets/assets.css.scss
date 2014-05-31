@@ -1,3 +1,4 @@
+@import 'colors';
 
 #new_asset {
   width: 50%;
@@ -50,8 +51,11 @@
   }
 }
 
-#add-asset {
-  display: block;
+#add_asset {
+  width: 30%;
+  padding: 10px;
+  background: $fadedBlue;
+  color: $black;
 }
 
 .asset {
