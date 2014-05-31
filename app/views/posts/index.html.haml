@@ -7,3 +7,8 @@
           =image_tag(post.image.url(:medium))
         - else
           %p= markdown(post.content)
+
+:javascript
+  $(document).ready(function() {
+    app.emit($.Event('post_grid'))
+  });

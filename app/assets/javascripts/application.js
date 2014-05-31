@@ -23,4 +23,5 @@
 
 $(document).ready(function() {
   window.app = new App();
+  app.emit($.Event('app_loaded'));
 })

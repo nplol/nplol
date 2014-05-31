@@ -19,8 +19,8 @@
     - else
       =image_tag(@post.image.url(:large))
 
-
-  = render 'comments/form', comment: @post.comments.build
+  %section#comment_form_container
+    = render 'comments/form', comment: @post.comments.build
   %section.related
     %section#comments
       - @post.comments.order('created_at DESC').each do |comment|

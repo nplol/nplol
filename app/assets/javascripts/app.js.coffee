@@ -2,22 +2,24 @@
 class App
 
   constructor: ->
-    @postGrid = new PostGrid()
     @header = new Header()
     @auth = new Auth()
+    @$el = $('#app')
     @initBindings()
 
   initBindings: ->
     $(window).on 'popstate', (event) =>
-
       state = event.originalEvent.state
       if state && state.url != '/'
         @fetchPost(state.url)
       else
-        @fetchPost(null, @postGrid.load)
+        @fetchPost(null)
 
-    $(@).on 'new_comment', ->
-      debugger
+    @$el.on 'comment_form', ->
+      @commentForm = new CommentForm()
+
+    @$el.on 'post_grid', ->
+      @postGrid = new PostGrid()
 
   fetchPost: (url = null, callback) ->
     url ||= '/'
@@ -26,12 +28,15 @@ class App
     .then(
       (html) =>
         history.pushState({ url: url }, null, url)
-        @_changeView(html, callback)
+        @_changeView(html)
     )
     .fail(
       (error) ->
         console.log('failed to load post.')
     )
+
+  emit: (event) =>
+    @$el.trigger(event)
 
   toggleHeader: ->
     @header.toggle()
@@ -42,11 +47,10 @@ class App
 
   # private methods
 
-  _changeView: (html, callback) ->
+  _changeView: (html) ->
     $('#app').addClass('transition')
     timeout = ->
       $('#app').html(html).removeClass('transition')
-      callback() if callback?
     setTimeout(timeout, 400)
 
 @App = App
