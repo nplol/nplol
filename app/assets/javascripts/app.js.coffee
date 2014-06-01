@@ -16,14 +16,15 @@ class App
         @fetchPost(null)
 
     @$el.on 'comment_form', =>
-      @commentForm ||= new CommentForm()
+      @commentForm = new CommentForm()
 
     @$el.on 'asset_form', (event) =>
       @_dim(true)
-      @assetForm ||= new AssetForm(event.html)
+      @assetForm = new AssetForm()
 
     @$el.on 'asset_created', =>
       @_dim(false)
+      delete @assetForm
 
     @$el.on 'post_grid', =>
       @postGrid = new PostGrid()
@@ -56,7 +57,7 @@ class App
 
   _changeView: (html) ->
     @$el.addClass('transition')
-    timeout = ->
+    timeout = =>
       @$el.html(html).removeClass('transition')
     setTimeout(timeout, 400)
 

@@ -1,7 +1,6 @@
 - @comment = comment if local_assigns.has_key? :comment
 - ready = @comment.errors.any?
 - ready ? value = 'Post comment' : value = 'Write something clever'
-
 = form_for([@comment.post, @comment], remote: true) do |f|
 
   %section.form-element{class: ('hidden' unless ready)}
