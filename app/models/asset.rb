@@ -11,4 +11,8 @@ class Asset < ActiveRecord::Base
     image.url(:thumb)
   end
 
+  def large_url
+    image.url(:large)
+  end
+
 end

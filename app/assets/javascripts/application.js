@@ -10,19 +10,23 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+// vendor libs
 //= require jquery-2.1.1
 //= require jquery_ujs
 //= require jquery.tipsy
 //= require q
 //= require packery
-//= require post-grid
+//= require event-emitter
+
+// application-specific js
+//= require post-manager
+//= require post-form
 //= require comments
-//= require assets
 //= require header
 //= require auth
 //= require app
 
+// application entry point
 $(document).ready(function() {
   window.app = new App();
-  app.emit($.Event('app_loaded'));
 })

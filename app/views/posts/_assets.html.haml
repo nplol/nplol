@@ -18,10 +18,3 @@
 = javascript_include_tag 'jquery-ui.widget'
 = javascript_include_tag 'jquery.iframe-transport'
 = javascript_include_tag 'jquery.file-upload'
-
-:javascript
-  $(document).ready(function() {
-    $('#add_asset').on('ajax:success', function(event, html) {
-      app.emit($.Event('asset_form', {html: html }))
-    });
-  });

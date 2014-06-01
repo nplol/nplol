@@ -24,7 +24,7 @@ gem 'truncate_html'
 gem 'redcarpet'
 
 # paperclip and aws for remote file upload
-gem 'paperclip'
+gem 'paperclip', '~> 4.1'
 gem 'aws-sdk'
 
 # analytics all the things

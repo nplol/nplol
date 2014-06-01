@@ -1,59 +1,24 @@
-# application entry point
-class App
+class App extends EventEmitter
 
   constructor: ->
     @header = new Header()
-    @auth = new Auth()
+    @postManager = new PostManager()
     @$el = $('#app')
-    @initBindings()
+    @initEvents()
 
-  initBindings: ->
-    $(window).on 'popstate', (event) =>
-      state = event.originalEvent.state
-      if state && state.url != '/'
-        @fetchPost(state.url)
-      else
-        @fetchPost(null)
+  initEvents: ->
+    @.on 'post_grid', ->
+      @postManager.loadGrid()
 
-    @$el.on 'comment_form', =>
-      @commentForm = new CommentForm()
+    @.on 'post_form', ->
+      @postForm = new PostForm()
 
-    @$el.on 'asset_form', (event) =>
-      @_dim(true)
-      @assetForm = new AssetForm()
+    @postManager.on 'fetched_post', (post) =>
+      history.pushState({ url: post.url }, null, post.url)
+      @_changeView(post.html)
 
-    @$el.on 'asset_created', =>
-      @_dim(false)
-      delete @assetForm
-
-    @$el.on 'post_grid', =>
-      @postGrid = new PostGrid()
-
-  fetchPost: (url = null, callback) ->
-    url ||= '/'
-    Q($.ajax(url)
-    )
-    .then(
-      (html) =>
-        history.pushState({ url: url }, null, url)
-        @_changeView(html)
-    )
-    .fail(
-      (error) ->
-        console.log('failed to load post.')
-    )
-
-  emit: (event) =>
-    @$el.trigger(event)
-
-  toggleHeader: ->
-    @header.toggle()
-
-  reloadHeader: (html) ->
-    @header.reload(html)
-
-
-  # private methods
+    @.on 'dim', (lightSwitch) =>
+      @_dim(lightSwitch)
 
   _changeView: (html) ->
     @$el.addClass('transition')
@@ -70,23 +35,3 @@ class App
     $('#app').prepend $('<div>', { class: 'dim'})
 
 @App = App
-
-
-  # dim the background
-  # @dim = (lightSwitch) ->
-  #   prependDimmer() unless $('.dim').length > 0
-  #
-  # @clearForm = ($form) ->
-  #   $form.find('input[type=text]').val('')
-  #   $form.find('textarea').val('')
-
-  # keyCode 27: escape
-  # $(document).keydown((event) ->
-    # dim(false) if event.keyCode == 27
-  # )
-
-
-
-  # prependDimmer = ->
-    # $('#main').prepend('<div class="dim"></div>')
-  #

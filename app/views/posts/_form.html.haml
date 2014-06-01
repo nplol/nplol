@@ -24,4 +24,8 @@
       = f.file_field :image
 
   = f.submit
-  
+
+:javascript
+  $(document).ready(function() {
+    app.emit('post_form');
+  });
