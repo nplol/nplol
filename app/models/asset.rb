@@ -1,6 +1,6 @@
 class Asset < ActiveRecord::Base
 
-  belongs_to :article, class_name: 'Post', foreign_key: 'post_id'
+  belongs_to :article#, class_name: 'Post', foreign_key: 'post_id'
 
   has_attached_file :image, styles: { large: '640x480', medium: '300x300>', thumb: '100x100>' }
 

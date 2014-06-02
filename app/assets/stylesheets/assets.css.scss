@@ -8,6 +8,7 @@
 }
 
 #new_asset {
+  display:inline-block;
   padding: 30px;
   background: $white;
   flex: 1;
@@ -73,7 +74,7 @@
       overflow: scroll;
       font-size: .8em;
     }
-    
+
   }
 
 }

@@ -37,6 +37,8 @@ gem 'omniauth-github'
 
 group :development do
   gem 'better_errors', '~> 1.1.0'
+  # lets get those line numbers, pl0x
+  gem 'coffee-rails-source-maps'
   gem 'spring'
   gem 'priscilla'
 end

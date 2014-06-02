@@ -16,6 +16,7 @@ class PostsController < ApplicationController
     @post = type_class.new(post_params)
     @post.author = current_user
     authorize @post, :manage?
+    byebug
     if @post.save
       redirect_to post_path(@post)
     else
