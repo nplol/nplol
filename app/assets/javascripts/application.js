@@ -22,7 +22,6 @@
 // application-specific js
 //= require post-manager
 //= require post-form
-//= require comment-form
 //= require header
 //= require auth
 //= require app
