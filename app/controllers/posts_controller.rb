@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_type, only: [:new, :create]
+  before_action :set_type, only: [:new, :create, :edit]
 
   def index
   	@posts = Post.all.order('created_at DESC')
@@ -16,7 +16,6 @@ class PostsController < ApplicationController
     @post = type_class.new(post_params)
     @post.author = current_user
     authorize @post, :manage?
-
     if @post.save
       redirect_to post_path(@post)
     else
@@ -26,6 +25,7 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    authorize @post, :manage?
   end
 
   def update
@@ -61,7 +61,8 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :content, :tag_list, :image)
+    # asset_attributes: [] required for nested attributes for assets.
+    params.require(:post).permit(:title, :content, :tag_list, :image, :type, asset_attributes: [])
   end
 
 

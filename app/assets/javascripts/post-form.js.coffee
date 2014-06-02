@@ -54,6 +54,7 @@ class PostForm
 
   _addAssetToPost: (asset) ->
     $('<input>')
+      .data('id', asset.id)
       .attr('type', 'hidden')
       .attr('name', 'post[asset_attributes][]')
       .val(asset.id)
@@ -86,6 +87,7 @@ class PostForm
     .then(
       (data) =>
         $('.asset').filterByData('id', data.id).remove()
+        $('input[name="post[asset_attributes][]"]').filterByData('id', data.id).remove())
         $('.asset-url').html('')
         @has_assets = $('.asset').length > 0
         @$el.toggleClass('hidden') unless @has_assets

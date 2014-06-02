@@ -2,7 +2,7 @@
   Images
   .images
     - @post.assets.each do |asset|
-      = image_tag(asset.url(:thumb), class: 'asset', title: 'Click to view URL')
+      = image_tag(asset.thumb_url, { class: 'asset', title: 'Click to view URL', data: { 'large-url' => asset.large_url, id: asset.id } })
       = f.hidden_field :asset_attributes, name: 'post[asset_attributes][]', value: asset.id
   .asset-meta
     .asset-url
