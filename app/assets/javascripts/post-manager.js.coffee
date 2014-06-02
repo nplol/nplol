@@ -93,13 +93,13 @@ class PostManager extends EventEmitter
 
         @$el.on 'ajax:success', (event, html) =>
           @emit('new_comment', html)
+          @_clearForm()
 
         @$el.on 'ajax:error', (event, xhr, status, error) =>
           @emit('error')
 
         @$el.on 'ajax:complete', =>
           @$button.removeClass('disabled').disabled = false
-          @_clearForm()
 
       _showForm: ->
         @$el.find('.hidden').removeClass('hidden')
