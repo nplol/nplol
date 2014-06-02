@@ -44,12 +44,10 @@ class PostManager extends EventEmitter
       @initBindings()
 
     initBindings: ->
-      # TODO: fix, eugh
-      that = @
-      $('.post').on 'click', (event) ->
+      $('.post').on 'click', (event) =>
         event.preventDefault();
-        post_id = $(@).data('post-id')
-        that.emit('fetch_post', post_id)
+        post_id = $(event.delegateTarget).data('post-id')
+        @emit('fetch_post', post_id)
 
   @PostGrid = PostGrid
 

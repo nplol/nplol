@@ -1,19 +1,17 @@
-%secion.assets{class: ('hidden' if @post.assets.empty?)}
-  %section.label
-    =t('assets')
-  %section.images
+%section#assets{class: ('hidden' if @post.assets.empty?)}
+  Images
+  .images
     - @post.assets.each do |asset|
-      = render asset
+      = image_tag(asset.url(:thumb), class: 'asset', title: 'Click to view URL')
       = f.hidden_field :asset_attributes, name: 'post[asset_attributes][]', value: asset.id
-%section.asset-tools{class: ('hidden' if @post.assets.empty?)}
-  %section.label
-    &nbsp;
-  %section.tools-container
-    %input.asset-url
-    .remove-asset
-      %i.fa.fa-times.fa-lg
+  .asset-meta
+    .asset-url
+    %aside.remove-asset.hidden
+      %i.fa.fa-trash-o.fa-lg(title="Delete image")
 
-= link_to 'Add image?', new_asset_path, id: 'add_asset', remote: true
+
+= link_to new_asset_path, id: 'add_asset', remote: true do
+  %i.fa.fa-paperclip.fa-2x(title="Add image")
 
 = javascript_include_tag 'jquery-ui.widget'
 = javascript_include_tag 'jquery.iframe-transport'

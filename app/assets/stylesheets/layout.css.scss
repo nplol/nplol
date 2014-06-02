@@ -34,15 +34,27 @@ body {
 }
 
 .dim {
-  display: none;
-  height:100%;
-  width:100%;
+  display: flex;
   position:fixed;
   left:0;
   top:0;
-  z-index:2 !important;
+  bottom:0;
+  right:0;
+  z-index:5;
   background: rgba(0,0,0,0.6);
+  opacity:1;
+  @include transition(opacity .4s ease-in-out);
+  align-items: center;
+  justify-content: center;
+
+  &.hidden {
+    opacity: 0;
+    display: flex;
+    bottom:100%;
+    right: 100%;
+  }
 }
+
 
 .disabled {
   opacity: 0.5;
