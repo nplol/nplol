@@ -1,6 +1,7 @@
 class PostForm
 
   constructor: ->
+    @has_assets = $('.asset').length > 0
     @initBindings()
 
   initBindings: ->
@@ -9,6 +10,14 @@ class PostForm
       @assetForm = new AssetForm(html)
       @initEvents()
 
+    if @has_assets
+      $('.asset').each (index, element) =>
+        @_configureAsset($(element))
+
+    $('.remove-asset').on 'click', (event) =>
+      asset_id = $('.asset.active').data('id')
+      @_deleteAsset(asset_id)
+
   initEvents: ->
     @assetForm.on 'new_asset', (asset) =>
       app.emit('dim', false)
@@ -16,11 +25,11 @@ class PostForm
       @_handleAsset(asset)
 
   _handleAsset: (asset) ->
-    @_showAssetsAndTools() unless $('.asset').length > 0
+    @_toggleAssetsAndTools() unless @has_assets
+    @has_assets = true
     @_addAssetToPost(asset)
     $asset = @_addAssetToDOM(asset)
     @_configureAsset($asset)
-    debugger
 
   _addAssetToPost: (asset) ->
     $('<input>')
@@ -29,9 +38,9 @@ class PostForm
       .val(asset.id)
       .appendTo $('#new_post')
 
-  _showAssetsAndTools: ->
-    $('.assets').fadeIn('fast')
-    $('.asset-tools').fadeIn('fast')
+  _toggleAssetsAndTools: ->
+    $('.assets').toggleClass('hidden')
+    $('.asset-tools').toggleClass('hidden')
 
   _addAssetToDOM: (asset) ->
     $asset = $('<img>')
@@ -39,6 +48,7 @@ class PostForm
                 .attr('title', 'Click to view URL')
                 .data('large-url', asset.large_url)
                 .data('id', asset.id)
+                .addClass('asset')
                 .appendTo $('.assets .images')
 
   _configureAsset: ($asset) ->
@@ -52,6 +62,21 @@ class PostForm
     $asset.addClass('active')
     $('.asset-url').val($asset.data('large-url'))
     $('.remove-asset').data('asset-id', $asset.data('id'))
+
+  _deleteAsset: (asset_id) ->
+    Q( $.ajax( url: "/assets/#{asset_id}", type: 'delete' )
+    )
+    .then(
+      (data) =>
+        $('.asset').filterByData('id', data.id).remove()
+        $('.asset-url').val('')
+        @has_assets = $('.asset').length > 0
+        @_toggleAssetsAndTools() unless @has_assets
+    )
+    .fail(
+      (error) ->
+        console.log 'Failed to delete asset.'
+    )
 
   class AssetForm extends EventEmitter
 

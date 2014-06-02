@@ -19,7 +19,7 @@ class AssetsController < ApplicationController
     @asset = Asset.find(params[:id])
 
     @asset.destroy
-    render nothing: true, status: :ok
+    render json: { id: @asset.id }
   end
 
   private

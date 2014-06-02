@@ -14,6 +14,7 @@
 //= require jquery-2.1.1
 //= require jquery_ujs
 //= require jquery.tipsy
+//= require_directory ./lib
 //= require q
 //= require packery
 //= require event-emitter
@@ -21,7 +22,7 @@
 // application-specific js
 //= require post-manager
 //= require post-form
-//= require comments
+//= require comment-form
 //= require header
 //= require auth
 //= require app

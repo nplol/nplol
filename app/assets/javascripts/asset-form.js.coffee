@@ -66,20 +66,20 @@
     # $('.asset.active').removeClass('active')
   #   $asset.addClass('active')
   #
-  # $('.remove-asset').on 'click', ->
-  #   $asset = $(".asset[data-asset-id=#{$(@).data('assetId')}]")
-  #   deleteAsset($asset)
-  #
-  # deleteAsset = ($asset) ->
-  #   $.ajax({
-  #     url: "/assets/#{$asset.attr('data-asset-id')}",
-  #     type: 'delete' })
-  #   .done( (html) ->
-  #       $asset.remove()
-  #       $('.asset-url').val('')
-  #       $("input[value=#{$asset.attr('data-asset-id')}]").remove()
-  #       hideAssetsAndTools() unless existingAssets()
-  #     )
+  $('.remove-asset').on 'click', ->
+    $asset = $(".asset[data-asset-id=#{$(@).data('assetId')}]")
+    deleteAsset($asset)
+
+  deleteAsset = ($asset) ->
+    $.ajax({
+      url: "/assets/#{$asset.attr('data-asset-id')}",
+      type: 'delete' })
+    .done( (html) ->
+        $asset.remove()
+        $('.asset-url').val('')
+        $("input[value=#{$asset.attr('data-asset-id')}]").remove()
+        hideAssetsAndTools() unless existingAssets()
+      )
   #
   # # iterate over each asset and add respective handlers and tooltips.
   # $('.asset').each (index, element) ->

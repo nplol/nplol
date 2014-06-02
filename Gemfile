@@ -25,7 +25,7 @@ gem 'redcarpet'
 
 # paperclip and aws for remote file upload
 gem 'paperclip', '~> 4.1'
-gem 'aws-sdk'
+gem 'aws-sdk', '~> 1.5.7'
 
 # analytics all the things
 gem 'google-analytics-rails'

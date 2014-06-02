@@ -29,8 +29,6 @@ class CommentForm
       @$button.removeClass('disabled').disabled = false
       @_clearForm()
 
-  # private methods
-
   _showForm: ->
     @$form.find('.hidden').removeClass('hidden')
     @_buttonReady() unless $('.message').length > 0
