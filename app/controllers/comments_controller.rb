@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
     if @comment.save
       render @comment, layout: false
     else
-      render partial: 'form', layout: false, status: 400
+      render json: { errors: @comment.errors.to_json }, status: 400
     end
   end
 

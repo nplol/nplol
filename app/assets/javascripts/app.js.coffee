@@ -10,6 +10,9 @@ class App extends EventEmitter
     @.on 'post_grid', ->
       @postManager.loadGrid()
 
+    @.on 'show_post', ->
+      @postManager.showPost()
+
     @.on 'post_form', ->
       @postForm = new PostForm()
 

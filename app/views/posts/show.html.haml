@@ -31,3 +31,8 @@
         - @post.author.username.nil? ? author = @post.author.name.split(' ').first : author = @post.author.username
         = "@#{author.downcase}"
       %span
+
+:javascript
+  $(document).ready(function() {
+    app.emit('show_post')
+  })
