@@ -58,7 +58,6 @@ class PostManager extends EventEmitter
 
     constructor: ->
       @$el = $('#comment_form_container')
-      @meme = $('.meme-image')
       @commentForm = new CommentForm()
       @initBindings()
       @initEvents()
@@ -67,19 +66,6 @@ class PostManager extends EventEmitter
       # make sure to reload our comment form if a user logs in
       $(window).on 'auth', (event) ->
         location.reload(false)
-
-      if @meme.length > 0
-        @meme.on 'click', =>
-          Q($.ajax("/posts/#{@meme.data('post-id')}/original_image")
-          )
-          .then(
-            (data) =>
-              @meme.attr('src', data.url)
-          )
-          .fail(
-            (error) ->
-              console.log('Failed to load original image.')
-          )
 
     initEvents: ->
       @commentForm.on 'error', (html) =>

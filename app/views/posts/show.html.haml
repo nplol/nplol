@@ -17,7 +17,7 @@
       %p
         = markdown(@post.content)
     - else
-      =image_tag(@post.image.url(:large), { class: 'meme-image', data: { 'post-id' => @post.id } })
+      =image_tag(@post.image.url(:original), { class: 'meme-image', data: { 'post-id' => @post.id } })
 
   %section#comment_form_container
     = render 'comments/form', comment: @post.comments.build
