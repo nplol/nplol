@@ -101,7 +101,6 @@ class PostManager extends EventEmitter
         @$el = $('#new_comment')
         @$button = $('#add_comment')
         @initBindings()
-        @requestInProgress = false
 
       initBindings: ->
         @$button.on 'click', (event) =>
@@ -111,7 +110,6 @@ class PostManager extends EventEmitter
 
         @$el.on 'submit', (event) =>
           return false if @requestInProgress
-          @requestInProgress = true
           @$button.addClass('disabled').disabled = true
 
         @$el.on 'ajax:success', (event, html) =>
@@ -123,7 +121,6 @@ class PostManager extends EventEmitter
 
         @$el.on 'ajax:complete', =>
           @$button.removeClass('disabled').disabled = false
-          @requestInProgress = false
 
       _showForm: ->
         @$el.find('.hidden').removeClass('hidden')
