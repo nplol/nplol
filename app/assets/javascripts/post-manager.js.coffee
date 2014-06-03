@@ -14,10 +14,20 @@ class PostManager extends EventEmitter
   initBindings: ->
     $(window).on 'popstate', (event) =>
       state = event.originalEvent.state
-      if state && state.url != '/'
-        @fetchPost(state.url)
+      if state
+        @fetchPost({url: state.url, history: false})
       else
-        @fetchPost(null)
+        @fetchPost({url: '/', history: false})
+      true
+
+    $(window).on 'auth', (event) ->
+      location.reload(false)
+
+    $(window).on 'keydown', (event) =>
+      keyCode = event.keyCode
+      return unless keyCode == 37 || keyCode == 39
+      sibling = if keyCode == 37 then 'next' else 'previous'
+      @fetchPost(url: "/posts/#{@post.id}", data: { sibling: sibling })
 
   initEvents: ->
     emitter = if @postGrid? then @postGrid else @post
@@ -34,7 +44,7 @@ class PostManager extends EventEmitter
       (html) =>
         # ensure that we display the correct url when fetching siblings.
         options.url = "/posts/#{$(html).data('id')}" if options.data && options.data.sibling
-        @emit('fetched_post', { html: html, url: options.url } )
+        @emit('fetched_post', { html: html, url: options.url, ignoreHistory: options.history} )
         # clean up
         delete @postGrid
         delete @post
@@ -60,33 +70,19 @@ class PostManager extends EventEmitter
       $('.post').on 'click', (event) =>
         event.preventDefault();
         post_id = $(event.delegateTarget).data('post-id')
-        @emit('fetch_post', url: "posts/#{post_id}")
+        @emit('fetch_post', url: "/posts/#{post_id}")
 
   @PostGrid = PostGrid
 
   class Post extends EventEmitter
 
     constructor: (id) ->
-      @post_id = id
+      @id = id
       @$commentContainer = $('#comment_form_container')
       @commentForm = new CommentForm()
-      @initBindings()
       @initEvents()
 
-    initBindings: ->
-      # let's remove all previous event handlers
-      $(window).off()
-
       # make sure to reload our comment form if a user logs in
-      $(window).on 'auth', (event) ->
-        location.reload(false)
-
-      $(window).on 'keydown', (event) =>
-        keyCode = event.keyCode
-        return unless keyCode == 37 || keyCode == 39
-        sibling = if keyCode == 37 then 'next' else 'previous'
-        @emit('fetch_post', url: "/posts/#{@post_id}", data: { sibling: sibling, parent: @post_id })
-
     initEvents: ->
       @commentForm.on 'error', (html) =>
         @$commentContainer.find('#comment_text').addClass('input-error')

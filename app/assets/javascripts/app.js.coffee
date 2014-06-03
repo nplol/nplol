@@ -17,7 +17,7 @@ class App extends EventEmitter
       @postForm = new PostForm()
 
     @postManager.on 'fetched_post', (post) =>
-      history.pushState({ url: post.url }, null, post.url)
+      history.pushState({ url: post.url }, null, post.url) unless post.ignoreHistory?
       @_changeView(post.html)
 
     @.on 'error', (error) ->
