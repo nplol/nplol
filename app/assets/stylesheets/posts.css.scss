@@ -95,6 +95,11 @@ $height: 200px;
 
     article {
       overflow: hidden;
+      width: 100%;
+
+      img {
+        margin: 0 auto;
+      }
     }
 
   }
