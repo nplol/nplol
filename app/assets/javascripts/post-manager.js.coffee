@@ -33,7 +33,7 @@ class PostManager extends EventEmitter
     .then(
       (html) =>
         # ensure that we display the correct url when fetching siblings.
-        options.url = "/posts/#{$(html).data('id')}" if options.data.sibling
+        options.url = "/posts/#{$(html).data('id')}" if options.data && options.data.sibling
         @emit('fetched_post', { html: html, url: options.url } )
         # clean up
         delete @postGrid
