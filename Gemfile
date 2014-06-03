@@ -11,7 +11,6 @@ gem 'font-awesome-rails', '~> 4.1.0'
 gem 'haml'
 gem 'pg'
 gem 'uglifier'
-gem 'settingslogic'
 gem 'acts-as-taggable-on', '~> 3.2.3'
 gem 'pundit'
 
@@ -53,4 +52,5 @@ end
 
 group :development, :test do
   gem 'byebug'
+  gem 'dotenv-rails'
 end

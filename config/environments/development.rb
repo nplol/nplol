@@ -33,14 +33,4 @@ Nplol::Application.configure do
   # Precompile additional assets
   config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
 
-  # paperclip, s3 config
-  config.paperclip_defaults = {
-      :storage => :s3,
-      :s3_credentials => {
-          :bucket => 'nplol',#Settings.s3.bucket_name,
-          :access_key_id => 'AKIAINDFPYLGX72BJS5Q',#Settings.s3.access_key_id,
-          :secret_access_key => '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'#Settings.s3.secret_access_key
-      }
-  }
-
 end
