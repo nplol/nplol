@@ -30,6 +30,7 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
+    authorize @post, :manage?
     if @post.update(post_params)
       flash[:notice] = 'Post updated.'
       redirect_to @post
@@ -39,15 +40,21 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    if params[:sibling]
+      @post = Post.find(params[:id]).send(params[:sibling])
+    else
+      @post = Post.find(params[:id])
+    end
+    return render json: { error: 'Post not found'}, status: 400 if @post.nil?
     render 'show', layout: false if request.xhr?
   end
 
   def destroy
     @post = Post.find(params[:id])
-    @post.destroy
 
-    redirect_to posts_path
+    authorize @post, :manage?
+    @post.destroy
+    redirect_to root_path
   end
 
   private
