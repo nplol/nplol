@@ -2,6 +2,7 @@ class PostManager extends EventEmitter
 
   constructor: ->
     @initBindings()
+    @requestInProgress = false
 
   loadGrid: ->
     @postGrid = new PostGrid()
@@ -30,13 +31,16 @@ class PostManager extends EventEmitter
       @fetchPost(url: "/posts/#{@post.id}", data: { sibling: sibling })
 
   initEvents: ->
+    @requestInProgress = false
     emitter = if @postGrid? then @postGrid else @post
 
     emitter.on 'fetch_post', (options) =>
       @fetchPost(options)
 
-
   fetchPost: (options = {}) ->
+    return if @requestInProgress
+    @requestInProgress = true
+
     options.url ||= '/'
     Q($.ajax(options)
     )
@@ -97,6 +101,7 @@ class PostManager extends EventEmitter
         @$el = $('#new_comment')
         @$button = $('#add_comment')
         @initBindings()
+        @requestInProgress = false
 
       initBindings: ->
         @$button.on 'click', (event) =>
@@ -105,6 +110,8 @@ class PostManager extends EventEmitter
             @_showForm()
 
         @$el.on 'submit', (event) =>
+          return false if @requestInProgress
+          @requestInProgress = true
           @$button.addClass('disabled').disabled = true
 
         @$el.on 'ajax:success', (event, html) =>
@@ -116,6 +123,7 @@ class PostManager extends EventEmitter
 
         @$el.on 'ajax:complete', =>
           @$button.removeClass('disabled').disabled = false
+          @requestInProgress = false
 
       _showForm: ->
         @$el.find('.hidden').removeClass('hidden')
