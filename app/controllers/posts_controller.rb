@@ -50,6 +50,10 @@ class PostsController < ApplicationController
     redirect_to posts_path
   end
 
+  def original_image
+    render json: { url: Meme.find(params[:post_id]).image.url(:original) }
+  end
+
   private
 
   def set_type

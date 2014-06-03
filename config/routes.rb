@@ -1,6 +1,7 @@
 Nplol::Application.routes.draw do
 
   resources :posts do
+    get 'original_image', to: 'posts#original_image'
     resources :comments, only: [:new, :create, :destroy]
   end
 
