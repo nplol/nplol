@@ -83,10 +83,25 @@ class PostManager extends EventEmitter
     constructor: (id) ->
       @id = id
       @$commentContainer = $('#comment_form_container')
+      @$like = $('#like_post')
       @commentForm = new CommentForm()
+      @initBindings()
       @initEvents()
 
-      # make sure to reload our comment form if a user logs in
+    initBindings: ->
+      $('#details i').tipsy
+        fade: true
+        gravity: 'e'
+
+      @$like.on 'ajax:success', =>
+        @$like.disabled = true
+        @$like.find('i').removeClass('fa-heart-o').addClass('fa-heart liked')
+        likes = parseInt($('.likes').text())
+        if isNaN(likes) then $('.likes').html(1) else $('.likes').html(likes+1)
+
+      $('#like_post').on 'ajax:error', =>
+        @emit('error')
+
     initEvents: ->
       @commentForm.on 'error', (html) =>
         @$commentContainer.find('#comment_text').addClass('input-error')

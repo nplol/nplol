@@ -1,8 +1,17 @@
 class PostsController < ApplicationController
   before_action :set_type, only: [:new, :create, :edit]
+  before_action :ensure_logged_in, except: [:index, :show]
 
   def index
   	@posts = Post.all.order('created_at DESC')
+    likes = []
+    comments = []
+    @posts.each do |post|
+      likes << post.likes.length
+      comments << post.comments.length
+    end
+    @average_likes = likes.sum / likes.length
+    @average_comments = comments.sum / comments.length
     return render 'index', layout: false if request.xhr?
   end
 
@@ -57,6 +66,16 @@ class PostsController < ApplicationController
     redirect_to root_path
   end
 
+  def like
+    post = Post.find(params[:post_id])
+    begin
+      post.like(current_user)
+    rescue
+      return render json: { error: 'Already liked the post, clever fellow.'}, status: 401
+    end
+    return render json: { }, status: 200
+  end
+
   private
 
   def set_type
@@ -72,5 +91,8 @@ class PostsController < ApplicationController
     params.require(:post).permit(:title, :content, :tag_list, :image, :type, asset_attributes: [])
   end
 
+  def ensure_logged_in
+    return render json: { error: 'Not logged in'}, status: 401 unless current_user
+  end
 
 end

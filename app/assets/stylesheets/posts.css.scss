@@ -5,6 +5,7 @@
 // layout-variables for the post listing
 $width: 300px;
 $height: 200px;
+$high: 420px;
 
 #post {
   flex: 1;
@@ -57,7 +58,19 @@ $height: 200px;
 
       span {
         display: block;
+        margin-bottom: 20px;
       }
+
+      a {
+        color: $black;
+        .liked {
+          color: $red;
+        }
+        .likes {
+          display: inline-block;
+        }
+      }
+
     }
 
   }
@@ -82,7 +95,38 @@ $height: 200px;
     height: $height;
     @include transition( all .4s );
     display: flex;
-    padding: 1em;
+
+    article {
+      margin: 1em;
+      position: relative;
+
+      #details {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right:0;
+        background: rgba(255,255,255,.6);
+        font-size: .8em;
+        display: flex;
+        padding: 0 20px;
+        opacity: 0;
+        @include transition(opacity .4s);
+
+        .comments, .likes {
+          flex: 1;
+        }
+
+        .likes {
+          align-self: flex-end;
+          text-align: right;
+        }
+      }
+
+    }
+
+    &.popular {
+      height: $high;
+    }
 
     &:hover {
       @include transform(scaleX(1.05));
@@ -90,7 +134,12 @@ $height: 200px;
 
       article {
         color: $black;
+
+        #details {
+          opacity: 1;
+        }
       }
+
     }
 
     article {

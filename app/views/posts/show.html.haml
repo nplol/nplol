@@ -1,3 +1,4 @@
+- liked = @post.liking_users.include? current_user
 %article#post{ data: { id: @post.id } }
   %h1= @post.title
   %secion.post-meta
@@ -26,11 +27,15 @@
       - @post.comments.order('created_at DESC').each do |comment|
         =render comment
     %section#details
-      %span
-        %i.fa.fa-pencil
+      %span.detail
+        %i.fa.fa-pencil.fa-lg(title="Author")
         - @post.author.username.nil? ? author = @post.author.name.split(' ').first : author = @post.author.username
         = "@#{author.downcase}"
-      %span
+      %span.detail
+        = link_to post_like_path(@post), { id: 'like_post', remote: true, disabled: liked} do
+          %i.fa.fa-lg{ class: liked ? 'fa-heart liked' : 'fa-heart-o', title: liked ? 'You like this' : 'Like post' }
+          %span.likes= @post.likes.length if @post.likes.length > 0
+
 
 :javascript
   $(document).ready(function() {

@@ -1,12 +1,20 @@
 %section#posts
   - @posts.each do |post|
-    .post{ data: { post_id: post.id } }
+    .post{ class: ('popular' if ( post.likes.length > @average_likes || post.comments.length > @average_comments)), data: { post_id: post.id } }
       %article
         %h3= post.title
         - if post.is_a?(Meme)
           =image_tag(post.image.url(:medium))
         - else
           %p= markdown(post.content)
+        %section#details
+          %span.comments
+            %i.fa{ class: post.comments.length > 0 ? 'fa-comment' : 'fa-comment-o'}
+            %span= post.comments.length
+          %span.likes
+            %i.fa.fa{ class: post.likes.length > 0 ? 'fa-heart' : 'fa-heart-o'}
+            %span= post.likes.length
+
 
 :javascript
   $(document).ready(function() {
