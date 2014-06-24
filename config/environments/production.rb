@@ -38,7 +38,7 @@ Nplol::Application.configure do
   config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
 
   # Version of your assets, change this if you want to expire all your assets.
-  config.assets.version = '2.0'
+  config.assets.version = '2.1'
 
   GA.tracker = 'UA-47720333-1'
 
