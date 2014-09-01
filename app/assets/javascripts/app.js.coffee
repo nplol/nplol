@@ -22,7 +22,7 @@ class App extends EventEmitter
       @_changeView(post.html)
 
     @.on 'error', (error) =>
-      _showError(error.message)
+      @_showError(error)
 
   _changeView: (html) ->
     @$el.addClass('transition')
@@ -31,6 +31,7 @@ class App extends EventEmitter
     setTimeout(timeout, 400)
 
   _showError: (errorMessage) ->
-    # TODO
+    @flash.text(errorMessage) if errorMessage? #errorMessage is null for synchronous calls.
+    @flash.show()
 
 @App = App

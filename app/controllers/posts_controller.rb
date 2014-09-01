@@ -110,6 +110,7 @@ class PostsController < ApplicationController
         flash[:notice] = "Sorry bro, that post's private. Log in and claim your nplol status to view it."
         redirect_to root_path
       end
+    end
   end
 
 end
