@@ -1,7 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_type, only: [:new, :create, :edit]
   before_action :ensure_logged_in, except: [:index, :show]
-  before_action :private_post, only: [:show]
 
   def index
     if current_user && current_user.nplol?
@@ -59,7 +58,8 @@ class PostsController < ApplicationController
     else
       @post = Post.find(params[:id])
     end
-    return render json: { error: 'Post not found'}, status: 400 if @post.nil?
+    return render json: { error: 'Post not found'}, status: 404 if @post.nil?
+    private_post unless @post.public?
     render 'show', layout: false if request.xhr?
   end
 
@@ -101,7 +101,14 @@ class PostsController < ApplicationController
   end
 
   def private_post
-    return render json: { error: 'Private post'}, status: 401 unless current_user && current_user.nplol?
+    unless @post.public?
+      if request.xhr?
+        return render json: { error: 'Private post'}, status: 401 unless current_user && current_user.nplol?
+      else
+        flash[:notice] = "Sorry bro, that post's private. Log in and claim your nplol status to view it."
+        redirect_to root_path
+      end
+    end
   end
 
 end

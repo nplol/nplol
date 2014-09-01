@@ -15,6 +15,7 @@
       = yield
     =image_tag('plane.png', id: 'plane')
     .dim.hidden
+    = render 'partials/flash'
 
   - unless Rails.env.production?
     :javascript

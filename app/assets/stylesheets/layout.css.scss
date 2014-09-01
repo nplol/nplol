@@ -76,3 +76,28 @@ img#plane {
 #stats {
   z-index: 4;
 }
+
+.flash {
+  display: flex;
+  position: absolute;
+  z-index: 10;
+  top: 100px;
+  left: 0;
+  box-shadow: 0 4px 4px 2px rgba(0, 0, 0, 0.2);
+  @include transition(width .4s ease-in-out);
+  cursor: pointer;
+
+  .message {
+    flex: 1;
+    padding: 30px;
+    color: $black;
+    background: $white;
+    display: flex;
+    align-items: center;
+
+    i {
+      color: $red;
+      margin-right: 25px;
+    }
+  }
+}

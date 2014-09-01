@@ -23,6 +23,10 @@ class Post < ActiveRecord::Base
     PostPolicy
   end
 
+  def public?
+    self.public
+  end
+
   def next
     Post.where('created_at >= ? AND id > ?', created_at, id).order('created_at ASC').first
   end

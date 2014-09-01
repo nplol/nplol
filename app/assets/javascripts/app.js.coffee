@@ -4,6 +4,7 @@ class App extends EventEmitter
     @header = new Header()
     @postManager = new PostManager()
     @$el = $('#app')
+    @flash = $('.flash')
     @initEvents()
 
   initEvents: ->
@@ -20,7 +21,7 @@ class App extends EventEmitter
       history.pushState({ url: post.url }, null, post.url) unless post.ignoreHistory?
       @_changeView(post.html)
 
-    @.on 'error', (error) ->
+    @.on 'error', (error) =>
       _showError(error.message)
 
   _changeView: (html) ->
