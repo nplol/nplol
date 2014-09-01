@@ -24,6 +24,9 @@ class App extends EventEmitter
     @.on 'error', (error) =>
       @_showError(error)
 
+    @flash.on 'click', =>
+      @flash.remove()
+
   _changeView: (html) ->
     @$el.addClass('transition')
     timeout = =>

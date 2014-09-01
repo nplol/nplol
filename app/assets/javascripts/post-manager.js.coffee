@@ -55,9 +55,9 @@ class PostManager extends EventEmitter
     )
     .fail(
       (error) =>
-        app.emit('error', message: error.responseJSON)
+        # app.emit('error', message: error.responseJSON)
         console.log('failed to load post.')
-    )
+    ).done()
 
   class PostGrid extends EventEmitter
 
