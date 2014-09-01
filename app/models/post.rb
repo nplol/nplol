@@ -6,14 +6,16 @@ class Post < ActiveRecord::Base
 
   validates :type, presence: true
 
-  scope :memes, -> { where(type: 'Meme')}
-  scope :articles, -> { where(type: 'Article')}
+  scope :memes,     -> { where(type: 'Meme')}
+  scope :articles,  -> { where(type: 'Article')}
+  scope :_public,    -> { where(public: true) }
 
   belongs_to :author, class_name: 'User', foreign_key: 'user_id'
 
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :liking_users, through: :likes, source: :user
+
 
   acts_as_taggable
 

@@ -1,17 +1,22 @@
 class PostsController < ApplicationController
   before_action :set_type, only: [:new, :create, :edit]
   before_action :ensure_logged_in, except: [:index, :show]
+  before_action :private_post, only: [:show]
 
   def index
-  	@posts = Post.all.order('created_at DESC')
+    if current_user && current_user.nplol?
+      @posts = Post.all.order('created_at DESC')
+    else
+      @posts = Post._public.order('created_at DESC')
+    end
     likes = []
     comments = []
     @posts.each do |post|
       likes << post.likes.length
       comments << post.comments.length
     end
-    @average_likes = likes.sum / likes.length
-    @average_comments = comments.sum / comments.length
+    if likes.length == 0 then @average_likes = 0 else @average_likes = likes.sum / likes.length end
+    if comments.length == 0 then @average_comments = 0 else @average_comments = comments.sum / comments.length end
     return render 'index', layout: false if request.xhr?
   end
 
@@ -93,6 +98,10 @@ class PostsController < ApplicationController
 
   def ensure_logged_in
     return render json: { error: 'Not logged in'}, status: 401 unless current_user
+  end
+
+  def private_post
+    return render json: { error: 'Private post'}, status: 401 unless current_user && current_user.nplol?
   end
 
 end
