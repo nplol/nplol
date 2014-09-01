@@ -8,14 +8,7 @@ class PostsController < ApplicationController
     else
       @posts = Post._public.order('created_at DESC')
     end
-    likes = []
-    comments = []
-    @posts.each do |post|
-      likes << post.likes.length unless post.likes.empty?
-      comments << post.comments.length unless post.likes.empty?
-    end
-    if likes.length == 0 then @average_likes = 0 else @average_likes = likes.sum / likes.length end
-    if comments.length == 0 then @average_comments = 0 else @average_comments = comments.sum / comments.length end
+    @average_score = Post.average_score
     return render 'index', layout: false if request.xhr?
   end
 

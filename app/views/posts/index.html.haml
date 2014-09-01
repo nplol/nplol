@@ -1,6 +1,6 @@
 %section#posts
   - @posts.each do |post|
-    .post{ class: ('popular' if ( post.likes.length > @average_likes || post.comments.length > @average_comments)), data: { post_id: post.id } }
+    .post{ class: ('popular' if ( post.score > @average_score)), data: { post_id: post.id } }
       %article
         %h3= post.title
         - if post.is_a?(Meme)

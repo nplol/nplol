@@ -39,5 +39,17 @@ class Post < ActiveRecord::Base
     likes.create!(user: user)
   end
 
+  def score
+    self.likes.length + self.comments.length
+  end
+
+  def self.average_score
+    score = 0
+    Post.all.each do |post|
+      score += post.likes.length + post.comments.length
+    end
+    return 0 if score == 0
+    score/Post.all.length
+  end
 
 end
