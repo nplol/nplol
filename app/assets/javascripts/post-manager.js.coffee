@@ -25,13 +25,13 @@ class PostManager extends EventEmitter
       location.reload(false)
 
     $(window).on 'keydown', (event) =>
+      console.log 'called'
       keyCode = event.keyCode
       return unless keyCode == 37 || keyCode == 39
       sibling = if keyCode == 37 then 'next' else 'previous'
       @fetchPost(url: "/posts/#{@post.id}", data: { sibling: sibling })
 
   initEvents: ->
-    @requestInProgress = false
     emitter = if @postGrid? then @postGrid else @post
 
     emitter.on 'fetch_post', (options) =>
@@ -57,7 +57,7 @@ class PostManager extends EventEmitter
       (error) =>
         # app.emit('error', message: error.responseJSON)
         console.log('failed to load post.')
-    ).done()
+    ).done( => @requestInProgress = false)
 
   class PostGrid extends EventEmitter
 
