@@ -11,8 +11,8 @@ class PostsController < ApplicationController
     likes = []
     comments = []
     @posts.each do |post|
-      likes << post.likes.length
-      comments << post.comments.length
+      likes << post.likes.length unless post.likes.empty?
+      comments << post.comments.length unless post.likes.empty?
     end
     if likes.length == 0 then @average_likes = 0 else @average_likes = likes.sum / likes.length end
     if comments.length == 0 then @average_comments = 0 else @average_comments = comments.sum / comments.length end
