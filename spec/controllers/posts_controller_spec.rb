@@ -3,14 +3,10 @@ require 'rails_helper'
 describe PostsController do
   let(:current_user) { create :nplol_user }
 
-  describe '#index' do
-    before :all do
-      5.times do
-        create :public_post
-      end
-      4.times do
-        create :private_post
-      end
+  describe 'post listing' do
+    before :each do
+      5.times { create :public_post }
+      4.times { create :private_post }
     end
 
     it 'finds only public posts' do
@@ -29,11 +25,35 @@ describe PostsController do
         expect(assigns(:posts)).to_not be_nil
         expect(assigns(:posts).length).to eq(9)
       end
-
     end
 
   end
 
+  describe 'calculating post scores' do
+    let(:user1) { create :user }
+    let(:user2) { create :user }
+    let(:post) { create :post }
+
+    before :each do
+      3.times { create :post }
+    end
+
+    it 'calculates average score as 0 when no comments or likes' do
+      get :index
+      expect(assigns(:posts).select { |post| post.popular? }.length).to eq(0)
+    end
+
+    it 'correctly calculates average score for comments' do
+      create :comment, user: user1, post: post
+      get :index
+      expect(assigns(:posts).select { |post| post.popular? }.length).to eq(1)
+    end
+
+
+  end
+
+  # describe ''
+  #
   # describe '#new' do
   #
   #   before :each do

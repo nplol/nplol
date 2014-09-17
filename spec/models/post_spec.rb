@@ -33,11 +33,11 @@ describe Post do
     end
 
     it 'finds siblings for a given post' do
-      expect(Post.first.next).to_not be_nil
+      expect(Post.first.previous).to_not be_nil
     end
 
     it 'doesn\'t find non-existant siblings' do
-      expect(Post.first.previous).to be_nil
+      expect(Post.first.next).to be_nil
     end
 
     it 'finds both siblings when present' do

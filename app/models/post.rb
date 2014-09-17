@@ -1,4 +1,7 @@
 class Post < ActiveRecord::Base
+  default_scope { order('created_at DESC') }
+  attr_accessor :popular
+
   belongs_to :author, class_name: 'User', foreign_key: 'user_id'
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
@@ -8,18 +11,25 @@ class Post < ActiveRecord::Base
   validates_attachment_content_type :image, :content_type => /^image\/(png|gif|jpeg|jpg)/
   validates_attachment_presence :image
 
-
   validates :title, presence: true,
             uniqueness: true
 
-  scope :_public, -> { where(public: true) }
+  scope :_public, -> { where(public: true).order('created_at DESC') }
 
   def self.policy_class
     PostPolicy
   end
 
+  def popular?
+    self.popular
+  end
+
   def public?
     self.public
+  end
+
+  def score
+    Float(comments.length + likes.length)/2.ceil
   end
 
   def next

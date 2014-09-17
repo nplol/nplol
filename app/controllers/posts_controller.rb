@@ -1,12 +1,10 @@
 class PostsController < ApplicationController
 
+  before_filter :nplol, only: [:index, :show]
+
   def index
-    if current_user && current_user.nplol?
-      @posts = Post.all.order('created_at DESC')
-    else
-      @posts = Post._public.order('created_at DESC')
-    end
-    @average_score = average_score(@posts)
+    @nplol? @posts = Post.all : @posts = Post._public
+    score(@posts)
     return render 'index', layout: false if request.xhr?
   end
 
@@ -74,45 +72,38 @@ class PostsController < ApplicationController
 
   private
 
-  def set_type
-    params[:post] ? @type = params[:post][:type] : @type = params[:type]
+  def nplol
+    @nplol = current_user && current_user.nplol?
   end
-
-  def type_class
-    @type.constantize
-  end
-
-
-  private
 
   def post_params
     # asset_attributes: [] required for nested attributes for assets.
     params.require(:post).permit(:title, :content, :tag_list, :image, :type, asset_attributes: [])
   end
 
-  def average_score(posts)
-    score = 0
-    posts.each do |post|
-      score += ( post.comments.length + post.likes.length)
-    end
-    score
+  def score(posts)
+    # 0 is the initial value
+    avg_score = posts.reduce(0) { |total, post| total + post.score } / posts.length
+    posts.map { |post|
+      post.popular = true if post.score > avg_score
+    }
   end
 
-  def ensure_logged_in
-    return render json: { error: 'Not logged in'}, status: 401 unless current_user
-  end
-
-  def private_post
-    if current_user && current_user.nplol?
-      render 'show', layout: false if request.xhr?
-    else
-      if request.xhr?
-         render json: { error: 'Private post'}, status: 401 unless current_user && current_user.nplol?
-      else
-        flash[:notice] = "Sorry bro, that post's private. Log in and claim your nplol status to view it."
-        redirect_to root_path
-      end
-    end
-  end
+  # def ensure_logged_in
+  #   return render json: { error: 'Not logged in'}, status: 401 unless current_user
+  # end
+  #
+  # def private_post
+  #   if current_user && current_user.nplol?
+  #     render 'show', layout: false if request.xhr?
+  #   else
+  #     if request.xhr?
+  #        render json: { error: 'Private post'}, status: 401 unless current_user && current_user.nplol?
+  #     else
+  #       flash[:notice] = "Sorry bro, that post's private. Log in and claim your nplol status to view it."
+  #       redirect_to root_path
+  #     end
+  #   end
+  # end
 
 end
