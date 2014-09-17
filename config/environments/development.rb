@@ -27,6 +27,17 @@ Nplol::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
+  Paperclip.options[:command_path] = "/usr/local/bin/"
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      :bucket => secrets.s3_bucket,
+      :access_key_id => secrets.s3_access_key_id,
+      :secret_access_key => secrets.s3_access_key,
+      :s3_host_name => secrets.s3_host_name
+    }
+  }
+
   # Add the fonts path
   config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
 

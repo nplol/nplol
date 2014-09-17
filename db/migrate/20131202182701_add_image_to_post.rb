@@ -1,4 +1,4 @@
-class AddImageToMeme < ActiveRecord::Migration
+class AddImageToPost < ActiveRecord::Migration
   def self.up
     add_attachment :posts, :image
   end

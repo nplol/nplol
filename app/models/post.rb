@@ -1,23 +1,17 @@
 class Post < ActiveRecord::Base
-  self.inheritance_column = :type
-
-  validates :title, presence: true,
-            uniqueness: true
-
-  validates :type, presence: true
-
-  scope :memes,     -> { where(type: 'Meme')}
-  scope :articles,  -> { where(type: 'Article')}
-  scope :_public,    -> { where(public: true) }
-
   belongs_to :author, class_name: 'User', foreign_key: 'user_id'
-
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :liking_users, through: :likes, source: :user
 
+  has_attached_file :image, styles: { large: '640x480', medium: '300x300>', thumb: '100x100>' }
+  validates_attachment_content_type :image, :content_type => /^image\/(png|gif|jpeg|jpg)/
+  validates_attachment_presence :image
 
-  acts_as_taggable
+  validates :title, presence: true,
+            uniqueness: true
+
+  scope :_public, -> { where(public: true) }
 
   def self.policy_class
     PostPolicy
@@ -36,20 +30,7 @@ class Post < ActiveRecord::Base
   end
 
   def like(user)
-    likes.create!(user: user)
-  end
-
-  def score
-    self.likes.length + self.comments.length
-  end
-
-  def self.average_score
-    score = 0
-    Post.all.each do |post|
-      score += post.likes.length + post.comments.length
-    end
-    return 0 if score == 0
-    score/Post.all.length
+    likes.create!(user: user) unless likes.include? user
   end
 
 end

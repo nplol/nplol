@@ -1,31 +1,7 @@
-= form_for @post, :html => {:multipart => true} do |f|
-  - if @post.errors.any?
-    .errors
-      %h2
-      = "#{pluralize(@post.errors.count, 'error')} prohibited this post from being saved"
+= label_form_for @post do |f|
 
-      %ul
-        - @post.errors.full_messages.each do |msg|
-          %li= msg
-
-  %section.form-element
-    = f.text_field :title, placeholder: 'Title'
-  %section.form-element
-    = f.text_field :tag_list, placeholder: 'Tags'
-
-  = f.hidden_field :type
-
-  - if @post.is_a?(Article)
-    = render 'markdown_content', f: f
-    = render 'assets', f: f
-  - else
-    %section.form-element
-      = f.label :image
-      = f.file_field :image
+  = f.input :title
+  = f.input :tag_list
+  = f.file_field :image
 
   = f.submit
-
-:javascript
-  $(document).ready(function() {
-    app.emit('post_form');
-  });

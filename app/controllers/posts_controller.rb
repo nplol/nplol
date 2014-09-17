@@ -1,6 +1,4 @@
 class PostsController < ApplicationController
-  before_action :set_type, only: [:new, :create, :edit]
-  before_action :ensure_logged_in, except: [:index, :show]
 
   def index
     if current_user && current_user.nplol?
@@ -8,7 +6,7 @@ class PostsController < ApplicationController
     else
       @posts = Post._public.order('created_at DESC')
     end
-    @average_score = Post.average_score
+    @average_score = average_score(@posts)
     return render 'index', layout: false if request.xhr?
   end
 
@@ -84,9 +82,20 @@ class PostsController < ApplicationController
     @type.constantize
   end
 
+
+  private
+
   def post_params
     # asset_attributes: [] required for nested attributes for assets.
     params.require(:post).permit(:title, :content, :tag_list, :image, :type, asset_attributes: [])
+  end
+
+  def average_score(posts)
+    score = 0
+    posts.each do |post|
+      score += ( post.comments.length + post.likes.length)
+    end
+    score
   end
 
   def ensure_logged_in

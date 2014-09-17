@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
   self.primary_key = 'uuid'
-
   ROLES = %w(nplol regular)
 
   validates_presence_of :name, :email, :avatar, :role
@@ -33,7 +32,5 @@ class User < ActiveRecord::Base
   def nplol?
     self.role == 'nplol'
   end
-
-  private
 
 end

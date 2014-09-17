@@ -34,4 +34,10 @@ Nplol::Application.configure do
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
+  # paperclip config for testing
+  Paperclip.options[:command_path] = "/usr/local/bin/"
+  config.paperclip_defaults = {
+    :path => ':rails_root/spec/public/:filename'
+  }
+
 end

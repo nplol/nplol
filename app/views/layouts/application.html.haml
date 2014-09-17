@@ -8,33 +8,14 @@
     = analytics_init if Rails.env.production?
     = javascript_include_tag 'stats' unless Rails.env.production?
     = csrf_meta_tags
+
   %body
     %header
       = render 'partials/header'
-    %section#app
+    %section#main
       = yield
     =image_tag('plane.png', id: 'plane')
-    .dim.hidden
     = render 'partials/flash'
 
+  = render 'partials/stats' if Rails.env.development?
   - unless Rails.env.production?
-    :javascript
-      var stats = new Stats();
-      stats.setMode(0); // 0: fps, 1: ms
-
-      // Align top-left
-      stats.domElement.style.position = 'absolute';
-      stats.domElement.style.left = '0px';
-      stats.domElement.style.top = '0px';
-
-      document.body.appendChild( stats.domElement );
-
-      setInterval( function () {
-
-          stats.begin();
-
-          // your code goes here
-
-          stats.end();
-
-      }, 1000 / 60 );
