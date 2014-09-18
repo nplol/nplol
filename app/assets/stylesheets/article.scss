@@ -7,6 +7,13 @@ $width: 300px;
 $height: 200px;
 $high: 420px;
 
+.article {
+  margin: 0 auto;
+  max-width: 800px;
+  background: #fff;
+  padding: 2em 5em;
+}
+
 #post {
   flex: 1;
   margin: 0 auto;

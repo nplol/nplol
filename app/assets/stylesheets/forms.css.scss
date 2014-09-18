@@ -1,67 +1,29 @@
 @import 'bourbon';
 @import 'colors';
 
-form {
-  margin-top: 50px;
-}
 
-.form-element {
+label { display: none; }
+
+input {
   display: flex;
+  flex: 1;
+  padding: 10px;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+  opacity: .6;
   margin-bottom: 1em;
-
-  div {
-    flex: 1;
-    display: flex;
-  }
-
-  input {
-    flex: 1;
-    padding: 10px;
-    border: 0;
-    border-bottom: 1px solid #ddd;
-    opacity: .6;
-    font-size: 22px;
-
-    &.input-error {
-      border-bottom: 1px solid $red;
-    }
-
-    &[name*=title] {
-      font-size: 52px;
-    }
-
-    &[type="file"] {
-      border: 0;
-      display: flex;
-    }
-
-    &:focus {
-      opacity: 1;
-      outline:0;
-    }
-
-  }
-
-  textarea {
-    flex: 1;
-    border: 0;
-    padding: 10px;
-    font-size: 18px;
-    height: 500px;
-    opacity: .6;
-
-    &:focus{
-      opacity: 1;
-      outline:0;
-    }
-  }
-
-  label {
-    width: 80px;
-  }
+  font-size: 22px;
 }
 
-input[type="submit"], .button {
+input.file { border-bottom: 0; }
+
+input.title { font-size: 52px; }
+
+input.error { border-bottom: 1px solid $red; }
+
+input:focus { outline: 0; }
+
+button {
   background: #da4c43;
   padding: 20px 50px;
   text-align: center;

@@ -1,7 +1,8 @@
 @import 'bourbon';
 @import 'colors';
 
-@include font-face(open-sans, 'OpenSans-Regular', normal, $asset-pipeline: true);
+@include font-face(open-sans, 'open-sans/OpenSans-Regular', normal, $asset-pipeline: true);
+@include font-face(ostrich-sans-light, "ostrich-sans/ostrich-sans-light", normal, $asset-pipeline: true);
 
 body {
   font-family: 'open-sans';
@@ -16,58 +17,25 @@ body {
   background-repeat: no-repeat, repeat-x;
 }
 
-#app {
+#main {
   display: flex;
-  overflow: scroll;
-  @include transition(transform .6s ease-in-out, opacity .4s);
-  opacity: 1;
-  flex: 1;
-  z-index: 2;
   position: relative;
+  flex: 1;
+  padding-top: 50px;
 
-  &.transition {
-    @include transform(translateY(300px));
-    @include transform-origin(0 100%);
-    opacity: 0;
-  }
-
-}
-
-.dim {
-  display: flex;
-  position:fixed;
-  left:0;
-  top:0;
-  bottom:0;
-  right:0;
-  z-index:5;
-  background: rgba(0,0,0,0.6);
-  opacity:1;
-  @include transition(opacity .4s ease-in-out);
-  align-items: center;
-  justify-content: center;
-
-  &.hidden {
-    opacity: 0;
-    display: flex;
-    bottom:100%;
-    right: 100%;
+  section, article {
+    z-index: 2;
   }
 }
 
-
-.disabled {
-  opacity: 0.5;
-  cursor: no-drop;
+h1, h2, h3 {
+  font-family: 'ostrich-sans-light';
+  text-align: center;
 }
 
-.hidden {
-  display: none;
-}
-
-img#plane {
+.plane {
   position: absolute;
-  top: 500px;
+  top: 50%;
   opacity: 0;
   @include animation(plane 20s infinite);
   z-index: 1;
@@ -77,29 +45,36 @@ img#plane {
   z-index: 4;
 }
 
-.flash {
-  display: flex;
-  position: absolute;
-  z-index: 10;
-  top: 100px;
-  left: 0;
-  box-shadow: 0 4px 4px 2px rgba(0, 0, 0, 0.2);
-  @include transition(all .4s ease-in-out);
-  cursor: pointer;
-  display: none;
-
-  .message {
-    flex: 1;
-    padding: 30px;
-    color: $black;
-    background: $white;
-    display: flex;
-    align-items: center;
-
-    i {
-      color: $red;
-      margin-right: 25px;
-    }
-  }
-
-}
+// .flash {
+//   display: flex;
+//   position: absolute;
+//   z-index: 10;
+//   top: 100px;
+//   left: 0;
+//   box-shadow: 0 4px 4px 2px rgba(0, 0, 0, 0.2);
+//   @include transition(all .4s ease-in-out);
+//   cursor: pointer;
+//   display: none;
+//
+//   .message {
+//     flex: 1;
+//     padding: 30px;
+//     color: $black;
+//     background: $white;
+//     display: flex;
+//     align-items: center;
+//
+//     i {
+//       color: $red;
+//       margin-right: 25px;
+//     }
+//   }
+// }
+// .disabled {
+//   opacity: 0.5;
+//   cursor: no-drop;
+// }
+//
+// .hidden {
+//   display: none;
+// }

@@ -1,6 +1,7 @@
 = label_form_for @post do |f|
 
-  = f.input :title
-  = f.file_field :image
+  = f.input :title, placeholder: 'title', class: 'title'
+  = f.input :tags, placeholder: 'tags'
+  = f.file :image, class: 'file'
 
-  = f.submit
+  = f.submit text: 'Create new post'

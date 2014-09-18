@@ -9,7 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require overrides
- *= require posts
+ *= require article
  *= require comments
  *= require assets
  *= require tipsy

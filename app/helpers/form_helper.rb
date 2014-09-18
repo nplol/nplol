@@ -39,7 +39,6 @@ module FormHelper
       options = args.extract_options!
 
       content_tag(:button, type: 'submit') do
-
         if options[:icon]
           content_tag(:i, "", class: "fa fa-#{options[:icon]} fa-2x") +
           content_tag(:span) do
