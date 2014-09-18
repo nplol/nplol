@@ -14,8 +14,7 @@
       = render 'partials/header'
     %section#main
       = yield
-    =image_tag('plane.png', id: 'plane')
+    = image_tag('plane.png', id: 'plane')
     = render 'partials/flash'
 
   = render 'partials/stats' if Rails.env.development?
-  - unless Rails.env.production?

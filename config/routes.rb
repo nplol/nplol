@@ -5,11 +5,6 @@ Nplol::Application.routes.draw do
     resources :comments, only: [:new, :create, :destroy]
   end
 
-  # assets have to live as top-level resources in order to be
-  # created before the posts themselves. A cron job is run
-  # every once in a while to delete assets without posts.
-  resources :assets, only: [:new, :create, :destroy]
-
   root 'posts#index'
 
   get 'header', to: 'sessions#header'

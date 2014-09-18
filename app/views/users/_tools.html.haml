@@ -1,0 +1,9 @@
+- if current_user.nplol?
+  %a.new-meme{ href: new_post_path }
+    %i.fa.fa-lg.fa-reddit(title="New post")
+%a.settings
+  %i.fa.fa-lg.fa-cog(title="Settings")
+
+%section.omniauth-token(style="display:none;")=session['omniauth.state']
+
+= render 'users/menu'

@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 
   def index
     @nplol? @posts = Post.all : @posts = Post._public
-    score(@posts)
+    score(@posts) if @posts.length > 0
     return render 'index', layout: false if request.xhr?
   end
 
@@ -84,9 +84,7 @@ class PostsController < ApplicationController
   def score(posts)
     # 0 is the initial value
     avg_score = posts.reduce(0) { |total, post| total + post.score } / posts.length
-    posts.map { |post|
-      post.popular = true if post.score > avg_score
-    }
+    posts.map { |post| post.popular = true if post.score > avg_score }
   end
 
   # def ensure_logged_in
