@@ -1,9 +1,56 @@
 require 'rails_helper'
 
 describe PostsController do
-  let(:current_user) { create :nplol_user }
+  let(:current_user) { create :user }
+  let(:current_nplol_user) { create :nplol_user}
 
-  describe 'post listing' do
+  shared_context 'authenticated' do
+    before :each do
+      allow(controller).to receive(:current_user).and_return(current_nplol_user)
+    end
+  end
+
+  describe 'authentication' do
+    let(:post_model) { create :post }
+    let(:post_params) { { title: nil }}
+
+    it 'doesn\'t allow access to *new*' do
+      get :new
+      expect(flash[:error]).to_not be_nil
+      expect(response).to redirect_to(root_url)
+    end
+
+    it 'doesn\'t allow access to *create*' do
+      post :create, post: post_params
+      expect(flash[:error]).to_not be_nil
+      expect(response).to redirect_to(root_url)
+    end
+
+    it 'doesn\'t allow access to *edit*' do
+      get :edit, id: post_model.to_param
+      expect(flash[:error]).to_not be_nil
+      expect(response).to redirect_to(root_url)
+    end
+
+    it 'doesn\'t allow access to *update*' do
+      put :update, { id: post_model.to_param, post: post_params }
+      expect(flash[:error]).to_not be_nil
+      expect(response).to redirect_to(root_url)
+    end
+
+    it 'doesn\'t allow access to *destroy*' do
+      delete :destroy, id: post_model.to_param
+      expect(flash[:error]).to_not be_nil
+      expect(response).to redirect_to(root_url)
+    end
+
+  end
+
+  before :each do
+    allow(controller).to receive(:current_user).and_return(current_user)
+  end
+
+  describe 'index' do
     before :each do
       5.times { create :public_post }
       4.times { create :private_post }
@@ -16,8 +63,8 @@ describe PostsController do
       expect(assigns(:posts).length).to eq(5)
     end
 
-    context 'nplol member' do
-      login_nplol
+    describe 'private posts' do
+      include_context 'authenticated'
 
       it 'finds all posts for nplol-members' do
         get :index
@@ -27,172 +74,70 @@ describe PostsController do
       end
     end
 
+    context 'calculating post scores' do
+      let(:user1) { create :user }
+      let(:user2) { create :user }
+      let(:post) { create :post }
+
+      before :each do
+        3.times { create :post }
+      end
+
+      it 'calculates average score as 0 when no comments or likes' do
+        get :index
+        expect(assigns(:posts).select { |post| post.popular? }.length).to eq(0)
+      end
+
+      it 'correctly calculates average score for comments' do
+        create :comment, user: user1, post: post
+        get :index
+        expect(assigns(:posts).select { |post| post.popular? }.length).to eq(1)
+      end
+
+    end
+
+  end # index
+
+  describe 'create' do
+    include_context 'authenticated'
+    let(:valid_post) { attributes_for :post }
+    let(:invalid_post) { { title: nil, image: nil } }
+
+    it 'assigns a newly created post as @post for invalid posts' do
+      post :create, post: invalid_post
+      expect(assigns(:post)).to be_a_new(Post)
+    end
+
+    it 'assigns errors to the correct fields' do
+      post :create, post: invalid_post
+      expect(assigns(:post).errors.messages.length).to eq(2)
+      expect(assigns(:post).errors.messages[:image]).to_not be_nil
+      expect(assigns(:post).errors.messages[:title]).to_not be_nil
+    end
+
+    it 'creates a new Post when attributes are valid' do
+      valid_post.merge!( { image: upload_file('valid_image.png', 'image/png') })
+      expect { post :create, post: valid_post }.to change(Post, :count).by(1)
+    end
   end
 
-  describe 'calculating post scores' do
-    let(:user1) { create :user }
-    let(:user2) { create :user }
+  describe 'update posts' do
+    include_context 'authenticated'
     let(:post) { create :post }
+    let(:valid_attributes) { { title: 'Yarr' } }
+    let(:invalid_attributes) { { title: nil } }
 
-    before :each do
-      3.times { create :post }
+    it 'doesn\'t update a post with invalid attributes' do
+      put :update, { id: post.to_param, post: invalid_attributes }
+      expect(assigns(:post).errors.messages.length).to eq(1)
+      expect(response).to render_template('edit')
     end
 
-    it 'calculates average score as 0 when no comments or likes' do
-      get :index
-      expect(assigns(:posts).select { |post| post.popular? }.length).to eq(0)
+    it 'updates the post with valid attributes' do
+      put :update, { id: post.to_param, post: valid_attributes }
+      expect(flash[:notice]).to_not be_nil
+      expect(response).to redirect_to(post)
     end
-
-    it 'correctly calculates average score for comments' do
-      create :comment, user: user1, post: post
-      get :index
-      expect(assigns(:posts).select { |post| post.popular? }.length).to eq(1)
-    end
-
-
   end
-
-  # describe ''
-  #
-  # describe '#new' do
-  #
-  #   before :each do
-  #     http_login
-  #   end
-  #
-  #   context 'post' do
-  #
-  #     it 'assigns a local post variable' do
-  #       get :new
-  #       expect(assigns(:post)).to_not be_nil
-  #       expect(assigns(:post).type).to be_nil
-  #     end
-  #
-  #   end
-  #
-  # end
-  #
-  # describe '#create' do
-  #
-  #   before :each do
-  #     http_login
-  #   end
-  #
-  #   context 'saving a valid post' do
-  #
-  #     it 'creates a new post' do
-  #       expect{ post :create, post: attributes_for(:post) }.to change(Post, :count).by(1)
-  #     end
-  #
-  #     it 'redirects to post show page upon save' do
-  #       post :create, post: attributes_for(:post)
-  #
-  #       expect(response).to redirect_to Post.last
-  #     end
-  #
-  #   end
-  #
-  #   context 'saving an invalid post' do
-  #
-  #     it 'does not create a new post' do
-  #       expect{ post :create, post: attributes_for(:invalid_post) }.to_not change(Post, :count).by(1)
-  #     end
-  #
-  #     it 'renders the new view upon false save' do
-  #       post :create, post: attributes_for(:invalid_post)
-  #
-  #       expect(response).to render_template :new
-  #       expect(assigns(:post)).to_not be_nil
-  #     end
-  #
-  #     it 'generates error messages' do
-  #       post :create, post: attributes_for(:invalid_post)
-  #
-  #       expect(assigns(:post)).to have(2).errors_on(:title)
-  #       expect(assigns(:post)).to have(1).errors_on(:content)
-  #     end
-  #
-  #   end
-  #
-  # end
-  #
-  # describe '#edit' do
-  #   let(:resource) { create :post }
-  #
-  #   before :each do
-  #     http_login
-  #   end
-  #
-  #   it 'renders the form for a specific post' do
-  #     get :edit, id: resource.id
-  #
-  #     expect(assigns(:post)).to_not be_nil
-  #     expect(assigns(:post)).to eq(resource)
-  #   end
-  #
-  #   context 'updating a post with valid values' do
-  #
-  #     it 'updates the post\'s attributes' do
-  #
-  #       put :update, id: resource.id, post: attributes_for(:post, title: 'NewTitle', content: 'NewContent')
-  #
-  #       # reload fetches updated attributes for the given object from the database
-  #       resource.reload
-  #
-  #       expect(resource.title).to eq('NewTitle')
-  #       expect(resource.content).to eq('NewContent')
-  #     end
-  #
-  #     it 'redirects to the show view for the given post' do
-  #       put :update, id: resource.id, post: attributes_for(:post, title: 'NewTitle', content: 'NewContent')
-  #
-  #       expect(response).to redirect_to resource
-  #       expect(assigns(:post)).to_not be_nil
-  #       expect(assigns(:post)).to eq(resource)
-  #     end
-  #
-  #   end
-  #
-  #   context 'updating a post with invalid values' do
-  #
-  #     it 'does not update the post\'s attributes' do
-  #       put :update, id: resource, post: attributes_for(:invalid_post)
-  #       resource.reload
-  #
-  #       expect(resource.title).to include('Hunting dat whale')
-  #       expect(resource.content).to eq('Ahab\'s mission was null and void.')
-  #     end
-  #
-  #     it 'generates error messages' do
-  #       put :update, id: resource, post: attributes_for(:invalid_post)
-  #
-  #       expect(assigns(:post)).to have(2).errors_on(:title)
-  #       expect(assigns(:post)).to have(1).errors_on(:content)
-  #     end
-  #
-  #   end
-  #
-  # end
-  #
-  # describe '#destroy' do
-  #
-  #   before :each do
-  #     http_login
-  #   end
-  #
-  #   let(:resource) { create :post }
-  #
-  #   it 'deletes the post' do
-  #     expect(resource.title).to include('Hunting dat whale')
-  #     expect{ delete :destroy, id: resource.id }.to change(Post, :count).by(-1)
-  #   end
-  #
-  #   it 'redirects to posts path' do
-  #     delete :destroy, id: resource.id
-  #     expect(response).to redirect_to posts_path
-  #   end
-  #
-  #
-  # end
 
 end

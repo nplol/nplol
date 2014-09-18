@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140901084140) do
+ActiveRecord::Schema.define(version: 20140918102227) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,10 +47,17 @@ ActiveRecord::Schema.define(version: 20140901084140) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.string   "user_id"
-    t.boolean  "public",             default: true
+    t.boolean  "public",             default: false
   end
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
+
+  create_table "tags", force: true do |t|
+    t.integer  "post_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "name"

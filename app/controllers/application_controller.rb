@@ -21,6 +21,7 @@ class ApplicationController < ActionController::Base
   end
 
   def user_not_authorized
+    flash[:error] = 'Sorry brah, that\'s not for you.'
     redirect_to root_path
   end
 

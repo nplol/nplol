@@ -2,7 +2,6 @@ ENV["RAILS_ENV"] ||= 'test'
 
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
-require 'helpers/controller_helper'
 require 'spec_helper'
 require 'simplecov'
 
@@ -16,7 +15,7 @@ RSpec.configure do |config|
 
   # prettify FactoryGirl syntax ( create rather than FactoryGirl.create )
   config.include FactoryGirl::Syntax::Methods
-  config.extend ControllerHelper, type: :controller
+  config.include ControllerHelper, type: :controller
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction

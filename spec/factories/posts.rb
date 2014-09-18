@@ -8,7 +8,6 @@ FactoryGirl.define do
 
   factory :post do
     title
-    content 'Ahab\'s mission was null and void.'
     image_file_name { 'test.jpg' }
     image_content_type { 'image/jpeg' }
     image_file_size { 256 }

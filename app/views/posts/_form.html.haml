@@ -1,7 +1,6 @@
-= label_form_for @post do |f|
+= label_form_for @post, html: { multipart: true } do |f|
 
   = f.input :title, placeholder: 'title', class: 'title'
-  = f.input :tags, placeholder: 'tags'
   = f.file :image, class: 'file'
 
   = f.submit text: 'Create new post'

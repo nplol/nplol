@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-
+  before_filter :set_post, only: [:edit, :update, :destroy]
   before_filter :nplol, only: [:index, :show]
 
   def index
@@ -14,24 +14,20 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = type_class.new(post_params)
-    @post.author = current_user
+    @post = Post.new(post_params)
     authorize @post, :manage?
+    @post.author = current_user
     if @post.save
-      redirect_to post_path(@post)
+      redirect_to @post
     else
-    	render 'new'
+      render 'new'
     end
   end
 
   def edit
-    @post = Post.find(params[:id])
-    authorize @post, :manage?
   end
 
   def update
-    @post = Post.find(params[:id])
-    authorize @post, :manage?
     if @post.update(post_params)
       flash[:notice] = 'Post updated.'
       redirect_to @post
@@ -52,9 +48,6 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
-
-    authorize @post, :manage?
     @post.destroy
     redirect_to root_path
   end
@@ -64,20 +57,24 @@ class PostsController < ApplicationController
     begin
       post.like(current_user)
     rescue
-      return render json: { error: 'Already liked the post, clever fellow.'}, status: 401
+      return render json: { error: 'Already liked this post, clever fellow.'}, status: 401
     end
     return render json: { }, status: 200
   end
 
   private
 
+  def set_post
+    @post = Post.find(params[:id])
+    authorize @post, :manage?
+  end
+
   def nplol
     @nplol = current_user && current_user.nplol?
   end
 
   def post_params
-    # asset_attributes: [] required for nested attributes for assets.
-    params.require(:post).permit(:title, :content, :tag_list, :image, :type, asset_attributes: [])
+    params.require(:post).permit(:title, :image)
   end
 
   def score(posts)
@@ -85,22 +82,5 @@ class PostsController < ApplicationController
     avg_score = posts.reduce(0) { |total, post| total + post.score } / posts.length
     posts.map { |post| post.popular = true if post.score > avg_score }
   end
-
-  # def ensure_logged_in
-  #   return render json: { error: 'Not logged in'}, status: 401 unless current_user
-  # end
-  #
-  # def private_post
-  #   if current_user && current_user.nplol?
-  #     render 'show', layout: false if request.xhr?
-  #   else
-  #     if request.xhr?
-  #        render json: { error: 'Private post'}, status: 401 unless current_user && current_user.nplol?
-  #     else
-  #       flash[:notice] = "Sorry bro, that post's private. Log in and claim your nplol status to view it."
-  #       redirect_to root_path
-  #     end
-  #   end
-  # end
 
 end
