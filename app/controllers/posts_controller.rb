@@ -9,8 +9,7 @@ class PostsController < ApplicationController
   end
 
   def new
-    return redirect_to root_url unless params[:type]
-    @post = type_class.new
+    @post = Post.new
     authorize @post, :manage?
   end
 
