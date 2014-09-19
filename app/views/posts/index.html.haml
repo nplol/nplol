@@ -3,10 +3,7 @@
     .post{ class: ('popular' if post.popular?), data: { post_id: post.id } }
       %article
         %h3= post.title
-        - if post.is_a?(Meme)
-          =image_tag(post.image.url(:medium))
-        - else
-          %p= markdown(post.content)
+        =image_tag(post.image.url(:medium))
         %section#details
           %span.comments
             %i.fa{ class: post.comments.length > 0 ? 'fa-comment' : 'fa-comment-o'}
@@ -15,8 +12,7 @@
             %i.fa.fa{ class: post.likes.length > 0 ? 'fa-heart' : 'fa-heart-o'}
             %span= post.likes.length
 
-
-:javascript
-  $(document).ready(function() {
-    app.emit('post_grid');
-  });
+// :javascript
+//   $(document).ready(function() {
+//     app.emit('post_grid');
+//   });

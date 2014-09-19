@@ -36,9 +36,9 @@ h1, h2, h3 {
 .plane {
   position: absolute;
   top: 50%;
-  opacity: 0;
   @include animation(plane 20s infinite);
   z-index: 1;
+  @include transform(translateZ(0));
 }
 
 #stats {
