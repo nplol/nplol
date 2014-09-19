@@ -5,6 +5,8 @@ Nplol::Application.routes.draw do
     resources :comments, only: [:new, :create, :destroy]
   end
 
+  resources :tags
+
   root 'posts#index'
 
   get 'header', to: 'sessions#header'

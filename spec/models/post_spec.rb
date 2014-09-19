@@ -53,6 +53,18 @@ describe Post do
     it 'sets new posts as public by default' do
       expect(post.public?).to eq(true)
     end
+  end
+
+  context 'with_tags' do
+    let(:post) { create :post }
+
+    it 'doesn\'t delete tags when they are removed from the post' do
+      post.tags << create(:tag)
+      post.save
+      post.tags.destroy_all
+      expect(post.tags.length).to eq(0)
+      expect(Tag.all.length).to eq(1)
+    end
 
   end
 

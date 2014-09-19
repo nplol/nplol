@@ -74,7 +74,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :image)
+    params.require(:post).permit(:title, :image, tag_list: [])
   end
 
   def score(posts)

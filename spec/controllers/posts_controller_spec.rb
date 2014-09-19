@@ -4,6 +4,11 @@ describe PostsController do
   let(:current_user) { create :user }
   let(:current_nplol_user) { create :nplol_user}
 
+  after :all do
+    Post.destroy_all
+    Tag.destroy_all
+  end
+
   shared_context 'authenticated' do
     before :each do
       allow(controller).to receive(:current_user).and_return(current_nplol_user)
@@ -138,6 +143,40 @@ describe PostsController do
       expect(flash[:notice]).to_not be_nil
       expect(response).to redirect_to(post)
     end
+  end
+
+  describe 'tags' do
+    include_context 'authenticated'
+    let(:post) { create :post }
+    let(:tags) { [ Tag.find(1).name, Tag.find(2).name, Tag.find(3).name ] }
+    before :all do
+      5.times { create :tag }
+    end
+
+    after :each do
+      post.tags.destroy_all
+      if tags.length != 3 # i.e. tags has been modified
+        tags = [ Tag.find(1).name, Tag.find(2).name, Tag.find(3).name]
+      end
+    end
+
+    it 'adds existing tags to a post' do
+      put :update, id: post.to_param, post: { tag_list: tags }
+      expect(assigns(:post).tags.length).to eq(3)
+    end
+
+    it 'doesn\'t create more tags than necessary' do
+      tags << 'tag99'
+      put :update, id: post.to_param, post: { tag_list: tags }
+      expect(Tag.all.length).to eq(6)
+    end
+
+    it 'deletes tags from a post' do
+      tags.pop
+      put :update, id: post.to_param, post: { tag_list: tags }
+      expect(assigns(:post).tags.length).to eq(2)
+    end
+
   end
 
 end

@@ -4,6 +4,8 @@ class Post < ActiveRecord::Base
 
   belongs_to :author, class_name: 'User', foreign_key: 'user_id'
   has_many :comments, dependent: :destroy
+  has_and_belongs_to_many :tags
+  accepts_nested_attributes_for :tags
   has_many :likes, dependent: :destroy
   has_many :liking_users, through: :likes, source: :user
 
@@ -26,6 +28,12 @@ class Post < ActiveRecord::Base
 
   def public?
     self.public
+  end
+
+  def tag_list=(tags)
+    tags.each do |tag|
+      self.tags << Tag.find_or_create_by(name: tag)
+    end
   end
 
   def score
