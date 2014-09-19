@@ -161,19 +161,25 @@ describe PostsController do
     end
 
     it 'adds existing tags to a post' do
-      put :update, id: post.to_param, post: { tag_list: tags }
+      put :update, id: post.to_param, post: { tag_list: tags.join(', ') }
       expect(assigns(:post).tags.length).to eq(3)
     end
 
     it 'doesn\'t create more tags than necessary' do
       tags << 'tag99'
-      put :update, id: post.to_param, post: { tag_list: tags }
+      put :update, id: post.to_param, post: { tag_list: tags.join(', ') }
       expect(Tag.all.length).to eq(6)
+    end
+
+    it 'only adds properly formatted tags' do
+      put :update, id: post.to_param, post: { tag_list: "tag101, tag102    tag103\ntag104,tag105" }
+      expect(post.tags.length).to eq(3)
+      expect(Tag.all.length).to eq(8)
     end
 
     it 'deletes tags from a post' do
       tags.pop
-      put :update, id: post.to_param, post: { tag_list: tags }
+      put :update, id: post.to_param, post: { tag_list: tags.join(', ') }
       expect(assigns(:post).tags.length).to eq(2)
     end
 

@@ -31,9 +31,13 @@ class Post < ActiveRecord::Base
   end
 
   def tag_list=(tags)
-    tags.each do |tag|
+    tags.split(',').map(&:strip).each do |tag|
       self.tags << Tag.find_or_create_by(name: tag)
     end
+  end
+
+  def tag_list
+    tags.map(&:name).join(', ')
   end
 
   def score

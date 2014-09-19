@@ -1,7 +1,6 @@
 @import 'bourbon';
 @import 'colors';
 
-
 label { display: none; }
 
 input {
@@ -11,8 +10,11 @@ input {
   border: 0;
   border-bottom: 1px solid #ddd;
   opacity: .6;
-  margin-bottom: 1em;
   font-size: 22px;
+}
+
+.input {
+  margin-bottom: 25px;
 }
 
 input.file { border-bottom: 0; }

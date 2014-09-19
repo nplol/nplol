@@ -37,13 +37,14 @@ class PostsController < ApplicationController
   end
 
   def show
+    @post = Post.find(params[:id])
+    redirect_to root_path unless @post.public? || @nplol
     if params[:sibling]
       @post = Post.find(params[:id]).send(params[:sibling])
     else
       @post = Post.find(params[:id])
     end
     return render json: { error: 'Post not found'}, status: 404 if @post.nil?
-    return private_post unless @post.public?
     render 'show', layout: false if request.xhr?
   end
 
@@ -74,7 +75,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :image, tag_list: [])
+    params.require(:post).permit(:title, :image, :tag_list)
   end
 
   def score(posts)
