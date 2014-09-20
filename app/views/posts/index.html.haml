@@ -1,16 +1,16 @@
-%section#posts
+%section.posts.grid
   - @posts.each do |post|
-    .post{ class: ('popular' if post.popular?), data: { post_id: post.id } }
-      %article
-        %h3= post.title
+    .grid-item{ class: ('big' if post.popular?) }
+      .post{ data: { post_id: post.id } }
+        %h2= post.title
         =image_tag(post.image.url(:medium))
-        %section#details
-          %span.comments
-            %i.fa{ class: post.comments.length > 0 ? 'fa-comment' : 'fa-comment-o'}
-            %span= post.comments.length
-          %span.likes
-            %i.fa.fa{ class: post.likes.length > 0 ? 'fa-heart' : 'fa-heart-o'}
-            %span= post.likes.length
+        -# %section#details
+        -#   %span.comments
+        -#     %i.fa{ class: post.comments.length > 0 ? 'fa-comment' : 'fa-comment-o'}
+        -#     %span= post.comments.length
+        -#   %span.likes
+        -#     %i.fa.fa{ class: post.likes.length > 0 ? 'fa-heart' : 'fa-heart-o'}
+        -#     %span= post.likes.length
 
 // :javascript
 //   $(document).ready(function() {

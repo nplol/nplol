@@ -10,6 +10,7 @@
  *
  *= require overrides
  *= require article
+ *= require grid
  *= require comments
  *= require assets
  *= require tipsy

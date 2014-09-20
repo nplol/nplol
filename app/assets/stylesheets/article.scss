@@ -2,11 +2,6 @@
 @import 'colors';
 
 
-// layout-variables for the post listing
-$width: 300px;
-$height: 200px;
-$high: 420px;
-
 .article {
   margin: 0 auto;
   max-width: 800px;
@@ -85,80 +80,6 @@ $high: 420px;
   .message {
     padding: 10px 20px;
     box-sizing: border-box;
-  }
-
-}
-
-#posts {
-  padding-top: 100px;
-  padding-left: 20px;
-  z-index: 2;
-
-  .post {
-    background: $white;
-    color: $darkGray;
-    box-sizing: border-box;
-    width: $width;
-    height: $height;
-    @include transition( all .4s );
-    display: flex;
-
-    article {
-      margin: 1em;
-      position: relative;
-
-      #details {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right:0;
-        background: rgba(255,255,255,.6);
-        font-size: .8em;
-        display: flex;
-        padding: 0 20px;
-        opacity: 0;
-        @include transition(opacity .4s);
-
-        .comments, .likes {
-          flex: 1;
-        }
-
-        .likes {
-          align-self: flex-end;
-          text-align: right;
-        }
-      }
-
-    }
-
-    &.popular {
-      height: $high;
-    }
-
-    &:hover {
-      @include transform(scaleX(1.05));
-      cursor: pointer;
-
-      article {
-        color: $black;
-
-        #details {
-          opacity: 1;
-        }
-      }
-
-    }
-
-    article {
-      overflow: hidden;
-      width: 100%;
-
-      img {
-        margin: 0 auto;
-        display: block;
-      }
-    }
-
   }
 
 }

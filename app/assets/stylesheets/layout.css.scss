@@ -3,11 +3,11 @@
 
 @include font-face(open-sans, 'open-sans/OpenSans-Regular', normal, $asset-pipeline: true);
 @include font-face(ostrich-sans-light, "ostrich-sans/ostrich-sans-light", normal, $asset-pipeline: true);
+@include font-face(ostrich-sans-regular, "ostrich-sans/ostrich-sans-regular", normal, $asset-pipeline: true);
 
 body {
   font-family: 'open-sans';
   font-size: 18px;
-  line-height: 26px;
   color: $black;
   @include background-image(
     radial-gradient(circle closest-side, rgba(255,255,255,.1  ), transparent),
@@ -15,6 +15,11 @@ body {
     linear-gradient($lightBlue, $lightBlue));
   background-position: bottom right;
   background-repeat: no-repeat, repeat-x;
+}
+
+div, section {
+  display: flex;
+  box-sizing: border-box;
 }
 
 #main {
@@ -28,9 +33,16 @@ body {
   }
 }
 
-h1, h2, h3 {
+h1 {
   font-family: 'ostrich-sans-light';
   text-align: center;
+}
+
+h2 {
+  font-family: 'ostrich-sans-regular';
+  font-weight: 700;
+  font-size: 2em;
+  margin-bottom: 15px;
 }
 
 .plane {
@@ -49,36 +61,28 @@ section {
   display: flex;
 }
 
-// .flash {
-//   display: flex;
-//   position: absolute;
-//   z-index: 10;
-//   top: 100px;
-//   left: 0;
-//   box-shadow: 0 4px 4px 2px rgba(0, 0, 0, 0.2);
-//   @include transition(all .4s ease-in-out);
-//   cursor: pointer;
-//   display: none;
-//
-//   .message {
-//     flex: 1;
-//     padding: 30px;
-//     color: $black;
-//     background: $white;
-//     display: flex;
-//     align-items: center;
-//
-//     i {
-//       color: $red;
-//       margin-right: 25px;
-//     }
-//   }
-// }
-// .disabled {
-//   opacity: 0.5;
-//   cursor: no-drop;
-// }
-//
-// .hidden {
-//   display: none;
-// }
+.flash {
+  display: flex;
+  position: absolute;
+  z-index: 10;
+  top: 100px;
+  left: 0;
+  box-shadow: 0 4px 4px 2px rgba(0, 0, 0, 0.2);
+  @include transition(all .4s ease-in-out);
+  cursor: pointer;
+  display: none;
+
+  .message {
+    flex: 1;
+    padding: 30px;
+    color: $black;
+    background: $white;
+    display: flex;
+    align-items: center;
+
+    i {
+      color: $red;
+      margin-right: 25px;
+    }
+  }
+}
