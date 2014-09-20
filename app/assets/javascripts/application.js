@@ -14,9 +14,9 @@
 //= require jquery-2.1.1
 //= require jquery_ujs
 //= require jquery.tipsy
+//= require parallax
 //= require_directory ./lib
 //= require q
-//= require packery
 //= require event-emitter
 
 // application-specific js
@@ -28,5 +28,5 @@
 
 // application entry point
 $(document).ready(function() {
-  window.app = new App();
+  $('.background').parallax();
 })

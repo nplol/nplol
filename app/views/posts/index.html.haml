@@ -3,14 +3,15 @@
     .grid-item{ class: ('big' if post.popular?) }
       .post{ data: { post_id: post.id } }
         %h2= post.title
-        =image_tag(post.image.url(:medium))
-        -# %section#details
-        -#   %span.comments
-        -#     %i.fa{ class: post.comments.length > 0 ? 'fa-comment' : 'fa-comment-o'}
-        -#     %span= post.comments.length
-        -#   %span.likes
-        -#     %i.fa.fa{ class: post.likes.length > 0 ? 'fa-heart' : 'fa-heart-o'}
-        -#     %span= post.likes.length
+        = link_to post do
+          = image_tag(post.image.url(:medium))
+      %section.meta
+        %span.comments
+          %i.fa{ class: post.comments.length > 0 ? 'fa-comment' : 'fa-comment-o'}
+          %span= post.comments.length if post.comments.length > 0
+        %span.likes
+          %i.fa.fa{ class: post.likes.length > 0 ? 'fa-heart' : 'fa-heart-o'}
+          %span= post.likes.length if post.likes.length > 0
 
 // :javascript
 //   $(document).ready(function() {

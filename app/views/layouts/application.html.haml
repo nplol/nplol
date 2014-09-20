@@ -3,7 +3,6 @@
   %head
     %title nplol
     = stylesheet_link_tag    'application'
-    = javascript_include_tag 'application'
     = favicon_link_tag 'favicon.ico'
     = analytics_init if Rails.env.production?
     = javascript_include_tag 'stats' unless Rails.env.production?
@@ -13,8 +12,10 @@
     %header
       = render 'partials/header'
     %section#main
+      %section.background
+        = render 'partials/background'
       = render 'partials/flash'
       = yield
-      = image_tag('plane.png', class: 'plane')
 
   = render 'partials/stats' if Rails.env.development?
+  = javascript_include_tag 'application'

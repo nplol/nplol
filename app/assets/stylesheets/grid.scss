@@ -3,9 +3,11 @@
 
 .grid {
   padding: 50px 7.5px;
-  flex: 1;
+  // need to set explicit height to control flexbox row spacing.
   height: 5px;
   flex-wrap: wrap;
+  max-width: 860px;
+  margin: 0 auto;
 }
 
 .grid-item {
@@ -18,6 +20,8 @@
   cursor: pointer;
   box-shadow: inset 0px 0px 1px 2px $lightGray;
   @include transition( all .3s ease);
+  overflow: hidden;
+  position: relative;
 }
 
 .grid-item.big { width: calc(66.666667% - 15px); }
@@ -26,71 +30,20 @@
 
 .grid-item .post { display: block; flex: 1; overflow: hidden; }
 
-.grid img { display: block; margin: 0 auto; }
+.grid-item .meta {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 15px;
+  background: $fadedRed;
+  color: $white;
+  @include transition( all .3s ease);
+  @include transform(translate3d(0, 200px, 0));
+  justify-content: space-between;
+  font-size: .8em;
+}
 
-// .post {
-//   background: $white;
-//   color: $darkGray;
-//   box-sizing: border-box;
-//   width: $width;
-//   height: $height;
-//   @include transition( all .4s );
-//   display: flex;
-//
-//   article {
-//     margin: 1em;
-//     position: relative;
-//
-//     #details {
-//       position: absolute;
-//       bottom: 0;
-//       left: 0;
-//       right:0;
-//       background: rgba(255,255,255,.6);
-//       font-size: .8em;
-//       display: flex;
-//       padding: 0 20px;
-//       opacity: 0;
-//       @include transition(opacity .4s);
-//
-//       .comments, .likes {
-//         flex: 1;
-//       }
-//
-//       .likes {
-//         align-self: flex-end;
-//         text-align: right;
-//       }
-//     }
-//
-//   }
-//
-//   &.popular {
-//     height: $high;
-//   }
-//
-//   &:hover {
-//     @include transform(scaleX(1.05));
-//     cursor: pointer;
-//
-//     article {
-//       color: $black;
-//
-//       #details {
-//         opacity: 1;
-//       }
-//     }
-//
-//   }
-//
-//   article {
-//     overflow: hidden;
-//     width: 100%;
-//
-//     img {
-//       margin: 0 auto;
-//       display: block;
-//     }
-//   }
-//
-// }
+.grid-item:hover .meta { @include transform(translate3d(0, 0, 0)); }
+
+.grid img { display: block; margin: 0 auto; }
