@@ -1,11 +1,11 @@
 @import 'bourbon';
 
-@include keyframes(plane) {
-  0% {
-    right: 0;
+@include keyframes(wave) {
+    0% {
+    @include transform(rotateZ(0deg) translate3d(0,10%,0) rotateZ(0deg));
   }
 
   100% {
-    right: 100%;
+    @include transform(rotateZ(360deg) translate3d(0,10%,0) rotateZ(-360deg));
   }
 }

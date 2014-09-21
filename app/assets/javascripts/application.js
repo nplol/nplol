@@ -14,7 +14,6 @@
 //= require jquery-2.1.1
 //= require jquery_ujs
 //= require jquery.tipsy
-//= require parallax
 //= require_directory ./lib
 //= require q
 //= require event-emitter
@@ -25,8 +24,3 @@
 //= require header
 //= require auth
 //= require app
-
-// application entry point
-$(document).ready(function() {
-  $('.background').parallax();
-})

@@ -70,6 +70,7 @@
     this.calibrationTimer = null;
     this.calibrationFlag = true;
     this.enabled = false;
+    this.scrolling = false;
     this.depths = [];
     this.raf = null;
 
@@ -111,6 +112,7 @@
     this.onCalibrationTimer = this.onCalibrationTimer.bind(this);
     this.onAnimationFrame = this.onAnimationFrame.bind(this);
     this.onWindowResize = this.onWindowResize.bind(this);
+    this.onScroll = this.onScroll.bind(this);
 
     // Initialise
     this.initialise();
@@ -225,7 +227,7 @@
   };
 
   Plugin.prototype.updateDimensions = function() {
-    this.ww = window.innerWidth;
+    this.ww = window.innerWidth + window.pageYOffset;
     this.wh = window.innerHeight;
     this.wcx = this.ww * this.originX;
     this.wcy = this.wh * this.originY;
@@ -264,6 +266,7 @@
         window.addEventListener('mousemove', this.onMouseMove);
       }
       window.addEventListener('resize', this.onWindowResize);
+      window.addEventListener('scroll', this.onScroll);
       this.raf = requestAnimationFrame(this.onAnimationFrame);
     }
   };
@@ -367,6 +370,8 @@
 
   Plugin.prototype.onCalibrationTimer = function(event) {
     this.calibrationFlag = true;
+    this.scrolling = false;
+    this.updateDimensions();
   };
 
   Plugin.prototype.onWindowResize = function(event) {
@@ -439,7 +444,18 @@
     }
   };
 
+  Plugin.prototype.scrollTimeout = function() {
+    this.scrolling = true;
+    setTimeout(this.onCalibrationTimer, 500);
+  }
+
+  Plugin.prototype.onScroll = function(event) {
+    if(!this.scrolling) return this.scrollTimeout();
+    this.ix = window.pageYOffset/100;
+  }
+
   Plugin.prototype.onMouseMove = function(event) {
+    if(this.scrolling) return;
 
     // Cache mouse coordinates.
     var clientX = event.clientX;
