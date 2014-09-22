@@ -5,6 +5,8 @@ class PostsController < ApplicationController
   def index
     @nplol? @posts = Post.all : @posts = Post._public
     score(@posts) if @posts.length > 0
+    @posts = @posts.to_a
+    gridify(@posts)
     return render 'index', layout: false if request.xhr?
   end
 
@@ -82,6 +84,26 @@ class PostsController < ApplicationController
     # 0 is the initial value
     avg_score = posts.reduce(0) { |total, post| total + post.score } / posts.length
     posts.map { |post| post.popular = true if post.score > avg_score }
+  end
+
+  # sort posts based on proper grid placement
+  def gridify(posts)
+    done = false
+    until done do
+      cand = nil
+      posts.each_slice(2) do |post, nxt|
+        return done = true if nxt.nil?
+        if post.popular? && nxt.popular?
+          cand = nxt
+          break
+        end
+      end
+      break if done
+      swap_cand = posts.slice(posts.index(cand), posts.length).reject{ |post| post.popular? }.first
+      break if swap_cand.nil?
+      old_index, new_index = posts.index(cand), posts.index(swap_cand)
+      posts[old_index], posts[new_index] = posts[new_index], posts[old_index]
+    end
   end
 
 end

@@ -1,11 +1,11 @@
 @import 'bourbon';
 @import 'colors';
 
-#post {
+#post, .article {
   flex: 1;
   margin: 0 auto;
-  max-width: 800px;
-  background: #fff;
+  max-width: 960px;
+  background: $white;
   padding: 30px 80px;
   flex-direction: column;
   box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.2);

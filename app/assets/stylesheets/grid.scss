@@ -24,6 +24,8 @@
   position: relative;
 }
 
+.grid-item a { color: $black; }
+
 .grid-item.big { width: calc(66.666667% - 15px); }
 
 .grid-item:hover { background: $white; }
@@ -39,7 +41,7 @@
   background: $fadedRed;
   color: $white;
   @include transition( all .3s ease);
-  @include transform(translate3d(0, 200px, 0));
+  @include transform(translate3d(0, 50px, 0));
   justify-content: space-between;
   font-size: .8em;
 }

@@ -15,17 +15,7 @@
 #= require jquery_ujs
 #= require jquery.tipsy
 #= require parallax
-#= require_directory ./lib
-#= require q
-#= require event-emitter
-
-# application-specific js
-#= require post-manager
-#= require post-form
-#= require header
-#= require auth
-#= require app
 
 $ ->
   $('.background').parallax()
-  @app = new App()
+  # @app = new App()
