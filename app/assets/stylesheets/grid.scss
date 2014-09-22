@@ -18,7 +18,7 @@
   background: $lightGray;
   color: $darkGray;
   cursor: pointer;
-  box-shadow: inset 0px 0px 1px 2px $lightGray;
+  box-shadow: 2px 3px 5px 2px $fadedBlack;
   @include transition( all .3s ease);
   overflow: hidden;
   position: relative;

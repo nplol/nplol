@@ -11,22 +11,27 @@ body {
   color: $black;
 }
 
-div, section {
+div, section, article {
   display: flex;
   box-sizing: border-box;
 }
 
-#main {
+#body {
   display: flex;
   position: relative;
   flex: 1;
   padding-top: 50px;
+}
 
+#main {
+  flex: 1;
+  z-index: 1;
 }
 
 h1 {
-  font-family: 'ostrich-sans-light';
+  font-size: 6em;
   text-align: center;
+  margin: 30px;
 }
 
 h2 {
@@ -36,19 +41,12 @@ h2 {
   margin-bottom: 15px;
 }
 
-// .plane {
-//   position: absolute;
-//   top: 65px;
-//   @include animation(plane 20s infinite);
-//   @include transform(translateZ(0));
-// }
-
 #stats {
   z-index: 2;
 }
 
-section {
-  display: flex;
+.tipsy {
+  z-index: 3;
 }
 
 .background {
@@ -58,6 +56,7 @@ section {
   left: 0;
   right: 0;
   display: flex;
+  z-index: 0;
 }
 
 // debug class
@@ -65,9 +64,10 @@ section {
   opacity: 0;
 }
 
+.background section { position: absolute; @include transform(translateZ(0));}
+
 .background .wave {
   background-image: image-url('wave.png');
-  position: absolute;
   bottom: -60px;
   height: 150px;
   width: 300%;
@@ -75,6 +75,28 @@ section {
   @include animation(wave 4s .1s infinite linear);
   @include transform-style(preserve-3d);
 }
+
+.background .cloud {
+  background-image: image-url('paper.png');
+  width: 200px;
+  height: 75px;
+}
+
+.background .birds {
+  width: 100px;
+  height: 55px;
+  background-image: image-url('birds.png');
+}
+
+.background .layer { width: 100%; height: 100%; position: relative; }
+
+.background .cloud:first-of-type { top: 25%; right: 0; }
+.background .cloud:nth-of-type(2) { top: 50%; left: 50%; }
+.background .cloud:nth-of-type(3) { top: 75%; left: 15%; }
+.background .cloud:nth-of-type(4) { top: 50px; left: 0; }
+.background .birds:first-of-type { top: 30%; left: 0;}
+.background .birds:nth-of-type(2) { top: 60%; left: 50%;}
+.background .birds:nth-of-type(3){ top: 30%; right: 0; }
 
 .flash {
   display: flex;

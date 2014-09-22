@@ -1,39 +1,37 @@
-- liked = @post.liking_users.include? current_user
 %article#post{ data: { id: @post.id } }
   %h1= @post.title
-  %secion.post-meta
+
+  %section.post-meta
     %section.published
       %i.fa.fa-clock-o.fa-lg
-      =@post.created_at.strftime("%B #{@post.created_at.day.ordinalize}, %Y")
+      %span=@post.created_at.strftime("%B #{@post.created_at.day.ordinalize}, %Y")
     %section.tags
       %i.fa.fa-tags.fa-lg
-      =@post.tag_list
+      %span=@post.tag_list
     %section.comments
-      =link_to @post do
+      - if @post.comments.count > 0
+        %i.fa.fa-comment.fa-lg
+        %span.count= "#{@post.comments.count} comment(s)"
+      - else
         %i.fa.fa-comment-o.fa-lg
-        %span.count= @post.comments.count
-        comments
+        %span No comments
+
   %section.content
-    =image_tag(@post.image.url(:original), { class: 'meme-image', data: { 'post-id' => @post.id } })
+    =image_tag @post.image.url(:original)
 
-  %section#comment_form_container
-    = render 'comments/form', comment: @post.comments.build
-  %section.related
-    %section#comments
-      - @post.comments.order('created_at DESC').each do |comment|
-        =render comment
-    %section#details
-      %span.detail
-        %i.fa.fa-pencil.fa-lg(title="Author")
-        - @post.author.username.nil? ? author = @post.author.name.split(' ').first : author = @post.author.username
-        = "@#{author.downcase}"
-      %span.detail
-        = link_to post_like_path(@post), { id: 'like_post', remote: true, disabled: liked} do
-          %i.fa.fa-lg{ class: liked ? 'fa-heart liked' : 'fa-heart-o', title: liked ? 'You like this' : 'Like post' }
-          %span.likes= @post.likes.length if @post.likes.length > 0
+  %section.details
+    %section.author
+      %i.fa.fa-pencil.fa-lg
+      %span= "@#{@post.author.username}"
+    %section.likes
+    - liked = @post.liking_users.include? current_user
+    = link_to post_like_path(@post), { id: 'like_post', remote: true, disabled: liked} do
+      = post_like_icon(@post, liked)
 
+  = render 'partials/admin_tools' if nplol?
 
-:javascript
-  $(document).ready(function() {
-    app.emit('show_post', { id: '#{@post.id}' })
-  })
+  = render 'comments/form', comment: @post.comments.build
+
+  %section.comments
+    - @post.comments.order('created_at DESC').each do |comment|
+      =render comment

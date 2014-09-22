@@ -1,4 +1,4 @@
-= label_form_for @post, html: { multipart: true } do |f|
+= simple_form_for @post, html: { multipart: true } do |f|
 
   = f.input :title, placeholder: 'title', class: 'title'
   = f.input :tag_list, placeholder: 'tags'

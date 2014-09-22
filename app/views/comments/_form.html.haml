@@ -1,16 +1,23 @@
-- @comment = comment if local_assigns.has_key? :comment
-- ready = @comment.errors.any?
-- ready ? value = 'Post comment' : value = 'Write something clever'
-= form_for([@comment.post, @comment], remote: true) do |f|
+-# - @comment = comment if local_assigns.has_key? :comment
+-# - ready = @comment.errors.any?
+-# - ready ? value = 'Post comment' : value = 'Write something clever'
+-# = form_for([@comment.post, @comment], remote: true) do |f|
+-#
+-#   %section.form-element{class: ('hidden' unless ready)}
+-#     - if current_user
+-#       %aside
+-#         = image_tag(current_user.avatar)
+-#         = f.text_field :text, placeholder: 'Write something clever.'
+-#     - else
+-#       %section.message
+-#         You need to click on one of the icons in the top right corner
+-#         before you can comment, brah.
+-#
+-#   = f.submit value: value, id: 'add_comment', data: { ready: ready }
 
-  %section.form-element{class: ('hidden' unless ready)}
-    - if current_user
-      %aside
-        = image_tag(current_user.avatar)
-        = f.text_field :text, placeholder: 'Write something clever.'
-    - else
-      %section.message
-        You need to click on one of the icons in the top right corner
-        before you can comment, brah.
-
-  = f.submit value: value, id: 'add_comment', data: { ready: ready }
+= simple_form_for [comment.post, comment], remote: true do |f|
+  - if current_user
+    = f.input :text, placeholder: 'Write something clever', image: current_user.avatar
+  - else
+    %section.notice
+      %span= t('login')

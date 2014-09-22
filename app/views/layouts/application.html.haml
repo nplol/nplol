@@ -2,20 +2,18 @@
 %html
   %head
     %title nplol
-    = stylesheet_link_tag    'application'
+    = stylesheet_link_tag 'application'
     = favicon_link_tag 'favicon.ico'
     = analytics_init if Rails.env.production?
-    = javascript_include_tag 'stats' unless Rails.env.production?
     = csrf_meta_tags
-
   %body
     %header
       = render 'partials/header'
-    %section#main
-      %section.background
-        = render 'partials/background'
+    %section#body
+      = render 'partials/background'
       = render 'partials/flash'
-      = yield
+      %section#main
+        = yield
 
-  = render 'partials/stats' if Rails.env.development?
+  = javascript_include_tag 'app-stats' if Rails.env.development?
   = javascript_include_tag 'application'

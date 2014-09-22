@@ -23,7 +23,6 @@ h1,h2,h3,h4,h5,h6,p {
 h1 {
   font-size: 4em;
   line-height: 1.3em;
-  margin-bottom: 50px;
 }
 
 h2 {
@@ -33,7 +32,6 @@ h2 {
 h3 {
   font-size: 1.5em;
   line-height: 1.2em;
-  margin-bottom: 10px;
 }
 
 ul {
@@ -50,8 +48,4 @@ a {
 
 .button.hidden {
   display: none;
-}
-
-.tipsy {
-  z-index: 3;
 }
