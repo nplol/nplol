@@ -15,7 +15,8 @@
 .post-meta { text-align: center; }
 .post-meta section { flex: 1; display: block; }
 .details { flex-direction: column; }
-.details section { flex: 1; margin-top: 15px; }
+.details section { flex: 1; margin-top: 15px; align-items: center;}
+.details i { margin-right: 10px; }
 .content { margin: 30px 0; justify-content: center; }
 .liked { color: $red; }
 
