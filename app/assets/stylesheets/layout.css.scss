@@ -2,8 +2,6 @@
 @import 'colors';
 
 @include font-face(open-sans, 'open-sans/OpenSans-Regular', normal, $asset-pipeline: true);
-@include font-face(ostrich-sans-light, "ostrich-sans/ostrich-sans-light", normal, $asset-pipeline: true);
-@include font-face(ostrich-sans-regular, "ostrich-sans/ostrich-sans-regular", normal, $asset-pipeline: true);
 
 body {
   font-family: 'open-sans';
@@ -27,13 +25,11 @@ div, section, article, form {
 
 h1 {
   font-size: 6em;
-  font-family: 'ostrich-sans-light';
   text-align: center;
   margin: 30px;
 }
 
 h2 {
-  font-family: 'ostrich-sans-regular';
   font-weight: 700;
   font-size: 2em;
   margin-bottom: 15px;
