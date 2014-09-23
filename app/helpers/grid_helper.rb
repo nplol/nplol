@@ -42,6 +42,19 @@ module GridHelper
     [swap, index, toggler]
   end
 
+  def shift_posts(posts)
+    swaps = { }
+    popular_posts = posts.select { |post| post.popular? }
+    popular_posts.each do |post|
+      cand = popular_posts.select { |p|
+        post.created_at < p.created_at &&
+        posts.index(post) < posts.index(p)
+      }.first
+      swaps[posts.index(post)] = posts.index(cand) if cand
+    end
+    p "Swaps: #{swaps}"
+  end
+
   def gridify(posts)
     catch :done do
       swap, index, toggler = [nil, 0, false]
@@ -50,6 +63,7 @@ module GridHelper
         swap, index, toggler = set_row(posts, index, toggler)
       end
     end
+    shift_posts(posts)
   end
 
 end
