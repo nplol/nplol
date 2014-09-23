@@ -62,7 +62,7 @@ class PostsController < ApplicationController
     rescue
       return render json: { error: 'Already liked this post, clever fellow.'}, status: 401
     end
-    return render json: { }, status: 200
+    return render json: { likes: post.likes.count }, status: 200
   end
 
   private

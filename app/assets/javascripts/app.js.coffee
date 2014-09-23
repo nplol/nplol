@@ -2,7 +2,7 @@ class App
 
   constructor: (options={})->
     @header = new Header()
-    @commentHandler = new CommentHandler() if options.comments
+    @post = new Post() if options.post
     @tipsy()
     @parallax()
 

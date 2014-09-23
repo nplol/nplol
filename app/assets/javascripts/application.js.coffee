@@ -19,9 +19,9 @@
 #= require app
 #= require header
 #= require auth
-#= require comment-handler
+#= require post
 
 $ ->
   options = {}
-  options.comments = true if $('#new_comment').length > 0
+  options.post = true if $('#post').length > 0
   @app = new App(options)

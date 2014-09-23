@@ -18,7 +18,8 @@ module ApplicationHelper
         content_tag(:i, "", class: "fa fa-heart fa-lg", title: 'Like post') +
         content_tag(:span, post.likes.count)
       else
-        content_tag(:i, "", class: "fa fa-heart-o", title: 'Like this')
+        content_tag(:i, "", class: "fa fa-heart-o fa-lg", title: 'Like this') +
+        content_tag(:span, '')
       end
     end
   end
