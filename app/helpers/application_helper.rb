@@ -12,14 +12,13 @@ module ApplicationHelper
   def post_like_icon(post, liked)
     if liked
       content_tag(:i, "", class: "fa fa-heart fa-lg liked", title: 'You like this') +
-      content_tag(:span, "#{post.likes.count} #{ post.likes.count == 1 ? 'person likes' : 'people like' } this post, including you!")
+      content_tag(:span, post.likes.count)
     else
       if post.likes.count > 0
         content_tag(:i, "", class: "fa fa-heart fa-lg", title: 'Like post') +
-        content_tag(:span, "#{post.likes.count} #{ post.likes.count == 1 ? 'person likes' : 'people like' } this post")
+        content_tag(:span, post.likes.count)
       else
-        content_tag(:i, "", class: "fa fa-heart-o", title: 'Like this') +
-        content_tag(:span, "Nobody likes this post, how sad.")
+        content_tag(:i, "", class: "fa fa-heart-o", title: 'Like this')
       end
     end
   end

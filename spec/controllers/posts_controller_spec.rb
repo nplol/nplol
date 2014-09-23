@@ -88,12 +88,12 @@ describe PostsController do
         3.times { create :post }
       end
 
-      it 'calculates average score as 0 when no comments or likes' do
+      it 'sets average score as 0 when no comments or likes' do
         get :index
         expect(assigns(:posts).select { |post| post.popular? }.length).to eq(0)
       end
 
-      it 'correctly calculates average score for comments' do
+      it 'sets average score for comments' do
         create :comment, user: user1, post: post
         get :index
         expect(assigns(:posts).select { |post| post.popular? }.length).to eq(1)

@@ -16,6 +16,9 @@
 #= require jquery.tipsy
 #= require parallax
 
+#= require app
+#= require header
+#= require auth
+
 $ ->
-  $('.background').parallax()
-  # @app = new App()
+  @app = new App()
