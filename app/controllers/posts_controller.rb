@@ -1,11 +1,11 @@
 class PostsController < ApplicationController
   include GridHelper
 
-  before_filter :set_post, only: [:edit, :update, :destroy]
   before_filter :nplol, only: [:index, :show]
+  before_filter :set_post, only: [:edit, :update, :destroy]
 
   def index
-    @nplol? @posts = Post.all : @posts = Post._public
+    @nplol ? @posts = Post.all : @posts = Post._public
     set_grid
     return render 'index', layout: false if request.xhr?
   end
@@ -56,13 +56,14 @@ class PostsController < ApplicationController
   end
 
   def like
+    return render json: { error: 'You need to log in to like shit, dude.' }, status: 401 unless current_user
     post = Post.find(params[:post_id])
     begin
       post.like(current_user)
     rescue
       return render json: { error: 'Already liked this post, clever fellow.'}, status: 401
     end
-    return render json: { likes: post.likes.count }, status: 200
+    render json: { likes: post.likes.count }, status: 200
   end
 
   private
