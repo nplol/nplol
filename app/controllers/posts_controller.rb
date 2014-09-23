@@ -3,10 +3,10 @@ class PostsController < ApplicationController
 
   before_filter :set_post, only: [:edit, :update, :destroy]
   before_filter :nplol, only: [:index, :show]
-  after_filter :set_grid, only: :index
 
   def index
     @nplol? @posts = Post.all : @posts = Post._public
+    set_grid
     return render 'index', layout: false if request.xhr?
   end
 

@@ -1,3 +1,17 @@
-// Place all the styles related to the tags controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import 'colors';
+
+.tag {
+  background: #f9f9f9;
+  padding: 5px 10px;
+  box-sizing: border-box;
+  display: inline-block;
+  text-align: left;
+  border-left: 4px solid $black;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.125);
+  margin: 2px 0;
+  color: $black;
+  border-radius: 3px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  font-size: 13px;
+}

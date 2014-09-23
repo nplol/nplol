@@ -22,16 +22,13 @@ module GridHelper
     while true do
       posts.each_slice(2) do |post, nxt|
         return if nxt.nil?
-        if post.popular? && nxt.popular?
-          if toggle == 0
-            cand = post
-            toggle = 1
-          else
-            cand = nxt
-            toggle = 0
-          end
-          break
+        next unless post.popular? && nxt.popular?
+        if toggle == 0
+          toggle, cand = 1, post
+        else
+          toggle, cand = 0, nxt
         end
+        break
       end
       return if cand.nil?
       swap_cand = posts.slice(posts.index(cand), posts.length).reject{ |post| post.popular? }.first

@@ -7,7 +7,9 @@
       %span=@post.created_at.strftime("%B #{@post.created_at.day.ordinalize}, %Y")
     %section.tags
       %i.fa.fa-tags.fa-lg
-      %span=@post.tag_list
+      - @post.tag_list.each do |tag|
+        %span.tag= tag
+
     %section.comments
       - if @post.comments.count > 0
         %i.fa.fa-comment.fa-lg
