@@ -16,8 +16,9 @@ header {
 }
 
 header section { flex: 1; }
+.logo a { margin: 0; padding: 0; }
+.logo img { height: 32px; width: 32px; }
 .logo, .user-tools { justify-content: flex-end; }
-.logo-icon { height: 32px; }
 header a, header i { color: $white; padding: 0 5px; }
 
 #user-menu {
