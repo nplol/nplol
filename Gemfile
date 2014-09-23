@@ -27,6 +27,8 @@ gem 'google-analytics-rails'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-github'
 
+gem 'figaro'
+
 group :development, :test do
   gem 'spring'
   gem 'byebug'
