@@ -18,6 +18,7 @@
  *= require layout
  *= require header
  *= require forms
- *= require queries
  *= require animations
+ *= require background
+ *= require notices
  */

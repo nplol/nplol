@@ -1,12 +1,10 @@
 class App
 
-  constructor: ->
+  constructor: (options={})->
     @header = new Header()
-    @initBindings()
+    @commentHandler = new CommentHandler() if options.comments
     @tipsy()
     @parallax()
-
-  initBindings: ->
 
   tipsy: ->
     $('i, .logo-icon').tipsy(fade: true, gravity: 'n')

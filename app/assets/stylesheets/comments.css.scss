@@ -32,10 +32,10 @@
 
 .comment:nth-child(2n) { align-self: flex-end; justify-content: flex-end; }
 .comment:nth-child(2n) aside { margin-right: 0; margin-left: 30px; }
-.comment:nth-child(2n) .text { background: $lightBlue; order: -1; }
+.comment:nth-child(2n) .text { background: $fadedBlue; order: -1; color: $black; }
 .comment:nth-child(2n) .text:after {
   right: -12px;
   left: auto;
   border-width: 10px 0 10px 12px;
-  border-color: transparent $lightBlue;
+  border-color: transparent $fadedBlue;
 }

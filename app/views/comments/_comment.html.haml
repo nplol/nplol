@@ -2,6 +2,6 @@
 
 %section.comment
   %aside
-    =image_tag(@comment.user.avatar)
+    =image_tag(@comment.user.avatar, class: 'avatar')
   %section.text
     %p= @comment.text

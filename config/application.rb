@@ -18,5 +18,7 @@ module Nplol
       g.helper          false
     end
 
+    I18n.default_locale = :nb
+
   end
 end

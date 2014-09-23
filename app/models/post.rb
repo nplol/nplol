@@ -37,7 +37,7 @@ class Post < ActiveRecord::Base
   end
 
   def tag_list
-    tags.map(&:name)
+    tags.map(&:name).join(', ')
   end
 
   def score

@@ -14,12 +14,14 @@
 #= require jquery-2.1.1
 #= require jquery_ujs
 #= require jquery.tipsy
-#= require packery
 #= require parallax
 
 #= require app
 #= require header
 #= require auth
+#= require comment-handler
 
 $ ->
-  @app = new App()
+  options = {}
+  options.comments = true if $('#new_comment').length > 0
+  @app = new App(options)

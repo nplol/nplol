@@ -16,7 +16,7 @@ module FormHelper
       content_tag(:section, class: "input #{attribute}") do
         if options[:image]
           @content = content_tag(:aside) do
-            image_tag(options.delete(:image))
+            image_tag(options.delete(:image), class: 'avatar')
           end
         end
         @content << text_field(attribute, options)
