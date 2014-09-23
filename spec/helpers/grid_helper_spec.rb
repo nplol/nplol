@@ -29,10 +29,12 @@ describe GridHelper do
     it 'sets grid correctly for popular and regular posts' do
       score(posts)
       gridify(posts)
-      expect(posts[0].popular?).to be_truthy
-      expect(posts[1].popular?).to_not be_truthy
+      expect(posts[0].popular?).to_not be_truthy
+      expect(posts[1].popular?).to be_truthy
       expect(posts[2].popular?).to be_truthy
       expect(posts[3].popular?).to_not be_truthy
+      expect(posts[4].popular?).to_not be_truthy
+      expect(posts[5].popular?).to be_truthy
     end
   end
 
