@@ -79,6 +79,16 @@ Nplol::Application.configure do
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
 
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      :bucket => ENV['s3_bucket'],
+      :access_key_id => ENV['s3_access_key_id'],
+      :secret_access_key => ENV['s3_access_key'],
+      :s3_host_name => ENV['s3_host_name']
+    }
+  }
+
   # Disable automatic flushing of the log to improve performance.
   # config.autoflush_log = false
 
