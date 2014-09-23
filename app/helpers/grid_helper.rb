@@ -42,6 +42,7 @@ module GridHelper
     [swap, index, toggler]
   end
 
+  # ensure that the popular posts are ordered according to created_at
   def shift_posts(posts)
     swaps = { }
     popular_posts = posts.select { |post| post.popular? }

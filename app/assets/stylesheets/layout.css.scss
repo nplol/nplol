@@ -9,9 +9,14 @@ body {
   color: $black;
 }
 
-div, section, article, form {
+div, section, article, form, ul {
   display: flex;
   box-sizing: border-box;
+}
+
+ul {
+  flex-direction: column;
+  flex: 1;
 }
 
 #body {

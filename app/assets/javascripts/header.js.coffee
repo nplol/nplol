@@ -18,55 +18,7 @@ class Header
         authWindow = window.open(@auth.githubUrl, 'githubWindow', params)
       authWindow.focus()
 
-    $(document).on 'click', '.settings', (event) ->
+    $(document).on 'click', '.settings, #user-menu', (event) ->
       $('#user-menu').toggleClass('active')
-
-    # $('.settings').on 'click', =>
-    #   @_toggleMenu()
-    #
-    # $('.authorize').on 'click', =>
-    #   @_toggle()
-    #   @_toggleMenu()
-    #
-    # $('.authorize').on 'ajax:error', (xhr, status, error) =>
-    #   @_toggleMenu()
-    #   @_toggle()
-    #
-    # $('.authorize').on 'ajax:success', (event, html, xhr) =>
-    #   $('#user-menu').remove()
-    #   setTimeout( => @_reload(html),
-    #   800)
-  #
-  # initEvents: ->
-  #   @auth.on 'auth', =>
-  #     @_toggle()
-  #     @_fetchHeader()
-  #
-  # _toggleMenu: ->
-  #   $('#user-menu').toggleClass('active')
-  #
-  # _toggle: ->
-  #   @$el.toggleClass('transition')
-  #
-  # _fetchHeader: ->
-  #   Q($.ajax
-  #       method: 'get'
-  #       url: '/header'
-  #       dataType: 'html'
-  #   )
-  #   .then(
-  #     (html) =>
-  #       setTimeout(=> @_reload(html),
-  #       800)
-  #   )
-  #   .fail(
-  #     (error) ->
-  #       console.log error
-  #   )
-  #
-  # _reload: (html) ->
-  #   @$el.html(html)
-  #   @initBindings()
-  #   @_toggle()
 
 @Header = Header
