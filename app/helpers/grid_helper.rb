@@ -15,26 +15,40 @@ module GridHelper
     posts.map { |post| post.popular = true if post.score > avg_score }
   end
 
-  # sort posts based on proper grid placement
+  def swap_post(swap, posts)
+    cand = posts.slice(swap, posts.length).reject { |post| post.popular? }.first
+    throw :done if cand.nil?
+    cand_index = posts.index(cand)
+    posts[swap], posts[cand_index] = posts[cand_index], posts[swap]
+  end
+
+  def set_row(posts, index, toggler)
+    row = posts[index..index+2]
+    throw :done if row[1].nil? || row[2].nil?
+    if row[0].popular? && row[1].popular?
+      index += 2
+      swap = toggler ? posts.index(row[1]) : posts.index(row[0])
+      toggler = !toggler
+    elsif row[0].popular? || row[1].popular?
+      index += 2
+      swap = nil
+    elsif row[2].popular?
+      index += 3
+      swap = posts.index(row[2])
+    else
+      index += 3
+      swap = nil
+    end
+    [swap, index, toggler]
+  end
+
   def gridify(posts)
-    cand = nil
-    toggle = 0
-    while true do
-      posts.each_slice(2) do |post, nxt|
-        return if nxt.nil?
-        next unless post.popular? && nxt.popular?
-        if toggle == 0
-          toggle, cand = 1, post
-        else
-          toggle, cand = 0, nxt
-        end
-        break
+    catch :done do
+      swap, index, toggler = [nil, 0, false]
+      while true do
+        swap_post(swap, posts) if swap
+        swap, index, toggler = set_row(posts, index, toggler)
       end
-      return if cand.nil?
-      swap_cand = posts.slice(posts.index(cand), posts.length).reject{ |post| post.popular? }.first
-      return if swap_cand.nil?
-      old_index, new_index = posts.index(cand), posts.index(swap_cand)
-      posts[old_index], posts[new_index] = posts[new_index], posts[old_index]
     end
   end
 

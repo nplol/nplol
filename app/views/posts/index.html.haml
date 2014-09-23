@@ -1,6 +1,6 @@
 %section.posts.grid
   - @posts.each do |post|
-    .grid-item{ class: ('big' if post.popular?) }
+    .grid-item{ class: (post.popular? ? 'big' : 'normal') }
       = link_to post do
         .post{ data: { post_id: post.id } }
           %h2= post.title
