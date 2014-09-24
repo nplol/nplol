@@ -23,13 +23,14 @@ module GridHelper
     posts[swap], posts[cand_index] = posts[cand_index], posts[swap]
   end
 
-  def set_row(posts, index, toggler)
+  def set_row(posts, index)
     row = posts[index..index+2]
     throw :done if row[1].nil? || row[2].nil?
     if row[0].popular? && row[1].popular?
       index += 2
-      swap = toggler ? posts.index(row[0]) : posts.index(row[1])
-      toggler = !toggler
+      swap = posts.index(row[0])
+      # swap = toggler ? posts.index(row[0]) : posts.index(row[1])
+      # toggler = !toggler
     elsif row[0].popular? || row[1].popular?
       index += 2
       swap = nil
@@ -40,7 +41,7 @@ module GridHelper
       index += 3
       swap = nil
     end
-    [swap, index, toggler]
+    [swap, index]
   end
 
   # ensure that the popular posts are ordered according to created_at
@@ -62,10 +63,10 @@ module GridHelper
 
   def gridify(posts)
     catch :done do
-      swap, index, toggler = [nil, 0, false]
+      swap, index = [nil, 0]
       while true do
         swap_post(swap, posts) if swap
-        swap, index, toggler = set_row(posts, index, toggler)
+        swap, index = set_row(posts, index)
       end
     end
     shift_posts(posts)
