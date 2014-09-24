@@ -28,7 +28,7 @@ module GridHelper
     throw :done if row[1].nil? || row[2].nil?
     if row[0].popular? && row[1].popular?
       index += 2
-      swap = toggler ? posts.index(row[0]) : posts.index(row[1])
+      swap = toggler ? posts.index(row[1]) : posts.index(row[0])
       toggler = !toggler
     elsif row[0].popular? || row[1].popular?
       index += 2
