@@ -9,6 +9,11 @@ module ApplicationHelper
     @current_user ||= User.find_by(uuid: session[:user_id])
   end
 
+  def flash_class
+    'notice' if flash[:notice]
+    'error'  if flash[:error]
+  end
+
   def post_like_icon(post, liked)
     if liked
       content_tag(:i, "", class: "fa fa-heart fa-lg liked", title: 'You like this') +

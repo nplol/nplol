@@ -26,7 +26,7 @@ gem 'google-analytics-rails'
 # use ouath for authing with third-parties
 gem 'omniauth-google-oauth2'
 gem 'omniauth-github'
-
+gem 'nokogiri'
 gem 'figaro'
 
 group :development, :test do

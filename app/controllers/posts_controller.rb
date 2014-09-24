@@ -22,6 +22,7 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to @post
     else
+      flash[:error] = @post.errors.messages
       render 'new'
     end
   end

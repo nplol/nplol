@@ -255,6 +255,7 @@ DEPENDENCIES
   guard-rspec
   haml
   newrelic_rpm
+  nokogiri
   omniauth-github
   omniauth-google-oauth2
   paperclip (~> 4.1)

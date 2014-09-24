@@ -11,7 +11,6 @@ input {
   padding: 10px;
   border: 0;
   border-bottom: 1px solid #ddd;
-  opacity: .6;
   font-size: 22px;
 }
 
@@ -28,11 +27,11 @@ input.error { border-bottom: 1px solid $red; }
 
 input:focus { outline: 0; }
 
-button {
-  background: #da4c43;
+input[type=submit] {
+  background: $red;
   padding: 20px 50px;
-  text-align: center;
-  color: #fff;
+  justify-content: center;
+  color: $white;
   border: 0;
   width: 100%;
   font-size: 22px;

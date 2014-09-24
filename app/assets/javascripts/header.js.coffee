@@ -21,4 +21,7 @@ class Header
     $(document).on 'click', '.settings, #user-menu', (event) ->
       $('#user-menu').toggleClass('active')
 
+    $(document).on 'click', '.flash', (event) ->
+      $(@).removeClass('error notice')
+
 @Header = Header
