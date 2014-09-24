@@ -10,7 +10,7 @@
       - @post.tag_list.split(',').each do |tag|
         %span.tag= tag
 
-    %section.comments
+    %section
       - if @post.comments.count > 0
         %i.fa.fa-comment.fa-lg
         %span.count= "#{@post.comments.count} comment(s)"
