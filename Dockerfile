@@ -22,3 +22,9 @@ USER app
 WORKDIR /var/www
 
 CMD 'RAILS_ENV=production rake assets:precompile' -s /bin/bash -l app 
+
+# add environment variables to nginx
+# ADD ./env.conf /etc/nginx/conf.d/env.conf
+
+# add custom config to nginx
+ADD ./nginx.conf /etc/nginx/nginx.conf
