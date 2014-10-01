@@ -1,5 +1,5 @@
 # dockerfile for nplol.com
-FROM rails_base
+FROM nicohvi/ruby
 
 # add 'app' user which will run the application
 RUN adduser app --home /home/app --shell /bin/bash --disabled-password --gecos ""
