@@ -1,5 +1,5 @@
 # dockerfile for nplol.com
-FROM nicohvi/ruby
+FROM nicohvi/webserver
 
 # add 'app' user which will run the application
 RUN adduser app --home /home/app --shell /bin/bash --disabled-password --gecos ""
@@ -21,10 +21,11 @@ RUN chown -R app:app /var/www
 USER app
 WORKDIR /var/www
 
-CMD 'RAILS_ENV=production rake assets:precompile' -s /bin/bash -l app 
-
-# add environment variables to nginx
-# ADD ./env.conf /etc/nginx/conf.d/env.conf
+CMD 'RAILS_ENV=production rake assets:precompile' -s /bin/bash -l app
 
 # add custom config to nginx
 ADD ./nginx.conf /etc/nginx/nginx.conf
+
+EXPOSE 80
+
+ENTRYPOINT sudo /etc/init.d/nginx start
