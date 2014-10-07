@@ -2,7 +2,7 @@
 FROM nicohvi/webserver
 
 # add 'app' user which will run the application
-RUN adduser app --home /home/app --shell /bin/bash --disabled-password --gecos ""
+RUN adduser app 
 
 # add separate gemfile to bundle in specific folder
 ADD Gemfile       /var/www/
