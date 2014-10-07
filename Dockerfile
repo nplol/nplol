@@ -2,9 +2,8 @@
 FROM nicohvi/app
 
 # add Gemfile seperately and bundle to particular folder
-RUN mkdir -p /var/app
-ADD Gemfile       /var/app
-ADD Gemfile.lock  /var/app
+ADD Gemfile       /var/app/
+ADD Gemfile.lock  /var/app/
 RUN chown -R app:app /var/app && \
   mkdir -p /var/bundle &&\
   chown -R app:app /var/bundle
@@ -12,7 +11,7 @@ RUN chown -R app:app /var/app && \
 RUN su -c "cd /var/www && bundle install --without development, test --path /var/bundle" -s /bin/bash -l app
 
 # add source code
-ADD . /var/app
+ADD . /var/app/
 RUN chown -R app:app /var/app
 
 # run the subsequent commands as user *app* in dir *workdir*
