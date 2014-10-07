@@ -2,7 +2,7 @@
 FROM nicohvi/app
 
 # add Gemfile seperately and bundle to particular folder
-RUN mkdir-p /var/app
+RUN mkdir -p /var/app
 ADD Gemfile       /var/app
 ADD Gemfile.lock  /var/app
 RUN chown -R app:app /var/app && \
