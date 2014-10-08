@@ -8,8 +8,7 @@ RUN chown -R app:app /var/app && \
   mkdir -p /var/bundle &&\
   chown -R app:app /var/bundle
 
-WORKDIR /var/app
-RUN su app -c "bundle install --without development, test --path /var/bundle" -l
+RUN su app -c "cd /var/app && bundle install --without development, test --path /var/bundle" -l
 
 # add source code
 ADD . /var/app/
