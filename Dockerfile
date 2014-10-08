@@ -22,4 +22,4 @@ ADD nginx.conf /etc/nginx/nginx.conf
 EXPOSE 80
 
 # finally, start nginx
-ENTRYPOINT sudo /etc/init.d/nginx start
+# ENTRYPOINT sudo /etc/init.d/nginx start
