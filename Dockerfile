@@ -18,3 +18,5 @@ RUN su app -c 'cd /var/app && RAILS_ENV=production bundle exec rake assets:preco
 
 # add custom config to nginx
 ADD nginx.conf /etc/nginx/nginx.conf
+
+VOLUME ["/var/log"]
