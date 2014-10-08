@@ -8,15 +8,15 @@ RUN chown -R app:app /var/app && \
   mkdir -p /var/bundle &&\
   chown -R app:app /var/bundle
 
-USER app
 WORKDIR /var/app
 
-RUN /bin/bash -c -l "bundle install --without development, test --path /var/bundle"
+RUN /bin/bash -c -l app  "bundle install --without development, test --path /var/bundle"
 
 # add source code
 ADD . /var/app/
-RUN sudo chown -R app:app /var/app
+RUN chown -R app:app /var/app
 
+USER app
 RUN /bin/bash -c -l  'RAILS_ENV=production bundle exec rake assets:precompile
 '
 
