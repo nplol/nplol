@@ -14,7 +14,7 @@ RUN su app -c "cd /var/app && bundle install --without development, test --path 
 ADD . /var/app/
 RUN chown -R app:app /var/app
 
-RUN su app -c 'RAILS_ENV=production bundle exec rake assets:precompile' -l
+RUN su app -c 'cd /var/app && RAILS_ENV=production bundle exec rake assets:precompile' -l
 
 # add custom config to nginx
 ADD nginx.conf /etc/nginx/nginx.conf
