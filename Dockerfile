@@ -18,11 +18,3 @@ RUN su app -c 'cd /var/app && RAILS_ENV=production bundle exec rake assets:preco
 
 # add custom config to nginx
 ADD nginx.conf /etc/nginx/nginx.conf
-
-EXPOSE 80
-
-# expose volums
-VOLUME ["etc/nginx", "/var/log/nginx"]
-
-# finally, start nginx
-ENTRYPOINT sudo /etc/init.d/nginx start
