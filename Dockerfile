@@ -18,7 +18,7 @@ RUN chown -R app:app /var/app
 USER app
 WORKDIR /var/app
 
-RUN 'RAILS_ENV=production bundle exec rake assets:precompile'
+RUN su -c -s /bin/bash -l app 'RAILS_ENV=production bundle exec rake assets:precompile'
 
 # add custom config to nginx
 ADD nginx.conf /etc/nginx/nginx.conf
