@@ -8,17 +8,17 @@ RUN chown -R app:app /var/app && \
   mkdir -p /var/bundle &&\
   chown -R app:app /var/bundle
 
-RUN su -c "cd /var/app && bundle install --without development, test --path /var/bundle" -s /bin/bash -l app
-
-# add source code
-ADD . /var/app/
-RUN chown -R app:app /var/app
-
-# run the subsequent commands as user *app* in dir *workdir*
 USER app
 WORKDIR /var/app
 
-RUN su -c -s /bin/bash -l app 'RAILS_ENV=production bundle exec rake assets:precompile'
+RUN  "bundle install --without development, test --path /var/bundle"
+
+# add source code
+ADD . /var/app/
+RUN sudo chown -R app:app /var/app
+
+RUN su -c 'RAILS_ENV=production bundle exec rake assets:precompile
+'
 
 # add custom config to nginx
 ADD nginx.conf /etc/nginx/nginx.conf
