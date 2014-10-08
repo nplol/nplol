@@ -21,5 +21,8 @@ ADD nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 80
 
+# expose volums
+VOLUME ['etc/nginx', /var/log/nginx']
+
 # finally, start nginx
-# ENTRYPOINT sudo /etc/init.d/nginx start
+ENTRYPOINT sudo /etc/init.d/nginx start
