@@ -10,7 +10,7 @@ RUN chown -R app:app /var/app && \
 
 WORKDIR /var/app
 
-RUN /bin/bash -c -l app  "bundle install --without development, test --path /var/bundle"
+RUN /bin/bash -c -l --user app  "bundle install --without development, test --path /var/bundle"
 
 # add source code
 ADD . /var/app/
