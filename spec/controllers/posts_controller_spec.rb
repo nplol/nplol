@@ -1,107 +1,59 @@
 require 'rails_helper'
 
 describe PostsController do
-  let(:current_user) { create :user }
-  let(:current_nplol_user) { create :nplol_user}
-
+  
+  # TODO: necessary?
   after :all do
     Post.destroy_all
     Tag.destroy_all
   end
 
+  before :example do
+    user = double('user')
+    allow(user).to receive(:nplol?).and_return(false)
+    allow(controller).to receive(:current_user).and_return(user)
+  end
+
   shared_context 'authenticated' do
-    before :each do
-      allow(controller).to receive(:current_user).and_return(current_nplol_user)
+    before :example do
+      nplol_user = build :user, :nplol
+      allow(controller).to receive(:current_user).and_return(nplol_user)
     end
   end
 
   describe 'authentication' do
-    let(:post_model) { create :post }
+    let(:post_id) { 1337  }
     let(:post_params) { { title: nil }}
 
-    it 'doesn\'t allow access to *new*' do
+    it 'doesn\'t allow access to protected routes through manage? before_filter' do
       get :new
       expect(flash[:error]).to_not be_nil
       expect(response).to redirect_to(root_url)
     end
 
-    it 'doesn\'t allow access to *create*' do
-      post :create, post: post_params
-      expect(flash[:error]).to_not be_nil
-      expect(response).to redirect_to(root_url)
-    end
-
-    it 'doesn\'t allow access to *edit*' do
-      get :edit, id: post_model.to_param
-      expect(flash[:error]).to_not be_nil
-      expect(response).to redirect_to(root_url)
-    end
-
-    it 'doesn\'t allow access to *update*' do
-      put :update, { id: post_model.to_param, post: post_params }
-      expect(flash[:error]).to_not be_nil
-      expect(response).to redirect_to(root_url)
-    end
-
-    it 'doesn\'t allow access to *destroy*' do
-      delete :destroy, id: post_model.to_param
-      expect(flash[:error]).to_not be_nil
-      expect(response).to redirect_to(root_url)
-    end
-
-  end
-
-  before :each do
-    allow(controller).to receive(:current_user).and_return(current_user)
   end
 
   describe 'index' do
-    before :each do
-      5.times { create :public_post }
-      4.times { create :private_post }
+    before :all do
+      create_list :post, 5, :public
+      create_list :post, 3, :private
+    end
+    
+    context 'regular users' do
+      it 'finds only public posts' do
+        get :index
+        expect(assigns(:posts).length).to eq(5)
+      end
     end
 
-    it 'finds only public posts' do
-      get :index
-
-      expect(assigns(:posts)).to_not be_nil
-      expect(assigns(:posts).length).to eq(5)
-    end
-
-    describe 'private posts' do
+    context 'nplol users' do
       include_context 'authenticated'
-
-      it 'finds all posts for nplol-members' do
+      it 'finds all posts' do
         get :index
-
-        expect(assigns(:posts)).to_not be_nil
-        expect(assigns(:posts).length).to eq(9)
+        expect(assigns(:posts).length).to eq(8)
       end
     end
-
-    context 'calculating post scores' do
-      let(:user1) { create :user }
-      let(:user2) { create :user }
-      let(:post) { create :post }
-
-      before :each do
-        3.times { create :post }
-      end
-
-      it 'sets average score as 0 when no comments or likes' do
-        get :index
-        expect(assigns(:posts).select { |post| post.popular? }.length).to eq(0)
-      end
-
-      it 'sets average score for comments' do
-        create :comment, user: user1, post: post
-        get :index
-        expect(assigns(:posts).select { |post| post.popular? }.length).to eq(1)
-      end
-
-    end
-
-  end # index
+  end 
 
   describe 'create' do
     include_context 'authenticated'

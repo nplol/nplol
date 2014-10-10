@@ -264,6 +264,7 @@ DEPENDENCIES
   puma
   pundit
   rails (~> 4.1.1)
+  rspec-mocks
   rspec-rails
   sass-rails (~> 4.0.2)
   simplecov

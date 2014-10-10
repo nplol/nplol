@@ -12,11 +12,11 @@ FactoryGirl.define do
     image_content_type { 'image/jpeg' }
     image_file_size { 256 }
 
-    factory :public_post do
+    trait :public do
       public true
     end
 
-    factory :private_post do
+    trait :private do
       public false
     end
 

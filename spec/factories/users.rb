@@ -5,7 +5,7 @@ FactoryGirl.define do
     name 'Frank'
     avatar 'image.png'
 
-    factory :nplol_user do
+    trait :nplol do
       role 'nplol'
     end
 

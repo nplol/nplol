@@ -4,6 +4,7 @@ class Post < ActiveRecord::Base
 
   belongs_to :author, class_name: 'User', foreign_key: 'user_id'
   has_many :comments, dependent: :destroy
+
   has_and_belongs_to_many :tags
   accepts_nested_attributes_for :tags
   has_many :likes, dependent: :destroy
@@ -16,20 +17,13 @@ class Post < ActiveRecord::Base
   validates :title, presence: true,
             uniqueness: true
 
-  scope :_public, -> { where(public: true).order('created_at DESC') }
-
-  def self.policy_class
-    PostPolicy
-  end
-
-  def popular?
-    self.popular
-  end
+  scope :_public, -> { where(public: true) }
 
   def public?
     self.public
   end
-
+  
+  # setter and getter for nested tag attributes
   def tag_list=(tags)
     tags.split(',').map(&:strip).each do |tag|
       self.tags << Tag.find_or_create_by(name: tag)

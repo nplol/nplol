@@ -39,6 +39,7 @@ end
 
 group :test do
   gem 'rspec-rails'
+  gem 'rspec-mocks'
   gem 'factory_girl_rails', '~> 4.4.1'
   gem 'database_cleaner'
   gem 'guard'

@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   include GridHelper
 
   before_filter :nplol, only: [:index, :show]
+  before_filter :manage?, except: [:index, :show]
   before_filter :set_post, only: [:edit, :update, :destroy]
 
   def index
@@ -12,12 +13,10 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
-    authorize @post, :manage?
   end
 
   def create
     @post = Post.new(post_params)
-    authorize @post, :manage?
     @post.author = current_user
     if @post.save
       redirect_to @post
@@ -68,14 +67,17 @@ class PostsController < ApplicationController
   end
 
   private
+  
+  def manage?
+    authorize Post, :manage?
+  end
+ 
+  def nplol
+    @nplol = current_user && current_user.nplol?
+  end
 
   def set_post
     @post = Post.find(params[:id])
-    authorize @post, :manage?
-  end
-
-  def nplol
-    @nplol = current_user && current_user.nplol?
   end
 
   def post_params
