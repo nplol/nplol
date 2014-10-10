@@ -4,7 +4,7 @@ describe GridHelper do
   let(:posts) { Post.all }
 
   before :all do
-    10.times { create :post }
+    create_list :post, 10
   end
 
   describe 'score' do
@@ -14,7 +14,7 @@ describe GridHelper do
     end
 
     it 'calcuates average score when there are popular posts' do
-      create :popular_post
+      create :post, :popular
       score(posts)
       expect(posts.select { |post| post.popular }.length).to eq(1)
     end
@@ -23,7 +23,7 @@ describe GridHelper do
 
   describe 'gridify' do
     before :all do
-      5.times { create :popular_post }
+      create_list :post, 5, :popular
     end
 
     it 'sets grid correctly for popular and regular posts' do

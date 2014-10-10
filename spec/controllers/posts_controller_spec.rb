@@ -2,13 +2,7 @@ require 'rails_helper'
 
 describe PostsController do
   
-  # TODO: necessary?
-  after :all do
-    Post.destroy_all
-    Tag.destroy_all
-  end
-
-  before :example do
+before :example do
     user = double('user')
     allow(user).to receive(:nplol?).and_return(false)
     allow(controller).to receive(:current_user).and_return(user)
@@ -33,27 +27,30 @@ describe PostsController do
 
   end
 
-  describe 'index' do
-    before :all do
-      create_list :post, 5, :public
-      create_list :post, 3, :private
+  before :all do
+    create_list :post, 5, :public
+    create_list :post, 3, :private
+  end
+  
+  context 'regular users' do
+    it 'finds only public posts' do
+      get :index
+      expect(assigns(:posts).length).to eq(5)
     end
     
-    context 'regular users' do
-      it 'finds only public posts' do
-        get :index
-        expect(assigns(:posts).length).to eq(5)
-      end
+    it 'does not show private posts' do
+      get :show, id: Post._private.first.to_param
+      expect(response).to redirect_to(root_url)
     end
+  end
 
-    context 'nplol users' do
-      include_context 'authenticated'
-      it 'finds all posts' do
-        get :index
-        expect(assigns(:posts).length).to eq(8)
-      end
+  context 'nplol users' do
+    include_context 'authenticated'
+    it 'finds all posts' do
+      get :index
+      expect(assigns(:posts).length).to eq(8)
     end
-  end 
+  end
 
   describe 'create' do
     include_context 'authenticated'
@@ -95,46 +92,6 @@ describe PostsController do
       expect(flash[:notice]).to_not be_nil
       expect(response).to redirect_to(post)
     end
-  end
-
-  describe 'tags' do
-    include_context 'authenticated'
-    let(:post) { create :post }
-    let(:tags) { [ Tag.find(1).name, Tag.find(2).name, Tag.find(3).name ] }
-    before :all do
-      5.times { create :tag }
-    end
-
-    after :each do
-      post.tags.destroy_all
-      if tags.length != 3 # i.e. tags has been modified
-        tags = [ Tag.find(1).name, Tag.find(2).name, Tag.find(3).name]
-      end
-    end
-
-    it 'adds existing tags to a post' do
-      put :update, id: post.to_param, post: { tag_list: tags.join(', ') }
-      expect(assigns(:post).tags.length).to eq(3)
-    end
-
-    it 'doesn\'t create more tags than necessary' do
-      tags << 'tag99'
-      put :update, id: post.to_param, post: { tag_list: tags.join(', ') }
-      expect(Tag.all.length).to eq(6)
-    end
-
-    it 'only adds properly formatted tags' do
-      put :update, id: post.to_param, post: { tag_list: "tag101, tag102    tag103\ntag104,tag105" }
-      expect(post.tags.length).to eq(3)
-      expect(Tag.all.length).to eq(8)
-    end
-
-    it 'deletes tags from a post' do
-      tags.pop
-      put :update, id: post.to_param, post: { tag_list: tags.join(', ') }
-      expect(assigns(:post).tags.length).to eq(2)
-    end
-
   end
 
 end

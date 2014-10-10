@@ -17,7 +17,8 @@ class Post < ActiveRecord::Base
   validates :title, presence: true,
             uniqueness: true
 
-  scope :_public, -> { where(public: true) }
+  scope :_public, ->  { where(public: true)  }
+  scope :_private, -> { where(public: false) }
 
   def public?
     self.public

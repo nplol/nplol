@@ -1,14 +1,14 @@
 class PostsController < ApplicationController
   include GridHelper
+  layout :layout?
 
   before_filter :nplol, only: [:index, :show]
   before_filter :manage?, except: [:index, :show]
-  before_filter :set_post, only: [:edit, :update, :destroy]
+  before_filter :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
     @nplol ? @posts = Post.all : @posts = Post._public
     set_grid
-    return render 'index', layout: false if request.xhr?
   end
 
   def new
@@ -39,15 +39,12 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
-    redirect_to root_path unless @post.public? || @nplol
+    return redirect_to root_path  unless @post.public? || @nplol 
     if params[:sibling]
       @post = Post.find(params[:id]).send(params[:sibling])
     else
       @post = Post.find(params[:id])
     end
-    return render json: { error: 'Post not found'}, status: 404 if @post.nil?
-    render 'show', layout: false if request.xhr?
   end
 
   def destroy
@@ -67,6 +64,10 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def layout?
+    request.xhr? ? false : 'application'
+  end
   
   def manage?
     authorize Post, :manage?
@@ -78,6 +79,7 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:id])
+    throw 404 if @post.nil?
   end
 
   def post_params

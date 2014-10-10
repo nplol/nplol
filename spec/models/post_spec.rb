@@ -3,7 +3,7 @@ require 'rails_helper'
 describe Post do
 
   context 'Paperclip' do
-    let(:post) { create :post }
+    let(:post) { build :post }
     let(:invalid_image) { File.new("#{Rails.root}/spec/files/invalid.mp4") }
     let(:valid_image) { File.new("#{Rails.root}/spec/files/valid_image.png") }
     let(:valid_path) { "#{Rails.root}/spec/public/valid_image.png" }
@@ -29,7 +29,7 @@ describe Post do
 
   context 'Siblings' do
     before :all do
-      3.times { create :post }
+      create_list :post, 3
     end
 
     it 'finds siblings for a given post' do
@@ -54,18 +54,50 @@ describe Post do
       expect(post.public?).to eq(true)
     end
   end
+  
+  context 'tags' do
+    let(:tags) { Tag.all }
+    let(:poor_tag_format) { "tag101, tag102, tag103\ntag104, tag105" }
 
-  context 'with_tags' do
-    let(:post) { create :post }
-
-    it 'doesn\'t delete tags when they are removed from the post' do
-      post.tags << create(:tag)
-      post.save
-      post.tags.destroy_all
-      expect(post.tags.length).to eq(0)
-      expect(Tag.all.length).to eq(1)
+    before :all do
+      create_list :tag, 5
     end
 
-  end
+    before :each do
+      @post = build :post
+    end
 
+    #after :each do
+      #post.tags.destroy_all
+      #if tags.length != 3 # i.e. tags has been modified
+        #tags = [ Tag.find(1).name, Tag.find(2).name, Tag.find(3).name]
+      #end
+    #end
+
+    it 'adds existing tags to a post' do
+      @post.tags << tags
+      @post.save!
+      expect(@post.tags).to eq(tags)
+    end
+
+    #it 'adds new tags' do
+      #tags << 'tag99'
+      #put :update, id: post.to_param, post: { tag_list: tags.join(', ') }
+      #expect(Tag.all.length).to eq(6)
+    #end
+
+    #it 'only adds properly formatted tags' do
+      #put :update, id: post.to_param, post: { tag_list: poor_tag_format }
+      ## tags are separated by commas.
+      #expect(post.tags.length).to eq(3)
+      #expect(Tag.all.length).to eq(8)
+    #end
+
+    #it 'deletes tags from a post' do
+      #new_tags = tags.pop
+      #put :update, id: post.to_param, post: { tag_list: new_tags }
+      #expect(assigns(:post).tags.length).to eq(1)
+    #end
+
+  end
 end

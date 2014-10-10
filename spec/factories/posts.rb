@@ -20,7 +20,7 @@ FactoryGirl.define do
       public false
     end
 
-    factory :popular_post do
+    trait :popular do
       after :create do |post|
         create_list(:comment, 5, post: post)
       end
