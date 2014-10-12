@@ -40,11 +40,7 @@ class PostsController < ApplicationController
 
   def show
     return redirect_to root_path  unless @post.public? || @nplol 
-    if params[:sibling]
-      @post = Post.find(params[:id]).send(params[:sibling])
-    else
-      @post = Post.find(params[:id])
-    end
+    @post.set_siblings
   end
 
   def destroy

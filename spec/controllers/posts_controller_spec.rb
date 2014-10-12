@@ -94,4 +94,8 @@ before :example do
     end
   end
 
+  describe 'likes' do
+
+  end
+
 end

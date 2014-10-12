@@ -1,6 +1,5 @@
 class Post < ActiveRecord::Base
-  default_scope { order('created_at DESC') }
-  attr_accessor :popular
+  attr_accessor :popular, :next, :previous
 
   belongs_to :author, class_name: 'User', foreign_key: 'user_id'
   has_many :comments, dependent: :destroy
@@ -19,11 +18,11 @@ class Post < ActiveRecord::Base
 
   scope :_public, ->  { where(public: true)  }
   scope :_private, -> { where(public: false) }
-
-  def public?
-    self.public
-  end
   
+  def set_siblings
+    self.next, self.previous = find_siblings
+  end  
+
   # setter and getter for nested tag attributes
   def tag_list=(tags)
     tags.split(',').map(&:strip).each do |tag|
@@ -38,17 +37,23 @@ class Post < ActiveRecord::Base
   def score
     Float(comments.length + likes.length)/2.ceil
   end
-
-  def next
-    Post.where('created_at >= ? AND id > ?', created_at, id).order('created_at ASC').first
-  end
-
-  def previous
-    Post.where('created_at <= ? AND id < ?', created_at, id).order('created_at DESC').first
-  end
-
+ 
   def like(user)
     likes.create!(user: user) unless likes.include? user
+  end
+ 
+  private
+  
+  def find_siblings
+    [next_post.id, previous_post.id]
+  end
+
+  def next_post
+    Post.select('id, created_at').where('created_at >= ? AND id > ?', created_at, id).order('created_at ASC').first
+  end
+
+  def previous_post
+    Post.select('id, created_at').where('created_at <= ? AND id < ?', created_at, id).order('created_at DESC').first
   end
 
 end
