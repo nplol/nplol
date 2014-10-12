@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include Pundit
+  layout :layout?
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
@@ -25,4 +26,12 @@ class ApplicationController < ActionController::Base
     redirect_to root_path
   end
 
+  def nplol
+    current_user && current_user.nplol?
+  end
+
+  def layout?
+    request.xhr? ? false : 'application'
+  end
+ 
 end

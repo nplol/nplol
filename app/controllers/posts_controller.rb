@@ -1,14 +1,10 @@
 class PostsController < ApplicationController
-  include GridHelper
-  layout :layout?
-
-  before_filter :nplol, only: [:index, :show]
   before_filter :manage?, except: [:index, :show]
   before_filter :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
-    @nplol ? @posts = Post.all : @posts = Post._public
-    set_grid
+    nplol ? @posts = Post.all : @posts = Post._public
+    score
   end
 
   def new
@@ -39,7 +35,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    return redirect_to root_path  unless @post.public? || @nplol 
+    return user_not_authorized  unless @post.public? || nplol 
     @post.set_siblings
   end
 
@@ -61,21 +57,21 @@ class PostsController < ApplicationController
 
   private
 
-  def layout?
-    request.xhr? ? false : 'application'
-  end
-  
+ 
   def manage?
     authorize Post, :manage?
   end
  
-  def nplol
-    @nplol = current_user && current_user.nplol?
-  end
-
   def set_post
     @post = Post.find(params[:id])
     throw 404 if @post.nil?
+  end
+
+  def score
+    # 0 is the initial value
+    candidates = @posts.select { |post| post.score > 0 }
+    avg_score = candidates.reduce(0) { |total, post| total + post.score } / @posts.length
+    @posts.map { |post| post.popular = true if post.score > avg_score }
   end
 
   def post_params

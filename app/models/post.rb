@@ -45,15 +45,17 @@ class Post < ActiveRecord::Base
   private
   
   def find_siblings
-    [next_post.id, previous_post.id]
+    [next_post_id, previous_post_id]
   end
 
-  def next_post
-    Post.select('id, created_at').where('created_at >= ? AND id > ?', created_at, id).order('created_at ASC').first
+  def next_post_id
+    next_post = Post.select('id, created_at').where('created_at >= ? AND id > ?', created_at, id).order('created_at ASC').first
+    next_post.nil? ? nil: next_post.id
   end
 
-  def previous_post
-    Post.select('id, created_at').where('created_at <= ? AND id < ?', created_at, id).order('created_at DESC').first
+  def previous_post_id
+    previous = Post.select('id, created_at').where('created_at <= ? AND id < ?', created_at, id).order('created_at DESC').first 
+    previous.nil? ? nil : previous.id
   end
 
 end

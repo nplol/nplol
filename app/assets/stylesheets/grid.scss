@@ -11,7 +11,8 @@
 }
 
 .grid-item {
-  width: calc(33.3333% - 15px);
+  min-width: calc(33.3333% - 15px);
+  max-width: calc(33.3333% - 15px);
   height: 200px;
   padding: 15px;
   margin: 7.5px;
@@ -26,7 +27,11 @@
 
 .grid-item a { color: $black; }
 
-.grid-item.big { width: calc(66.666667% - 15px); }
+.grid-item.big { 
+  min-width: calc(50% - 15px); 
+  max-width: calc(66.666667% - 15px);
+  flex: 1;
+}
 
 .grid-item:hover { background: $white; }
 
