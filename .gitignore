@@ -9,7 +9,7 @@
 /tmp
 /public/assets
 /coverage
-
+spec/public
 #Ignore dotfiles
 /.idea
 /.bundle
