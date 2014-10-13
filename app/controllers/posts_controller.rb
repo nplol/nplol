@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_filter :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
-    nplol ? @posts = Post.all.order('created_at DESC') : @posts = Post._public.order('created_at DESC')
+    nplol? ? @posts = Post.all.order('created_at DESC') : @posts = Post._public.order('created_at DESC')
     score
   end
 
@@ -56,7 +56,6 @@ class PostsController < ApplicationController
   end
 
   private
-
  
   def manage?
     authorize Post, :manage?

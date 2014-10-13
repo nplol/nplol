@@ -5,15 +5,12 @@ Nplol::Application.routes.draw do
     resources :comments, only: [:new, :create, :destroy]
   end
 
-  resources :tags
-
+  resources :identities, only: [:new] 
   root 'posts#index'
-
-  get 'header', to: 'sessions#header'
-  get 'authorize', to: 'sessions#authorize_nplol', as: 'authorize'
 
   # Oatuh paths
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy', as: 'logout'
-
+  get 'authorize', to: 'sessions#authorize_nplol', as: 'authorize'
+  
 end

@@ -16,7 +16,7 @@ RSpec.configure do |config|
   # prettify FactoryGirl syntax ( create rather than FactoryGirl.create )
   config.include FactoryGirl::Syntax::Methods
   config.include ControllerHelper, type: :controller
-
+  
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
     begin

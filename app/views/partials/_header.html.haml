@@ -3,7 +3,7 @@
     .logo-icon(title="Go home, brah")
       =image_tag('logo_min.svg')
 %section.user-tools
-  - unless current_user.nil?
+  - if logged_in?
     = render 'users/tools'
   - else
     %a.login.google

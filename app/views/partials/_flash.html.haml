@@ -1,7 +1,6 @@
 %section.flash{ class: flash_class }
   - if flash[:error]
     %h3 Rett opp i følgende feil
-    - flash[:error].each do |error|
-      %span.error= error[1][0]
+    = flash[:error]
   -else
     %span.message= flash[:notice]
