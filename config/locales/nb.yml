@@ -9,3 +9,7 @@ nb:
               blank: Du må laste opp et bilde, duuuude.
             title:
               blank: Tittern kanke væra tom.
+
+  errors: Fiks opp i følgende feil, kis.
+  primary_email: Velg deg en hoved-epost som kontoen din vil bli tilknyttet.
+  save: Lagre

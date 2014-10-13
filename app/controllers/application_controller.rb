@@ -6,19 +6,18 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   rescue_from Exceptions::AuthenticationError, with: :user_not_authorized
  
-  helper_method :current_user, :nplol?, :logged_in?
+  helper_method :log_in, :close_window, :current_user, :nplol?, :logged_in?
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  # before_filter :initialize_omniauth_state
-
   private
-
-  #def initialize_omniauth_state
-     #session['omniauth.state'] ||= SecureRandom.hex(24)
-  #end
+  
+  def log_in(id)
+    session[:user_id] ||= id
+    current_user
+  end
 
   def current_user
     @current_user = User.find_by(uuid: session[:user_id]) || Guest.new
@@ -39,6 +38,10 @@ class ApplicationController < ActionController::Base
 
   def layout?
     request.xhr? ? false : 'application'
+  end
+
+  def close_window
+    render 'partials/_close_window', layout: false
   end
  
 end

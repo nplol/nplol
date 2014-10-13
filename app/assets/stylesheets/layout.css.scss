@@ -62,7 +62,7 @@ h2 {
 }
 
 .flash.active { @include transform(translate3d(0, 0, 0)); }
-.flash.notice { border-right: 5px solid $green; }
+.flash        { border-right: 5px solid $green; }
 .flash.error  { border-right: 5px solid $red; }
 
 .flash h3 { margin-bottom: 15px; }

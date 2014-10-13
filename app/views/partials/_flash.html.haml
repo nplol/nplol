@@ -1,6 +1,6 @@
-%section{class: "flash #{flash_class}" }
+%section{class: "flash #{'error' if flash[:error]  }" }
   - if flash[:error]
-    %h3 Rett opp i følgende feil
+    %h3= t('errors')
     = flash[:error]
   -else
     %span.message= flash[:notice]
