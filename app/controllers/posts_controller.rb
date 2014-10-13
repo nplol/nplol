@@ -35,7 +35,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    return user_not_authorized  unless @post.public? || nplol 
+    return user_not_authorized  unless @post.public? || nplol?
     @post.set_siblings
   end
 
