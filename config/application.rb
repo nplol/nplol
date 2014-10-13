@@ -19,6 +19,6 @@ module Nplol
     end
 
     I18n.default_locale = :nb
-
+    I18n.enforce_available_locales = false 
   end
 end
