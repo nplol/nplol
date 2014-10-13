@@ -1,0 +1,11 @@
+!!!
+%html
+  %head
+    %title nplol
+    = stylesheet_link_tag 'application'
+    = javascript_include_tag 'jquery-2.1.1'
+  %body
+    = render 'partials/flash' if flash[:notice] || flash[:error]
+    = yield
+
+

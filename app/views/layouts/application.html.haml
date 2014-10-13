@@ -11,7 +11,7 @@
       = render 'partials/header'
     %section#body
       = render 'partials/background'
-      = render 'partials/flash', flash: flash
+      = render 'partials/flash' if flash[:notice] || flash[:error]
       %section#main
         = yield
 

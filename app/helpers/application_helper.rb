@@ -1,17 +1,8 @@
 module ApplicationHelper
 
-  def nplol?
-    current_user && current_user.nplol?
-  end
-
-  def current_user
-    return nil unless session[:user_id]
-    @current_user ||= User.find_by(uuid: session[:user_id])
-  end
-
   def flash_class
-    'notice' if flash[:notice]
-    'error'  if flash[:error]
+    return 'notice' if flash[:notice] 
+    return 'error' if flash[:error]
   end
 
   def post_like_icon(post, liked)

@@ -1,6 +1,8 @@
-%section.flash{ class: flash_class }
+%section{class: "flash #{flash_class}" }
   - if flash[:error]
     %h3 Rett opp i følgende feil
     = flash[:error]
   -else
     %span.message= flash[:notice]
+
+= javascript_include_tag 'flash'

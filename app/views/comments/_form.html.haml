@@ -1,5 +1,5 @@
 = simple_form_for [comment.post, comment], remote: true do |f|
-  - if current_user
+  - if logged_in?
     = f.input :text, placeholder: 'Write something clever', image: current_user.avatar
   - else
     %section.notice

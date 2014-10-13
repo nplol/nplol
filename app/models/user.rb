@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
     save
   end  
   
-  def after_initialize
+  def default_values
     self.uuid ||= SecureRandom.uuid
     self.role ||= 'regular'
   end

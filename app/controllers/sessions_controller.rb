@@ -3,16 +3,20 @@ class SessionsController < ApplicationController
 
   def create
     auth = request.env['omniauth.auth']
-    user = User.find_by_auth(auth)
+    identity = Identity.find_by(uid: auth[:uid])
     
-    if user.nil?
-      redirect_to new_identity_url, auth: auth
+    if identity.nil?
+      user = User.find_by_auth(auth)
+      if user.nil?
+        return redirect_to new_identity_url(auth: auth), notice: 'Please select a primary email address for your account' 
+      else
+        user.create_identity(auth)
+      end
     else
-      identity = Identity.find_by(uid: auth[:uid])
-      user.create_identity(auth) if identity.nil?
+      user = identity.user
       session[:user_id] ||= user.uuid
-      close_window
     end
+    close_window
   end  
  
     #if identity.nil?
