@@ -3,8 +3,7 @@ class SessionsController < ApplicationController
 
   def create
     auth = request.env['omniauth.auth']
-    identity = Identity.find_by(uid: auth[:uid])
-    
+    identity = Identity.find_by_auth(auth)
     if identity.nil?
       user = User.find_by_auth(auth)
       if user.nil?

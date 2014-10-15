@@ -11,7 +11,7 @@ FactoryGirl.define do
 
     factory :user_with_identities do
       after :create do |user|
-        create :identity, { provider: 'google', user: user }
+        create :identity, { uid: '123', provider: 'google', user: user }
         create :identity, { provider: 'github', user: user }
       end
     end

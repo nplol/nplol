@@ -40,10 +40,6 @@ RSpec.configure do |config|
     end
   end
 
-  # Include authHelper module for controller specs to make
-  # basic http auth pass.
-  # config.include AuthHelper, :type => :controller
-
   # less verbose specs, goodie!
   config.infer_spec_type_from_file_location!
 end
