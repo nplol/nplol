@@ -35,4 +35,8 @@ class User < ActiveRecord::Base
     self.role == 'nplol'
   end
 
+  def like(post)
+    likes.create(post: post) unless liked_posts.include? post 
+  end
+
 end

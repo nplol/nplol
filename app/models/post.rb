@@ -38,10 +38,6 @@ class Post < ActiveRecord::Base
     Float(comments.length + likes.length)/2.ceil
   end
  
-  def like(user)
-    likes.create!(user: user) unless likes.include? user
-  end
- 
   private
   
   def find_siblings

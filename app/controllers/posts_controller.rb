@@ -44,17 +44,6 @@ class PostsController < ApplicationController
     redirect_to root_path
   end
 
-  def like
-    return render json: { error: 'You need to log in to like shit, dude.' }, status: 401 unless current_user
-    post = Post.find(params[:post_id])
-    begin
-      post.like(current_user)
-    rescue
-      return render json: { error: 'Already liked this post, clever fellow.'}, status: 401
-    end
-    render json: { likes: post.likes.count }, status: 200
-  end
-
   private
  
   def manage?

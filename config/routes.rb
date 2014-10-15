@@ -1,7 +1,7 @@
 Nplol::Application.routes.draw do
 
   resources :posts do
-    get 'like', to: 'posts#like', as: 'like'
+    resources :likes, only: :create
     resources :comments, only: [:new, :create, :destroy]
   end
 

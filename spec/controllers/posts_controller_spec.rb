@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe PostsController do
   
-before :example do
+  before :example do
     user = double('user')
     allow(user).to receive(:nplol?).and_return(false)
     allow(controller).to receive(:current_user).and_return(user)
@@ -16,41 +16,66 @@ before :example do
   end
 
   describe 'authentication' do
-    let(:post_id) { 1337  }
-    let(:post_params) { { title: nil }}
+    let(:post) { create :post }
 
     it 'doesn\'t allow access to protected routes through manage? before_filter' do
       get :new
       expect(flash[:error]).to_not be_nil
       expect(response).to redirect_to(root_url)
     end
+    
+    context 'nplol users' do
+      include_context 'authenticated'
+      
+      it 'allows access to create new posts' do
+        get :new
+        expect(response.status).to eq(200)
+      end
+
+      it 'allows access to delete posts' do
+        delete :destroy, id: post.to_param
+        expect(Post.all.length).to eq(0)
+        expect(response).to redirect_to(root_url)
+      end 
+    end
 
   end
 
-  before :all do
-    create_list :post, 5, :public
-    create_list :post, 3, :private
-  end
-  
-  context 'regular users' do
-    it 'finds only public posts' do
-      get :index
-      expect(assigns(:posts).length).to eq(5)
+  describe 'public vs private' do
+    before :all do
+      create_list :post, 5, :public
+      create_list :post, 3, :private
     end
     
-    it 'does not show private posts' do
-      get :show, id: Post._private.first.to_param
-      expect(response).to redirect_to(root_url)
+    context 'regular users' do
+      
+      it 'finds only public posts' do
+        get :index
+        expect(assigns(:posts).length).to eq(5)
+      end
+      
+      it 'does not show private posts' do
+        get :show, id: Post._private.first.to_param
+        expect(response).to redirect_to(root_url)
+      end
     end
+
+    context 'nplol users' do
+      include_context 'authenticated'
+   
+      it 'finds all posts' do
+        get :index
+        expect(assigns(:posts).length).to eq(8)
+      end
+
+      it 'shows private posts' do
+        get :show, id: Post._private.first.to_param
+        expect(response.status).to eq(200)
+      end
+    end
+
   end
 
-  context 'nplol users' do
-    include_context 'authenticated'
-    it 'finds all posts' do
-      get :index
-      expect(assigns(:posts).length).to eq(8)
-    end
-  end
 
   describe 'create' do
     include_context 'authenticated'
@@ -92,10 +117,6 @@ before :example do
       expect(flash[:notice]).to_not be_nil
       expect(response).to redirect_to(post)
     end
-  end
-
-  describe 'likes' do
-
   end
 
 end
