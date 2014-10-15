@@ -3,9 +3,8 @@ require 'rails_helper'
 describe SessionsController do
   include OauthHelper
   
-
+   
   describe 'logging in' do
-
     let(:google_hash) { 
       build_hash( { email: 'jon@snow.org', 
                     uid: '123', 
@@ -22,11 +21,11 @@ describe SessionsController do
                     provider: 'foogle' })
     }
     let(:user) { User.find_by(email: 'jon@snow.org') }
-   
-    before :all do
+    
+    before :example do
       create :user_with_identities, email: 'jon@snow.org'
     end  
-    
+   
     context 'existing identity' do
 
       before :example do
@@ -46,7 +45,6 @@ describe SessionsController do
     end
 
     context 'new identity, common email' do
-      
       before :example do
         controller.request.env['omniauth.auth'] = mock_hash
       end
@@ -69,7 +67,6 @@ describe SessionsController do
     end 
 
     context 'new identity, different email' do
-   
       before :example do
         controller.request.env['omniauth.auth'] = mock_hash2
       end
@@ -83,11 +80,33 @@ describe SessionsController do
   end
 
   describe 'authorize' do
-    # TODO
+    before :each do
+      user = create :user
+      allow(controller).to receive(:current_user).and_return(user)
+    end
+
+    it 'gives the current user the *nplol* role if he passes the basic http auth' do
+      http_login
+      get :authorize_user
+      expect(User.first.role).to eq('nplol')
+    end
+  
+   it 'doesn\'t authorize the user who does not pass the basic http auth' do
+      get :authorize_user
+      expect(User.first.role).to eq('regular')
+    end
+
   end
 
   describe 'logout' do
-    # TODO
+    before :each do
+      session[:dirty] = true
+    end
+
+    it 'destroys the current session' do
+      get :destroy
+      expect(session[:dirty]).to be_nil
+    end
   end
 
 end

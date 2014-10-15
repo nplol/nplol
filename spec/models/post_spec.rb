@@ -56,48 +56,48 @@ describe Post do
   end
   
   context 'tags' do
-    let(:tags) { Tag.all }
     let(:poor_tag_format) { "tag101, tag102, tag103\ntag104, tag105" }
-
-    before :all do
-      create_list :tag, 5
-    end
+    let(:post)            { Post.first }
+    let(:post_with_tags)  { create :post_with_tags }
 
     before :each do
-      @post = build :post
+      FactoryGirl.reload # reload FactoryGirl sequences
+      create_list :tag, 5
+      post = build :post
+    end
+  
+    context 'existing tags' do
+
+      it 'adds tags to post without creating new tags' do
+        post.tag_list= 'tag1, tag2'
+        post.save
+        expect(post.tags.length).to eq(2)
+        expect(Tag.all.length).to eq(5)
+      end
+
+      it 'adds new tas when they do not exist' do
+        post.tag_list= 'tag1, tag99'
+        post.save
+        expect(Tag.all.length).to eq(6)
+      end
+
+      it 'correctly updates tags' do
+        post_with_tags.tag_list = 'tag1'
+        post_with_tags.save
+        expect(post_with_tags.tags.length).to eq(1)
+      end
     end
 
-    #after :each do
-      #post.tags.destroy_all
-      #if tags.length != 3 # i.e. tags has been modified
-        #tags = [ Tag.find(1).name, Tag.find(2).name, Tag.find(3).name]
-      #end
-    #end
-
-    it 'adds existing tags to a post' do
-      @post.tags << tags
-      @post.save!
-      expect(@post.tags).to eq(tags)
+    it 'only adds properly formatted tags' do
+      # tags are separated by commas.
+      post.tag_list = poor_tag_format
+      expect(post.tags.length).to eq(4)
+      expect(Tag.all.length).to eq(9)
     end
 
-    #it 'adds new tags' do
-      #tags << 'tag99'
-      #put :update, id: post.to_param, post: { tag_list: tags.join(', ') }
-      #expect(Tag.all.length).to eq(6)
-    #end
-
-    #it 'only adds properly formatted tags' do
-      #put :update, id: post.to_param, post: { tag_list: poor_tag_format }
-      ## tags are separated by commas.
-      #expect(post.tags.length).to eq(3)
-      #expect(Tag.all.length).to eq(8)
-    #end
-
-    #it 'deletes tags from a post' do
-      #new_tags = tags.pop
-      #put :update, id: post.to_param, post: { tag_list: new_tags }
-      #expect(assigns(:post).tags.length).to eq(1)
-    #end
+    it 'displays tags appropriately' do
+      expect(post_with_tags.tag_list).to eq('tag1, tag2, tag3, tag4, tag5')
+    end
 
   end
 end

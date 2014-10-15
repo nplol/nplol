@@ -23,10 +23,16 @@ class Post < ActiveRecord::Base
     self.next, self.previous = find_siblings
   end  
 
+  def score
+    Float(comments.length + likes.length)/2.ceil
+  end
+ 
   # setter and getter for nested tag attributes
   def tag_list=(tags)
+    # remove previous tags
+    self.tags.clear
     tags.split(',').map(&:strip).each do |tag|
-      self.tags << Tag.find_or_create_by(name: tag)
+      self.tags << Tag.find_or_create_by(name: tag) 
     end
   end
 
@@ -34,10 +40,6 @@ class Post < ActiveRecord::Base
     tags.map(&:name).join(', ')
   end
 
-  def score
-    Float(comments.length + likes.length)/2.ceil
-  end
- 
   private
   
   def find_siblings

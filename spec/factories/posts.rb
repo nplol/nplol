@@ -26,6 +26,14 @@ FactoryGirl.define do
       end
     end
 
+    factory :post_with_tags do
+      after :create do |post|
+        tags = Tag.all
+        post.tags << tags
+        post.save
+      end
+    end
+
   end
 
 

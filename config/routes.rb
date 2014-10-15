@@ -12,6 +12,6 @@ Nplol::Application.routes.draw do
   # Oatuh paths
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy', as: 'logout'
-  get 'authorize', to: 'sessions#authorize_nplol', as: 'authorize'
+  get '/authorize', to: 'sessions#authorize_user', as: 'authorize'
   
 end

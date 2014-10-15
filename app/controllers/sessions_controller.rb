@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  http_basic_authenticate_with name: "2pac", password: "2pac", only: :authorize
+  http_basic_authenticate_with name: "2pac", password: "2pac", only: :authorize_user
 
   def create
     auth = request.env['omniauth.auth']
@@ -18,10 +18,11 @@ class SessionsController < ApplicationController
     log_in(user.uuid)
     close_window
   end 
-
-  def authorize
+  
+  def authorize_user
     current_user.authorize!
-  end 
+    render nothing: true, status: 200
+  end
 
   def destroy
     reset_session
