@@ -40,10 +40,14 @@ end
 group :test do
   gem 'rspec-rails'
   gem 'rspec-mocks'
-  gem 'factory_girl_rails', '~> 4.4.1'
+  gem 'factory_girl_rails' 
+  gem 'factory_girl' # git: 'https://github.com/nicohvi/factory_girl', ref: '26ca6f18ee'
   gem 'database_cleaner'
   gem 'guard'
   gem 'guard-rspec'
   gem 'spring-commands-rspec'
   gem 'simplecov'
+  gem 'capybara'
+  gem 'capybara-webkit'
+  gem 'launchy' # to save and view screenshots by capybara
 end

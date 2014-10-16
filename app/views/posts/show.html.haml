@@ -26,9 +26,7 @@
       %i.fa.fa-pencil.fa-lg
       %span= "@#{@post.author.username}"
     %section.likes
-      - liked = @post.liking_users.include? current_user
-      = link_to post_like_path(@post), { id: 'like_post', remote: true, disabled: liked} do
-        = post_like_icon(@post, liked)
+      = render 'like', post: @post
 
   = render 'partials/admin_tools' if nplol?
 

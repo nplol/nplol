@@ -11,7 +11,8 @@ FactoryGirl.define do
     image_file_name { 'test.jpg' }
     image_content_type { 'image/jpeg' }
     image_file_size { 256 }
-
+    association :author, factory: :user
+    
     trait :public do
       public true
     end
@@ -34,6 +35,14 @@ FactoryGirl.define do
       end
     end
 
+    factory :post_with_likes do
+      after :create do |post|
+        User.all.each do |user|
+          user.like(post)
+        end
+      end
+    end
+  
   end
 
 

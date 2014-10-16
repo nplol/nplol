@@ -1,18 +1,14 @@
 module ApplicationHelper
-  
-  def post_like_icon(post, liked)
-    if liked
-      content_tag(:i, "", class: "fa fa-heart fa-lg liked", title: 'You like this') +
-      content_tag(:span, post.likes.count)
-    else
-      if post.likes.count > 0
-        content_tag(:i, "", class: "fa fa-heart fa-lg", title: 'Like post') +
-        content_tag(:span, post.likes.count)
-      else
-        content_tag(:i, "", class: "fa fa-heart-o fa-lg", title: 'Like this') +
-        content_tag(:span, '')
-      end
-    end
+
+  def like_icon(post, liked)
+    liked ? title = 'You like this.' : title = 'Like post'
+    content_tag(:i, '', class: "fa fa-heart #{'liked' if liked}", title: title)
   end
+
+  def like_count(post)
+    content_tag(:span, post.likes.count, class: 'attention', 
+                title: post.liking_users.map(&:name).join(', ')) + 
+    content_tag(:span, ' user(s) like this post.')
+  end 
 
 end

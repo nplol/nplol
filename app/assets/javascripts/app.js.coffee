@@ -8,7 +8,7 @@ class App
     @flash() if options.flash
 
   tipsy: ->
-    $('i, .logo-icon').tipsy(fade: true, gravity: 'n')
+    $('i, .logo-icon, span').tipsy(fade: true, gravity: 'n')
 
   parallax: ->
     $('.background').parallax()

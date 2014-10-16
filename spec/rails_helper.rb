@@ -4,6 +4,7 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'spec_helper'
 require 'simplecov'
+require 'capybara-webkit'
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
@@ -17,8 +18,11 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.include ControllerHelper, type: :controller
   
+  # explicitly do NOT use transactional fixtures 
+  config.use_transactional_fixtures = false  
+  
   config.before(:suite) do
-    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.strategy = :truncation
     begin
       FactoryGirl.lint
       # FB bug, TODO
@@ -34,12 +38,24 @@ RSpec.configure do |config|
     end
   end
 
-  config.around(:each) do |test|
-    DatabaseCleaner.cleaning do
-      test.run # Run test once cleaning yields
-    end
+  config.before(:each) do
+    DatabaseCleaner.strategy = :transaction
+  end
+  
+  config.before(:each, :js => true) do
+    DatabaseCleaner.strategy = :truncation
+  end
+
+  config.before(:each) do 
+    DatabaseCleaner.start
+  end
+  
+  config.after(:each) do
+    DatabaseCleaner.clean
   end
 
   # less verbose specs, goodie!
   config.infer_spec_type_from_file_location!
+  Capybara.javascript_driver = :webkit
+  Capybara.raise_server_errors = false # no need to let 404 errors fail the suite
 end

@@ -80,20 +80,22 @@ describe SessionsController do
   end
 
   describe 'authorize' do
+    let(:user) { User.find_by(email: 'frank@frank.com') }
+
     before :each do
-      user = create :user
+      user = create :user, email: 'frank@frank.com'
       allow(controller).to receive(:current_user).and_return(user)
     end
 
     it 'gives the current user the *nplol* role if he passes the basic http auth' do
       http_login
       get :authorize_user
-      expect(User.first.role).to eq('nplol')
+      expect(user.role).to eq('nplol')
     end
   
    it 'doesn\'t authorize the user who does not pass the basic http auth' do
       get :authorize_user
-      expect(User.first.role).to eq('regular')
+      expect(user.role).to eq('regular')
     end
 
   end

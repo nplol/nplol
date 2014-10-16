@@ -1,0 +1,4 @@
+- liked = post.liking_users.include? current_user
+= link_to post_likes_path(post), { id: 'like_post', method: :post, remote: true } do
+  = like_icon(post, liked)
+= like_count(post) if post.likes.count > 0

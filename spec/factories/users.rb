@@ -15,7 +15,6 @@ FactoryGirl.define do
         create :identity, { provider: 'github', user: user }
       end
     end
-
   end
 
 end

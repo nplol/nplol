@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe PostsController do
   
-  before :example do
+  before :each do
     user = double('user')
     allow(user).to receive(:nplol?).and_return(false)
     allow(controller).to receive(:current_user).and_return(user)
@@ -42,7 +42,7 @@ describe PostsController do
   end
 
   describe 'public vs private' do
-    before :all do
+    before :each do
       create_list :post, 5, :public
       create_list :post, 3, :private
     end

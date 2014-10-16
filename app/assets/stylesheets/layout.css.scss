@@ -28,6 +28,8 @@ ul {
 
 #main { flex: 1; z-index: 1; }
 
+// font-styles
+
 h1 {
   font-size: 3em;
   text-align: center;
@@ -40,30 +42,17 @@ h2 {
   margin-bottom: 15px;
 }
 
+span.attention { 
+  border-radius: 3px;
+  background: $lightGray;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.125);    
+  padding: 2px 8px;
+  margin-right: 5px;
+}
+
 #stats { z-index: 2; }
 
 .tipsy { z-index: 3; }
 
 .avatar { height: 50px; }
 
-.flash {
-  position: absolute;
-  z-index: 2;
-  top: 100px;
-  width: 350px;
-  padding: 10px;
-  background: $white;
-  left: 0;
-  box-shadow: 0 0 1px 2px rgba(0, 0, 0, 0.1);
-  @include transition(all .3s ease-in-out);
-  @include transform(translate3d(-325px, 0, 0));
-  cursor: pointer;
-  flex-direction: column;
-}
-
-.flash.active { @include transform(translate3d(0, 0, 0)); }
-.flash        { border-right: 5px solid $green; }
-.flash.error  { border-right: 5px solid $red; }
-
-.flash h3 { margin-bottom: 15px; }
-.flash span:not(:last-of-type) { margin-bottom: 10px; }

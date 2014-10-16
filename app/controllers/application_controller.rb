@@ -24,6 +24,7 @@ class ApplicationController < ActionController::Base
   end
 
   def user_not_authorized
+    return render json: { error: t('unauthorized') }, status: 401 if request.xhr?
     flash[:error] = 'Sorry brah, that\'s not for you.'
     redirect_to root_path
   end

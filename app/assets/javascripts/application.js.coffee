@@ -20,6 +20,7 @@
 #= require header
 #= require auth
 #= require post
+#= require flash
 
 $ ->
   options = {}
