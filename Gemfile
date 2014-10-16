@@ -40,8 +40,8 @@ end
 group :test do
   gem 'rspec-rails'
   gem 'rspec-mocks'
-  gem 'factory_girl_rails' 
-  gem 'factory_girl' # git: 'https://github.com/nicohvi/factory_girl', ref: '26ca6f18ee'
+  gem 'factory_girl_rails'    
+  gem 'factory_girl', github: 'nicohvi/factory_girl', branch: 'master'
   gem 'database_cleaner'
   gem 'guard'
   gem 'guard-rspec'
