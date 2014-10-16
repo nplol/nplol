@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'Liking posts' do
 
   before :each do
-    create_detailed_list :user, 3, names: ['Frank', 'James', 'Timothy']
+    create_detailed_list :user, { name: ['Frank', 'Timothy', 'James'] }
   end 
 
   scenario 'listing users who have liked a post', :js => true  do
