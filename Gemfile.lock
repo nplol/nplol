@@ -1,6 +1,7 @@
 GIT
   remote: git://github.com/nicohvi/factory_girl.git
-  revision: b05ecfa9ee16b6fbd7f0b07e04861389dabe2401
+  revision: 071c8a4e64391326c4247c90d47ab96fb74f34e9
+  ref: 071c8a4
   branch: master
   specs:
     factory_girl (4.4.0)

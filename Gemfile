@@ -41,7 +41,7 @@ group :test do
   gem 'rspec-rails'
   gem 'rspec-mocks'
   gem 'factory_girl_rails'    
-  gem 'factory_girl', github: 'nicohvi/factory_girl', branch: 'master'
+  gem 'factory_girl', github: 'nicohvi/factory_girl', branch: 'master', ref: '071c8a4'
   gem 'database_cleaner'
   gem 'guard'
   gem 'guard-rspec'

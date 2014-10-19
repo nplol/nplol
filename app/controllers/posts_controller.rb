@@ -58,7 +58,8 @@ class PostsController < ApplicationController
   def score
     # 0 is the initial value
     candidates = @posts.select { |post| post.score > 0 }
-    avg_score = candidates.reduce(0) { |total, post| total + post.score } / @posts.length
+    return unless candidates.any? # no popular posts, so why bother?
+    avg_score = candidates.reduce(0) { |total, post| total + post.score } / candidates.length
     @posts.map { |post| post.popular = true if post.score > avg_score }
   end
 
