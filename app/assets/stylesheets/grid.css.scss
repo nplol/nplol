@@ -25,6 +25,8 @@
   position: relative;
 }
 
+.row { min-width: 100%; }
+
 .grid-item a { color: $black; }
 
 .grid-item.big { 

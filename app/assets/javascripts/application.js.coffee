@@ -12,17 +12,21 @@
 #
 # vendor libs
 #= require jquery-2.1.1
+#= require_directory ./lib
 #= require jquery_ujs
 #= require jquery.tipsy
 #= require parallax
+#= require _
 
 #= require app
 #= require header
 #= require auth
 #= require post
 #= require flash
+#= require grid
 
 $ ->
   options = {}
   options.post = true if $('#post').length > 0
+  options.grid = true if $('.grid').length > 0
   @app = new App(options)

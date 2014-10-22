@@ -6,6 +6,7 @@ class App
     @tipsy()
     @parallax()
     @flash() if options.flash
+    @grid = new Grid() if options.grid
 
   tipsy: ->
     $('i, .logo-icon, span').tipsy(fade: true, gravity: 'n')
