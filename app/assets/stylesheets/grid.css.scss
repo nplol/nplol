@@ -11,7 +11,7 @@
 }
 
 .grid-item {
-  min-width: calc(33.3333% - 15px);
+  min-width: calc(15% - 15px);
   max-width: calc(33.3333% - 15px);
   height: 200px;
   padding: 15px;
@@ -23,6 +23,7 @@
   @include transition( all .3s ease);
   overflow: hidden;
   position: relative;
+  flex: 1;
 }
 
 .row { min-width: 100%; }
