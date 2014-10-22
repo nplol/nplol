@@ -7,7 +7,7 @@
 #new_comment input:focus { opacity: 1; }
 
 .comments { flex-direction: column; }
-.comment { width: 70%; align-items: center; }
+.comment { width: 70%; align-items: center; margin-bottom: 15px; }
 .comment aside { margin-right: 30px; }
 
 .comment .text {
