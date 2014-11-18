@@ -33,6 +33,10 @@
   min-width: calc(50% - 15px); 
 }
 
+.grid-item.normal {
+  max-width: calc(33% - 15px);
+}
+
 .grid-item:hover { background: $white; }
 
 .grid-item .post { display: block; flex: 1; overflow: hidden; }
