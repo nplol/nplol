@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
   def create
     auth = request.env['omniauth.auth']['info']
     opts = user_params(auth)
-    user = User.find_by(email: opts['email'])
+    user = User.where("email='#{opts['email']}' OR username='#{opts['username']}'").first
     user = User.new(opts) if user.nil?
     if user.identities.where(provider: auth['provider']).empty?
       user.add_identity(auth['provider']) 
