@@ -3,7 +3,9 @@ class SessionsController < ApplicationController
 
   def create
     auth = request.env['omniauth.auth']['info']
-    user = User.find_or_initialize_by(user_params(auth))
+    opts = user_params(auth)
+    user = User.find_by(opts[:email])
+    user = User.new(opts) if user.nil?
     if user.identities.where(provider: auth['provider']).empty?
       user.add_identity(auth['provider']) 
     end
@@ -27,7 +29,6 @@ class SessionsController < ApplicationController
     auth[:name] = "#{auth['first_name']} #{auth['last_name']}" if auth[:name].nil?
     auth[:avatar]   = auth[:image]
     auth[:username] = auth['nickname']
-
     auth.select { |key, value| %w(name email avatar username).include? key }
   end
 
