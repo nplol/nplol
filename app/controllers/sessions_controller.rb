@@ -2,20 +2,12 @@ class SessionsController < ApplicationController
   http_basic_authenticate_with name: "2pac", password: "2pac", only: :authorize_user
 
   def create
-    auth = request.env['omniauth.auth']
-    identity = Identity.find_by_auth(auth)
-    if identity.nil?
-      user = User.find_by_auth(auth)
-      if user.nil?
-        auth[:info][:avatar] = auth[:info].delete :image
-        return redirect_to new_user_url(auth: auth), notice: t('primary_email')
-      else
-        user.create_identity(auth)
-      end
-    else
-      user = identity.user
+    auth = request.env['omniauth.auth']['info']
+    user = User.find_or_initialize_by(user_params(auth))
+    if user.identities.where(provider: auth['provider']).empty?
+      user.add_identity(auth['provider']) 
     end
-    log_in(user.uuid)
+    user.save! && log_in(user)    
     close_window
   end 
   
@@ -27,6 +19,16 @@ class SessionsController < ApplicationController
   def destroy
     reset_session
     redirect_to root_url
+  end
+
+  private
+
+  def user_params(auth)
+    auth[:name] = "#{auth['first_name']} #{auth['last_name']}" if auth[:name].nil?
+    auth[:avatar]   = auth[:image]
+    auth[:username] = auth['nickname']
+
+    auth.select { |key, value| %w(name email avatar username).include? key }
   end
 
 end

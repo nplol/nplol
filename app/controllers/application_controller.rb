@@ -14,8 +14,8 @@ class ApplicationController < ActionController::Base
 
   private
   
-  def log_in(id)
-    session[:user_id] ||= id
+  def log_in(user)
+    session[:user_id] ||= user.uuid
     current_user
   end
 

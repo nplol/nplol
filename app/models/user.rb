@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   ROLES = %w(nplol regular)
 
-  validates_presence_of :name, :email, :avatar, :role
+  validates_presence_of :name, :email, :role
   validates_uniqueness_of :email
   
   after_initialize :default_values  
@@ -12,14 +12,9 @@ class User < ActiveRecord::Base
   has_many :liked_posts, through: :likes, source: :post
   has_many :identities, dependent: :destroy
   
-  def self.find_by_auth(auth)
-    self.find_by(email: auth[:info][:email])
-  end  
-  
-  def create_identity(auth)
-    self.identities << Identity.new(uid: auth[:uid], provider: auth[:provider])
-    save
-  end  
+  def add_identity(provider)
+    self.identities << Identity.new(provider: provider)
+  end
   
   def default_values
     self.uuid ||= SecureRandom.uuid

@@ -1,6 +1,6 @@
 %section.simple-form
 
   = simple_form_for @user do |f|
-    = f.hidden_field :identity, value: @identity.uid
+    = f.input :name
     = f.input :email
     = f.submit
