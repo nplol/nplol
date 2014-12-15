@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   end
 
   def user_auth_params
-    params.require(:auth).require(:info).permit(:avatar, :first_name, :last_name, :email)
+    params.require(:auth).require(:info).permit(:avatar, :email)
   end 
 
   def user_params
