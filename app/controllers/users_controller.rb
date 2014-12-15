@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   def create
     user = User.find_or_create_by(email: user_params[:email])
     user.identities << Identity.find_by(uid: user_params[:identity])
+    user.save!
     log_in(user.uuid)
     close_window
   end
