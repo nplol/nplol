@@ -1,7 +1,7 @@
 module OauthHelper
 
   def build_hash(options)
-    {
+    HashWithIndifferentAccess.new(
       provider: options[:provider],
       uid: options[:uid],
       info: {
@@ -11,7 +11,7 @@ module OauthHelper
         last_name: 'Snow',
         image: 'https://url.jpg'
       }
-    }
+    )
   end
 
 end

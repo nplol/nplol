@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+user = User.create(name: 'Frank', email: 'frank@frank.com', role: 'nplol')
+image = File.new("#{Rails.root}/spec/files/valid_image.png")
+Post.create(title: 'test', author: user, image: image)

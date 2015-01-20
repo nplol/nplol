@@ -1,15 +1,15 @@
 class SessionsController < ApplicationController
   http_basic_authenticate_with name: "2pac", password: "2pac", only: :authorize_user
+  before_action :set_auth_hash, only: :create
 
   def create
-    auth = request.env['omniauth.auth']['info']
-    opts = user_params(auth)
+    opts = user_params(@hash[:info])
     user = User.where("email='#{opts['email']}' OR username='#{opts['username']}'").first
-    user = User.new(opts) if user.nil?
-    if user.identities.where(provider: auth['provider']).empty?
-      user.add_identity(auth['provider']) 
+    user = User.new(opts) if user.nil? || !user.valid?
+    if user.identities.where(provider: @hash[:provider]).empty?
+      user.add_identity(@hash[:provider]) 
     end
-    user.save! && log_in(user)    
+    user.save && log_in(user)    
     close_window
   end 
   
@@ -24,6 +24,10 @@ class SessionsController < ApplicationController
   end
 
   private
+  
+  def set_auth_hash
+    @hash = request.env['omniauth.auth'].with_indifferent_access
+  end
 
   def user_params(auth)
     auth[:name] = "#{auth['first_name']} #{auth['last_name']}" if auth[:name].nil?

@@ -17,8 +17,5 @@ module Nplol
       g.javascripts     false
       g.helper          false
     end
-
-    I18n.default_locale = :nb
-    config.i18n.enforce_available_locales = true
   end
 end
