@@ -40,7 +40,10 @@
   @include transition(opacity .3s ease);
 }
 
-.post-data span { margin: 0 0 4px 5px; }
+.post-data span { 
+  margin: 0 0 2px 2px; 
+  opacity: .6;
+}
 
 .post-data i:hover { opacity: 1; }
 
