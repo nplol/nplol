@@ -1,0 +1,10 @@
+%section.post-image
+  =image_tag post.image.url(:thumb)
+%section.post-data
+  %section.post-inner
+    = link_to post do
+      %h3= post.title
+    - if post.likes.count > 0
+      %i.fa.fa-heart
+      - if post.likes.count > 1
+        %span= post.likes.count

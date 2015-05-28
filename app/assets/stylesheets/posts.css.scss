@@ -1,0 +1,79 @@
+@import 'bourbon';
+@import 'colors';
+
+/* -- index -- */
+
+.posts { padding: 30px; }
+
+.post {
+  padding: 60px 30px;
+  border-bottom: 2px solid $ltBlue;
+  background: $white;
+  @include transition(background .3s ease);
+  @include display(flex);
+}
+
+.post:last-of-type {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.post:hover { background: $offWhite; }
+
+.post-image { 
+  width: 25%; 
+}
+
+.post-data, .post-image {
+  @include display(flex);
+  @include align-items(center);
+}
+
+.post-inner { @include align-items(flex-end); }
+
+.post-data h3, .post-data section { @include display(inline-flex); }
+
+.post-data i { 
+  color: $red; 
+  margin: 0 0 4px 15px;
+  opacity: .6;
+  @include transition(opacity .3s ease);
+}
+
+.post-data i:hover { opacity: 1; }
+
+/* -- show -- */
+
+article { 
+  @include flex(1);
+  @include display(flex);
+  @include flex-direction(column);
+}
+
+article a:hover { text-decoration: none; }
+
+article a:hover span { 
+  color: $blue; 
+}
+
+article section { @include display(flex); }
+
+.post-meta section, .extra section { 
+  margin: 0 7.5px;
+  @include align-items(center); 
+}
+
+.post-meta, .extra, .content { 
+  margin: 30px 0; 
+  @include justify-content(center);
+}
+
+.post-meta i { margin-right: 5px; }
+
+article .tools a { margin: 0 7.5px; }
+
+/* -- form -- */
+
+.post-form { padding-bottom: 60px; }
+
+.old-image p { width: 25%; }

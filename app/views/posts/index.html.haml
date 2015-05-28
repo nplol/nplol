@@ -1,15 +1,3 @@
-%section.posts.grid
+%ul.posts
   - @posts.each do |post|
-    .grid-item{ class: (post.popular ? 'big' : 'normal') }
-      = link_to post do
-        .post{ data: { post_id: post.id } }
-          %h2= post.title
-          = link_to post do
-            = image_tag(post.image.url(:medium))
-        %section.meta
-          %span.comments
-            %i.fa{ class: post.comments.length > 0 ? 'fa-comment' : 'fa-comment-o'}
-            %span= post.comments.length if post.comments.length > 0
-          %span.likes
-            %i.fa.fa{ class: post.likes.length > 0 ? 'fa-heart' : 'fa-heart-o'}
-            %span= post.likes.length if post.likes.length > 0
+    %li.post= render post

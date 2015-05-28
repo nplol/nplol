@@ -1,8 +1,5 @@
 class Post < ActiveRecord::Base
-  attr_accessor :popular, :next, :previous
-
   belongs_to :author, class_name: 'User', foreign_key: 'user_id'
-  has_many :comments, dependent: :destroy
 
   has_and_belongs_to_many :tags
   accepts_nested_attributes_for :tags
@@ -16,12 +13,17 @@ class Post < ActiveRecord::Base
   validates :title, presence: true,
             uniqueness: true
 
-  scope :_public, ->  { where(public: true)  }
-  scope :_private, -> { where(public: false) }
-  
   def set_siblings
     self.next, self.previous = find_siblings
-  end  
+  end 
+
+  def self.list(flag) 
+    if flag
+      self.all.includes(:likes)
+    else
+      self.where(public: true).includes(:likes)
+    end
+  end
 
   def score
     Float(comments.length + likes.length)/2.ceil

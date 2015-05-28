@@ -2,6 +2,12 @@
 
   = f.input :title, placeholder: 'title', class: 'title'
   = f.input :tag_list, placeholder: 'tags'
+  
+  - if @post.image != nil
+    %section.old-image
+      %p Old image
+      = image_tag @post.image.url(:medium)
+
   = f.file :image, class: 'file'
 
   = f.submit

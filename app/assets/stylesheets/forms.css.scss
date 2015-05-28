@@ -1,34 +1,36 @@
 @import 'bourbon';
+@import 'variables';
 @import 'colors';
 
-.edit_post, #new_post { flex-direction: column; }
+.edit_post, #new_post { 
+  @include flex-direction (column); }
 
 label { display: none; }
 
 input {
-  display: flex;
-  flex: 1;
   padding: 10px;
   border: 0;
-  border-bottom: 1px solid #ddd;
-  font-size: 22px;
+  border-bottom: 1px solid $gray;
+  font-size: $big;
+  @include display(flex);
+  @include flex(1);
 }
 
 .input {
   margin-bottom: 25px;
-  flex: 1;
+  @include flex(1);
 }
 
 input.file { border-bottom: 0; }
 
-input.title { font-size: 52px; }
+input.title { font-size: $hero; }
 
 input.error { border-bottom: 1px solid $red; }
 
 input:focus { outline: 0; }
 
 input[type=submit] {
-  background: $red;
+  background: $blue;
   padding: 20px 50px;
   justify-content: center;
   color: $white;
@@ -38,17 +40,17 @@ input[type=submit] {
   box-sizing: border-box;
 }
 
-.simple-form {
-  background: $lightGray;
-  flex-direction: column;
-  width: 70%;
-  margin: 0 auto;
-  padding: 30px;
-  box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.2);
-  justify-content: center;
-  position: relative;
-}
+/*.simple-form {*/
+  /*background: $lightGray;*/
+  /*flex-direction: column;*/
+  /*width: 70%;*/
+  /*margin: 0 auto;*/
+  /*padding: 30px;*/
+  /*box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.2);*/
+  /*justify-content: center;*/
+  /*position: relative;*/
+/*}*/
 
-.simple-form form { flex-direction: column; }
-.simple-form input { margin-bottom: 30px; }
-.simple-form input[type=text] { background: $lightGray; }
+/*.simple-form form { flex-direction: column; }*/
+/*.simple-form input { margin-bottom: 30px; }*/
+/*.simple-form input[type=text] { background: $lightGray; }*/

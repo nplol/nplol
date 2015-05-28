@@ -27,26 +27,6 @@ describe Post do
     end
   end
 
-  context 'Siblings' do
-    before :all do
-      create_list :post, 3
-    end
-
-    it 'finds siblings for a given post' do
-      post = Post.second
-      post.set_siblings
-      expect(post.previous).to eq(Post.first.id)
-      expect(post.next).to eq(Post.third.id)
-    end
-
-    it 'doesn\'t find non-existant siblings' do
-      post = Post.first
-      post.set_siblings
-      expect(post.previous).to be_nil
-    end
-
-  end
-
   context 'public' do
     let(:post) { create :post}
 
@@ -63,7 +43,7 @@ describe Post do
     before :each do
       FactoryGirl.reload # reload FactoryGirl sequences
       create_list :tag, 5
-      post = build :post
+      create :post
     end
   
     context 'existing tags' do

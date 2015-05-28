@@ -1,0 +1,7 @@
+= link_to edit_post_path(post) do
+  %i.fa.fa-pencil
+  %span Edit post
+
+= link_to post, method: :delete, data: { confirm: 'Sure?' }  do
+  %i.fa.fa-trash-o
+  %span Delete post

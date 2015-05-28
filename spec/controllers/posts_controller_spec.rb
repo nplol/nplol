@@ -55,7 +55,7 @@ describe PostsController do
       end
       
       it 'does not show private posts' do
-        get :show, id: Post._private.first.to_param
+        get :show, id: Post.where(public: false).first
         expect(response).to redirect_to(root_url)
       end
     end
@@ -69,7 +69,7 @@ describe PostsController do
       end
 
       it 'shows private posts' do
-        get :show, id: Post._private.first.to_param
+        get :show, id: Post.where(public: false).first
         expect(response.status).to eq(200)
       end
     end

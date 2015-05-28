@@ -3,10 +3,9 @@ class PostsController < ApplicationController
   before_filter :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
-    nplol? ? @posts = Post.all.order('created_at DESC').includes(:comments, :likes) : @posts = Post._public.order('created_at DESC').includes(:comments, :likes)
-    score
+    @posts = Post.list(nplol?)
   end
-
+  
   def new
     @post = Post.new
   end
@@ -37,7 +36,6 @@ class PostsController < ApplicationController
 
   def show
     return user_not_authorized  unless @post.public? || nplol? 
-    @post.set_siblings
   end
 
   def destroy

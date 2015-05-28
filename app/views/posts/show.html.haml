@@ -1,4 +1,4 @@
-%article#post{ data: { id: @post.id } }
+%article
   %h1= @post.title
 
   %section.post-meta
@@ -9,29 +9,17 @@
       %i.fa.fa-tags.fa-lg
       - @post.tag_list.split(',').each do |tag|
         %span.tag= tag
-
-    %section
-      - if @post.comments.count > 0
-        %i.fa.fa-comment.fa-lg
-        %span.count= "#{@post.comments.count} comment(s)"
-      - else
-        %i.fa.fa-comment-o.fa-lg
-        %span No comments
+    %section.author
+      %i.fa.fa-pencil.fa-lg
+      %span= @post.author.name
 
   %section.content
     =image_tag @post.image.url(:large)
 
-  %section.details
-    %section.author
-      %i.fa.fa-pencil.fa-lg
-      %span= "@#{@post.author.username}"
+  %section.extra
     %section.likes
       = render 'like', post: @post
+    - if @post.author == current_user
+      %section.tools
+        = render 'tools', post: @post
 
-  = render 'partials/admin_tools' if nplol?
-
-  = render 'comments/form', comment: @post.comments.build
-
-  %section.comments
-    - @post.comments.order('created_at DESC').each do |comment|
-      =render comment

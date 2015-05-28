@@ -1,0 +1,16 @@
+@import 'bourbon';
+
+@media (max-width: 600px) {
+
+  /* -- posts/index -- */
+  .post-image { margin-right: 15px; }
+  
+  /* -- posts/show -- */
+  
+  .post-meta, .extra {
+    @include flex-wrap(wrap);
+  } 
+
+  .post-meta section, .extra section { margin: 15px 0; }
+
+}

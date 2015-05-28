@@ -1,8 +1,0 @@
-%section{class: "flash #{'error' if flash[:error]  }" }
-  - if flash[:error]
-    %h3= t('errors')
-    = flash[:error]
-  -else
-    %span.message= flash[:notice]
-
-= javascript_include_tag 'flash'

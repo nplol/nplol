@@ -9,16 +9,13 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require overrides
- *= require article
- *= require grid
- *= require comments
- *= require tags
  *= require tipsy
  *= require font-awesome
  *= require layout
- *= require header
  *= require forms
+ *= require posts
+ *= require tags
+ *= require header
  *= require animations
- *= require background
- *= require notices
+ *= require queries
  */

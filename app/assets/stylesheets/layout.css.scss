@@ -1,50 +1,53 @@
 @import 'bourbon';
 @import 'colors';
-
+@import 'variables';
 @include font-face(open-sans, 'open-sans/OpenSans-Regular', normal, $asset-pipeline: true);
 
 body {
   font-family: 'open-sans';
-  font-size: 18px;
-  color: $black;
-}
-
-div, section, article, form, ul {
-  display: flex;
-  box-sizing: border-box;
+  font-size: $copy;
 }
 
 ul {
-  flex-direction: column;
-  flex: 1;
+  @include flex-direction(column);
+  @include flex(1);
 }
 
-#body {
-  display: flex;
-  position: relative;
-  flex: 1;
-  padding-top: 50px;
-}
+a, a:hover, a:visited { color: $black; }
 
-#main { flex: 1; z-index: 1; }
+a:hover { text-decoration: underline; }
+
+#main {
+  background: $white;
+  padding: 56px 0 0 0;
+  max-width: 950px;
+  min-width: 400px;
+  margin: 0 auto;
+  @include display(flex);
+  @include justify-content(center);
+  @include flex(1);
+}
 
 // font-styles
 
 h1 {
-  font-size: 3em;
+  font-size: $hero;
   text-align: center;
   margin: 30px;
 }
 
 h2 {
   font-weight: 700;
-  font-size: 1.4em;
+  font-size: $large;
   margin-bottom: 15px;
+}
+
+h3 {
+  font-size: $large;
 }
 
 span.attention { 
   border-radius: 3px;
-  background: $lightGray;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.125);    
   padding: 2px 8px;
   margin-right: 5px;

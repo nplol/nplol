@@ -3,23 +3,35 @@
 
 header {
   padding: 10px 20px 10px 0;
-  box-sizing: border-box;
   position: fixed;
   top:0;
   left:0;
   right:0;
-  background: $red;
-  box-shadow: 0 0 1px 4px rgba(0, 0, 0, 0.2);
-  display: flex;
-  z-index: 2;
-  align-items: center;
+  background: $blue;
+  border: 1px solid rgba(0,0,0,0.05);
+  @include display(flex);
+  @include align-items(center);
+  color: $white;
 }
 
-header section { flex: 1; }
-.logo a { margin: 0; padding: 0; }
-.logo img { height: 32px; width: 32px; }
-.logo, .user-tools { justify-content: flex-end; }
-header a, header i { color: $white; padding: 0 5px; }
+header section {
+  @include display(flex);
+  @include flex(1);
+  @include justify-content(flex-end);
+}
+
+.logo a {
+  display: block;
+  margin-left: -21px;
+}
+
+header a, .user-tools a, header a:hover { color: $white; }
+
+.user-tools i:first-of-type {
+  margin-right: 15px;
+}
+
+.logo img { height: 32px; }
 
 #user-menu {
   position: fixed;
@@ -27,7 +39,7 @@ header a, header i { color: $white; padding: 0 5px; }
   padding: 10px;
   background: $white;
   color: $black;
-  border-left: 15px solid $fadedRed;
+  border-left: 15px solid $ltBlue;
   right: 0;
   top: 100px;
   @include transition(all .3s ease);
@@ -38,7 +50,7 @@ header a, header i { color: $white; padding: 0 5px; }
 }
 
 #user-menu.active {
-  border-left: 15px solid $red;
+  border-left: 15px solid $blue;
   @include transform(translate3d(0,0,0));
   cursor: normal;
 }

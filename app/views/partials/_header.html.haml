@@ -1,7 +1,6 @@
 %section.logo
   =link_to root_path do
-    .logo-icon(title="Go home, brah")
-      =image_tag('logo_min.svg')
+    =image_tag('logo_min.svg')
 %section.user-tools
   - if logged_in?
     = render 'users/tools'
