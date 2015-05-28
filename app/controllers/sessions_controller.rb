@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
       log_in(user)
     else
       puts user.valid?
-      puts user
+      puts user.inspect
     end 
     close_window
   end 
