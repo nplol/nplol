@@ -1,7 +1,7 @@
 @import 'bourbon';
 @import 'colors';
 
-#new_post { flex-direction: column; }
+.edit_post, #new_post { flex-direction: column; }
 
 label { display: none; }
 

@@ -23,6 +23,7 @@ class PostsController < ApplicationController
   end
 
   def edit
+    redirect_to root_path unless @post.author == current_user
   end
 
   def update
