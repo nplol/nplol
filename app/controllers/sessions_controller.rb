@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
     if user.save
       log_in(user)
     else
-      puts user.valid?
+      puts user.errors.inspect
       puts user.inspect
     end 
     close_window
