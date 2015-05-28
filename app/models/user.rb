@@ -2,7 +2,8 @@ class User < ActiveRecord::Base
   ROLES = %w(nplol regular)
 
   validates_presence_of :email, :role
-  validates_uniqueness_of :email, :username
+  validates_uniqueness_of :email
+  validates_uniqueness_of :username, allow_nil: true
   
   after_initialize :default_values  
 
@@ -19,7 +20,6 @@ class User < ActiveRecord::Base
   def default_values
     self.uuid ||= SecureRandom.uuid
     self.role ||= 'regular'
-    self.name ||= 'pikktryne'
   end
 
   def authorize!
