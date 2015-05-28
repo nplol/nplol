@@ -19,9 +19,9 @@ class Post < ActiveRecord::Base
 
   def self.list(flag) 
     if flag
-      self.all.includes(:likes)
+      self.all.includes(:likes).order(:created_at)
     else
-      self.where(public: true).includes(:likes)
+      self.where(public: true).includes(:likes).order(:created_at)
     end
   end
 
