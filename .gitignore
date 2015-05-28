@@ -10,6 +10,8 @@
 /public/assets
 /coverage
 spec/public/*
+dump.rdb
+
 #Ignore dotfiles
 /.idea
 /.bundle

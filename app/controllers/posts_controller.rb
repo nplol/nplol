@@ -54,14 +54,6 @@ class PostsController < ApplicationController
     throw 404 if @post.nil?
   end
 
-  def score
-    # 0 is the initial value
-    candidates = @posts.select { |post| post.score > 0 }
-    return unless candidates.any? # no popular posts, so why bother?
-    avg_score = candidates.reduce(0) { |total, post| total + post.score } / candidates.length
-    @posts.map { |post| post.popular = true if post.score > avg_score }
-  end
-
   def post_params
     params.require(:post).permit(:title, :image, :tag_list)
   end

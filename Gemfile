@@ -29,6 +29,10 @@ gem 'omniauth-github'
 gem 'nokogiri'
 gem 'figaro'
 
+gem 'sidekiq'
+# use sidetiq for recurring sidekiq jobs
+gem 'sidetiq'
+
 group :development, :test do
   gem 'spring'
   gem 'byebug'

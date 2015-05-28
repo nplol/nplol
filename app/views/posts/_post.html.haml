@@ -5,6 +5,6 @@
     = link_to post do
       %h3= post.title
     - if post.likes.count > 0
-      %i.fa.fa-heart
-      - if post.likes.count > 1
-        %span= post.likes.count
+      %i.fa.fa-heart{title: "#{post.likes.count} user(s) like this post"}
+    - if post.popular
+      %i.fa.fa-bolt{title: 'This post is popular'}
