@@ -3,13 +3,18 @@ class SessionsController < ApplicationController
   before_action :set_auth_hash, only: :create
 
   def create
+    user.save && log_in(user)    
     opts = user_params(@hash[:info])
     user = User.where("email='#{opts['email']}' OR username='#{opts['username']}'").first
     user = User.new(opts) if user.nil? || !user.valid?
     if user.identities.where(provider: @hash[:provider]).empty?
       user.add_identity(@hash[:provider]) 
     end
-    user.save && log_in(user)    
+    if user.save
+      log_in(user)
+    else
+      puts user
+    end 
     close_window
   end 
   
