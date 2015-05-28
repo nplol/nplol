@@ -7,8 +7,11 @@
       %span=@post.created_at.strftime("%B #{@post.created_at.day.ordinalize}, %Y")
     %section.tags
       %i.fa.fa-tags.fa-lg
-      - @post.tag_list.split(',').each do |tag|
-        %span.tag= tag
+      - if @post.tag_list.empty?
+        No tags
+      - else
+        - @post.tag_list.split(',').each do |tag|
+          %span.tag= tag
     %section.author
       %i.fa.fa-pencil.fa-lg
       %span= @post.author.name

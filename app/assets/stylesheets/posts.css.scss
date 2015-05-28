@@ -40,6 +40,8 @@
   @include transition(opacity .3s ease);
 }
 
+.post-data span { margin: 0 0 4px 5px; }
+
 .post-data i:hover { opacity: 1; }
 
 /* -- show -- */
