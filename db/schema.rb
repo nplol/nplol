@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150528162914) do
+ActiveRecord::Schema.define(version: 20150529151311) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20150528162914) do
     t.boolean  "public",             default: true
     t.boolean  "popular",            default: false
     t.integer  "likes_count",        default: 0
+    t.boolean  "top",                default: false
   end
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree

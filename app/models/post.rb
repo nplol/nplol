@@ -1,6 +1,5 @@
 class Post < ActiveRecord::Base
   belongs_to :author, class_name: 'User', foreign_key: 'user_id'
-
   has_and_belongs_to_many :tags
   accepts_nested_attributes_for :tags
   has_many :likes, dependent: :destroy

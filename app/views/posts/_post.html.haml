@@ -2,6 +2,8 @@
   %h3= post.title
   - if post.popular
     %i.fa.fa-bolt
+  - if post.top
+    %i.fa.fa-trophy
 %section.post-image
   =image_tag post.image.url(:medium)
 %section.meta
