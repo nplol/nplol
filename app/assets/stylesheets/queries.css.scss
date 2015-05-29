@@ -2,15 +2,24 @@
 
 @media (max-width: 600px) {
 
-  /* -- posts/index -- */
-  .post-image { margin-right: 15px; }
+  .posts { padding: 0; }
   
-  /* -- posts/show -- */
+  .row { @include flex-wrap(wrap); }
   
-  .post-meta, .extra {
-    @include flex-wrap(wrap);
-  } 
+  .post, .popular { 
+    max-width: inherit; 
+    width: 100%; 
+    @include flex-basis(inherit);
+    margin: 7.5px 0;
+  }
 
-  .post-meta section, .extra section { margin: 15px 0; }
+  /* -- show -- */
+  .post-meta, .extra { @include flex-wrap(wrap); }
+
+  .post-meta section, .extra section {
+    width: 100%;
+    margin: 15px 0; 
+    @include justify-content(center);
+  }
 
 }

@@ -1,3 +1,5 @@
 %ul.posts
   - @posts.each do |post|
-    %li.post= render post
+    %li.post{ class: (post.popular ? 'popular' : 'normal' )}
+      = link_to post do 
+        = render post

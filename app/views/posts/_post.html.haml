@@ -1,10 +1,13 @@
-%section.post-image
-  =image_tag post.image.url(:thumb)
 %section.post-data
-  %section.post-inner
-    = link_to post do
-      %h3= post.title
-    - if post.likes.count > 0
-      %i.fa.fa-heart{title: "#{post.likes.count} user(s) like this post"}
-    - if post.popular
-      %i.fa.fa-bolt{title: 'This post is popular'}
+  %h3= post.title
+  - if post.popular
+    %i.fa.fa-bolt
+%section.post-image
+  =image_tag post.image.url(:medium)
+%section.meta
+  - if post.likes.count > 0
+    %i.fa.fa-heart
+    %span= post.likes.count if post.likes.count > 1
+  - else
+    %i.fa.fa-heart-o
+

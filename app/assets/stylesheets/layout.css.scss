@@ -6,19 +6,14 @@
 body {
   font-family: 'open-sans';
   font-size: $copy;
+  background: $white;
 }
 
-ul {
-  @include flex-direction(column);
-  @include flex(1);
-}
+.red { color: $red; }
 
 a, a:hover, a:visited { color: $black; }
 
-a:hover { text-decoration: underline; }
-
 #main {
-  background: $white;
   padding: 56px 0 0 0;
   max-width: 950px;
   min-width: 400px;
@@ -43,10 +38,10 @@ h2 {
 }
 
 h3 {
-  font-size: $large;
+  font-size: $medium;
 }
 
-span.attention { 
+.attention { 
   border-radius: 3px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.125);    
   padding: 2px 8px;

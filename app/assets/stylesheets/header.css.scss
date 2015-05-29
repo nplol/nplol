@@ -12,6 +12,7 @@ header {
   @include display(flex);
   @include align-items(center);
   color: $white;
+  z-index: 2;
 }
 
 header section {
