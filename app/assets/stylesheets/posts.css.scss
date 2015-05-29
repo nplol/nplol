@@ -9,13 +9,13 @@
 }
 
 .normal {
-  max-width: calc(33% - 2em);
-  @include flex-basis(calc(33% - 2em));
+  max-width: calc(33.3% - 2em);
+  @include flex-basis(calc(25% - 2em));
 }
 
 .popular {
   border-top: 6px solid $red; 
-  max-width: calc(66% - 2em);
+  max-width: calc(67% - 2em);
   @include flex-basis(calc(50% - 2em));
 }
 
