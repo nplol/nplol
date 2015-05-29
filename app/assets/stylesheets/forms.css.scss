@@ -3,7 +3,9 @@
 @import 'colors';
 
 .edit_post, #new_post { 
-  @include flex-direction (column); }
+  @include flex-direction (column); 
+  padding: 30px;
+}
 
 label { display: none; }
 
