@@ -1,4 +1,5 @@
 @import 'bourbon';
+@import 'variables';
 
 @media (max-width: 992px) {
 
@@ -9,8 +10,18 @@
   .post, .popular { 
     max-width: inherit; 
     width: 100%; 
-    @include flex-basis(inherit);
     margin: 7.5px 0;
+    font-size: $phone;
+    @include flex-basis(inherit);
+  }
+
+  .post .meta {
+    height: 75px;
+    @include transform(translate3d(0,75px,0));
+  }
+
+  .post-image {
+    max-height: 200px;
   }
 
   /* -- show -- */
