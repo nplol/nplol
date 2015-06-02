@@ -108,10 +108,14 @@ article section { @include display(flex); }
   @include align-items(center); 
 }
 
-.post-meta, .extra, .content { 
+.post-meta, .extra { 
   margin: 30px 0; 
   @include justify-content(center);
 }
+
+.content { margin: 30px 0; }
+
+.content img { margin: 0 auto; }
 
 .post-meta i { margin-right: 5px; }
 
