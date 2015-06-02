@@ -115,6 +115,8 @@ article section { @include display(flex); }
 
 .content { margin: 30px 0; display: block; text-align: center; }
 
+.content img { max-width: 100%; }
+
 .post-meta i { margin-right: 5px; }
 
 article .tools a { margin: 0 7.5px; }
