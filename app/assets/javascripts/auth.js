@@ -15,8 +15,8 @@
 
     $(document).on('click', 
       '.settings, #user-menu', function (event) {
-        event.preventDefault();
         $('#user-menu').toggleClass('active');
     });
+
   });
 }());
