@@ -5,11 +5,21 @@
 
   $(document).ready(function() {
 
-    var posts = $('.post');
+    var posts = $('.post').filter(function (post) {
+      return !$(post).hasClass('banner');  
+    });
+
     _.forEach(posts, function(post) {
       var rowStart = setRow(post);
       createRow(rowStart);
     });
+    
+    var banner = $('.banner');
+
+    if(banner) {
+      banner.wrap('<section class="row">');
+      $('.posts').prepend(banner);
+    }
 
     function setRow(post) {
       var index = _.indexOf(posts, post);
