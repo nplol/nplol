@@ -1,5 +1,12 @@
 %ul.posts
-  - @posts.each do |post|
+  - banner = @posts.detect { |p| p.banner }
+  - if banner
+    %section.row
+      %li.post.banner
+        = link_to banner do
+          = render banner
+
+  - @posts.reject { |p| p.banner }.each do |post|
     - classes = post.popular ? 'popular' : 'normal'
     -	classes += post.banner ? ' banner' : ''
     %li.post{ class: classes }

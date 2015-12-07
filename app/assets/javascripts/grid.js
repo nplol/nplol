@@ -4,7 +4,6 @@
   "use strict";
 
   $(document).ready(function() {
-    debugger 
     var posts = $('.post').filter(function (post) {
       return !$(post).hasClass('banner');  
     });
@@ -14,13 +13,6 @@
       createRow(rowStart);
     });
     
-    var banner = $('.banner');
-
-    if(banner) {
-      banner.wrapAll('<section class="row">');
-      $('.posts').prepend(banner);
-    }
-
     function setRow(post) {
       var index = _.indexOf(posts, post);
       if(wrapped(post)) {
