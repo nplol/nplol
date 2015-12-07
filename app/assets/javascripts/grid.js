@@ -4,7 +4,7 @@
   "use strict";
 
   $(document).ready(function() {
-
+    debugger 
     var posts = $('.post').filter(function (post) {
       return !$(post).hasClass('banner');  
     });
