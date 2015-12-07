@@ -13,7 +13,6 @@ gem 'pundit' # post-policies
 
 # use puma as the webserver
 gem 'puma'
-gem 'newrelic_rpm'
 gem 'therubyracer'
 
 # paperclip and aws for remote file upload
