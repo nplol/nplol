@@ -17,7 +17,7 @@
     var banner = $('.banner');
 
     if(banner) {
-      banner.wrap('<section class="row">');
+      banner.wrapAll('<section class="row">');
       $('.posts').prepend(banner);
     }
 
