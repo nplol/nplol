@@ -11,6 +11,7 @@
 /coverage
 spec/public/*
 dump.rdb
+/node_modules/*
 
 #Ignore dotfiles
 /.idea
