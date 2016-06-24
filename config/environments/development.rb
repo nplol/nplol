@@ -22,26 +22,4 @@ Nplol::Application.configure do
   # Raise an error on page load if there are pending migrations
   config.active_record.migration_error = :page_load
 
-  # Debug mode disables concatenation and preprocessing of assets.
-  # This option may cause significant delays in view rendering with a large
-  # number of complex assets.
-  config.assets.debug = true
-
-  Paperclip.options[:command_path] = "/usr/local/bin/"
-  config.paperclip_defaults = {
-    :storage => :s3,
-    :s3_credentials => {
-      :bucket => ENV['s3_bucket'],
-      :access_key_id => ENV['s3_access_key_id'],
-      :secret_access_key => ENV['s3_access_key'],
-      :s3_host_name => ENV['s3_host_name']
-    }
-  }
-
-  # Add the fonts path
-  config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
-
-  # Precompile additional assets
-  config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
-
 end

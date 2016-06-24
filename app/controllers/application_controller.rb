@@ -1,15 +1,7 @@
-require 'exceptions'
-
 class ApplicationController < ActionController::Base
-  include Pundit
   layout :layout?
-  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-  rescue_from Exceptions::AuthenticationError, with: :user_not_authorized
- 
   helper_method :log_in, :close_window, :current_user, :nplol?, :logged_in?
 
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
   private
