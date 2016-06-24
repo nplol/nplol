@@ -4,10 +4,11 @@ class Post < ActiveRecord::Base
   accepts_nested_attributes_for :tags
   has_many :likes, dependent: :destroy
   has_many :liking_users, through: :likes, source: :user
+  mount_uploader :image, ImageUploader
 
-  has_attached_file :image, styles: { large: '640x480', medium: '300x300>', thumb: '100x100>' }
-  validates_attachment_content_type :image, :content_type => /^image\/(png|gif|jpeg|jpg)/
-  validates_attachment_presence :image
+  #has_attached_file :image, styles: { large: '640x480', medium: '300x300>', thumb: '100x100>' }
+  #validates_attachment_content_type :image, :content_type => /^image\/(png|gif|jpeg|jpg)/
+  #validates_attachment_presence :image
 
   validates :title, presence: true,
             uniqueness: true
