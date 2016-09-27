@@ -1,0 +1,15 @@
+/* line 1, /Users/nicohvi/Workspace/ruby/nplol/web/css/reset.scss */
+body, html, h1, h2, h3 {
+  margin: 0;
+  padding: 0; }
+
+
+@import 'https://fonts.googleapis.com/css?family=Open+Sans';
+
+/* line 3, /Users/nicohvi/Workspace/ruby/nplol/web/css/layout.scss */
+body {
+  min-height: 100vh;
+  font-family: "Open sans"; }
+
+
+/*# sourceMappingURL=style.css.map*/

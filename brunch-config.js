@@ -4,12 +4,12 @@ exports.config = {
       joinTo: "js/app.js"
     },
     stylesheets: {
-      joinTo: "css/app.css",
+      joinTo: "css/style.css",
       order: {
         before: 
           [ 
-            "web/static/css/util/fonts.scss",
-            "web/static/css/util/reset.scss"
+            "web/css/reset.scss",
+            "web/css/variables.scss"
           ]
       }
     }
@@ -21,7 +21,7 @@ exports.config = {
 
   paths: {
     watched: [
-      "web/static"
+      "web/"
     ],
 
     public: "public"
@@ -29,7 +29,7 @@ exports.config = {
 
   plugins: {
     babel: {
-      ignore: [/web\/static\/vendor/]
+      ignore: [/web\/js\/vendor/]
     }
   },
 
