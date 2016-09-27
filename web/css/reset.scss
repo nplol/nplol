@@ -1,5 +1,13 @@
-body, html, h1, h2, h3 {
+body, html, h1, h2, h3, p, ul, li, img, figure {
   margin: 0;
   padding: 0;
 }
 
+ul, li {
+  list-style: none;
+}
+
+input, textarea {
+  outline: 0;
+  border: none;
+}

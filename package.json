@@ -17,8 +17,9 @@
   },
   "homepage": "https://github.com/nplol/nplol#readme",
   "devDependencies": {
-    "brunch": "^2.8.2",
+    "auto-reload-brunch": "^2.7.1",
     "babel-brunch": "~6.0.0",
+    "brunch": "^2.8.2",
     "clean-css-brunch": "~1.8.0",
     "css-brunch": "~1.7.0",
     "javascript-brunch": "~1.8.0",

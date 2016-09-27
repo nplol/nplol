@@ -1,15 +1,34 @@
 /* line 1, /Users/nicohvi/Workspace/ruby/nplol/web/css/reset.scss */
-body, html, h1, h2, h3 {
+body, html, h1, h2, h3, p, ul, li, img, figure {
   margin: 0;
   padding: 0; }
 
+/* line 6, /Users/nicohvi/Workspace/ruby/nplol/web/css/reset.scss */
+ul, li {
+  list-style: none; }
+
+/* line 10, /Users/nicohvi/Workspace/ruby/nplol/web/css/reset.scss */
+input, textarea {
+  outline: 0;
+  border: none; }
 
 @import 'https://fonts.googleapis.com/css?family=Open+Sans';
+
+/* line 3, /Users/nicohvi/Workspace/ruby/nplol/web/css/header.scss */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: #5ea5d8;
+  color: #fff; }
 
 /* line 3, /Users/nicohvi/Workspace/ruby/nplol/web/css/layout.scss */
 body {
   min-height: 100vh;
   font-family: "Open sans"; }
+
 
 
 /*# sourceMappingURL=style.css.map*/

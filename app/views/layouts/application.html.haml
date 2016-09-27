@@ -2,12 +2,11 @@
 %html
   %head
     %title nplol
-    %link(href="/css/style.css" rel="stylesheet")
-    %script(scr="/js/app.js" type="text/javascript")
+    %link(href="css/style.css" rel="stylesheet")
     = csrf_meta_tags
   %body
     %header
       = render 'partials/header'
     %section#main
       = yield
-
+    %script(src="js/app.js")

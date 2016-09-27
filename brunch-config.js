@@ -3,20 +3,16 @@ exports.config = {
     javascripts: {
       joinTo: "js/app.js"
     },
+
     stylesheets: {
       joinTo: "css/style.css",
       order: {
         before: 
           [ 
-            "web/css/reset.scss",
-            "web/css/variables.scss"
+            "web/css/reset.scss"
           ]
       }
     }
-  },
-
-  conventions: {
-    assets: /^(web\/static\/assets)/
   },
 
   paths: {
@@ -30,6 +26,12 @@ exports.config = {
   plugins: {
     babel: {
       ignore: [/web\/js\/vendor/]
+    }
+  },
+
+  modules: {
+    autoRequire: {
+      "js/app.js": ["web/js/main"]
     }
   },
 
